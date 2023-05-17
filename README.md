@@ -39,4 +39,4 @@ Once the School Information and Result Management System is installed and runnin
 
 2. **Teacher Portal:** Teachers can log in using their credentials to access the teacher portal. They can enter student results, manage attendance, view student information, and generate class performance reports.
 
-3. **Parent/Student Portal:** Parents and students can log in with their respective credentials to access the portal. They can view student attendance, grades, and upcoming assignments.
+3. **Parent/Student Portal:** Parents and students can log in with their respective credentials to access the portal. They can view student attendance, grades, and upcoming assignments and school events.

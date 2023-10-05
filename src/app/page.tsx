@@ -5,16 +5,17 @@ import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/me
 
 
 const socials = [
+  { id: 1, name: "Email", image: "/image/email.svg", link: "mailto:support@arieducationportal.com", alt: "Email us" },
   { id: 2, name: "X (Twitter)", image: "/image/x.svg", link: "https://www.x.com/arieducationhub", alt: "Follow us on Twitter" },
   { id: 3, name: "Whatsapp", image: "/image/wa.svg", link: "https://wa.me/+2347036575295", alt: "Chat us on Whatsapp" },
-  { id: 4, name: "Instagram", image: "/image/ig.svg", link: "https://t.me/arieducationhub", alt: "Chat us on Instagram" }
+  { id: 4, name: "Instagram", image: "/image/ig.svg", link: "https://instagram.com/arieducationhub", alt: "Follow us on Instagram" }
 ]
 
 export default function Home() {
   return (
     <div className="flex h-screen flex-col items-center justify-between p-0">
       <div className="fixed transform -translate-y-1/2 top-1/2">
-        <img src="/image/Wzcdkj.png" alt="arihub logo" className='w-32 h-28 md:h-28 md:w-40 mx-auto' loading="eager" />
+        <img src="/image/Wzcdkj.png" alt="arihub logo" className='w-32 h-28 md:h-36 md:w-40 mx-auto' loading="eager" />
         <div className="mb-6">
           <p className="text-center font-bold uppercase text-2xl">ARIHUB</p>
         </div>
@@ -36,7 +37,7 @@ export default function Home() {
               {socials.map((item, _index) => {
                 return <div key={item.id} className={`dfT_${_index}`}>
                   <MenuItem>
-                    <Link href={item.link} className="flex items-center justify-between align-middle">
+                    <Link target="_blank" href={item.link} className="flex items-center justify-between align-middle">
                       <picture>
                         <img src={item.image} alt={item.alt} className="w-12 h-6" loading="lazy" />
                       </picture>

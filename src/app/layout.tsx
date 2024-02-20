@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script';
 import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
+import Footer from './components/footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default function RootLayout({
             {children}
           </Providers>
           <Tracker />
+          <Footer />
         </main>
       </body>
     </html>

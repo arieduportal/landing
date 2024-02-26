@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
 import Footer from './components/footer';
+import CookieBanner from './components/cookieBanner';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             {children}
           </Providers>
           <Tracker />
+          <CookieBanner />
           <Footer />
         </main>
       </body>

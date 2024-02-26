@@ -14,7 +14,7 @@ export default function Tracker() {
             return `${date}.${month}.${year}`;
         }
 
-        const tracker = (
+        const tracker = (//08158601294
             t: Window & typeof globalThis,
             r: Document,
             a: string,

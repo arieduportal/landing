@@ -9,20 +9,13 @@
 }
 
 @layer utilities {
-  .bg-app {
-    @apply bg-[#2f2e41]
-  }
-
   .w-9\.5\/10 {
     @apply w-[95%] !important;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgba(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  @apply bg-slate-50 text-black !important;
 }
 
 input[type=number] {

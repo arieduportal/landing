@@ -10,7 +10,8 @@ module.exports = {
       backgroundImage: {
       },
       colors: {
-        'rasin-black': '#2f2e41'
+        'rasin-black': '#2f2e41',
+        'transparent-white': '#FFFFFF00',
       }
     },
     fontFamily: {

@@ -13,8 +13,8 @@ const socials = [
 
 export default function Home() {
   return (
-    <div className="flex h-screen flex-col items-center justify-between p-0">
-      <div className="fixed transform -translate-y-1/2 top-1/2">
+    <div className="flex flex-col items-center justify-between p-0">
+      <div className="">
         <img src="/image/Wzcdkj2.png" alt="arihub logo" className='w-32 h-28 md:h-36 md:w-40 mx-auto' loading="eager" />
         <div className="mb-6">
           <p className="text-center font-bold uppercase text-2xl">ARIHUB</p>

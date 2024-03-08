@@ -8,11 +8,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'rasin-black': '#2f2e41',
+        'transparent-white': '#FFFFFF00',
+      }
     },
+    fontFamily: {
+      'inter': ['Inter', 'sans-serif']
+    }
   },
   plugins: [],
   important: true

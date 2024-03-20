@@ -17,7 +17,7 @@ export default function Home() {
       <div className="">
         <img src="/image/Wzcdkj2.png" alt="arihub logo" className='w-32 h-28 md:h-36 md:w-40 mx-auto' loading="eager" />
         <div className="mb-6">
-          <p className="text-center font-bold uppercase text-2xl">ARIHUB</p>
+          <p className="text-center font-bold uppercase text-2xl">AJHUB</p>
         </div>
         <p className="text-center font-bold uppercase text-base md:text-xl">Website is currently undergoing updates</p>
         <div className="my-4 pt-3 flex flex-row justify-between items-center w-3/4 md:w-auto mx-auto">

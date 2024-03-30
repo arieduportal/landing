@@ -47,7 +47,7 @@ export default function Tracker() {
             e!.defer = true;
             //@ts-ignore
             y = r.getElementsByTagName(a)[1];
-            y!.parentNode.insertBefore(e, y);
+            y?.parentNode?.insertBefore(e, y) ?? console.warn("Parent node is undefined.");
         }
         setTimeout(() => {
             tracker(window, document, "script", "data-ae-access");

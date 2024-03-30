@@ -14,8 +14,9 @@
   }
 }
 
+html,
 body {
-  @apply bg-slate-50 text-black !important;
+  @apply bg-slate-50 text-black font-roboto duration-500 transition-all !important;
 }
 
 input[type=number] {
@@ -23,7 +24,7 @@ input[type=number] {
 }
 
 .app-container {
-  @apply max-w-full md:max-w-[70%] !important;
+  @apply max-w-full md:max-w-[70%] mx-auto !important;
 }
 
 .app-bs {

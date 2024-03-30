@@ -1,0 +1,30 @@
+.header.active {
+    @apply fixed top-0 !important;
+}
+
+.header {
+    transition: top .5 ease;
+    @apply w-full z-[1000];
+}
+
+.header.active .bg-holder {
+    @apply to-white/10 from-white/10 from-50% backdrop-blur-sm shadow-md transition-all duration-75 !important;
+}
+
+.header.active .bg-holder .top-nav {
+    @apply opacity-0 py-1 md:py-2 transition-all duration-500 !important;
+}
+
+.header.animate {
+    animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100px;
+    }
+
+    to {
+        top: 0;
+    }
+}

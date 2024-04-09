@@ -1,14 +1,18 @@
 .header.active {
-    @apply fixed top-0 !important;
+    @apply fixed top-0;
 }
 
 .header {
-    transition: top .5 ease;
+    transition: top 1s cubic-bezier(.33, 1, .68, 1);
     @apply w-full z-[1000];
 }
 
 .header.active .bg-holder {
-    @apply to-white/10 from-white/10 from-50% backdrop-blur-sm shadow-md transition-all duration-75 !important;
+    @apply to-black/[0.02] from-black/[0.02] from-50% backdrop-blur-sm shadow-sm transition-all duration-75 !important;
+}
+
+.header.active .bg-holder .bottom-nav {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px !important;
 }
 
 .header.active .bg-holder .top-nav {
@@ -16,15 +20,51 @@
 }
 
 .header.animate {
-    animation: slideDown 0.5s ease forwards;
+    animation: slideDown 1s cubic-bezier(.33, 1, .68, 1);
+}
+
+.circle:before {
+    animation: ripple 2s linear infinite;
+}
+
+.circle:after {
+    animation: ripple 2s linear 1s infinite;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
 }
 
 @keyframes slideDown {
-    from {
+    0% {
         top: -100px;
     }
 
-    to {
+    25% {
+        top: -75px;
+    }
+
+    50% {
+        top: -50px;
+    }
+
+    75% {
+        top: -25px;
+    }
+
+    100% {
         top: 0;
     }
 }

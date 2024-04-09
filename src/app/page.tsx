@@ -31,7 +31,7 @@ export default function Index() {
           </div>
         </div>
         <div className="pt-4">
-          <div className="pt-20abcdefghijklmnopqrstuvwxyz  bg-gradient-to-b from-slate-200 from-65% to-slate-50">
+          <div className="pt-20 bg-gradient-to-b from-slate-200 from-65% to-slate-50">
             <div className="-mt-28 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-center">
               <div className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></div>
               <div className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></div>

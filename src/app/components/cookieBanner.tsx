@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { SlideFade, Box } from '@chakra-ui/react'
+import { SlideFade } from '@chakra-ui/react'
 
 export default function CookieBanner() {
     const [cookieAccepted, setCookieAccepted] = useState(true);

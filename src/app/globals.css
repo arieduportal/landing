@@ -16,7 +16,7 @@
 
 html,
 body {
-  @apply bg-slate-50 text-black font-roboto duration-500 transition-all scroll-smooth !important;
+  @apply bg-slate-50 text-black font-roboto duration-500 transition-all scroll-smooth overflow-x-hidden !important;
 }
 
 input[type=number] {

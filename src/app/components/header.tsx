@@ -155,7 +155,7 @@ export default function Header() {
                                     <span className="">Affiliates</span>
                                 </Link>
                             </motion.div>
-                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: 100 }} className="block md:hidden relative z-[9999]">
+                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: 100 }} className="block md:hidden relative z-[9999] transform-none">
                                 <MobileNav />
                             </motion.div>
                         </div>

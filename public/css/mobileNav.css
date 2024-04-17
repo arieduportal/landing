@@ -1,0 +1,41 @@
+nav .close div::before,
+nav .close div::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 4px;
+    background: #fff;
+    transition: background .5s ease;
+}
+
+nav .close div::before {
+    transform: rotate(-45deg);
+}
+
+nav .close div::after {
+    transform: rotate(45deg);
+}
+
+nav .close:hover div::before,
+nav .close:hover div::after {
+    background: rgb(209, 3, 3);
+}
+
+nav ul li a:after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 3px;
+    border-radius: 5px;
+    background: #fff;
+    bottom: -10px;
+    left: 0;
+    transform-origin: left;
+    transition: transform .5s ease;
+    transform: scaleX(0);
+}
+
+
+nav ul li a:hover:after {
+    transform: scaleX(1);
+}

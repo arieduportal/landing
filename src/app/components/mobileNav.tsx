@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import Link from 'next/link';
 import { CgMenuRight, CgClose } from "react-icons/cg";
+import '../../../public/css/mobileNav.css';
 
 export default function MobileNav() {
     useEffect(() => {
         const open = document.querySelector('.open') as HTMLElement;
         const close = document.querySelector('.close') as HTMLElement;
-        const tl = gsap.timeline({ defaults: { duration: 3, ease: 'expo.inOut' } });
+        const tl = gsap.timeline({ defaults: { duration: .8, ease: 'expo.inOut' } });
 
         const openNav = () => {
             if (tl.reversed()) {
@@ -33,8 +35,14 @@ export default function MobileNav() {
     }, []);
 
     const style = {
-        right: "-300px",
-        height: "30px"
+        right: "-300vw",
+        height: "60px"
+    }
+
+    const aStyle: React.CSSProperties = {
+        opacity: 0,
+        pointerEvents: "none"
+
     }
 
     return (
@@ -43,18 +51,27 @@ export default function MobileNav() {
                 <CgMenuRight className="h-5 text-black fill-black" />
             </div>
             <nav className="fixed w-full bg-black flex justify-center items-center" style={style}>
-                <div className="close">
+                <div className="close text-white w-8 h-8 absolute top-[6%] right-[5%] cursor-pointer" style={aStyle}>
                     <div>
-                        <CgClose />
+                        <CgClose className="text-white" />
                     </div>
                 </div>
                 <ul className="list-none">
-                    <li>
-                        <a href="#">Home</a>
+                    <li className="my-12">
+                        <Link scroll={false} href='/mission' className="text-white text-lg font-medium relative" style={aStyle}>Mission</Link>
                     </li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li className="my-12">
+                        <Link scroll={false} href='/plan' className="text-white text-lg font-medium relative" style={aStyle}>Plan</Link>
+                    </li>
+                    <li className="my-12">
+                        <Link scroll={false} href='/faq' className="text-white text-lg font-medium relative" style={aStyle}>Faq</Link>
+                    </li>
+                    <li className="my-12">
+                        <Link scroll={false} href='/member' className="text-white text-lg font-medium relative" style={aStyle}>Member</Link>
+                    </li>
+                    <li className="my-12">
+                        <a scroll={false} href='/member' className="text-white text-lg font-medium relative" style={aStyle}>Member</a>
+                    </li>
                 </ul>
             </nav>
         </div>

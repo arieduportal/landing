@@ -18,7 +18,8 @@ export default function MobileNav() {
                 tl.to('nav', { right: 0 })
                     .to('nav', { height: '100vh' }, '-=.1')
                     .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.8')
-                    .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=.8');
+                    .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=.8')
+                    .to('nav button', {opacity: 1, pointerEvents: 'all', stagger: 0.8}, '-=.9');
             }
         };
 

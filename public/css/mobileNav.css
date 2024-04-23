@@ -1,26 +1,3 @@
-nav .close div::before,
-nav .close div::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 4px;
-    background: #fff;
-    transition: background .5s ease;
-}
-
-nav .close div::before {
-    transform: rotate(-45deg);
-}
-
-nav .close div::after {
-    transform: rotate(45deg);
-}
-
-nav .close:hover div::before,
-nav .close:hover div::after {
-    background: rgb(209, 3, 3);
-}
-
 nav ul li a:after {
     content: '';
     width: 100%;

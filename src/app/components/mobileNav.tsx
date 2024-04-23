@@ -18,8 +18,8 @@ export default function MobileNav() {
                 tl.to('nav', { right: 0 })
                     .to('nav', { height: '100vh' }, '-=.1')
                     .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.8')
-                    .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=.8')
-                    .to('nav button', {opacity: 1, pointerEvents: 'all', stagger: 0.8}, '-=.9');
+                    .to('nav button', {opacity: 1, pointerEvents: 'all', stagger: 0.2}, '-=.6')
+                    .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=.8');
             }
         };
 
@@ -50,12 +50,12 @@ export default function MobileNav() {
     return (
         <div className="relative">
             <div className="open h-5 cursor-pointer">
-                <CgMenuRight className="h-5 text-black fill-black" />
+                <CgMenuRight className="h-8 w-8 text-black fill-black" />
             </div>
             <nav className="fixed w-full bg-black/80 backdrop-blur-sm flex flex-col justify-center items-center" style={style}>
                 <div className="close text-white w-8 h-8 absolute top-[6%] right-[5%] cursor-pointer" style={aStyle}>
                     <div>
-                        <CgClose className="text-white" />
+                        <CgClose className="text-white w-8 h-8" />
                     </div>
                 </div>
                 <ul className="list-none font-roboto">
@@ -75,7 +75,7 @@ export default function MobileNav() {
                         <Link scroll={false} href="/affiliates" className="text-white text-lg font-medium relative close" style={aStyle}>Affiliates</Link>
                     </li>
                 </ul>
-                <Button className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black w-32">
+                <Button style={aStyle} className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black w-32">
                     <span className="before:left-0 group-hover/item:after:h-full group-hover/item:before:h-full before:bottom-0 after:right-0 after:top-0 block px-1 py-0.5 after:content-[''] before:content-[''] after:w-0.5 before:w-0.5 after:h-0 before:h-0 after:absolute before:absolute after:ease-linear before:ease-linear before:transition-all after:duration-500 after:transition-all before:duration-500 after:bg-black before:bg-black text-sm font-inter">
                         Join Us
                         <span className="ml-1">

@@ -30,7 +30,7 @@ export default function Index() {
               hidden: { scale: 0, y: 75 },
               visible: { scale: 1, y: 0 }
             }} initial="hidden" animate="visible" transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: false, amount: .5 }} className="text-center mt-2 pt-2 mb-4 pb-4 w-full md:w-3/4 lg:w-2/3">
-              <p className="text-teal-700 font-inter text-2xl md:text-3xl lg:text-5xl font-semibold md:leading-[1.3] lg:leading-[1.3]">We develop solutions for schools</p>
+              <p className="text-rasin-black font-roboto text-2xl md:text-3xl lg:text-5xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
             </motion.div>
           </div>
         </div>

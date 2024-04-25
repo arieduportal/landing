@@ -14,12 +14,12 @@ const socials = [
 
 export default function Index() {
   return (
-    <div className="min-h-[200vh]">
+    <div className="relative">
       <div className="">
 
       </div>
       <div className="my-3 py-3">
-        <div className="app-container flex justify-center items-center mx-auto relative">
+        <div className="app-container flex justify-center items-center mx-auto relative pb-3">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
               <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: 50 }} className="rounded-full bg-sky-200 text-sky-700 px-4 py-1 translate-x-0">
@@ -36,13 +36,68 @@ export default function Index() {
         </div>
         <div className="pt-4">
           <div className="pt-20 bg-gradient-to-b from-slate-200 from-65% to-slate-50">
-            <div className="-mt-28 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-center">
-              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: -100 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
-              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: 100 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
-              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
-              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-lg rounded-md py-4 px-2.5 text-slate-700 text-sm flex m-2"></motion.div>
+            <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-center">
+              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: -100 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">search engine optimization</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: 100 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">Academics portal</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">website control</h3>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">staff pay manager</h3>
+                    </div>
+                  </div>
+                </div></motion.div>
+              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">analytics gateway</h3>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-custom rounded-lg py-2 px-2.5 text-slate-700 text-sm flex m-2">
+                <div className="p-[35px] transition-all duration-500">
+                  <div className="relative text-start flex flex-grow-1">
+                    <div className="mr-9"></div>
+                    <div className="">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">E-Payment system</h3>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>

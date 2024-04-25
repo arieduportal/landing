@@ -12,7 +12,11 @@ module.exports = {
       colors: {
         'rasin-black': '#2f2e41',
         'transparent-white': '#FFFFFF00',
-      }
+      },
+      boxShadow: {
+        "app": "rgba(0, 0, 0, 0.1) 0px 10px 50px",
+        "custom": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px"
+      },
     },
     fontFamily: {
       'inter': ['Inter', 'sans-serif'],

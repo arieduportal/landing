@@ -2,7 +2,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Script from 'next/script';
-import { motion } from "framer-motion";
 import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
 import Footer from './components/footer';
@@ -28,8 +27,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link rel="preconnect" href="https://static.arieducationportal.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com"  />
-        <link rel="dns-prefetch" href="https://static.arieducationportal.com"  />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://static.arieducationportal.com" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" sizes="16x16" href="https://static.arieducationportal.com/image/icons/16.png" type="image/png" />
         <link rel="icon" sizes="32x32" href="https://static.arieducationportal.com/image/icons/32.png" type="image/png" />
@@ -56,9 +55,6 @@ export default function RootLayout({
           </Providers>
           <Tracker />
           <CookieBanner />
-          <div className="fixed left-4 top-1/2 transform -translate-y-1/2 w-auto rotate-[270deg] z-50">
-            <a href="" className="underline text-black text-sm font-inter">Try Demo Account</a>
-          </div>
         </main>
         <Footer />
       </body>

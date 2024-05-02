@@ -24,7 +24,7 @@ input[type=number] {
 }
 
 .app-container {
-  @apply max-w-full md:max-w-[70%] mx-auto !important;
+  @apply max-w-[95%] md:max-w-[70%] mx-auto !important;
 }
 
 .app-bs {
@@ -33,19 +33,19 @@ input[type=number] {
 
 @media (min-width: 576px) {
   .app-container {
-    @apply max-w-[570px] px-1 !important;
+    @apply max-w-[566px] px-1 !important;
   }
 }
 
 @media (min-width: 768px) {
   .app-container {
-    @apply max-w-[760px] px-0 !important;
+    @apply max-w-[758px] px-0 !important;
   }
 }
 
 @media (min-width: 992px) {
   .app-container {
-    @apply max-w-[990px] !important;
+    @apply max-w-[982px] !important;
   }
 }
 

@@ -155,7 +155,7 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -70 }} className="fixed transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-50">
+      <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -70 }} className="fixed hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
         <a href="" className="underline text-rasin-black text-sm font-inter">Try Demo Account</a>
       </motion.div>
     </div>

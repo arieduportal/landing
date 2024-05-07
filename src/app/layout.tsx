@@ -40,11 +40,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="https://static.arieducationportal.com/image/icons/120.png" type="image/png" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Merriweather&display=swap"
         />
       </head>
       <body className={inter.className}>
-        <Script strategy="afterInteractive" id="tracker_id">
+        <Script strategy="afterInteractive" id="track-id">
           {`
           window.TRACK_ID = "AE_1B267-619C4-812CC46E-E281";
         `}
@@ -58,6 +58,8 @@ export default function RootLayout({
           <CookieBanner />
         </main>
         <Footer />
+        <Script strategy="lazyOnload" src="/js/ripple.js" id="ripple" >
+        </Script>
       </body>
     </html>
   )

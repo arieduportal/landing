@@ -64,6 +64,16 @@ input[type=number] {
   animation-duration: 4s !important;
 }
 
+.ripple-btn span {
+  content: "";
+  transition: width 0.7s, padding-top 0.7s;
+}
+
+.ripple-btn:hover span {
+	width: calc(100% * 2.25) !important;
+	padding-top: calc(100% * 2.25) !important;
+}
+
 @media (min-width: 576px) {
   .app-container {
     @apply max-w-[566px] px-1 !important;

@@ -20,7 +20,8 @@ module.exports = {
     },
     fontFamily: {
       'inter': ['Inter', 'sans-serif'],
-      'roboto': ['Roboto', 'sans-serif']
+      'roboto': ['Roboto', 'sans-serif'],
+      'merri': ['Merriweather', 'serif']
     }
   },
   plugins: [],

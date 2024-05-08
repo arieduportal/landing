@@ -63,8 +63,9 @@ input[type=number] {
 .bounce {
   animation-duration: 4s !important;
 }
+
 .animated-shake {
-	animation: shake 0.5s;
+  animation: shake 0.5s;
 }
 
 .ripple-btn span {
@@ -75,8 +76,8 @@ input[type=number] {
 }
 
 .ripple-btn:hover span {
-	width: calc(100% * 2.25) !important;
-	padding-top: calc(100% * 2.25) !important;
+  width: calc(100% * 2.25) !important;
+  padding-top: calc(100% * 2.25) !important;
 }
 
 @media (min-width: 576px) {

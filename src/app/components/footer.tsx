@@ -16,7 +16,8 @@ export default function Footer() {
                         <div className="flex flex-wrap mt-0 -mx-3 flex-col justify-between align-middle lg:items-start lg:flex-row pb-10">
                             <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0.1, y: 50 }} className="w-full max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
                                 <div className="mb-6">
-                                    <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" />
+                                    {/* <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" /> */}
+                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AJHUB LOGO</h3>
                                     <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">
                                         AJHUB: Your transformative partners, not just consultants. We amplify your enterprise across industries with technology-driven excellence. Join our proven expertise for unrivaled business elevation.
                                     </p>
@@ -82,7 +83,7 @@ export default function Footer() {
                                     <div className="mt-6 mb-4">
                                         <input type="text" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center mx-auto rounded-full py-3 px-7">
+                                            <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
                                                 <text className="z-50 relative transition-[color] duration-700 text-white">Subscribe</text>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>

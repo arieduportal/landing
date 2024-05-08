@@ -63,10 +63,15 @@ input[type=number] {
 .bounce {
   animation-duration: 4s !important;
 }
+.animated-shake {
+	animation: shake 0.5s;
+}
 
 .ripple-btn span {
   content: "";
   transition: width 0.7s, padding-top 0.7s;
+  background: #6c63ff !important;
+  transform: translate(-50%, -50%);
 }
 
 .ripple-btn:hover span {

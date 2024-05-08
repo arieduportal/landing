@@ -1,11 +1,16 @@
 setTimeout(() => {
-    const ANIMATEDCLASSNAME = "animated";
+    const ANIMATEDCLASSNAME = "animated-shake";
     const ELEMENTS = document.querySelectorAll(".ripple-btn");
     const ELEMENTS_SPAN = [];
 
     ELEMENTS.forEach((element, index) => {
         let addAnimation = false;
-        console.log(element)
+
+        element.addEventListener("animationend", e => {
+            element.classList.remove(ANIMATEDCLASSNAME);
+        });
+
+        addAnimation = true;
 
         if (!ELEMENTS_SPAN[index])
             ELEMENTS_SPAN[index] = element.querySelector("span");

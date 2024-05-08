@@ -82,9 +82,9 @@ export default function Footer() {
                                     <div className="mt-6 mb-4">
                                         <input type="text" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button className="hover:shadow-custom ripple-btn overflow-hidden transition-all duration-100 bg-rasin-black text-white relative text-center mx-auto rounded-full py-3 px-7 opacity-100">
-                                                Subscribe
-                                                <span className="absolute w-0 h-0 transform -translate-y-1/2 -translate-x-1/2 z-0 opacity-100 rounded-full block"></span>
+                                            <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center mx-auto rounded-full py-3 px-7">
+                                                <text className="z-50 relative transition-[color] duration-700 text-white">Subscribe</text>
+                                                <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>
                                         </div>
                                     </div>
@@ -92,17 +92,17 @@ export default function Footer() {
                                 <div className="mb-6">
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">contact info</h3>
                                     <ul className="m-0 p-0 list-none">
-                                        <li className="text-black pl-5 relative mb-3.5 text-base font-inter font-normal">
+                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <FaLocationArrow className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="" className="text-base transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Opp. St.Faith Schools Ebony Paint Road</Link>
+                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Opp. St.Faith Schools Ebony Paint Road</Link>
                                         </li>
-                                        <li className="text-black pl-5 relative mb-3.5 text-base font-inter font-normal">
+                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="tel:" className="text-base transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 7045 22 9531 </Link>
+                                            <Link href="tel:" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 7045 22 9531 </Link>
                                         </li>
-                                        <li className="text-black pl-5 relative mb-3.5 text-base font-inter font-normal">
+                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiMailLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="mailto:info@arieducationportal.com" className="text-base transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@arieducationportal.com</Link>
+                                            <Link href="mailto:info@arieducationportal.com" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@arieducationportal.com</Link>
                                         </li>
                                     </ul>
                                 </div>

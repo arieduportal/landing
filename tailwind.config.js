@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         'rasin-black': '#2f2e41',
         'transparent-white': '#FFFFFF00',
+        'royal-lilac': '#6c63ff',
       },
       boxShadow: {
         "app": "rgba(0, 0, 0, 0.1) 0px 10px 50px",
@@ -20,7 +21,8 @@ module.exports = {
     },
     fontFamily: {
       'inter': ['Inter', 'sans-serif'],
-      'roboto': ['Roboto', 'sans-serif']
+      'roboto': ['Roboto', 'sans-serif'],
+      'merri': ['Merriweather', 'serif']
     }
   },
   plugins: [],

@@ -13,11 +13,6 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <Script strategy="lazyOnload" id="tracker_id">
-          {`
-          window.TRACK_ID = "AE_EF69E-19F66-F7D2F328-0AF1";
-        `}
-        </Script>
       </body>
     </Html>
   )

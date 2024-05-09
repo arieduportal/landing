@@ -19,7 +19,7 @@ export default function Footer() {
                                     {/* <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" /> */}
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AJHUB LOGO</h3>
                                     <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">
-                                        AJHUB: Your transformative partners, not just consultants. We amplify your enterprise across industries with technology-driven excellence. Join our proven expertise for unrivaled business elevation.
+                                        AJHUB: Your transformative partners, not just consultants. We amplify your institution across educational sectors with technology-driven excellence. Join our proven circle for unrivaled academics elevation.
                                     </p>
                                     <ul className="p-0 mt-5 list-none">
                                         <li className="inline-block mr-2">
@@ -103,7 +103,7 @@ export default function Footer() {
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiMailLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="mailto:info@arieducationportal.com" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@arieducationportal.com</Link>
+                                            <Link href="mailto:info@arieducationportal.com" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@ajhub.com</Link>
                                         </li>
                                     </ul>
                                 </div>

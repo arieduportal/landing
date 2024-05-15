@@ -1,8 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Link from 'next/link';
 import { motion } from "framer-motion";
-import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/menu'
+import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 
 const socials = [
@@ -35,7 +40,7 @@ export default function Index() {
           </div>
         </div>
         <div className="pt-4">
-          <div className="pt-20 bg-gradient-to-b from-slate-200 from-65% to-slate-50">
+          <div className="pt-20 bg-gradient-to-b from-slate-200 from-45% to-slate-50">
             <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle">
               <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: -100 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
@@ -154,6 +159,94 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <div className="pt-3">
+          <div className="bg-gradient-to-b from-slate-50 from-75% to-white transition-all duration-300 px-0 pb-32 pt-20 z-[1]">
+            <div className="app-container flex flex-wrap mx-auto relative">
+              <div className="w-full lg:w-1/3 relative min-h-1 flex">
+                <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
+                  <div className="mb-3 pb-2">
+                    <a href="/#pricing" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                      Join excellence
+                      <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z"></path>
+                      </svg>
+                      <span></span>
+                    </a>
+                  </div>
+                  <div className="mb-3 w-full ml-0 relative text-left">
+                    <div className="mx-0 mt-0 mb-5 transition-all duration-300">
+                      <div className="relative text-start flex flex-wrap items-center flex-grow-[1]">
+                        <div className="mr-1.5">
+                          <div className="text-xl shadow-custom w-12 h-12 z-10 relative inline-flex rounded-full text-teal-700 bg-teal-100">
+                            <svg className="text-teal-700 absolute left-1/2 top-1/2 transform w-6 h-6 text-base inline-block -translate-y-1/2 -translate-x-1/2" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 20 20">
+                              <path fill="currentColor" d="M10 0c5.342 0 10 4.41 10 9.5c0 5.004-4.553 8.942-10 8.942a11.01 11.01 0 0 1-3.43-.546c-.464.45-.623.603-1.608 1.553c-.71.536-1.378.718-1.975.38c-.602-.34-.783-1.002-.66-1.874l.4-2.319C.99 14.002 0 11.842 0 9.5C0 4.41 4.657 0 10 0m0 1.4c-4.586 0-8.6 3.8-8.6 8.1c0 2.045.912 3.928 2.52 5.33l.02.017l.297.258l-.067.39l-.138.804l-.037.214l-.285 1.658a2.79 2.79 0 0 0-.03.337v.095c0 .005-.001.007-.002.008c.007-.01.143-.053.376-.223l2.17-2.106l.414.156a9.589 9.589 0 0 0 3.362.605c4.716 0 8.6-3.36 8.6-7.543c0-4.299-4.014-8.1-8.6-8.1M5.227 7.813a1.5 1.5 0 1 1 0 2.998a1.5 1.5 0 0 1 0-2.998m4.998 0a1.5 1.5 0 1 1 0 2.998a1.5 1.5 0 0 1 0-2.998m4.997 0a1.5 1.5 0 1 1 0 2.998a1.5 1.5 0 0 1 0-2.998"></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <h3 className="text-base font-normal m-0 text-slate-800 font-inter">
+                          <strong className="text-black font-merri">— 98.9</strong>
+                          &nbsp;&nbsp;Customer Satisfaction
+                        </h3>
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-auto mr-0 mb-3 max-w-full">
+                    <div className="relative transition-all duration-300">
+                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">Hear from</h2>
+                      <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 bg-transparent bg-clip-text">happy</h2>
+                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">customers</h2>
+                    </div>
+                  </div>
+                  <div className="w-full mb-3">
+                    <div className="relative">
+                      <p className="my-2 mx-0 text-base font-inter text-slate-600 inline-block relative">The true measure of value of any school is performance. Create an online presence for your school.</p>
+                    </div>
+                  </div>
+                  <div className="w-full text-left ml-0 pl-0">
+                    <img width="255" height="110" className="opacity-100 w-[127px] align-middle inline-block h-auto max-w-full" loading="lazy" data-src="/image/Trustpilot.png" decoding="async" src="/image/Trustpilot.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div className="w-full lg:w-2/3">
+                <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start p-4">
+                  <div className="-left-1 top--2.5 w-auto mr-0 mb-0 absolute z-50">
+                    <div>
+                      <div className="relative block animate-bounce bounce">
+                        <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
+                          <figure className="inline-block m-0 relative w-full">
+                            <img className="h-auto max-w-full" src="/image/testi.png" data-src="/image/testi.png" alt="" loading="lazy" decoding="async" width="186" height="181" />
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-transparent-white rounded-lg">
+                    <Swiper
+                      modules={[Navigation, Pagination, A11y, EffectFade]}
+                      spaceBetween={50}
+                      slidesPerView={1}
+                      navigation
+                      pagination={{ clickable: true }}
+                      effect="fade"
+                      loop={true}
+                      speed={500}
+                      className="w-full bg-transparent-white rounded-lg h-auto"
+                    >
+                      {[1, 2, 3, 4].map((i, el) => {
+                        return <SwiperSlide key={i} className="bg-white w-full h-44 rounded-lg flex justify-center items-center align-middle swiper-margin">Slide {el}</SwiperSlide>;
+                      })}
+                    </Swiper>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <motion.div className="text-center py-2 my-1 pt-6 relative">
+          <div className="inline-block bg-purple-200/50 backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
+          <div className="inline-block ml-3 text-base">Looking for a corporate solution? <a href="" className="text-gradient-2 ml-1 capitalize underline">contact us</a></div>
+        </motion.div>
       </div>
       <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -70 }} className="fixed hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
         <a href="" className="underline text-rasin-black text-sm font-inter">Try Demo Account</a>

@@ -4,7 +4,7 @@ nav ul li a:after {
     position: absolute;
     height: 3px;
     border-radius: 5px;
-    background: #fff;
+    background: #000;
     bottom: -10px;
     left: 0;
     transform-origin: left;

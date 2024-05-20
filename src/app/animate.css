@@ -65,3 +65,19 @@
         transform: translateY(var(--float-to, 3%));
     }
 }
+
+@keyframes penAnimation {
+    0% {
+        right: calc(100% - 15px);
+        transform: translateY(-7px) rotateZ(-45deg);
+    }
+
+    25% {
+        transform: translateY(-12px) rotateZ(-15deg);
+    }
+
+    100% {
+        transform: translateY(0) rotateZ(0);
+        right: -25px;
+    }
+}

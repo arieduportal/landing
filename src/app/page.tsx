@@ -17,6 +17,12 @@ const socials = [
   { id: 4, name: "Instagram", image: "/image/ig.svg", link: "https://instagram.com/arieducationhub", alt: "Follow us on Instagram" }
 ]
 
+const testimonials = [
+  { id: 1, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
+  { id: 2, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
+  { id: 3, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" }
+]
+
 export default function Index() {
   return (
     <div className="relative">
@@ -160,7 +166,7 @@ export default function Index() {
           </div>
         </div>
         <div className="pt-3">
-          <div className="bg-gradient-to-b from-slate-50 from-75% to-white transition-all duration-300 px-0 pb-32 pt-20 z-[1]">
+          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-20 pb-16 z-[1]">
             <div className="app-container flex flex-wrap mx-auto relative">
               <div className="w-full lg:w-1/3 relative min-h-1 flex">
                 <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
@@ -210,7 +216,7 @@ export default function Index() {
               </div>
               <div className="w-full lg:w-2/3">
                 <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start p-4">
-                  <div className="-left-1 top--2.5 w-auto mr-0 mb-0 absolute z-50">
+                  <div className="-left-1 -top-2.5 w-auto mr-0 mb-0 absolute z-50">
                     <div>
                       <div className="relative block animate-bounce bounce">
                         <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
@@ -221,7 +227,7 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full bg-transparent-white rounded-lg">
+                  <div className="w-full bg-transparent-white rounded-lg my-6 pb-5">
                     <Swiper
                       modules={[Navigation, Pagination, A11y, EffectFade]}
                       spaceBetween={50}
@@ -233,10 +239,127 @@ export default function Index() {
                       speed={500}
                       className="w-full bg-transparent-white rounded-lg h-auto"
                     >
-                      {[1, 2, 3, 4].map((i, el) => {
-                        return <SwiperSlide key={i} className="bg-white w-full h-44 rounded-lg flex justify-center items-center align-middle swiper-margin">Slide {el}</SwiperSlide>;
+                      {testimonials.map(item => {
+                        return <SwiperSlide key={item.id} className="bg-white w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
+                          <div className="flex mb-6 justify-center">
+                            <ul className="text-yellow-600 rounded-lg border border-slate-100 py-1 px-3.5 text-sm">
+                              {[1, 2, 3, 4, 5].map((i, el) => {
+                                return <li key={i} className="inline-block m-0 text-base text-[#fc0] p-0">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width={768} height={768} viewBox="0 0 24 24">
+                                    <path fill="currentColor" fillOpacity={0.15} stroke="currentColor" d="M10.144 6.628c.786-1.961 1.18-2.942 1.856-2.942c.676 0 1.07.98 1.856 2.942l.037.09c.444 1.109.666 1.663 1.12 2c.452.336 1.047.39 2.236.496l.214.019c1.946.174 2.92.261 3.127.88c.209.62-.514 1.277-1.96 2.591l-.481.44c-.732.665-1.098.998-1.268 1.434a2.002 2.002 0 0 0-.08.25c-.111.454-.004.937.21 1.902l.067.3c.393 1.775.59 2.662.247 3.045a1 1 0 0 1-.481.296c-.496.136-1.2-.438-2.61-1.586c-.925-.754-1.388-1.131-1.919-1.216a1.997 1.997 0 0 0-.63 0c-.532.085-.994.462-1.92 1.216c-1.408 1.148-2.113 1.722-2.609 1.586a1 1 0 0 1-.48-.296c-.344-.383-.147-1.27.246-3.044l.067-.301c.214-.966.321-1.448.21-1.903a2.002 2.002 0 0 0-.08-.25c-.17-.435-.536-.768-1.268-1.434l-.482-.439c-1.445-1.314-2.168-1.972-1.96-2.59c.209-.62 1.182-.707 3.128-.881l.214-.02c1.19-.106 1.784-.159 2.237-.496c.453-.336.675-.89 1.12-1.998z"></path>
+                                  </svg>
+                                </li>
+                              })}
+                            </ul>
+                          </div>
+                          <div className="mb-6 mt-2 px-4 lg:px-8 text-rasin-black relative">
+                            <div className="absolute right-1 -top-16">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="text-slate-700 w-14 h-14 md:w-20 md:h-20" width={768} height={768} viewBox="0 0 16 16">
+                                <g fill="#334155" fillOpacity={0.25}>
+                                  <g clipPath="url(#gravityUiQuoteOpen0)">
+                                    <path fill="currentColor" fillRule="evenodd" d="M12.411 6.33A2.751 2.751 0 0 1 14.5 9v.25A2.75 2.75 0 0 1 11.75 12h-.25a2.747 2.747 0 0 1-2.748-2.657V9.34H8.75V9c0-.131.01-.26.027-.386c.02-.261.05-.518.09-.77a8.028 8.028 0 0 1 .559-1.918a7.207 7.207 0 0 1 2.162-2.801l.098-.076A.238.238 0 0 1 11.83 3c.186 0 .306.202.22.367a18.552 18.552 0 0 0-.22.433a17.949 17.949 0 0 0-.43.951a14.39 14.39 0 0 0-.557 1.578l.054-.013a2.76 2.76 0 0 1 .603-.066h.25c.228 0 .45.028.661.08m.549-1.405A4.252 4.252 0 0 1 16 9v.25a4.25 4.25 0 0 1-4.25 4.25h-.25A4.245 4.245 0 0 1 8 11.662A4.245 4.245 0 0 1 4.5 13.5h-.25A4.25 4.25 0 0 1 0 9.336V9c0-.183.012-.365.035-.543c.207-2.62 1.358-4.966 3.488-6.599A1.738 1.738 0 0 1 4.58 1.5c1.341 0 2.146 1.425 1.548 2.564c-.111.211-.26.508-.418.86c.788.234 1.481.69 2.005 1.297a8.763 8.763 0 0 1 3.058-4.363A1.738 1.738 0 0 1 11.83 1.5c1.341 0 2.146 1.425 1.548 2.564c-.111.211-.26.508-.418.86ZM5.16 6.33a2.756 2.756 0 0 0-.661-.08h-.25a2.76 2.76 0 0 0-.657.079a14.398 14.398 0 0 1 .68-1.865A17.736 17.736 0 0 1 4.8 3.367A.251.251 0 0 0 4.58 3a.238.238 0 0 0-.144.049a7.737 7.737 0 0 0-.93.844a7.208 7.208 0 0 0-1.39 2.172a8.029 8.029 0 0 0-.498 1.779a8.753 8.753 0 0 0-.091.77A2.773 2.773 0 0 0 1.5 9v.339h.001v.004A2.747 2.747 0 0 0 4.25 12h.251a2.75 2.75 0 0 0 2.75-2.75V9c0-1.29-.89-2.374-2.089-2.67Z" clipRule="evenodd"></path>
+                                  </g>
+                                  <defs>
+                                    <clipPath id="gravityUiQuoteOpen0">
+                                      <path fill="currentColor" d="M0 0h16v16H0z"></path>
+                                    </clipPath>
+                                  </defs>
+                                </g>
+                              </svg>
+                            </div>
+                            <blockquote className="w-full mt-5 pt-2">
+                              <p className="text-rasin-black text-base md:text-lg text-center font-inter">
+                                <span className="font-medium md:font-semibold">{item.quote}</span>
+                              </p>
+                            </blockquote>
+                          </div>
+                          <div className="justify-between flex flex-col flex-wrap">
+                            <div className="flex justify-center items-center">
+                              <figure className="rounded-full overflow-hidden w-[68px] border-2 border-slate-100">
+                                <img src="/image/person.png" decoding="async" className="max-w-full h-auto" loading="lazy" daa-src="/image/person.png" width="68" height="69" alt={item.name} />
+                              </figure>
+                              <div className="text-start pl-4">
+                                <h3 className="text-black font-roboto font-semibold text-base">{item.name}</h3>
+                                <h4 className="text-slate-400 font-normal text-sm">{item.office}</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="border-t border-slate-100 mt-3.5 pt-3.5">
+                            <div className="relative">
+                              <p className="text-center font-semibold text-lg md:text-xl font-roboto text-rasin-black">{item.workPlace}</p>
+                            </div>
+                          </div>
+                        </SwiperSlide>;
                       })}
                     </Swiper>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative app-container">
+              <div className="absolute -left-12 md:-left-7 -bottom-8 z-50">
+                <div>
+                  <div className="relative block animate-bounce bounce">
+                    <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
+                      <figure className="inline-block m-0 relative w-full">
+                        <img className="h-auto max-w-full" src="/image/online.png" data-src="/image/online.png" alt="" loading="lazy" decoding="async" width="600" height="662" />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="py-6 px-0 pt-8 md:pt-14">
+                <div className="flex-wrap flex relative mx-auto">
+                  <div className="flex w-full min-h-[1px] relative">
+                    <div className="flex w-full relative content-start flex-wrap transition-all duration-500 m-0 mb-3">
+                      <div className="relative">
+                        <p className="text-base md:text-lg font-inter font-medium mb-0.5 align-middle relative inline-block">These top schools are already using our software</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex border border-slate-200 rounded-lg w-full transition-border duration-500">
+                    <div className="py-8 px-2.5 w-full">
+                      <div className="flex mx-auto relative">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="py-5 px-0 relative">
+                <div className="text-center w-full">
+                  <div className="p-3.5 flex flex-wrap relative w-full content-start">
+                    <div className="ml-0 mb-5 w-full">
+                      <div className="relative">
+                        <h2 className="text-lg md:text-2xl lg:text-4xl m-0 font-inter text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
+                          <mark className="p-1 relative inline-block text-inherit bg-inherit mb-0 mx-1">
+                            <span className="relative z-10 text-blue-400">Software</span>
+                            <span className="left-0 -bottom-1 h-auto text-inherit opacity-100 inline-block absolute z-0">
+                              <svg className="inner-svg1 text-purple-500" width="51" height="51" viewBox="0 0 51 51" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M36.204 1.044C32.02 2.814 5.66 31.155 4.514 35.116c-.632 2.182-1.75 5.516-2.483 7.409-3.024 7.805-1.54 9.29 6.265 6.265 1.893-.733 5.227-1.848 7.41-2.477 3.834-1.105 4.473-1.647 19.175-16.27 0 0 10.63-10.546 15.21-15.125C53 8.997 42.021-1.418 36.203 1.044Zm7.263 5.369c3.56 3.28 4.114 4.749 2.643 6.995l-1.115 1.7-4.586-4.543-4.585-4.544 1.42-1.157C39.311 3.18 40.2 3.4 43.467 6.413ZM37.863 13.3l4.266 4.304-11.547 11.561-11.547 11.561-4.48-4.446-4.481-4.447 11.404-11.418c6.273-6.28 11.566-11.42 11.762-11.42.197 0 2.277 1.938 4.623 4.305ZM12.016 39.03l3.54 3.584-3.562 1.098-5.316 1.641c-1.665.516-1.727.455-1.211-1.21l1.614-5.226c1.289-4.177.685-4.191 4.935.113Z"></path>
+                              </svg>
+                              <svg className="block w-full h-auto relative max-h-[.475em] fill-pink-400 inner-svg2" width="233" height="13" viewBox="0 0 233 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+                                <path d="m.624 9.414-.312-2.48C0 4.454.001 4.454.002 4.454l.035-.005.102-.013.398-.047c.351-.042.872-.102 1.557-.179 1.37-.152 3.401-.368 6.05-.622C13.44 3.081 21.212 2.42 31.13 1.804 50.966.572 79.394-.48 113.797.24c34.387.717 63.927 2.663 84.874 4.429a1048.61 1048.61 0 0 1 24.513 2.34 641.605 641.605 0 0 1 8.243.944l.432.054.149.02-.318 2.479-.319 2.48-.137-.018c-.094-.012-.234-.03-.421-.052a634.593 634.593 0 0 0-8.167-.936 1043.26 1043.26 0 0 0-24.395-2.329c-20.864-1.76-50.296-3.697-84.558-4.413-34.246-.714-62.535.332-82.253 1.556-9.859.612-17.574 1.269-22.82 1.772-2.622.251-4.627.464-5.973.614a213.493 213.493 0 0 0-1.901.22l-.094.01-.028.004Z"></path>
+                              </svg>
+                            </span>
+                          </mark>
+                        </h2>
+                      </div>
+                    </div>
+                    <div className="text-slate-700 text-sm md:text-base font-medium w-full text-center">
+                      <div className="m-0 mb-6 transition-all duration-600">
+                        <span className="text-slate-700 inline-block">Make your school online footprint popular.</span>
+                        <span className="text-slate-500 inline-block ml-2">Move from book keeper to digital</span>
+                      </div>
+                    </div>
+                    <div className="w-full relative text-center">
+                      <div className="w-1/2 md:w-1/4 mx-auto">
+                        <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black bg-gradient via-45%  from-pink text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
+                          <p className="z-50 relative transition-[color] duration-700 text-white capitalize">Book a demo</p>
+                          <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

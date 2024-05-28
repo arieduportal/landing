@@ -1,14 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
+import { gsap, TimelineMax, Sine, Bounce } from 'gsap/all';
+import { TextPlugin } from 'gsap/TextPlugin';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+gsap.registerPlugin(TextPlugin);
 
 const socials = [
   { id: 1, name: "Email", image: "/image/email.svg", link: "mailto:support@arieducationportal.com", alt: "Email us" },
@@ -18,18 +24,62 @@ const socials = [
 ]
 
 const testimonials = [
-  { id: 1, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
-  { id: 2, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
-  { id: 3, name: "Arinze Justin", office: "HOD Computer Department", workPlace: "Office Home", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" }
+  { id: 1, name: "Rev Fr. Hillary Mgbodile", office: "PPSMB Chairman (Formerly CIC Principal)", workPlace: "PPSMB Office", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
+  { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
+  { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" }
 ]
 
 export default function Index() {
+  const [hasRun, setHasRun] = useState(false);
+  const crRef = useRef<HTMLDivElement>(null);
+  const tlMaxRef = useRef<TimelineMax | null>(null);
+
+  useEffect(() => {
+    var words = ['happy', 'awesome', 'excited', 'joyful'],
+      cr = crRef.current;
+
+    if (cr) {
+      const tlMax = new TimelineMax({ repeat: -1 });
+      tlMaxRef.current = tlMax;
+
+      words.forEach((word, i) => {
+        tlMax.to('#cl', 1, { x: 2, ease: Sine.easeOut }, '+=3').to('#cr', 2, {
+          text: { value: word },
+          ease: Sine.easeOut,
+          duration: 2
+        }, '-=0.7');
+      });
+    }
+
+    return () => {
+      if (tlMaxRef.current) {
+        tlMaxRef.current.kill();
+      }
+    }
+  }, [])
+
   return (
     <div className="relative">
       <div className="">
 
       </div>
       <div className="my-3 py-3">
+        <div className="app-container flex justify-center items-center mx-auto relative pb-3">
+          <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+            <div className="text-center" id="mission">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: 50 }} className="rounded-full bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">our mission</p>
+              </motion.div>
+            </div>
+            <motion.div variants={{
+              hidden: { scale: 0, y: 75 },
+              visible: { scale: 1, y: 0 }
+            }} initial="hidden" animate="visible" transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: false, amount: .5 }} className="text-center mt-2 pt-2 mb-4 pb-4 w-full md:w-3/4 lg:w-2/3">
+              <p className="text-rasin-black font-roboto text-2xl md:text-3xl lg:text-5xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
+            </motion.div>
+          </div>
+        </div>
+
         <div className="app-container flex justify-center items-center mx-auto relative pb-3">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
@@ -165,8 +215,116 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="pt-3">
-          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-20 pb-16 z-[1]">
+        <div className="pt-4 my-7">
+          <div className="app-container relative pt-12 lg:pt-20 pb-8 md:py-12 lg:pb-16 px-0">
+            <div className="flex flex-wrap flex-col lg:flex-row justify-between align-middle items-center">
+              <div className="w-full lg:w-1/3 pb-6 lg:pb-0">
+                <div className="relative">
+                  <div className="relative z-10 flex flex-row justify-between items-center align-middle pb-6">
+                    <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: .1, y: -90 }} className="-mb-12 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 lg: h-40 lg:">
+                      <img src="/image/time.png" data-src="/image/time.png" alt="" className="rounded-full bg-white w-40 lg: h-40 lg: opacity-60" />
+                    </motion.div>
+                    <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: .1, y: -90 }} className="-mb-24 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 h-40">
+                      <img src="/image/feedback.png" data-src="/image/feedback.png" alt="" className="rounded-full bg-white w-40 h-40 opacity-60" />
+                    </motion.div>
+                  </div>
+                  <div className="pt-6 w-full relative">
+                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .3 }} initial={{ scale: .1, y: 40 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
+                      <img src="/image/students.png" data-src="/image/feedback.png" alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
+                    </motion.div>
+                  </div>
+                  <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: -400 }} className="absolute z-20 p-4 rounded-full bg-pink-500 opacity-80 right-0 bottom-1/4"></motion.div>
+                  <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: 400 }} className="absolute z-30 p-3 rounded-full bg-teal-500 opacity-90 left-0 top-1/4 animate-spin"></motion.div>
+                </div>
+              </div>
+              <div className="w-full lg:w-2/3 flex">
+                <div className="w-full relative p-4">
+                  <motion.div className="bg-white shadow-custom rounded-lg" whileInView={{ opacity: 1, x: 0, transition: { delay: .5, duration: 1 } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: .3, x: 200 }}>
+                    <div className="flex w-full justify-around flex-col lg:flex-row align-middle content-center">
+                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                        <div className="transition-all lg:h-full border-t lg:border-t-0 lg:border-r border-slate-100 duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
+                          <div className="relative w-full transition-all duration-300">
+                            <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
+                              if (isVisible && !hasRun) {
+                                setHasRun(true);
+                              }
+                            }}>
+                              {({ isVisible }: any) => (
+                                <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                                  {isVisible ? <CountUp suffix="+" delay={1.5} duration={11.75} end={new Date().getFullYear() - 2021} /> : 0}
+                                </h2>
+                              )}
+                            </VisibilitySensor>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">years of operation</h6>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <p className="mb-1 align-middle relative inline-block text-rasin-black text-[15px] leading-6 fon-merri">
+                              We have been proudly operating for over 3 years, consistently delivering quality and excellence in all sections of our software.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                        <div className="transition-all lg:h-full duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
+                          <div className="relative w-full transition-all duration-300">
+                            <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
+                              if (isVisible && !hasRun) {
+                                setHasRun(true);
+                              }
+                            }}>
+                              {({ isVisible }: any) => (
+                                <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                                  {isVisible ? <CountUp suffix="%" delay={1.5} duration={9.75} decimal="1" end={97} /> : 0}
+                                </h2>
+                              )}
+                            </VisibilitySensor>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">positive feedback</h6>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <p className="mb-1 align-middle relative inline-block text-rasin-black text-[15px] leading-6 fon-merri">
+                              Discover why our users rave about their experience with our software! With a remarkable 97% positive feedback rate, you are in good spot for excellence.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                        <div className="transition-all lg:h-full duration-500 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
+                          <div className="relative w-full transition-all duration-300">
+                            <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
+                              if (isVisible && !hasRun) {
+                                setHasRun(true);
+                              }
+                            }}>
+                              {({ isVisible }: any) => (
+                                <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                                  {isVisible ? <CountUp suffix="+" delay={1.5} duration={6.75} end={4378} /> : 0}
+                                </h2>
+                              )}
+                            </VisibilitySensor>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">number of students</h6>
+                          </div>
+                          <div className="relative w-full transition-all duration-500">
+                            <p className="mb-1 align-middle relative inline-block text-rasin-black text-[15px] leading-6 fon-merri">
+                              Join the growing number of schools that have chosen our software to empower their students! Experience the difference with our trusted platform.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="pt-4">
+          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 pt-12 lg:pt-20 pb-8 md:py-12 lg:pb-16 z-[1]">
             <div className="app-container flex flex-wrap mx-auto relative">
               <div className="w-full lg:w-1/3 relative min-h-1 flex">
                 <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
@@ -200,8 +358,8 @@ export default function Index() {
                   <div className="w-auto mr-0 mb-3 max-w-full">
                     <div className="relative transition-all duration-300">
                       <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">Hear from</h2>
-                      <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 bg-transparent bg-clip-text">happy</h2>
-                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">customers</h2>
+                      <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 ml-2 bg-transparent bg-clip-text" ref={crRef}>happy</h2>
+                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800" id="cl">customers</h2>
                     </div>
                   </div>
                   <div className="w-full mb-3">
@@ -326,9 +484,12 @@ export default function Index() {
                   </div>
                 </div>
               </div>
+              <div className="py-8">
+                <div></div>
+              </div>
               <div className="py-5 px-0 relative">
                 <div className="text-center w-full">
-                  <div className="p-3.5 flex flex-wrap relative w-full content-start">
+                  <div className="px-1.5 py-3.5 md:px-3.5 flex flex-wrap relative w-full content-start">
                     <div className="ml-0 mb-5 w-full">
                       <div className="relative">
                         <h2 className="text-lg md:text-2xl lg:text-4xl m-0 font-inter text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
@@ -349,12 +510,12 @@ export default function Index() {
                     <div className="text-slate-700 text-sm md:text-base font-medium w-full text-center">
                       <div className="m-0 mb-6 transition-all duration-600">
                         <span className="text-slate-700 inline-block">Make your school online footprint popular.</span>
-                        <span className="text-slate-500 inline-block ml-2">Move from book keeper to digital</span>
+                        <span className="text-slate-500 inline-block ml-2">Move from book keeping to digital</span>
                       </div>
                     </div>
                     <div className="w-full relative text-center">
-                      <div className="w-1/2 md:w-1/4 mx-auto">
-                        <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black bg-gradient via-45%  from-pink text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
+                      <div className="w-1/2 md:w-1/4 lg:w-1/5 mx-auto">
+                        <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
                           <p className="z-50 relative transition-[color] duration-700 text-white capitalize">Book a demo</p>
                           <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                         </button>

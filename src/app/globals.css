@@ -12,6 +12,13 @@
   .w-9\.5\/10 {
     @apply w-[95%] !important;
   }
+
+  .clip-text {
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+  }
 }
 
 html,

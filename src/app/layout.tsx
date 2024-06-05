@@ -1,7 +1,4 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import './globals.css'
-import './animate.css'
-import { Inter } from 'next/font/google'
 import Script from 'next/script';
 import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
@@ -9,7 +6,8 @@ import Footer from './components/footer';
 import CookieBanner from './components/cookieBanner';
 import Header from './components/header';
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css'
+import './animate.css'
 
 export const metadata = {
   title: 'School Information Management System | arieducationportal.com',
@@ -21,8 +19,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
-    <html lang="en" className={`${inter.className} font-inter`}>
+    <html lang="en" className={`font-inter`}>
       <head>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,7 +42,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Merriweather&display=swap"
         />
       </head>
-      <body className={inter.className}>
+      <body className="font-roboto">
         <Script strategy="afterInteractive" id="track-id">
           {`
           window.TRACK_ID = "AE_1B267-619C4-812CC46E-E281";

@@ -7,48 +7,135 @@ import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
-import { gsap, TimelineMax, Sine, Bounce } from 'gsap/all';
-import { TextPlugin } from 'gsap/TextPlugin';
+import gsap from "gsap"
+import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-gsap.registerPlugin(TextPlugin);
-
-const socials = [
-  { id: 1, name: "Email", image: "/image/email.svg", link: "mailto:support@arieducationportal.com", alt: "Email us" },
-  { id: 2, name: "X (Twitter)", image: "/image/x.svg", link: "https://www.x.com/arieducationhub", alt: "Follow us on Twitter" },
-  { id: 3, name: "Whatsapp", image: "/image/wa.svg", link: "https://wa.me/+2347036575295", alt: "Chat us on Whatsapp" },
-  { id: 4, name: "Instagram", image: "/image/ig.svg", link: "https://instagram.com/arieducationhub", alt: "Follow us on Instagram" }
-]
+gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
 const testimonials = [
   { id: 1, name: "Rev Fr. Hillary Mgbodile", office: "PPSMB Chairman (Formerly CIC Principal)", workPlace: "PPSMB Office", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
   { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
   { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" }
+], team = [
+  { id: 1, name: "Arinze Justin Okechukwu", position: "Founder", email: "", wa: "", link: "", bg: "pink" },
+  { id: 2, name: "Arinze Justin Okechukwu", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
+  { id: 3, name: "Arinze Justin Okechukwu", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
+  { id: 4, name: "Arinze Justin Okechukwu", position: "Marketer", email: "", wa: "", link: "", bg: "orange" },
+  { id: 5, name: "Arinze Justin Okechukwu", position: "Developer", email: "", wa: "", link: "", bg: "#4452F2" }
 ]
 
 export default function Index() {
   const [hasRun, setHasRun] = useState(false);
-  const crRef = useRef<HTMLDivElement>(null);
   const tlMaxRef = useRef<TimelineMax | null>(null);
 
   useEffect(() => {
-    var words = ['happy', 'awesome', 'excited', 'joyful'],
-      cr = crRef.current;
+    var words = ['joyful', 'grateful', 'excited', 'satified', 'delighted', 'happy'],
+      cr = document.getElementById("cr") as HTMLElement,
+      boxes = document.querySelectorAll(".box-school") as NodeListOf<Element>,
+      stage = document.getElementById("stage-school") as HTMLElement,
+      teamSection = document.getElementById("team-section") as HTMLElement;
 
     if (cr) {
       const tlMax = new TimelineMax({ repeat: -1 });
       tlMaxRef.current = tlMax;
 
-      words.forEach((word, i) => {
-        tlMax.to('#cl', 1, { x: 2, ease: Sine.easeOut }, '+=3').to('#cr', 2, {
-          text: { value: word },
-          ease: Sine.easeOut,
-          duration: 2
-        }, '-=0.7');
+      for (var i = 0; i < words.length; i++) {
+        cr.innerHTML = words[i];
+        tlMax.to('#cr', 2, { text: { value: words[i] }, ease: Sine.easeInOut }, '+=3.5')
+      };
+    }
+
+    // if (typeof window !== 'undefined') {
+    //   ScrollSmoother.create({
+    //     wrapper: 'body',
+    //     content: '#_next',
+    //     smooth: 2,
+    //     normalizeScroll: true,
+    //     ignoreMobileResize: true,
+    //     effects: true,
+    //     ease: Sine.easeInOut,
+    //   });
+    // }
+
+    gsap.to(stage, {
+      css: {
+        perspective: 500,
+        transformStyle: "preserve-3d"
+      }
+    })
+
+    boxes.forEach((element, index) => {
+      gsap.set(element, {
+        css: {
+          rotationY: index * 360 / 6,
+          transformOrigin: "50% 50% -300"
+        }
       });
+      gsap.to(element, 60, {
+        css: {
+          z: 0.01,
+          rotationY: "+=359"
+        },
+        repeat: -1,
+        ease: Linear.easeInOut
+      });
+    });
+
+    if (teamSection) {
+      const section = teamSection.querySelector<HTMLElement>('.team-wrapper');
+
+      if (section) {
+        const pinWrap = section.querySelector<HTMLElement>(".team-strip")!;
+
+        let pinWrapWidth: number;
+        let horizontalScrollLength: number;
+
+        const refresh = () => {
+          pinWrapWidth = pinWrap.scrollWidth;
+          horizontalScrollLength = pinWrapWidth - window.innerWidth;
+        };
+
+        refresh();
+
+        const scrollTween = gsap.to(pinWrap, {
+          scrollTrigger: {
+            scrub: true,
+            trigger: section,
+            pin: section,
+            start: "center center",
+            markers: true,
+            end: () => `+=${pinWrapWidth}`,
+            invalidateOnRefresh: true
+          },
+          x: () => -horizontalScrollLength,
+          ease: Sine.easeInOut
+        });
+
+        pinWrap.querySelectorAll<HTMLElement>("[data-speed-x]").forEach((element) => {
+          const speed = parseFloat(element.getAttribute("data-speed-x") || '1');
+
+          gsap.to(element, {
+            x: () => (1 - speed) * (window.innerWidth + element.offsetWidth),
+            ease: "expo.inOut",
+            scrollTrigger: {
+              containerAnimation: scrollTween,
+              trigger: element,
+              onRefresh: (self: ScrollTrigger) => {
+                const start = Math.max(0, self.start);
+                self.setPositions(start, start + (self.end - self.start) / Math.abs(speed));
+                self.animation?.progress(0);
+              },
+              scrub: true
+            }
+          });
+        });
+
+        ScrollTrigger.addEventListener("refreshInit", refresh);
+      }
     }
 
     return () => {
@@ -324,7 +411,7 @@ export default function Index() {
           </div>
         </div>
         <div className="pt-4">
-          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 pt-12 lg:pt-20 pb-8 md:py-12 lg:pb-16 z-[1]">
+          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-8 lg:pt-20 md:py-12 lg:pb-16 z-[1]">
             <div className="app-container flex flex-wrap mx-auto relative">
               <div className="w-full lg:w-1/3 relative min-h-1 flex">
                 <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
@@ -358,8 +445,8 @@ export default function Index() {
                   <div className="w-auto mr-0 mb-3 max-w-full">
                     <div className="relative transition-all duration-300">
                       <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">Hear from</h2>
-                      <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 ml-2 bg-transparent bg-clip-text" ref={crRef}>happy</h2>
-                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800" id="cl">customers</h2>
+                      <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 ml-2 bg-transparent bg-clip-text" id="cr">happy</h2>
+                      <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">customers</h2>
                     </div>
                   </div>
                   <div className="w-full mb-3">
@@ -466,6 +553,35 @@ export default function Index() {
                   </div>
                 </div>
               </div>
+              <div className="py-8 my-5">
+                <div className="app-container relative py-6 px-0">
+                  <div>
+                    <div>
+                      <div className="relative overflow-hidden" id="team-section">
+                        <div className="w-full px-0 mx-auto" id="team">
+                          <div className="flex flex-nowrap relative team-wrapper" style={{ willChange: "transform" }}>
+                            <div className="flex flex-nowrap relative team-strip pb-5" style={{ willChange: "transform" }}>
+                              {team.map(item => {
+                                return <div key={item.id} data-speed-x="1" className="bg-white w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content" style={{ backgroundColor: item.bg }}>
+                                  <div className="py-8 px-4 w-full">
+                                    <div className="py-4 w-full flex justify-center align-middle items-center">
+                                      <motion.div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
+                                        <img src="/image/person.png" decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src="/image/person.png" alt="Person avatar" />
+                                      </motion.div>
+                                    </div>
+                                    <div></div>
+                                    <div></div>
+                                  </div>
+                                </div>
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="py-6 px-0 pt-8 md:pt-14">
                 <div className="flex-wrap flex relative mx-auto">
                   <div className="flex w-full min-h-[1px] relative">
@@ -475,17 +591,31 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex border border-slate-200 rounded-lg w-full transition-border duration-500">
-                    <div className="py-8 px-2.5 w-full">
-                      <div className="flex mx-auto relative">
-
+                  <div className="flex border relative border-transparent lg:border-slate-50 rounded-lg w-full transition-border duration-500 h-48">
+                    <div className="py-5 px-2.5 w-full h-48 my-0 mx-auto relative">
+                      <div className="group h-full relative" id="stage-school">
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/mea.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
+                        </div>
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/blossom.png" alt="Blossom logo" className=" transition-all duration-500 w-36 h-auto" />
+                        </div>
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/cic.png" alt="CIC logo" className="transition-all duration-500 w-36 h-auto" />
+                        </div>
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/mea.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
+                        </div>
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/blossom.png" alt="Blossom logo" className=" transition-all duration-500 w-36 h-auto" />
+                        </div>
+                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                          <img src="/image/cic.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="py-8">
-                <div></div>
               </div>
               <div className="py-5 px-0 relative">
                 <div className="text-center w-full">

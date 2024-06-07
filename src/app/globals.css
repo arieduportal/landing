@@ -38,13 +38,21 @@ input[type=number] {
   box-shadow: 0px -6px 50px -6px rgba(0, 0, 0, 0.1) !important;
 }
 
-.footer-top {
+.footer-top,
+.app-bg-cover {
   background-image: url(/image/bg.svg) !important;
   background-position: top center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
 
+.cover-png-3 {
+  background-image: url(/image/cover-png-3.avif) !important;
+}
+
+.cover-png-2 {
+  background-image: url(/image/cover-png-2.png) !important;
+}
 .text-gradient-1 {
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #bafa04);
   -webkit-text-fill-color: transparent;
@@ -163,16 +171,31 @@ input[type=number] {
 }
 
 .team-card::before {
+  @apply bg-teal-500;
   content: "";
-    display: inline-block;
-    height: 7px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    border-radius: 5px;
-    -webkit-mask-image: linear-gradient(60deg, transparent 35%, #000 40%);
-    mask-image: linear-gradient(60deg, transparent 35%, #000 40%);
+  display: inline-block;
+  height: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-radius: 5px;
+  -webkit-mask-image: linear-gradient(60deg, transparent 35%, #000 40%);
+  mask-image: linear-gradient(60deg, transparent 35%, #000 40%);
+}
+
+.team-card::after {
+  @apply bg-teal-500;
+  content: "";
+  display: inline-block;
+  height: 7px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: 5px;
+  -webkit-mask-image: linear-gradient(120deg, #000 35%, transparent 40%);
+  mask-image: linear-gradient(120deg, #000 35%, transparent 40%);
 }
 
 @media (min-width: 576px) {

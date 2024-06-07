@@ -9,6 +9,7 @@ import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import gsap from "gsap"
 import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
+import Accordion from './components/accordion';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -37,7 +38,8 @@ export default function Index() {
       cr = document.getElementById("cr") as HTMLElement,
       boxes = document.querySelectorAll(".box-school") as NodeListOf<Element>,
       stage = document.getElementById("stage-school") as HTMLElement,
-      teamSection = document.getElementById("team-section") as HTMLElement;
+      teamSection = document.querySelector(".team-section") as HTMLElement,
+      accordions = document.querySelectorAll(".accordion") as NodeListOf<Element>;
 
     if (cr) {
       const tlMax = new TimelineMax({ repeat: -1 });
@@ -75,6 +77,7 @@ export default function Index() {
           transformOrigin: "50% 50% -300"
         }
       });
+
       gsap.to(element, 60, {
         css: {
           z: 0.01,
@@ -86,56 +89,50 @@ export default function Index() {
     });
 
     if (teamSection) {
-      const section = teamSection.querySelector<HTMLElement>('.team-wrapper');
+      let members = gsap.utils.toArray<HTMLElement>(".team-strip");
 
-      if (section) {
-        const pinWrap = section.querySelector<HTMLElement>(".team-strip")!;
+      members.forEach((container, i) => {
+        let member = container.querySelectorAll<HTMLElement>(".team-card"),
+          distance = () => {
+            let lastItemBounds = member[member.length - 1].getBoundingClientRect(),
+              containerBounds = container.getBoundingClientRect();
+            return Math.max(0, lastItemBounds.right - containerBounds.right);
+          };
 
-        let pinWrapWidth: number;
-        let horizontalScrollLength: number;
-
-        const refresh = () => {
-          pinWrapWidth = pinWrap.scrollWidth;
-          horizontalScrollLength = pinWrapWidth - window.innerWidth;
-        };
-
-        refresh();
-
-        const scrollTween = gsap.to(pinWrap, {
+        gsap.to(container, {
+          x: () => -distance(),
+          ease: Sine.easeInOut,
           scrollTrigger: {
-            scrub: true,
-            trigger: section,
-            pin: section,
+            trigger: container,
             start: "center center",
-            markers: true,
-            end: () => `+=${pinWrapWidth}`,
-            invalidateOnRefresh: true
-          },
-          x: () => -horizontalScrollLength,
-          ease: Sine.easeInOut
-        });
+            pinnedContainer: teamSection,
+            end: () => "+=" + distance(),
+            pin: teamSection,
+            scrub: true,
+            invalidateOnRefresh: true,
+          }
+        })
+      });
+    }
 
-        pinWrap.querySelectorAll<HTMLElement>("[data-speed-x]").forEach((element) => {
-          const speed = parseFloat(element.getAttribute("data-speed-x") || '1');
+    if (accordions) {
+      accordions.forEach((accordion, index) => {
+        const header = accordion.querySelector(".accordion__header") as HTMLElement,
+          content = accordion.querySelector(".accordion__content") as HTMLElement;
 
-          gsap.to(element, {
-            x: () => (1 - speed) * (window.innerWidth + element.offsetWidth),
-            ease: "expo.inOut",
-            scrollTrigger: {
-              containerAnimation: scrollTween,
-              trigger: element,
-              onRefresh: (self: ScrollTrigger) => {
-                const start = Math.max(0, self.start);
-                self.setPositions(start, start + (self.end - self.start) / Math.abs(speed));
-                self.animation?.progress(0);
-              },
-              scrub: true
-            }
+        header.addEventListener("click", () => {
+          const isOpen = content.style.height === `${content.scrollHeight}px`;
+
+          accordions.forEach((a, i) => {
+            const c = a.querySelector(".accordion__content") as HTMLElement;
+            const ic = a.querySelector("#accordion__icon") as HTMLElement;
+
+            c.style.height = i === index && !isOpen ? `${c.scrollHeight}px` : "0px";
+            ic.classList.toggle("ri-add-line", i !== index || !isOpen);
+            ic.classList.toggle("ri-subtract-fill", i === index && !isOpen);
           });
         });
-
-        ScrollTrigger.addEventListener("refreshInit", refresh);
-      }
+      })
     }
 
     return () => {
@@ -185,7 +182,7 @@ export default function Index() {
         <div className="pt-4">
           <div className="pt-20 bg-gradient-to-b from-slate-200 from-45% to-slate-50">
             <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle">
-              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: -100 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">7
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -200,7 +197,7 @@ export default function Index() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div whileInView={{ scale: 1, x: 0, transition: { delay: 0.2, duration: 0.9 } }} viewport={{ once: true, amount: .4 }} initial={{ scale: 0.1, x: 100 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -215,7 +212,7 @@ export default function Index() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -241,7 +238,7 @@ export default function Index() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -259,7 +256,7 @@ export default function Index() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -281,7 +278,7 @@ export default function Index() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 50 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-[35px] transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -316,7 +313,7 @@ export default function Index() {
                     </motion.div>
                   </div>
                   <div className="pt-6 w-full relative">
-                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .3 }} initial={{ scale: .1, y: 40 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
+                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: .4, duration: 0.3 } }} viewport={{ once: true, amount: .2 }} initial={{ scale: .1, y: 70 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
                       <img src="/image/students.png" data-src="/image/feedback.png" alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
                     </motion.div>
                   </div>
@@ -326,7 +323,7 @@ export default function Index() {
               </div>
               <div className="w-full lg:w-2/3 flex">
                 <div className="w-full relative p-4">
-                  <motion.div className="bg-white shadow-custom rounded-lg" whileInView={{ opacity: 1, x: 0, transition: { delay: .5, duration: 1 } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: .3, x: 200 }}>
+                  <motion.div className="bg-white shadow-custom rounded-lg" whileInView={{ opacity: 1, x: 0, transition: { delay: .5, duration: .9 } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: .1, x: 100 }}>
                     <div className="flex w-full justify-around flex-col lg:flex-row align-middle content-center">
                       <div className="w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full border-t lg:border-t-0 lg:border-r border-slate-100 duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
@@ -557,20 +554,45 @@ export default function Index() {
                 <div className="app-container relative py-6 px-0">
                   <div>
                     <div>
-                      <div className="relative overflow-hidden" id="team-section">
+                      <div className="relative overflow-hidden team-section">
                         <div className="w-full px-0 mx-auto" id="team">
                           <div className="flex flex-nowrap relative team-wrapper" style={{ willChange: "transform" }}>
                             <div className="flex flex-nowrap relative team-strip pb-5" style={{ willChange: "transform" }}>
                               {team.map(item => {
-                                return <div key={item.id} data-speed-x="1" className="bg-white w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content" style={{ backgroundColor: item.bg }}>
+                                return <div key={item.id} className="bg-white relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
                                   <div className="py-8 px-4 w-full">
                                     <div className="py-4 w-full flex justify-center align-middle items-center">
-                                      <motion.div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
+                                      <div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
                                         <img src="/image/person.png" decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src="/image/person.png" alt="Person avatar" />
-                                      </motion.div>
+                                      </div>
                                     </div>
-                                    <div></div>
-                                    <div></div>
+                                    <div className="py-2 w-full text-center font-roboto">
+                                      <p className="font-semibold pb-1 text-base text-rasin-black text-center capitalize">{item.name}</p>
+                                      <span className="text-sm font-normal text-slate-600 font-inter capitalize">{item.position}</span>
+                                    </div>
+                                    <div className="pt-4 pb-3 flex flex-row justify-evenly items-center align-middle">
+                                      <div>
+                                        <a href={item.email} target="_blank" className="">
+                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12v1.45q0 1.475-1.012 2.513T18.5 17q-.875 0-1.65-.375t-1.3-1.075q-.725.725-1.638 1.088T12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12v1.45q0 .65.425 1.1T18.5 15t1.075-.45t.425-1.1V12q0-3.35-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20h5v2zm0-7q1.25 0 2.125-.875T15 12t-.875-2.125T12 9t-2.125.875T9 12t.875 2.125T12 15"></path>
+                                          </svg>
+                                        </a>
+                                      </div>
+                                      <div>
+                                        <a href={item.link} className="" target="_blank">
+                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M4.75 1.875a2.125 2.125 0 1 0 0 4.25a2.125 2.125 0 0 0 0-4.25m-2 6A.125.125 0 0 0 2.625 8v13c0 .069.056.125.125.125h4A.125.125 0 0 0 6.875 21V8a.125.125 0 0 0-.125-.125zm6.5 0A.125.125 0 0 0 9.125 8v13c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-7a1.875 1.875 0 1 1 3.75 0v7c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-8.62c0-2.427-2.11-4.325-4.525-4.106a7.168 7.168 0 0 0-2.169.548l-1.306.56V8a.125.125 0 0 0-.125-.125z"></path>
+                                          </svg>
+                                        </a>
+                                      </div>
+                                      <div>
+                                        <a href={item.wa} className="" target="_blank">
+                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07c0 1.22.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"></path>
+                                          </svg>
+                                        </a>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               })}
@@ -622,7 +644,7 @@ export default function Index() {
                   <div className="px-1.5 py-3.5 md:px-3.5 flex flex-wrap relative w-full content-start">
                     <div className="ml-0 mb-5 w-full">
                       <div className="relative">
-                        <h2 className="text-lg md:text-2xl lg:text-4xl m-0 font-inter text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
+                        <motion.h2 whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="text-lg md:text-2xl lg:text-4xl m-0 font-inter text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
                           <mark className="p-1 relative inline-block text-inherit bg-inherit mb-0 mx-1">
                             <span className="relative z-10 text-blue-400">Software</span>
                             <span className="left-0 -bottom-1 h-auto text-inherit opacity-100 inline-block absolute z-0">
@@ -634,21 +656,21 @@ export default function Index() {
                               </svg>
                             </span>
                           </mark>
-                        </h2>
+                        </motion.h2>
                       </div>
                     </div>
-                    <div className="text-slate-700 text-sm md:text-base font-medium w-full text-center">
+                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: 1 }} initial={{ scale: 0, y: 70 }} className="text-slate-700 text-sm md:text-base font-medium w-full text-center">
                       <div className="m-0 mb-6 transition-all duration-600">
                         <span className="text-slate-700 inline-block">Make your school online footprint popular.</span>
                         <span className="text-slate-500 inline-block ml-2">Move from book keeping to digital</span>
                       </div>
-                    </div>
+                    </motion.div>
                     <div className="w-full relative text-center">
                       <div className="w-1/2 md:w-1/4 lg:w-1/5 mx-auto">
-                        <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
+                        <motion.button whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
                           <p className="z-50 relative transition-[color] duration-700 text-white capitalize">Book a demo</p>
                           <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
-                        </button>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
@@ -657,12 +679,58 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <motion.div className="text-center py-2 my-1 pt-6 relative">
+        <div className="bg-slate-50 py-8 md:py-16 relative app-bg-cover">
+          <div className="app-container relative">
+            <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="mb-4 text-center">
+              <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                AJHUB FAQs
+              </h2>
+              <p className="text-sm font-roboto text-rasin-black">Find answers to frequently asked questions our software.</p>
+            </motion.div>
+            <div className="py-6 flex justify-between align-middle items-start flex-col md:flex-row">
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.8, duration: .8 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }}  className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
+                <Accordion title="What is the AJHUB Portal ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The AJHUB Portal is a comprehensive software platform designed to streamline the management of educational institutions. It offers tools for result management, staff salary optimization, website control, data analytics, and e-payment solutions.</p>
+                </Accordion>
+                <Accordion title="Can the ARJHUB help with website management ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">Yes, the portal includes a Website Control feature that allows schools to manage their websites seamlessly. This ensures a strong online presence and facilitates better communication with students, parents, and the community​.</p>
+                </Accordion>
+                <Accordion title="How does the Analytics Gateway assist in decision-making ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Analytics Gateway integrates student and staff data to provide insightful performance analyses. This data-driven approach enables school administrators to make informed decisions and strategic plans based on comprehensive analytics.</p>
+                </Accordion>
+                <Accordion title="How can the AJHUB Portal improve a school's online visibility ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The portal includes search engine optimization (SEO) services to enhance the ranking of school websites in search engine results. This helps attract more relevant traffic and increases the schools online visibility and reputation​.</p>
+                </Accordion>
+                <Accordion title="What kind of support does AJHUB Portal provide to schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The AJHUB Portal offers robust customer support, including training sessions, technical assistance, and regular updates to ensure schools can fully utilize the platforms features and achieve optimal results​.</p>
+                </Accordion>
+              </motion.div>
+              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.8, duration: .8 } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }}  className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
+                <Accordion title="How does the Academics Portal benefit schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
+                </Accordion>
+                <Accordion title="How does the Academics Portal benefit schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
+                </Accordion>
+                <Accordion title="How does the Academics Portal benefit schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
+                </Accordion>
+                <Accordion title="How does the Academics Portal benefit schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
+                </Accordion>
+                <Accordion title="How does the Academics Portal benefit schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
+                </Accordion>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.8, duration: .7 } }} viewport={{ once: true, amount: .8 }} initial={{ scale: 0, y: 70 }} className="text-center pb-8 mt-1 pt-6 relative bg-white">
           <div className="inline-block bg-purple-200/50 backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
           <div className="inline-block ml-3 text-base">Looking for a corporate solution? <a href="" className="text-gradient-2 ml-1 capitalize underline">contact us</a></div>
         </motion.div>
       </div>
-      <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -70 }} className="fixed hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
+      <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 1 } }} viewport={{ once: true, amount: 1 }} initial={{ opacity: 0, x: -70 }} className="fixed hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
         <a href="" className="underline text-rasin-black text-sm font-inter">Try Demo Account</a>
       </motion.div>
     </div>

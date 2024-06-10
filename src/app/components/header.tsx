@@ -127,10 +127,10 @@ export default function Header() {
                             </span>
                         </motion.div>
                     </div>
-                    <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -80 }} className="app-container mx-auto rounded-md bg-white bottom-nav -mb-4 md:-mb-2 transform-none">
+                    <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5, bounce: 0.5, type: 'spring' } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: -80 }} className="app-container mx-auto rounded-md bg-white bottom-nav -mb-4 md:-mb-2 transform-none">
                         <div className="flex flex-row -mb-2 justify-between align-middle items-center font-inter py-3.5 px-3.5">
-                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -100 }} className='h-4 py-3'></motion.div>
-                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: 100 }} className="md:flex flex-row justify-between align-middle items-center my-1 hidden">
+                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7, type: 'spring' } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: -100 }} className='h-4 py-3'></motion.div>
+                            <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.7, type: 'spring' } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, x: 100 }} className="md:flex flex-row justify-between align-middle items-center my-1 hidden">
                                 <Link scroll={false} href='#mission' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
                                     <span className="font-inter">Mission</span>
                                 </Link>

@@ -109,7 +109,7 @@ export default function Footer() {
                                 </div>
                             </motion.div>
                         </div>
-                        <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5 } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0.1, y: 50 }} className="w-auto md:w-3/4 mx-auto mt-8 mb-2 rounded-lg shadow-app z-50 bg-white/70 backdrop-blur-md border-2 border-white drop-shadow-md relative">
+                        <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: 0.1, y: 50 }} className="w-auto md:w-3/4 mx-auto mt-8 mb-2 rounded-lg shadow-app z-50 bg-white/70 backdrop-blur-md border-2 border-white drop-shadow-md relative">
                             <div className="flex justify-evenly flex-col md:flex-row items-center align-middle">
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Email</h1>

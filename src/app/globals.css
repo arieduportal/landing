@@ -23,7 +23,7 @@
 
 html,
 body {
-  @apply bg-slate-50 text-black font-roboto duration-500 transition-all scroll-smooth overflow-x-hidden !important;
+  @apply bg-slate-50 text-black font-satoshi duration-500 transition-all scroll-smooth overflow-x-hidden !important;
 }
 
 input[type=number] {
@@ -53,6 +53,7 @@ input[type=number] {
 .cover-png-2 {
   background-image: url(/image/cover-png-2.png) !important;
 }
+
 .text-gradient-1 {
   background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #bafa04);
   -webkit-text-fill-color: transparent;

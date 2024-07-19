@@ -17,28 +17,28 @@ export default function Footer() {
                             <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0.1, y: 50 }} className="w-full max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
                                 <div className="mb-6">
                                     {/* <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" /> */}
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AJHUB LOGO</h3>
-                                    <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">
-                                        AJHUB: Your transformative partners, not just consultants. We amplify your institution across educational sectors with technology-driven excellence. Join our proven circle for unrivaled academics elevation.
+                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AXIOLOT HUB LOGO</h3>
+                                    <p className="text-black font-normal text-base font-satoshi mb-2.5 mt-0">
+                                        AXIOLOT HUB: Your transformative partners, not just consultants. We amplify your institution across educational sectors with technology-driven excellence. Join our proven circle for unrivaled academics elevation.
                                     </p>
                                     <ul className="p-0 mt-5 list-none">
                                         <li className="inline-block mr-2">
-                                            <a href="#" className="transition-all duration-500 no-underline">
+                                            <a href="https://wa.me/+2347081317077" className="transition-all duration-500 no-underline">
                                                 <RiWhatsappLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
                                         <li className="inline-block mr-2">
-                                            <a href="#" className="transition-all duration-500 no-underline">
+                                            <a href="https://instagram.com/axiolothub" className="transition-all duration-500 no-underline">
                                                 <RiInstagramLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
                                         <li className="inline-block mr-2">
-                                            <a href="#" className="transition-all duration-500 no-underline">
+                                            <a href="https://twitter.com/@axiolothub" className="transition-all duration-500 no-underline">
                                                 <RiTwitterFill className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
                                         <li className="inline-block mr-2">
-                                            <a href="#" className="transition-all duration-500 no-underline">
+                                            <a href="https://github.com/axiolothub" className="transition-all duration-500 no-underline">
                                                 <RiGithubLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
@@ -99,11 +99,11 @@ export default function Footer() {
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="tel:" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 7045 22 9531 </Link>
+                                            <Link href="tel:+2347073184665" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 707 318 4665</Link>
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiMailLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="mailto:info@arieducationportal.com" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@ajhub.com</Link>
+                                            <Link href="mailto:info@axiolot.com.ng" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@axiolot.com.ng</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -113,11 +113,11 @@ export default function Footer() {
                             <div className="flex justify-evenly flex-col md:flex-row items-center align-middle">
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Email</h1>
-                                    <p className="text-purple-500 font-inter text-sm font-normal">support@ajhub.com</p>
+                                    <Link href="mailto:support@axiolot.com.ng" target="_blank" className="text-purple-500 font-inter text-sm font-normal">support@axiolot.com.ng</Link>
                                 </div>
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center border-t md:border-t-0 md:border-l border-slate-200">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Number (Whatsapp Only)</h1>
-                                    <p className="text-purple-500 font-inter text-sm font-normal">+234 7081 3170 77</p>
+                                    <Link href="https://wa.me/+2347081317077" target="_blank" className="text-purple-500 font-inter text-sm font-normal">+234 7081 3170 77</Link>
                                 </div>
                                 <motion.div className="absolute top-2 md:top-1/2 right-3 md:right-1/2 bg-transparent p-1.5 md:p-3 border border-pink-600" animate={{
                                     scale: [1, 2, 2, 1, 1],
@@ -147,7 +147,7 @@ export default function Footer() {
             </div>
             <div className="bg-rasin-black border-t border-dashed p-4 border-white">
                 <div className="app-container text-center text-white text-xs">
-                    <p>© 2021 - {currentYear}. <span className="ml-2">AJHUB™ Helping schools to track student proformance, manage grades and others</span> </p>
+                    <p>© 2021 - {currentYear}. <span className="ml-2">AXIOLOT HUB™ Helping schools to track student proformance, manage grades and others</span> </p>
                 </div>
             </div>
         </footer>

@@ -46,7 +46,7 @@ export default function RootLayout({
           href="https://fonts.cdnfonts.com/css/satoshi"
         />
       </head>
-      <body className="font-roboto">
+      <body className="font-satoshi">
         <Script strategy="afterInteractive" id="track-id">
           {`
           window.TRACK_ID = "AE_1B267-619C4-812CC46E-E281";
@@ -62,6 +62,10 @@ export default function RootLayout({
         </main>
         <Footer />
         <Script strategy="lazyOnload" src="/js/ripple.js" id="ripple" >
+        </Script>
+        <Script strategy="afterInteractive" src="/js/wow.min.js" id="wow" >
+        </Script>
+        <Script strategy="lazyOnload" src="/js/wow.config.js" id="wow.config" >
         </Script>
       </body>
     </html>

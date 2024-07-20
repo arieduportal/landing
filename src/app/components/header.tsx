@@ -30,22 +30,22 @@ const variants = {
 
 export default function Header() {
     const socials = [
-        { id: 1, name: "Instagram", icon: IoLogoInstagram, tag: "https://instagram.com/" },
-        { id: 2, name: "Twitter", icon: IoLogoTwitter, tag: "https://twitter.com/" },
-        { id: 3, name: "Whatsapp", icon: IoLogoWhatsapp, tag: "https://wa.me/+234" }
+        { id: 1, name: "Instagram", icon: IoLogoInstagram, tag: "https://instagram.com/axiolothub" },
+        { id: 2, name: "Twitter", icon: IoLogoTwitter, tag: "https://twitter.com/@axiolothub" },
+        { id: 3, name: "Whatsapp", icon: IoLogoWhatsapp, tag: "https://wa.me/+2347081317077" }
     ];
 
     const logins = [
-        { id: 1, name: "Academics Portal", icon: SiMicrosoftacademic, tag: "https://edu.ajhub.com/" },
-        { id: 2, name: "e-Payment Portal", icon: RiSecurePaymentFill, tag: "blob:https://web.whatsapp.com/b4184f24-9472-476b-b91a-0b8b427ccc2c/" },
-        { id: 3, name: "Analytics Manager", icon: IoAnalytics, tag: "https://wa.me/+234" },
-        { id: 4, name: "Site Management", icon: FaSitemap, tag: "https://wa.me/+234" },
-        { id: 5, name: "StaffPay Manager", icon: SiNginxproxymanager, tag: "https://wa.me/+234" }
+        { id: 1, name: "Academics Portal", icon: SiMicrosoftacademic, tag: "https://portal.axiolot.com.ng/" },
+        { id: 2, name: "e-Payment Portal", icon: RiSecurePaymentFill, tag: "https://e-pay.axiolot.com.ng" },
+        { id: 3, name: "Analytics Manager", icon: IoAnalytics, tag: "https://analytics.axiolot.com.ng" },
+        { id: 4, name: "Site Management", icon: FaSitemap, tag: "https://sites.axiolot.com.ng/" },
+        { id: 5, name: "StaffPay Manager", icon: SiNginxproxymanager, tag: "https://staff-pay.axiolot.com.ng" }
     ];
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isNavAnimated, setIsNavAnimated] = useState(false);
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false) //
 
     const handleScroll = () => {
         const navigationElement = document.getElementById('header') as HTMLElement;

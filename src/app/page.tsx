@@ -202,7 +202,7 @@ export default function Index() {
                 </motion.div>
                 <motion.p className="text-sm text-slate-700 font-inter pt-3 mt-3"></motion.p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-y-5 mt-4 pt-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-y-5 mt-1 pt-2 md:mt-4 md:pt-5">
                 <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .8 }} initial={{ opacity: 0, y: 100 }} className="flex relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
                   <div className="flex border-b md:border-b-0 md:border-r border-gray-100 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
@@ -211,8 +211,8 @@ export default function Index() {
                           <div className="text-center flex items-center relative transition-all duration-300 flex-col" style={{ flexGrow: '1' }}>
                             <div className="relative">
                               <div className="relative">
-                                <div className="inline-flex mb-10 min-w-[175px] text-[175px]">
-                                  <img src="/image/integration.png" width="175" height="175" decoding="async" loading="lazy" data-src="/image/integration.png" className="w-[175px] max-w-full h-auto" alt="" />
+                                <div className="inline-flex mb-10">
+                                  <img src="/image/integration.png" decoding="async" loading="lazy" data-src="/image/integration.png" className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -234,8 +234,8 @@ export default function Index() {
                           <div className="text-center flex items-center relative transition-all duration-300 flex-col" style={{ flexGrow: '1' }}>
                             <div className="relative">
                               <div className="relative">
-                                <div className="inline-flex mb-10 min-w-[175px] text-[175px]">
-                                  <img src="/image/academics.png" width="175" height="175" decoding="async" loading="lazy" data-src="/image/academics.png" className="w-[175px] max-w-full h-auto" alt="" />
+                                <div className="inline-flex mb-10">
+                                  <img src="/image/academics.png" decoding="async" loading="lazy" data-src="/image/academics.png" className="w-64 mx-auto max-w-full h-64" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -260,8 +260,8 @@ export default function Index() {
                           <div className="text-center flex items-center relative transition-all duration-300 flex-col" style={{ flexGrow: '1' }}>
                             <div className="relative">
                               <div className="relative">
-                                <div className="inline-flex mb-10 min-w-[175px] text-[175px]">
-                                  <img src="/image/secure.png" width="175" height="175" decoding="async" loading="lazy" data-src="/image/secure.png" className="w-[175px] max-w-full h-auto" alt="" />
+                                <div className="inline-flex mb-10">
+                                  <img src="/image/4492252.png" decoding="async" loading="lazy" data-src="/image/4492252.png" className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -807,14 +807,14 @@ export default function Index() {
           <div className="app-container relative">
             <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="mb-4 text-center">
               <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
-                AJHUB FAQs
+                AXIOLOT HUB FAQs
               </h2>
               <p className="text-sm font-roboto text-rasin-black">Find answers to frequently asked questions our software.</p>
             </motion.div>
             <div className="py-6 flex justify-between align-middle items-start flex-col md:flex-row">
               <motion.div whileInView={{ rotate: 0, opacity: 1, x: 0, transition: { delay: 0.8, duration: 1, bounce: 0.7, type: "spring" } }} viewport={{ once: true, amount: .5 }} initial={{ rotate: 60, opacity: 0, x: -70 }} className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
-                <Accordion title="What is the AJHUB Portal ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The AJHUB Portal is a comprehensive software platform designed to streamline the management of educational institutions. It offers tools for result management, staff salary optimization, website control, data analytics, and e-payment solutions.</p>
+                <Accordion title="What is the Axiolot Portal ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal is a comprehensive software platform designed to streamline the management of educational institutions. It offers tools for result management, staff salary optimization, website control, data analytics, and e-payment solutions.</p>
                 </Accordion>
                 <Accordion title="Can the ARJHUB help with website management ?">
                   <p className="py-8 px-0 font-inter text-sm text-rasin-black">Yes, the portal includes a Website Control feature that allows schools to manage their websites seamlessly. This ensures a strong online presence and facilitates better communication with students, parents, and the community​.</p>
@@ -822,11 +822,11 @@ export default function Index() {
                 <Accordion title="How does the Analytics Gateway assist in decision-making ?">
                   <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Analytics Gateway integrates student and staff data to provide insightful performance analyses. This data-driven approach enables school administrators to make informed decisions and strategic plans based on comprehensive analytics.</p>
                 </Accordion>
-                <Accordion title="How can the AJHUB Portal improve a school's online visibility ?">
+                <Accordion title="How can the Axiolot Portal improve a school's online visibility ?">
                   <p className="py-8 px-0 font-inter text-sm text-rasin-black">The portal includes search engine optimization (SEO) services to enhance the ranking of school websites in search engine results. This helps attract more relevant traffic and increases the schools online visibility and reputation​.</p>
                 </Accordion>
-                <Accordion title="What kind of support does AJHUB Portal provide to schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The AJHUB Portal offers robust customer support, including training sessions, technical assistance, and regular updates to ensure schools can fully utilize the platforms features and achieve optimal results​.</p>
+                <Accordion title="What kind of support does Axiolot Portal provide to schools ?">
+                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal offers robust customer support, including training sessions, technical assistance, and regular updates to ensure schools can fully utilize the platforms features and achieve optimal results​.</p>
                 </Accordion>
               </motion.div>
               <motion.div whileInView={{ rotate: 0, opacity: 1, x: 0, transition: { delay: 0.8, duration: 1, bounce: 0.7, type: "spring" } }} viewport={{ once: true, amount: .5 }} initial={{ rotate: -60, opacity: 0, x: 70 }} className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">

@@ -38,3 +38,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 global.d.ts
+/public/image
+/public/ajax
+/public/svg

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
 import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiGithubLine, RiPhoneFill, RiMailLine } from "react-icons/ri";
@@ -10,11 +9,11 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
     return (
         <footer className="border-t border-gray-300">
-            <div className="bg-slate-100 py-8 relative footer-top">
+            <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }}>
                 <div className="app-container">
                     <div className="pt-16 pb-12 md:pt-20 md:pb-16">
                         <div className="flex flex-wrap mt-0 -mx-3 flex-col justify-between align-middle lg:items-start lg:flex-row pb-10">
-                            <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0.1, y: 50 }} className="w-full max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
+                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
                                 <div className="mb-6">
                                     {/* <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" /> */}
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AXIOLOT HUB LOGO</h3>
@@ -44,8 +43,8 @@ export default function Footer() {
                                         </li>
                                     </ul>
                                 </div>
-                            </motion.div>
-                            <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0.1, y: 50 }} className="w-full max-w-full lg:flex-[0_0_auto] lg:w-1/4 mt-0 px-3">
+                            </div>
+                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/4 mt-0 px-3">
                                 <div className="mb-6">
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">Quick link</h3>
                                     <div className="flex flex-wrap -mx-4 mt-0">
@@ -75,8 +74,8 @@ export default function Footer() {
                                         </div>
                                     </div>
                                 </div>
-                            </motion.div>
-                            <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.3, duration: 0.4 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0.1, y: 50 }} className="w-full max-w-full lg:flex-[0_0_auto] lg:w-1/3 mt-0 px-3">
+                            </div>
+                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/3 mt-0 px-3">
                                 <div className="mb-6">
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newletter</h3>
                                     <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Dont miss out on a single update! Stay in the know with our newsletter.</p>
@@ -107,9 +106,9 @@ export default function Footer() {
                                         </li>
                                     </ul>
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
-                        <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.5, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .3 }} initial={{ opacity: 0.1, y: 50 }} className="w-auto md:w-3/4 mx-auto mt-8 mb-2 rounded-lg shadow-app z-50 bg-white/70 backdrop-blur-md border-2 border-white drop-shadow-md relative">
+                        <div data-wow-delay="0.3s" className="w-auto wow fadeInUp md:w-3/4 mx-auto mt-8 mb-2 rounded-lg shadow-app z-50 bg-white/70 backdrop-blur-md border-2 border-white drop-shadow-md relative">
                             <div className="flex justify-evenly flex-col md:flex-row items-center align-middle">
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Email</h1>
@@ -119,29 +118,18 @@ export default function Footer() {
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Number (Whatsapp Only)</h1>
                                     <Link href="https://wa.me/+2347081317077" target="_blank" className="text-purple-500 font-inter text-sm font-normal">+234 7081 3170 77</Link>
                                 </div>
-                                <motion.div className="absolute top-2 md:top-1/2 right-3 md:right-1/2 bg-transparent p-1.5 md:p-3 border border-pink-600" animate={{
-                                    scale: [1, 2, 2, 1, 1],
-                                    rotate: [0, 0, 270, 270, 0],
-                                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-                                }} transition={{
-                                    duration: 2,
-                                    ease: "easeInOut",
-                                    times: [0, 0.2, 0.5, 0.8, 1],
-                                    repeat: Infinity,
-                                    repeatDelay: 1
-                                }}></motion.div>
                             </div>
                             <div className="absolute -top-8 -left-4 animate-bounce bounce">
-                                <img src="/image/consult.png" alt="" className="w-32 h-32" />
+                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/consult.png"} alt="" className="w-32 h-32" />
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
                 <div className="absolute top-3 right-6 tri-shape">
-                    <img src="/image/tri-shape.png" alt="shape triangle" className="max-w-full align-middle" />
+                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/tri-shape.png"} alt="shape triangle" className="max-w-full align-middle" />
                 </div>
                 <div className="absolute left-1/3 top-1/4 round-shape">
-                    <img src="/image/round-shape.png" alt="shape circle" className="max-w-full align-middle" />
+                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
                 </div>
                 <div className="absolute bottom-4 left-1/3 animate-spin duration-[3s] p-3 backdrop-blur-sm bg-teal-600/60"></div>
             </div>

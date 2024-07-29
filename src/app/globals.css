@@ -40,7 +40,6 @@ input[type=number] {
 
 .footer-top,
 .app-bg-cover {
-  background-image: url(/image/bg.svg) !important;
   background-position: top center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;

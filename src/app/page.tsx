@@ -8,7 +8,6 @@ interface FAQ {
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -18,8 +17,14 @@ import Accordion from './components/accordion';
 import faq from './faq.json';
 
 import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+
+import { Navigation, Pagination, A11y, EffectFade, EffectCoverflow } from 'swiper/modules';
+
 
 gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
@@ -57,8 +62,7 @@ export default function Index() {
     var words = ['joyful', 'grateful', 'excited', 'satified', 'delighted', 'happy'],
       cr = document.getElementById("cr") as HTMLElement,
       boxes = document.querySelectorAll(".box-school") as NodeListOf<Element>,
-      stage = document.getElementById("stage-school") as HTMLElement,
-      teamSection = document.querySelector(".team-section") as HTMLElement;
+      stage = document.getElementById("stage-school") as HTMLElement;
 
     const underlinePath = document.querySelector("#underline__svg path") as SVGPathElement,
       penSVG = document.querySelector("#pen__svg") as SVGSVGElement,
@@ -77,18 +81,6 @@ export default function Index() {
         tlMax.to('#cr', 2, { text: { value: words[i] }, ease: Sine.easeInOut }, '+=3.5')
       };
     }
-
-    // if (typeof window !== 'undefined') {
-    //   ScrollSmoother.create({
-    //     wrapper: 'body',
-    //     content: '#_next',
-    //     smooth: 2,
-    //     normalizeScroll: true,
-    //     ignoreMobileResize: true,
-    //     effects: true,
-    //     ease: Sine.easeInOut,
-    //   });
-    // }
 
     const lines = linesRef.current,
       tlMission = gsap.timeline({ repeat: -1 });
@@ -163,33 +155,6 @@ export default function Index() {
         ease: Linear.easeInOut
       });
     });
-
-    if (teamSection) {
-      let members = gsap.utils.toArray<HTMLElement>(".team-strip");
-
-      members.forEach((container, i) => {
-        let member = container.querySelectorAll<HTMLElement>(".team-card"),
-          distance = () => {
-            let lastItemBounds = member[member.length - 1].getBoundingClientRect(),
-              containerBounds = container.getBoundingClientRect();
-            return Math.max(0, lastItemBounds.right - containerBounds.right);
-          };
-
-        gsap.to(container, {
-          x: () => -distance(),
-          ease: Sine.easeInOut,
-          scrollTrigger: {
-            trigger: container,
-            start: "center center",
-            pinnedContainer: teamSection,
-            end: () => "+=" + distance(),
-            pin: teamSection,
-            scrub: true,
-            invalidateOnRefresh: true,
-          }
-        })
-      });
-    }
 
     const scroll = () => {
       scrollAmount += scrollSpeed;
@@ -648,9 +613,10 @@ export default function Index() {
                       slidesPerView={1}
                       navigation
                       pagination={{ clickable: true }}
-                      effect="fade"
+                      effect={"fade"}
                       loop={true}
                       speed={500}
+                      grabCursor={true}
                       className="w-full bg-transparent-white rounded-lg h-auto"
                     >
                       {testimonials.map((item, i) => {
@@ -741,46 +707,65 @@ export default function Index() {
                     <div data-wow-delay="0.3s" className="wow slideInUp">
                       <div className="relative overflow-hidden team-section">
                         <div className="w-full px-0 mx-auto">
-                          <div className="flex flex-nowrap relative team-wrapper" style={{ willChange: "transform" }}>
-                            <div className="flex flex-nowrap relative team-strip pb-5" style={{ willChange: "transform" }}>
-                              {team.map((item, index) => {
-                                return <div key={item.id} data-wow-delay={`0.${index + 3}s`} className="bg-white wow bounceInLeft relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
-                                  <div className="py-8 px-4 w-full">
-                                    <div className="py-4 w-full flex justify-center align-middle items-center">
-                                      <div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
-                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
+                          <div className="my-6">
+                            <div className="pb-5">
+                              <Swiper
+                                effect={"coverflow"}
+                                grabCursor={true}
+                                centeredSlides={false}
+                                slidesPerView={"auto"}
+                                coverflowEffect={{
+                                  rotate: 60,
+                                  stretch: 0,
+                                  depth: 100,
+                                  modifier: 1,
+                                  slideShadows: false,
+                                }}
+                                loop={true}
+                                pagination={{ clickable: true }}
+                                speed={1000}
+                                modules={[EffectCoverflow, Pagination, A11y]}
+                                className="team__swiper"
+                              >
+                                {team.map((item, index) => {
+                                  return <SwiperSlide key={item.id} data-wow-delay={`0.${index + 3}s`} className="bg-white wow bounceInLeft relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
+                                    <div className="py-8 px-4 w-full">
+                                      <div className="py-4 w-full flex justify-center align-middle items-center">
+                                        <div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
+                                          <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
+                                        </div>
+                                      </div>
+                                      <div className="py-2 w-full text-center font-roboto">
+                                        <p className="font-semibold pb-1 text-base text-rasin-black text-center capitalize">{item.name}</p>
+                                        <span className="text-sm font-normal text-slate-600 font-inter capitalize">{item.position}</span>
+                                      </div>
+                                      <div className="pt-4 pb-3 flex flex-row justify-evenly items-center align-middle">
+                                        <div>
+                                          <a href={item.email} target="_blank" className="">
+                                            <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                              <path fill="currentColor" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12v1.45q0 1.475-1.012 2.513T18.5 17q-.875 0-1.65-.375t-1.3-1.075q-.725.725-1.638 1.088T12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12v1.45q0 .65.425 1.1T18.5 15t1.075-.45t.425-1.1V12q0-3.35-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20h5v2zm0-7q1.25 0 2.125-.875T15 12t-.875-2.125T12 9t-2.125.875T9 12t.875 2.125T12 15"></path>
+                                            </svg>
+                                          </a>
+                                        </div>
+                                        <div>
+                                          <a href={item.link} className="" target="_blank">
+                                            <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                              <path fill="currentColor" d="M4.75 1.875a2.125 2.125 0 1 0 0 4.25a2.125 2.125 0 0 0 0-4.25m-2 6A.125.125 0 0 0 2.625 8v13c0 .069.056.125.125.125h4A.125.125 0 0 0 6.875 21V8a.125.125 0 0 0-.125-.125zm6.5 0A.125.125 0 0 0 9.125 8v13c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-7a1.875 1.875 0 1 1 3.75 0v7c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-8.62c0-2.427-2.11-4.325-4.525-4.106a7.168 7.168 0 0 0-2.169.548l-1.306.56V8a.125.125 0 0 0-.125-.125z"></path>
+                                            </svg>
+                                          </a>
+                                        </div>
+                                        <div>
+                                          <a href={item.wa} className="" target="_blank">
+                                            <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                                              <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07c0 1.22.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"></path>
+                                            </svg>
+                                          </a>
+                                        </div>
                                       </div>
                                     </div>
-                                    <div className="py-2 w-full text-center font-roboto">
-                                      <p className="font-semibold pb-1 text-base text-rasin-black text-center capitalize">{item.name}</p>
-                                      <span className="text-sm font-normal text-slate-600 font-inter capitalize">{item.position}</span>
-                                    </div>
-                                    <div className="pt-4 pb-3 flex flex-row justify-evenly items-center align-middle">
-                                      <div>
-                                        <a href={item.email} target="_blank" className="">
-                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12v1.45q0 1.475-1.012 2.513T18.5 17q-.875 0-1.65-.375t-1.3-1.075q-.725.725-1.638 1.088T12 17q-2.075 0-3.537-1.463T7 12t1.463-3.537T12 7t3.538 1.463T17 12v1.45q0 .65.425 1.1T18.5 15t1.075-.45t.425-1.1V12q0-3.35-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20h5v2zm0-7q1.25 0 2.125-.875T15 12t-.875-2.125T12 9t-2.125.875T9 12t.875 2.125T12 15"></path>
-                                          </svg>
-                                        </a>
-                                      </div>
-                                      <div>
-                                        <a href={item.link} className="" target="_blank">
-                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M4.75 1.875a2.125 2.125 0 1 0 0 4.25a2.125 2.125 0 0 0 0-4.25m-2 6A.125.125 0 0 0 2.625 8v13c0 .069.056.125.125.125h4A.125.125 0 0 0 6.875 21V8a.125.125 0 0 0-.125-.125zm6.5 0A.125.125 0 0 0 9.125 8v13c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-7a1.875 1.875 0 1 1 3.75 0v7c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-8.62c0-2.427-2.11-4.325-4.525-4.106a7.168 7.168 0 0 0-2.169.548l-1.306.56V8a.125.125 0 0 0-.125-.125z"></path>
-                                          </svg>
-                                        </a>
-                                      </div>
-                                      <div>
-                                        <a href={item.wa} className="" target="_blank">
-                                          <svg className="w-8 h-8 text-slate-600" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07c0 1.22.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"></path>
-                                          </svg>
-                                        </a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              })}
+                                  </SwiperSlide>
+                                })}
+                              </Swiper>
                             </div>
                           </div>
                         </div>

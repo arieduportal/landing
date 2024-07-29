@@ -99,8 +99,8 @@ export default function Header() {
                                 <span className="sr-only">privacy policys</span>
                             </span>
                             <span>
-                                <Link href="/t&c" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">T&C</Link>
-                                <span className="sr-only">term and condition</span>
+                                <Link href="" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">Try Demo</Link>
+                                <span className="sr-only">get started</span>
                             </span>
                             <span className="mr-2 z-[9999999]">
                                 <a className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">

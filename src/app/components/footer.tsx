@@ -52,19 +52,19 @@ export default function Footer() {
                                             <ul className="list-none p-0 m-0">
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</Link>
+                                                    <a href="#about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Service</Link>
+                                                    <a href="#service" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Service</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</Link>
+                                                    <a href="#blog" className="text[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Projects</Link>
+                                                    <a href="#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
@@ -102,7 +102,7 @@ export default function Footer() {
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiMailLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="mailto:info@axiolot.com.ng" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">info@axiolot.com.ng</Link>
+                                            <Link href="mailto:support@axiolot.com.ng" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">support@axiolot.com.ng</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -112,7 +112,7 @@ export default function Footer() {
                             <div className="flex justify-evenly flex-col md:flex-row items-center align-middle">
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Email</h1>
-                                    <Link href="mailto:support@axiolot.com.ng" target="_blank" className="text-purple-500 font-inter text-sm font-normal">support@axiolot.com.ng</Link>
+                                    <Link href="mailto:info@axiolot.com.ng" target="_blank" className="text-purple-500 font-inter text-sm font-normal">info@axiolot.com.ng</Link>
                                 </div>
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center border-t md:border-t-0 md:border-l border-slate-200">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Number (Whatsapp Only)</h1>

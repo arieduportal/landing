@@ -1,6 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
@@ -10,6 +15,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import gsap from "gsap"
 import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
 import Accordion from './components/accordion';
+import faq from './faq.json';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -225,6 +231,8 @@ export default function Index() {
     }, 20);
   };
 
+  const faqData: FAQ[] = faq;
+
   return (
     <div className="relative">
       <div className="">
@@ -235,10 +243,10 @@ export default function Index() {
           <div className="app-container relative pt-12 lg:pt-20 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
-                <div data-wow-delay="" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
                   <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">our mission</p>
                 </div>
-                <div data-wow-delay="0.2s" className="text-center wow slideInUp mt-2 pt-2 mb-4 pb-4 w-full">
+                <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-4 pb-4 w-full">
                   {mission.map((item, i) => {
                     return <div key={i} ref={(el) => (linesRef.current[i] = el!)} style={{ opacity: 0, transform: 'translateY(100px)', position: 'absolute', backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }} className="line bg-transparent clip-text font-inter w-full text-center text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">{item.title}</div>
                   })}
@@ -269,7 +277,7 @@ export default function Index() {
                     </div>
                   </div>
                 </div>
-                <div data-wow-delay="0.4s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
+                <div data-wow-delay="0.5s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
                   <div className="flex border-b md:border-b-0 md:border-r border-gray-200 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
                       <div className="w-full">
@@ -295,7 +303,7 @@ export default function Index() {
                     </div>
                   </div>
                 </div>
-                <div data-wow-delay="0.6s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
+                <div data-wow-delay="0.7s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
                   <div className="flex relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
                       <div className="w-full">
@@ -334,7 +342,7 @@ export default function Index() {
         <div className="app-container flex justify-center items-center mx-auto relative pb-3">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
-              <div data-wow-delay="0.3s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+              <div data-wow-delay="0.4s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
                 <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-satoshi lg:font-roboto">our services</p>
               </div>
             </div>
@@ -356,12 +364,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-semibold font-roboto">search engine optimization</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -376,7 +384,7 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -397,12 +405,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">website control</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base text-black">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base font-merri text-black">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -415,12 +423,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">staff pay manager</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -437,12 +445,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">analytics gateway</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-[35px] transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -455,7 +463,7 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">E-Payment system</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
                     </div>
                   </div>
                 </div>
@@ -477,9 +485,9 @@ export default function Index() {
                     </motion.div>
                   </div>
                   <div className="pt-6 w-full relative">
-                    <div data-wow-delay="0.3s" data-wow-iteration="1000" className="-mt-14 wow bounceIn relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
+                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: .7, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ scale: .1, y: 70 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
                       <img src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
-                    </div>
+                    </motion.div>
                   </div>
                   <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: -400 }} className="absolute z-20 p-4 rounded-full bg-pink-500 opacity-80 right-0 bottom-1/4"></motion.div>
                   <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: 400 }} className="absolute z-30 p-3 rounded-full bg-teal-500 opacity-90 left-0 top-1/4 animate-spin"></motion.div>
@@ -487,7 +495,7 @@ export default function Index() {
               </div>
               <div className="w-full lg:w-2/3 flex">
                 <div className="w-full relative p-4">
-                  <div data-wow-delay="0.3s" className="bg-white shadow-custom rounded-lg bounceInLeft wow">
+                  <div data-wow-delay="0.3s" className="bg-white shadow-custom rounded-lg bounceInRight wow">
                     <div className="flex w-full justify-around flex-col lg:flex-row align-middle content-center">
                       <div data-wow-delay="0.6s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full border-t lg:border-t-0 lg:border-r border-slate-100 duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
@@ -514,7 +522,7 @@ export default function Index() {
                           </div>
                         </div>
                       </div>
-                      <div data-wow-delay="0.6s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
+                      <div data-wow-delay="0.8s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
                           <div className="relative w-full transition-all duration-300">
                             <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
@@ -539,7 +547,7 @@ export default function Index() {
                           </div>
                         </div>
                       </div>
-                      <div data-wow-delay="0.6s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
+                      <div data-wow-delay="1.0s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full duration-500 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
                           <div className="relative w-full transition-all duration-300">
                             <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
@@ -585,7 +593,7 @@ export default function Index() {
                       <span></span>
                     </a>
                   </div>
-                  <div data-wow-delay="0.2s" className="mb-3 wow bounceInLeft w-full ml-0 relative text-left">
+                  <div data-wow-delay="0.6s" className="mb-3 wow bounceInLeft w-full ml-0 relative text-left">
                     <div className="mx-0 mt-0 mb-5 transition-all duration-300">
                       <div className="relative text-start flex flex-wrap items-center flex-grow-[1]">
                         <div className="mr-1.5">
@@ -646,7 +654,7 @@ export default function Index() {
                       className="w-full bg-transparent-white rounded-lg h-auto"
                     >
                       {testimonials.map((item, i) => {
-                        return <SwiperSlide data-wow-delay={`0.${i + 3}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
+                        return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
                           <div className="flex mb-6 justify-center">
                             <ul className="text-yellow-600 rounded-lg border border-slate-100 py-1 px-3.5 text-sm">
                               {[1, 2, 3, 4, 5].map((i, el) => {
@@ -715,11 +723,24 @@ export default function Index() {
                 </div>
               </div>
               <div className="py-8 my-5">
-                <div className="app-container relative py-6 px-0">
+                <div className="app-container relative py-0 px-0">
                   <div>
+                    <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+                      <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                        <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">Axiolot Hub Team</p>
+                      </div>
+                      <h2 data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 w-full">
+                        <h2 className="bg-transparent m-0 font-satoshi font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                          The Amazing Team Behind The Software
+                        </h2>
+                      </h2>
+                      <p data-wow-delay="0.3s" className="text-base wow slideInUp text-slate-700 font-satoshi pt-3 mt-3">
+                        We are from an experienced background with a proven track record and a vision to help you succeed.
+                      </p>
+                    </div>
                     <div data-wow-delay="0.3s" className="wow slideInUp">
                       <div className="relative overflow-hidden team-section">
-                        <div className="w-full px-0 mx-auto" id="team">
+                        <div className="w-full px-0 mx-auto">
                           <div className="flex flex-nowrap relative team-wrapper" style={{ willChange: "transform" }}>
                             <div className="flex flex-nowrap relative team-strip pb-5" style={{ willChange: "transform" }}>
                               {team.map((item, index) => {
@@ -856,47 +877,20 @@ export default function Index() {
               </h2>
               <p className="text-sm font-roboto text-rasin-black">Find answers to frequently asked questions our software.</p>
             </div>
-            <div className="py-6 flex justify-between align-middle items-start flex-col md:flex-row">
-              <div data-wow-delay="0.3s" className="px-1 wow slideInLeft md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
-                <Accordion title="What is the Axiolot Portal ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal is a comprehensive software platform designed to streamline the management of educational institutions. It offers tools for result management, staff salary optimization, website control, data analytics, and e-payment solutions.</p>
-                </Accordion>
-                <Accordion title="Can the ARJHUB help with website management ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">Yes, the portal includes a Website Control feature that allows schools to manage their websites seamlessly. This ensures a strong online presence and facilitates better communication with students, parents, and the community​.</p>
-                </Accordion>
-                <Accordion title="How does the Analytics Gateway assist in decision-making ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Analytics Gateway integrates student and staff data to provide insightful performance analyses. This data-driven approach enables school administrators to make informed decisions and strategic plans based on comprehensive analytics.</p>
-                </Accordion>
-                <Accordion title="How can the Axiolot Portal improve a school's online visibility ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The portal includes search engine optimization (SEO) services to enhance the ranking of school websites in search engine results. This helps attract more relevant traffic and increases the schools online visibility and reputation​.</p>
-                </Accordion>
-                <Accordion title="What kind of support does Axiolot Portal provide to schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal offers robust customer support, including training sessions, technical assistance, and regular updates to ensure schools can fully utilize the platforms features and achieve optimal results​.</p>
-                </Accordion>
-              </div>
-              <div data-wow-delay="0.3s" className="px-1 wow slideInRight md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-              </div>
+            <div className="py-6 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-start gap-8 gap-y-4">
+              {
+                faqData.map((faq, i) => {
+                  return <Accordion key={i} data-wow-delay={`0.${i + 1}s`} className="wow bounceInUp" title={faq.question}>
+                    <p data-wow-delay={`0.${i + 3}s`} className="py-8 wow fadeIn px-0 font-satoshi text-sm md:text-base text-rasin-black">{faq.answer}</p>
+                  </Accordion>
+                })
+              }
             </div>
           </div>
         </div>
         <div className="text-center pb-8 mt-1 pt-6 relative bg-white">
           <div data-wow-delay="0.4s" className="inline-block bg-purple-200/50 wow zoomInRight backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
-          <div data-wow-delay="0.4s" className="inline-block ml-3 text-base wow zoomInLeft">Looking for a corporate solution? <a href="" className="text-gradient-2 ml-1 capitalize underline">contact us</a></div>
+          <div data-wow-delay="0.4s" className="inline-block ml-3 text-base wow zoomInLeft">Looking for a corporate solution? <a className="text-gradient-2 ml-1 font-semibold capitalize underline">contact us</a></div>
         </div>
       </div>
     </div>

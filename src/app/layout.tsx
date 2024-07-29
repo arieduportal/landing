@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
 
   return (
-    <html lang="en" className={`font-inter`}>
+    <html lang="en" className={`font-satoshi`}>
       <head>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,6 +45,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.cdnfonts.com/css/satoshi"
         />
+        <link
+          rel="stylesheet"
+          href={`${process.env.NEXT_PUBLIC_CDN}/ajax/css/wow-animate.css`}
+        />
       </head>
       <body className="font-satoshi">
         <Script strategy="afterInteractive" id="track-id">
@@ -61,11 +65,14 @@ export default function RootLayout({
           <CookieBanner />
         </main>
         <Footer />
-        <Script strategy="lazyOnload" src="/js/ripple.js" id="ripple" >
+        <div data-wow-delay="0.6s" className="fixed wow flipInX hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
+          <a href="" className="underline text-rasin-black text-sm font-inter">Try Demo Account</a>
+        </div>
+        <Script strategy="lazyOnload" src={`${process.env.NEXT_PUBLIC_CDN}/ajax/js/ripple.js`} id="ripple" >
         </Script>
-        <Script strategy="afterInteractive" src="/js/wow.min.js" id="wow" >
+        <Script strategy="afterInteractive" src={process.env.NEXT_PUBLIC_CDN + "/ajax/js/wow.min.js"} id="wow" >
         </Script>
-        <Script strategy="lazyOnload" src="/js/wow.config.js" id="wow.config" >
+        <Script strategy="lazyOnload" src={process.env.NEXT_PUBLIC_CDN + "/ajax/js/wow.config.js"} id="wow.config" >
         </Script>
       </body>
     </html>

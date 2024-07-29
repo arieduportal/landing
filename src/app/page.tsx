@@ -1,6 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Navigation, Pagination, A11y, EffectFade } from 'swiper/modules';
@@ -10,6 +15,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import gsap from "gsap"
 import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
 import Accordion from './components/accordion';
+import faq from './faq.json';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -31,12 +37,21 @@ const testimonials = [
   { id: 1, title: 'Integrated School Administration' },
   { id: 2, title: 'Academic Excellence Management' },
   { id: 3, title: 'Secure Online Payments' }
-]
+], partners = [
+  '/image/partners/mea.png',
+  '/image/partners/cic.png',
+  '/image/partners/blossom.png',
+  '/image/partners/mea.png',
+  '/image/partners/cic.png',
+  '/image/partners/blossom.png',
+];
 
 export default function Index() {
   const [hasRun, setHasRun] = useState(false);
   const tlMaxRef = useRef<TimelineMax | null>(null);
   const linesRef = useRef<HTMLDivElement[]>([]);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     var words = ['joyful', 'grateful', 'excited', 'satified', 'delighted', 'happy'],
@@ -47,7 +62,11 @@ export default function Index() {
 
     const underlinePath = document.querySelector("#underline__svg path") as SVGPathElement,
       penSVG = document.querySelector("#pen__svg") as SVGSVGElement,
-      pathLength = underlinePath.getTotalLength();
+      pathLength = underlinePath.getTotalLength(),
+      slider = sliderRef.current;
+
+    let scrollAmount = 0,
+      scrollSpeed = 2;
 
     if (cr) {
       const tlMax = new TimelineMax({ repeat: -1 });
@@ -72,7 +91,7 @@ export default function Index() {
     // }
 
     const lines = linesRef.current,
-      tlMission = gsap.timeline({ onComplete: () => tlMission.restart() });
+      tlMission = gsap.timeline({ repeat: -1 });
 
     tlMission.add(
       gsap.fromTo(
@@ -172,12 +191,47 @@ export default function Index() {
       });
     }
 
+    const scroll = () => {
+      scrollAmount += scrollSpeed;
+      if (scrollAmount >= slider!.scrollWidth / 2) {
+        scrollAmount = 0;
+      }
+      slider!.scrollLeft = scrollAmount;
+    };
+
+    intervalRef.current = setInterval(scroll, 20);
+
     return () => {
       if (tlMaxRef.current) {
         tlMaxRef.current.kill();
       }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     }
   }, [])
+
+  const handleMouseEnter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const slider = sliderRef.current;
+    intervalRef.current = setInterval(() => {
+      if (slider) {
+        let scrollAmount = slider.scrollLeft;
+        scrollAmount += 2;
+        if (scrollAmount >= slider.scrollWidth / 2) {
+          scrollAmount = 0;
+        }
+        slider.scrollLeft = scrollAmount;
+      }
+    }, 20);
+  };
+
+  const faqData: FAQ[] = faq;
 
   return (
     <div className="relative">
@@ -185,26 +239,23 @@ export default function Index() {
 
       </div>
       <div className="mt-3 pt-3">
-        <div className="bg-slate-50 py-8 relative app-bg-cover">
-          <div className="app-container relative pt-12 lg:pt-20 pb-8 md:py-12 px-0" id="mission">
+        <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
+          <div className="app-container relative pt-12 lg:pt-20 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
-                <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ opacity: 0, y: 50 }} className="rounded-full bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
                   <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">our mission</p>
-                </motion.div>
-                <motion.div variants={{
-                  hidden: { scale: 1.3, opacity: 0.1, y: 75 },
-                  visible: { scale: 1, opacity: 1, y: 0 }
-                }} initial="hidden" animate="visible" transition={{ duration: 0.7, delay: 0.3, type: 'spring', bounce: 0.6 }} viewport={{ once: false, amount: .4 }} className="text-center mt-2 pt-2 mb-4 pb-4 w-full">
+                </div>
+                <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-4 pb-4 w-full">
                   {mission.map((item, i) => {
-                    return <div key={i} ref={(el) => (linesRef.current[i] = el!)} style={{ opacity: 0, transform: 'translateY(100px)', position: 'absolute', backgroundImage: 'linear-gradient(90deg, #2f2e41 0%, #F2DFDF 100%)' }} className="line bg-transparent clip-text font-inter w-full text-center text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">{item.title}</div>
+                    return <div key={i} ref={(el) => (linesRef.current[i] = el!)} style={{ opacity: 0, transform: 'translateY(100px)', position: 'absolute', backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }} className="line bg-transparent clip-text font-inter w-full text-center text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">{item.title}</div>
                   })}
-                </motion.div>
-                <motion.p className="text-sm text-slate-700 font-inter pt-3 mt-3"></motion.p>
+                </div>
+                <p data-wow-delay="0.3s" className="text-sm wow slideInUp text-slate-700 font-inter pt-3 mt-3"></p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-y-5 mt-1 pt-2 md:mt-4 md:pt-5">
-                <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .8 }} initial={{ opacity: 0, y: 100 }} className="flex relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
-                  <div className="flex border-b md:border-b-0 md:border-r border-gray-100 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
+                <div data-wow-delay="0.2s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
+                  <div className="flex border-b md:border-b-0 md:border-r border-gray-200 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
                       <div className="w-full">
                         <div className="flex flex-wrap justify-center m-0 py-0 px-8 transition-all duration-300">
@@ -212,7 +263,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src="/image/integration.png" decoding="async" loading="lazy" data-src="/image/integration.png" className="w-64 max-w-full h-64 mx-auto" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/integration.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/integration.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -225,9 +276,9 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
-                <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.7, duration: 0.8, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .8 }} initial={{ opacity: 0, y: 100 }} className="flex relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
-                  <div className="flex border-b md:border-b-0 md:border-r border-gray-100 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
+                </div>
+                <div data-wow-delay="0.5s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
+                  <div className="flex border-b md:border-b-0 md:border-r border-gray-200 relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
                       <div className="w-full">
                         <div className="flex flex-wrap justify-center m-0 py-0 px-8 transition-all duration-300">
@@ -235,7 +286,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src="/image/academics.png" decoding="async" loading="lazy" data-src="/image/academics.png" className="w-64 mx-auto max-w-full h-64" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/academics.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/academics.png"} className="w-64 mx-auto max-w-full h-64" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -251,8 +302,8 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
-                <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.9, duration: 0.8, bounce: 0.8, type: "spring" } }} viewport={{ once: true, amount: .8 }} initial={{ opacity: 0, y: 100 }} className="flex relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
+                </div>
+                <div data-wow-delay="0.7s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
                   <div className="flex relative w-fulll transition-all duration-300 p-4 flex-wrap align-start">
                     <div className="mr-0 mb-5 w-full relative text-center" style={{ alignContent: 'initial' }}>
                       <div className="w-full">
@@ -261,7 +312,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src="/image/4492252.png" decoding="async" loading="lazy" data-src="/image/4492252.png" className="w-64 max-w-full h-64 mx-auto" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/4492252.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/4492252.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -274,11 +325,11 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
             <div className="absolute left-1/3 top-1/4 round-shape">
-              <img src="/image/round-shape.png" alt="shape circle" className="max-w-full align-middle" />
+              <img src={process.env.NEXT_PUBLIC_CDN + "/image/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
             </div>
             <div className="absolute right-10 bottom-1/3 round-shape border bg-transparent border-purple-600 rounded-full">
               <p className="p-2"></p>
@@ -291,22 +342,19 @@ export default function Index() {
         <div className="app-container flex justify-center items-center mx-auto relative pb-3">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
-              <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, bounce: 0.6, type: 'spring', duration: 0.7 } }} viewport={{ once: true, amount: .5 }} initial={{ scale: 0, y: 70 }} className="rounded-full bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
-                <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">our services</p>
-              </motion.div>
+              <div data-wow-delay="0.4s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-satoshi lg:font-roboto">our services</p>
+              </div>
             </div>
-            <motion.div variants={{
-              hidden: { scale: 1.3, opacity: 0, y: 75 },
-              visible: { scale: 1, opacity: 1, y: 0 }
-            }} initial="hidden" animate="visible" transition={{ duration: 0.7, delay: 0.3, type: 'spring', bounce: 0.6 }} viewport={{ once: false, amount: .4 }} className="text-center mt-2 pt-2 mb-4 pb-4 w-full md:w-3/4 lg:w-2/3">
-              <p className="text-rasin-black font-merri text-2xl md:text-3xl lg:text-5xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
-            </motion.div>
+            <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-6 pb-6 w-full md:w-3/4 lg:w-2/3">
+              <p className="text-rasin-black font-satoshi lg:font-roboto text-2xl md:text-3xl lg:text-4xl capitalize font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
+            </div>
           </div>
         </div>
         <div className="pt-4">
           <div className="pt-20 bg-gradient-to-b from-slate-200 from-45% to-slate-50">
             <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle">
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">7
+              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -316,12 +364,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-semibold font-roboto">search engine optimization</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              </div>
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -331,12 +379,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">Academics portal</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Streamline result management and student data with our comprehensive academics portal, empowering institutions to efficiently track progress and enhance educational outcome.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Streamline result management and student data with our comprehensive academics portal, empowering institutions to efficiently track progress and enhance educational outcome.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              </div>
+              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -357,12 +405,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">website control</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base text-black">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base font-merri text-black">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              </div>
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -375,12 +423,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">staff pay manager</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              </div>
+              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -397,12 +445,12 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">analytics gateway</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-              <motion.div whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ opacity: 0, y: 70 }} className="bg-white shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              </div>
+              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-[35px] transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
@@ -415,11 +463,11 @@ export default function Index() {
                     </div>
                     <div className="">
                       <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">E-Payment system</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-roboto font-medium text-black transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -430,15 +478,15 @@ export default function Index() {
                 <div className="relative">
                   <div className="relative z-10 flex flex-row justify-between items-center align-middle pb-6">
                     <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ opacity: .1, y: -90 }} className="-mb-12 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 lg: h-40 lg:">
-                      <img src="/image/time.png" data-src="/image/time.png" alt="" className="rounded-full bg-white w-40 lg: h-40 lg: opacity-60" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/time.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/time.png"} alt="" className="rounded-full bg-white w-40 lg: h-40 lg: opacity-60" />
                     </motion.div>
                     <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ opacity: .1, y: -90 }} className="-mb-24 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 h-40">
-                      <img src="/image/feedback.png" data-src="/image/feedback.png" alt="" className="rounded-full bg-white w-40 h-40 opacity-60" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/feedback.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/feedback.png"} alt="" className="rounded-full bg-white w-40 h-40 opacity-60" />
                     </motion.div>
                   </div>
                   <div className="pt-6 w-full relative">
                     <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: .7, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ scale: .1, y: 70 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
-                      <img src="/image/students.png" data-src="/image/feedback.png" alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
                     </motion.div>
                   </div>
                   <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: -400 }} className="absolute z-20 p-4 rounded-full bg-pink-500 opacity-80 right-0 bottom-1/4"></motion.div>
@@ -447,9 +495,9 @@ export default function Index() {
               </div>
               <div className="w-full lg:w-2/3 flex">
                 <div className="w-full relative p-4">
-                  <motion.div className="bg-white shadow-custom rounded-lg" whileInView={{ scale: 1, x: 0, transition: { delay: .9, duration: .9, bounce: .7, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ scale: .1, x: 200 }}>
+                  <div data-wow-delay="0.3s" className="bg-white shadow-custom rounded-lg bounceInRight wow">
                     <div className="flex w-full justify-around flex-col lg:flex-row align-middle content-center">
-                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                      <div data-wow-delay="0.6s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full border-t lg:border-t-0 lg:border-r border-slate-100 duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
                           <div className="relative w-full transition-all duration-300">
                             <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
@@ -474,7 +522,7 @@ export default function Index() {
                           </div>
                         </div>
                       </div>
-                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                      <div data-wow-delay="0.8s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full duration-500 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
                           <div className="relative w-full transition-all duration-300">
                             <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
@@ -499,7 +547,7 @@ export default function Index() {
                           </div>
                         </div>
                       </div>
-                      <div className="w-auto lg:w-1/3 min-h-[1px] relative">
+                      <div data-wow-delay="1.0s" className="wow fadeIn w-auto lg:w-1/3 min-h-[1px] relative">
                         <div className="transition-all lg:h-full duration-500 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-wrap w-full content-start relative pt-10 px-7 pb-12">
                           <div className="relative w-full transition-all duration-300">
                             <VisibilitySensor partialVisibility offset={{ bottom: 19 }} onChange={(isVisible: any) => {
@@ -525,27 +573,27 @@ export default function Index() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="pt-4">
-          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-8 lg:pt-20 md:py-12 lg:pb-16 z-[1]">
+          <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-8 md:py-10 lg:py-12 z-[1]">
             <div className="app-container flex flex-wrap mx-auto relative">
               <div className="w-full lg:w-1/3 relative min-h-1 flex">
                 <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
-                  <motion.div whileInView={{ rotate: 0, x: 0, transition: { delay: 1, duration: 0.9, bounce: .8 } }} viewport={{ once: true, amount: .6 }} initial={{ rotate: 190, x: -80 }} className="mb-3 pb-2">
-                    <a href="/#pricing" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  <div data-wow-delay="0.3s" className="mb-3 pb-2 wow rollIn">
+                    <a href="#pricing" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                       Join excellence
                       <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
                         <path fill="currentColor" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z"></path>
                       </svg>
                       <span></span>
                     </a>
-                  </motion.div>
-                  <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, x: -100 }} className="mb-3 w-full ml-0 relative text-left">
+                  </div>
+                  <div data-wow-delay="0.6s" className="mb-3 wow bounceInLeft w-full ml-0 relative text-left">
                     <div className="mx-0 mt-0 mb-5 transition-all duration-300">
                       <div className="relative text-start flex flex-wrap items-center flex-grow-[1]">
                         <div className="mr-1.5">
@@ -556,44 +604,44 @@ export default function Index() {
                           </div>
                         </div>
                         <h3 className="text-base font-normal m-0 text-slate-800 font-inter">
-                          <strong className="text-black font-merri">— 98.9</strong>
+                          <strong className="text-black font-inter">— 98.9</strong>
                           &nbsp;&nbsp;Customer Satisfaction
                         </h3>
                         <p></p>
                       </div>
                     </div>
-                  </motion.div>
-                  <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, x: -100 }} className="w-auto mr-0 mb-3 max-w-full">
+                  </div>
+                  <div data-wow-delay="0.4s" className="w-auto wow bounceInLeft mr-0 mb-3 max-w-full">
                     <div className="relative transition-all duration-300">
                       <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">Hear from</h2>
                       <h2 className="m-0 font-semibold text-gradient-2 inline-block text-2xl md:text-4xl relative font-merri mx-1.5 ml-2 bg-transparent bg-clip-text" id="cr">happy</h2>
                       <h2 className="m-0 font-semibold inline-block text-2xl md:text-4xl relative font-inter text-blue-800">customers</h2>
                     </div>
-                  </motion.div>
-                  <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, x: -100 }} className="w-full mb-3">
+                  </div>
+                  <div data-wow-delay="0.6s" className="w-full wow bounceInLeft mb-3">
                     <div className="relative">
-                      <p className="my-2 mx-0 text-base font-inter text-slate-600 inline-block relative">The true measure of value of any school is performance. Create an online presence for your school.</p>
+                      <p className="my-2 mx-0 text-base font-satoshi text-slate-600 inline-block relative">The true measure of value of any school is performance. Create an online presence for your school.</p>
                     </div>
-                  </motion.div>
-                  <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, x: -100 }} className="w-full text-left ml-0 pl-0">
-                    <img width="255" height="110" className="opacity-100 w-[127px] align-middle inline-block h-auto max-w-full" loading="lazy" data-src="/image/Trustpilot.png" decoding="async" src="/image/Trustpilot.png" alt="" />
-                  </motion.div>
+                  </div>
+                  <div data-wow-delay="0.8s" className="w-full wow bounceInLeft text-left ml-0 pl-0">
+                    <img width="255" height="110" className="opacity-100 w-[127px] align-middle inline-block h-auto max-w-full" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/Trustpilot.png"} decoding="async" src={process.env.NEXT_PUBLIC_CDN + "/image/Trustpilot.png"} alt="" />
+                  </div>
                 </div>
               </div>
               <div className="w-full lg:w-2/3">
                 <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start p-4">
                   <div className="-left-1 -top-2.5 w-auto mr-0 mb-0 absolute z-50">
-                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }}>
+                    <div data-wow-delay="0.3s" className="wow bounceInDown">
                       <div className="relative block animate-bounce bounce">
                         <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
                           <figure className="inline-block m-0 relative w-full">
-                            <img className="h-auto max-w-full" src="/image/testi.png" data-src="/image/testi.png" alt="" loading="lazy" decoding="async" width="186" height="181" />
+                            <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/testi.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/testi.png"} alt="" loading="lazy" decoding="async" width="186" height="181" />
                           </figure>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                  <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="w-full md:w-[96%] mx-auto bg-transparent-white rounded-lg my-6 pb-5">
+                  <div data-wow-delay="0.3s" className="w-full wow bounceInUp md:w-[96%] mx-auto bg-transparent-white rounded-lg my-6 pb-5">
                     <Swiper
                       modules={[Navigation, Pagination, A11y, EffectFade]}
                       spaceBetween={50}
@@ -605,8 +653,8 @@ export default function Index() {
                       speed={500}
                       className="w-full bg-transparent-white rounded-lg h-auto"
                     >
-                      {testimonials.map(item => {
-                        return <SwiperSlide key={item.id} className="bg-white w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
+                      {testimonials.map((item, i) => {
+                        return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
                           <div className="flex mb-6 justify-center">
                             <ul className="text-yellow-600 rounded-lg border border-slate-100 py-1 px-3.5 text-sm">
                               {[1, 2, 3, 4, 5].map((i, el) => {
@@ -642,7 +690,7 @@ export default function Index() {
                           <div className="justify-between flex flex-col flex-wrap">
                             <div className="flex justify-center items-center">
                               <figure className="rounded-full overflow-hidden w-[68px] border-2 border-slate-100">
-                                <img src="/image/person.png" decoding="async" className="max-w-full h-auto" loading="lazy" daa-src="/image/person.png" width="68" height="69" alt={item.name} />
+                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" className="max-w-full h-auto" loading="lazy" daa-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} width="68" height="69" alt={item.name} />
                               </figure>
                               <div className="text-start pl-4">
                                 <h3 className="text-black font-roboto font-semibold text-base">{item.name}</h3>
@@ -658,36 +706,49 @@ export default function Index() {
                         </SwiperSlide>;
                       })}
                     </Swiper>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="relative app-container">
               <div className="absolute -left-12 md:-left-7 -bottom-8 z-50">
-                <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }}>
+                <div data-wow-delay="0.3s" className="bounceInDown wow">
                   <div className="relative block animate-bounce bounce">
                     <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
                       <figure className="inline-block m-0 relative w-full">
-                        <img className="h-auto max-w-full" src="/image/online.png" data-src="/image/online.png" alt="" loading="lazy" decoding="async" width="600" height="662" />
+                        <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/online.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/online.png"} alt="" loading="lazy" decoding="async" width="600" height="662" />
                       </figure>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
               <div className="py-8 my-5">
-                <div className="app-container relative py-6 px-0">
+                <div className="app-container relative py-0 px-0">
                   <div>
-                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .9 }} initial={{ scale: 0, y: 70 }}>
+                    <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+                      <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
+                        <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">Axiolot Hub Team</p>
+                      </div>
+                      <h2 data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 w-full">
+                        <h2 className="bg-transparent m-0 font-satoshi font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+                          The Amazing Team Behind The Software
+                        </h2>
+                      </h2>
+                      <p data-wow-delay="0.3s" className="text-base wow slideInUp text-slate-700 font-satoshi pt-3 mt-3">
+                        We are from an experienced background with a proven track record and a vision to help you succeed.
+                      </p>
+                    </div>
+                    <div data-wow-delay="0.3s" className="wow slideInUp">
                       <div className="relative overflow-hidden team-section">
-                        <div className="w-full px-0 mx-auto" id="team">
+                        <div className="w-full px-0 mx-auto">
                           <div className="flex flex-nowrap relative team-wrapper" style={{ willChange: "transform" }}>
                             <div className="flex flex-nowrap relative team-strip pb-5" style={{ willChange: "transform" }}>
-                              {team.map(item => {
-                                return <div key={item.id} className="bg-white relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
+                              {team.map((item, index) => {
+                                return <div key={item.id} data-wow-delay={`0.${index + 3}s`} className="bg-white wow bounceInLeft relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
                                   <div className="py-8 px-4 w-full">
                                     <div className="py-4 w-full flex justify-center align-middle items-center">
                                       <div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
-                                        <img src="/image/person.png" decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src="/image/person.png" alt="Person avatar" />
+                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
                                       </div>
                                     </div>
                                     <div className="py-2 w-full text-center font-roboto">
@@ -724,51 +785,56 @@ export default function Index() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="py-6 px-0 pt-8 md:pt-14">
+              <div className="py-6 px-0 pt-8">
                 <div className="flex-wrap flex relative mx-auto">
                   <div className="flex w-full min-h-[1px] relative">
                     <div className="flex w-full relative content-start flex-wrap transition-all duration-500 m-0 mb-3">
                       <div className="relative">
-                        <motion.p whileInView={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ opacity: 0, y: 70 }} className="text-base md:text-lg font-inter font-medium mb-0.5 align-middle relative inline-block">These top schools are already using our software</motion.p>
+                        <p data-wow-delay="0.3" className="text-base wow slideInUp text-center md:text-left md:text-lg font-inter font-medium mb-0.5 align-middle relative inline-block">These top schools are already using our software</p>
                       </div>
                     </div>
                   </div>
-                  <div className="flex border relative border-transparent lg:border-slate-50 rounded-lg w-full transition-border duration-500 h-48">
-                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9, bounce: 0.5, type: "spring" } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="py-5 px-2.5 w-full h-48 my-0 mx-auto relative">
+                  <div className="flex lg:hidden border relative border-transparent lg:border-slate-50 rounded-lg w-full transition-border duration-500 h-48">
+                    <div data-wow-delay="0.3s" className="py-5 wow bounceIn  px-2.5 w-full h-48 my-0 mx-auto relative">
                       <div className="group h-full relative" id="stage-school">
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/mea.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
-                        </div>
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/blossom.png" alt="Blossom logo" className=" transition-all duration-500 w-36 h-auto" />
-                        </div>
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/cic.png" alt="CIC logo" className="transition-all duration-500 w-36 h-auto" />
-                        </div>
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/mea.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
-                        </div>
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/blossom.png" alt="Blossom logo" className=" transition-all duration-500 w-36 h-auto" />
-                        </div>
-                        <div className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
-                          <img src="/image/cic.png" alt="Mea logo" className="transition-all duration-500 w-36 h-auto" />
-                        </div>
+                        {partners.concat(partners).map((src, index) => (
+                          <div key={index} className="box-school absolute inset-x-0 my-0 mx-auto overflow-hidden w-36 h-36 inline-block bg-white p-6 rounded-full shadow-custom">
+                            <img src={process.env.NEXT_PUBLIC_CDN + src} alt={`School logo ${index + 1}`} className="transition-all duration-500 w-36 h-auto" />
+                          </div>
+                        ))}
                       </div>
-                    </motion.div>
+                    </div>
+                  </div>
+                  <div onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave} className="overflow-hidden whitespace-nowrap hidden lg:block mt-6 pt-2">
+                    <div
+                      ref={sliderRef}
+                      className="flex space-x-6"
+                      style={{ width: '200%', animation: 'scroll 20s linear infinite' }}
+                    >
+                      {partners.concat(partners).map((src, index) => (
+                        <div data-wow-delay={`0.${index + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow slideInRight">
+                          <img
+                            src={process.env.NEXT_PUBLIC_CDN + src}
+                            className="w-20 h-auto object-cover hover:scale-110 transition-transform duration-300"
+                            alt={`School logo ${index + 1}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="py-5 px-0 relative">
+              <div className="py-5 pb-2 px-0 relative">
                 <div className="text-center w-full">
                   <div className="px-1.5 py-3.5 md:px-3.5 flex flex-wrap relative w-full content-start">
                     <div className="ml-0 mb-5 w-full">
                       <div className="relative">
-                        <motion.h2 whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="text-lg md:text-2xl lg:text-4xl m-0 font-inter text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
+                        <h2 data-wow-delay="0.3s" className="text-lg wow slideInUp md:text-2xl lg:text-3xl m-0 font-satoshi text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
                           <mark className="p-1 relative inline-block text-inherit bg-inherit mb-0 mx-1">
                             <span className="relative z-10 text-blue-400">Software</span>
                             <span className="left-0 -bottom-1 h-auto text-inherit opacity-100 inline-block absolute z-0">
@@ -780,21 +846,21 @@ export default function Index() {
                               </svg>
                             </span>
                           </mark>
-                        </motion.h2>
+                        </h2>
                       </div>
                     </div>
-                    <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: 1 }} initial={{ scale: 0, y: 70 }} className="text-slate-700 text-sm md:text-base font-medium w-full text-center">
+                    <div data-wow-delay="0.3s" className="text-slate-700 wow zoomInUp text-sm md:text-base font-medium w-full text-center">
                       <div className="m-0 mb-6 transition-all duration-600">
                         <span className="text-slate-700 inline-block">Make your school online footprint popular.</span>
                         <span className="text-slate-500 inline-block ml-2">Move from book keeping to digital</span>
                       </div>
-                    </motion.div>
+                    </div>
                     <div className="w-full relative text-center">
                       <div className="w-1/2 md:w-1/4 lg:w-1/5 mx-auto">
-                        <motion.button whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
+                        <button data-wow-delay="0.3s" className="hover:shadow-md wow bounceInUp ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
                           <p className="z-50 relative transition-[color] duration-700 text-white capitalize">Book a demo</p>
                           <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
-                        </motion.button>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -803,60 +869,30 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="bg-slate-50 py-8 md:py-16 relative app-bg-cover">
+        <div className="bg-slate-50 py-8 pb-4 md:pt-16 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="faq">
           <div className="app-container relative">
-            <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.6, duration: 0.9 } }} viewport={{ once: true, amount: .7 }} initial={{ scale: 0, y: 70 }} className="mb-4 text-center">
-              <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
+            <div data-wow-delay="0.3s" className="mb-4 wow slideInUp text-center">
+              <h2 className="bg-transparent m-0 mb-6 font-satoshi font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
                 AXIOLOT HUB FAQs
               </h2>
               <p className="text-sm font-roboto text-rasin-black">Find answers to frequently asked questions our software.</p>
-            </motion.div>
-            <div className="py-6 flex justify-between align-middle items-start flex-col md:flex-row">
-              <motion.div whileInView={{ rotate: 0, opacity: 1, x: 0, transition: { delay: 0.8, duration: 1, bounce: 0.7, type: "spring" } }} viewport={{ once: true, amount: .5 }} initial={{ rotate: 60, opacity: 0, x: -70 }} className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
-                <Accordion title="What is the Axiolot Portal ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal is a comprehensive software platform designed to streamline the management of educational institutions. It offers tools for result management, staff salary optimization, website control, data analytics, and e-payment solutions.</p>
-                </Accordion>
-                <Accordion title="Can the ARJHUB help with website management ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">Yes, the portal includes a Website Control feature that allows schools to manage their websites seamlessly. This ensures a strong online presence and facilitates better communication with students, parents, and the community​.</p>
-                </Accordion>
-                <Accordion title="How does the Analytics Gateway assist in decision-making ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Analytics Gateway integrates student and staff data to provide insightful performance analyses. This data-driven approach enables school administrators to make informed decisions and strategic plans based on comprehensive analytics.</p>
-                </Accordion>
-                <Accordion title="How can the Axiolot Portal improve a school's online visibility ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The portal includes search engine optimization (SEO) services to enhance the ranking of school websites in search engine results. This helps attract more relevant traffic and increases the schools online visibility and reputation​.</p>
-                </Accordion>
-                <Accordion title="What kind of support does Axiolot Portal provide to schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Axiolot Portal offers robust customer support, including training sessions, technical assistance, and regular updates to ensure schools can fully utilize the platforms features and achieve optimal results​.</p>
-                </Accordion>
-              </motion.div>
-              <motion.div whileInView={{ rotate: 0, opacity: 1, x: 0, transition: { delay: 0.8, duration: 1, bounce: 0.7, type: "spring" } }} viewport={{ once: true, amount: .5 }} initial={{ rotate: -60, opacity: 0, x: 70 }} className="px-1 md:px-6 md:py-5 w-full md:w-1/2 border-slate-400">
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-                <Accordion title="How does the Academics Portal benefit schools ?">
-                  <p className="py-8 px-0 font-inter text-sm text-rasin-black">The Academics Portal helps schools manage student results and track progress efficiently. It provides a centralized system to maintain academic records, which enhances the overall educational outcomes by allowing educators to monitor and support student performance effectively.</p>
-                </Accordion>
-              </motion.div>
+            </div>
+            <div className="py-6 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-start gap-8 gap-y-4">
+              {
+                faqData.map((faq, i) => {
+                  return <Accordion key={i} data-wow-delay={`0.${i + 1}s`} className="wow bounceInUp" title={faq.question}>
+                    <p data-wow-delay={`0.${i + 3}s`} className="py-8 wow fadeIn px-0 font-satoshi text-sm md:text-base text-rasin-black">{faq.answer}</p>
+                  </Accordion>
+                })
+              }
             </div>
           </div>
         </div>
-        <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: 0.8, duration: .7 } }} viewport={{ once: true, amount: .8 }} initial={{ scale: 0, y: 70 }} className="text-center pb-8 mt-1 pt-6 relative bg-white">
-          <div className="inline-block bg-purple-200/50 backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
-          <div className="inline-block ml-3 text-base">Looking for a corporate solution? <a href="" className="text-gradient-2 ml-1 capitalize underline">contact us</a></div>
-        </motion.div>
+        <div className="text-center pb-8 mt-1 pt-6 relative bg-white">
+          <div data-wow-delay="0.4s" className="inline-block bg-purple-200/50 wow zoomInRight backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
+          <div data-wow-delay="0.4s" className="inline-block ml-3 text-base wow zoomInLeft">Looking for a corporate solution? <a className="text-gradient-2 ml-1 font-semibold capitalize underline">contact us</a></div>
+        </div>
       </div>
-      <motion.div whileInView={{ opacity: 1, x: 0, transition: { delay: 1, duration: 1 } }} viewport={{ once: true, amount: 1 }} initial={{ opacity: 0, x: -70 }} className="fixed hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
-        <a href="" className="underline text-rasin-black text-sm font-inter">Try Demo Account</a>
-      </motion.div>
     </div>
   )
 }

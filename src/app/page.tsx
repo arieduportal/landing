@@ -56,6 +56,7 @@ export default function Index() {
   const tlMaxRef = useRef<TimelineMax | null>(null);
   const linesRef = useRef<HTMLDivElement[]>([]);
   const sliderRef = useRef<HTMLDivElement | null>(null);
+  const letterRef = useRef<HTMLDivElement | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -97,7 +98,7 @@ export default function Index() {
         y: -100,
         duration: 0.9,
         delay: 0.9,
-        ease: Sine.easeInOut,
+        ease: 'none',
         stagger: 2,
       }),
       1.3
@@ -165,6 +166,25 @@ export default function Index() {
     };
 
     intervalRef.current = setInterval(scroll, 20);
+
+    if (letterRef.current) {
+      gsap.fromTo(
+        letterRef.current,
+        {
+          x: '100vw'
+        },
+        {
+          x: '-100vw',
+          ease: Sine.easeInOut,
+          scrollTrigger: {
+            trigger: letterRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      )
+    }
 
     return () => {
       if (tlMaxRef.current) {
@@ -304,7 +324,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="app-container flex justify-center items-center mx-auto relative pb-3">
+        <div className="app-container flex justify-center items-center mx-auto relative pb-3" id="service">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
               <div data-wow-delay="0.4s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
@@ -436,7 +456,73 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="pt-4 my-7">
+        <div className="relative py-0 my-0 pt-6 mt-4">
+          <div className="flex mx-auto relative">
+            <div className="md:w-full relative flex min-h-[1px] overflow-hidden">
+              <div ref={letterRef} className="flex items-center justify-center relative whitespace-nowrap">
+                <h1 className="text-[55vw] md:text-[35vw] lg:text-[25vw] leading-[0.8em] m-0 tracking-[-20px] font-semibold text-[#D9DCFF] align-middle font-inter">All in one app</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="-mt-[33%] md:-mt-[20%] lg:-mt-[13%] mb-3 relative block">
+          <div className="flex relative mx-auto flex-col-reverse md:flex-row justify-between items-end align-middle app-container">
+            <div className="w-full md:w-1/2 relative flex min-h-[1px]">
+              <div className="justify-center items-end content-end p-4 flex relative w-full flex-wrap">
+                <div className="mb-8 relative w-full">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-3 items-center justify-between">
+                    <li data-wow-delay="0.2s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">ePay System</p>
+                    </li>
+                    <li data-wow-delay="0.4s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">Social Media Integration</p>
+                    </li>
+                    <li data-wow-delay="0.6s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">Analytics</p>
+                    </li>
+                    <li data-wow-delay="0.8s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">Staff Payment System</p>
+                    </li>
+                    <li data-wow-delay="1.0s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">Admin Portal Management</p>
+                    </li>
+                    <li data-wow-delay="1.0s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="font-satoshi font-medium text-sm text-black">Students Portal</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 relative flex min-h-[1px]">
+              <div className="justify-center items-end content-end p-4 flex relative w-full flex-wrap">
+                <div className="text-center mb-0 wow bounceInUp" data-wow-delay="0.3s">
+                  <div className="animate-bounce bounce block relative">
+                    <div className="inline-flex flex justify-center relative items-center max-w-full">
+                      <figure className="w-full relative">
+                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/5737094.png"} decoding="async" loading="lazy" width="400" height="401" className="h-auto max-w-full" alt="" />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div data-wow-delay="0.3s" className="-mt-[24%] md:-mt-[18%] w-full wow bounceInUp bg-white/30 backdrop-blur-sm rounded-lg py-7 text-gray-700  text-sm">
+                  <div className="">
+                    <p className="text-black text-center font-satoshi text-base md:text-lg font-semibold">Best Data Management App For Schools</p>
+                  </div>
+                  <div className="pt-5 pb-2">
+                    <p className="text-pink-500 font-inter font-medium text-sm md:text-base cursor-pointer text-center">Subscribe Now</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="pt-4 mb-7">
           <div className="app-container relative pt-12 lg:pt-20 pb-8 md:py-12 lg:pb-16 px-0">
             <div className="flex flex-wrap flex-col lg:flex-row justify-between align-middle items-center">
               <div className="w-full lg:w-1/3 pb-6 lg:pb-0">
@@ -544,13 +630,142 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <div id="plan" className="py-6 bg-rasin-black" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }}>
+          <div className="mb-2 pb-2">
+            <p className="mb-1 pb-1 text-white text-center font-merri font-semibold text-xl md:text-2xl lg:text-3xl">Choose Your Perfect Plan</p>
+            <p className="text-white font-satoshi text-sm md:text-base font-normal text-center">Join us today by subscribing to one of our awesome plan.</p>
+          </div>
+          <div className="app-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-between align-middle py-10">
+            <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105">
+              <h2 className="text-2xl font-semibold mb-4 text-blue-600 pb-4 font-inter">Basic Plan</h2>
+              <ul className="space-y-4">
+                <li>
+                  <strong className="mb-1 pb-3">Academics Portal</strong>
+                  <p className="text-sm text-gray-600">Streamline result management and track student progress efficiently,
+                    enhancing educational outcomes.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Website Control</strong>
+                  <p className="text-sm text-gray-600">Manage school website content effortlessly, ensuring a strong online
+                    presence and improved communication.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">E-Payment System</strong>
+                  <p className="text-sm text-gray-600">Provide a secure and convenient platform for school fee payments,
+                    simplifying financial management for students and parents.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">24/7 Customer Support</strong>
+                  <p className="text-sm text-gray-600">Access round-the-clock customer support to resolve any issues promptly and
+                    efficiently.</p>
+                </li>
+              </ul>
+              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
+                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  Choose Plan
+                  <span></span>
+                </a>
+              </div>
+            </div>
+            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 scale-105 hover:scale-110">
+              <h2 className="text-2xl font-semibold mb-4 text-royal-lilac pb-4 font-inter">Proficient Plan</h2>
+              <ul className="space-y-4">
+                <li>
+                  <strong className="mb-1 pb-3">All Basic Plan Features</strong>
+                  <p className="text-sm text-gray-600">Includes all features available in the Basic Plan.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Search Engine Optimization (SEO)</strong>
+                  <p className="text-sm text-gray-600">Enhance your school&apos;s website ranking in search engine results to attract
+                    more relevant traffic.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Staff Pay Manager</strong>
+                  <p className="text-sm text-gray-600">Optimize salary management processes, ensuring timely and secure
+                    transactions for all school employees.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Priority Support</strong>
+                  <p className="text-sm text-gray-600">Receive priority customer support to resolve your issues faster and more
+                    efficiently.</p>
+                </li>
+              </ul>
+              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
+                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  Choose Plan
+                  <span></span>
+                </a>
+              </div>
+            </div>
+            <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105">
+              <h2 className="text-2xl font-semibold mb-4 text-purple-600 pb-4 font-inter">Premier Plan</h2>
+              <ul className="space-y-4">
+                <li>
+                  <strong className="mb-1 pb-3">All Proficient Plan Features</strong>
+                  <p className="text-sm text-gray-600">Includes all features available in the Proficient Plan.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Analytics Gateway</strong>
+                  <p className="text-sm text-gray-600">Integrate student and staff data for insightful performance analysis and
+                    strategic planning, driving data-driven decision-making.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Dedicated Domain Name for Result Portal</strong>
+                  <p className="text-sm text-gray-600">Offer a unique and professional web address for your school&apos;s result
+                    portal, enhancing accessibility and branding.</p>
+                </li>
+                <li>
+                  <strong className="mb-1 pb-3">Official School Email</strong>
+                  <p className="text-sm text-gray-600">Provide official email addresses for your school, promoting professionalism
+                    and enhancing communication.</p>
+                </li>
+              </ul>
+              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
+                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  Choose Plan
+                  <span></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          {/* <div className="app-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-between align-middle py-10">
+            <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg border-slate-200 border py-10 px-5">
+              <div className="mb-4 pb-3">
+                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Basic Tier</p>
+              </div>
+              
+            </div>
+            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-custom transform scale-110 rounded-lg border-slate-200 border py-10 px-5">
+              <div className="mb-4 pb-3">
+                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Proficient Tier</p>
+              </div>
+              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
+                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  Choose Plan
+                  <span></span>
+                </a>
+              </div>
+            </div>
+            <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-custom rounded-lg border-slate-200 border py-10 px-5">
+              <div className="mb-4 pb-3">
+                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Premier Tier</p>
+              </div>
+              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
+                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                  Choose Plan
+                  <span></span>
+                </a>
+              </div>
+            </div>
+          </div> */}
+        </div>
         <div className="pt-4">
           <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-8 md:py-10 lg:py-12 z-[1]">
             <div className="app-container flex flex-wrap mx-auto relative">
               <div className="w-full lg:w-1/3 relative min-h-1 flex">
                 <div className="flex p-4 transition-all duration-300 relative flex-wrap content-start w-full">
                   <div data-wow-delay="0.3s" className="mb-3 pb-2 wow rollIn">
-                    <a href="#pricing" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                    <a href="#plan" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                       Join excellence
                       <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
                         <path fill="currentColor" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z"></path>
@@ -617,10 +832,14 @@ export default function Index() {
                       loop={true}
                       speed={500}
                       grabCursor={true}
-                      className="w-full bg-transparent-white rounded-lg h-auto"
+                      autoplay={{
+                        delay: 10000,
+                        disableOnInteraction: true,
+                      }}
+                      className="w-full bg-transparent-white rounded-lg h-auto px-6"
                     >
                       {testimonials.map((item, i) => {
-                        return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
+                        return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-3xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
                           <div className="flex mb-6 justify-center">
                             <ul className="text-yellow-600 rounded-lg border border-slate-100 py-1 px-3.5 text-sm">
                               {[1, 2, 3, 4, 5].map((i, el) => {
@@ -649,7 +868,7 @@ export default function Index() {
                             </div>
                             <blockquote className="w-full mt-5 pt-2">
                               <p className="text-rasin-black text-base md:text-lg text-center font-inter">
-                                <span className="font-medium md:font-semibold">{item.quote}</span>
+                                <span className="font-medium md:font-semibold font-satoshi">{item.quote}</span>
                               </p>
                             </blockquote>
                           </div>
@@ -725,6 +944,10 @@ export default function Index() {
                                 pagination={{ clickable: true }}
                                 speed={1000}
                                 modules={[EffectCoverflow, Pagination, A11y]}
+                                autoplay={{
+                                  delay: 10000,
+                                  disableOnInteraction: true,
+                                }}
                                 className="team__swiper"
                               >
                                 {team.map((item, index) => {
@@ -823,7 +1046,7 @@ export default function Index() {
                           <mark className="p-1 relative inline-block text-inherit bg-inherit mb-0 mx-1">
                             <span className="relative z-10 text-blue-400">Software</span>
                             <span className="left-0 -bottom-1 h-auto text-inherit opacity-100 inline-block absolute z-0">
-                              <svg id="pen__svg" className="inner-svg1 text-purple-500" width="51" height="51" viewBox="0 0 51 51" xmlns="http://www.w3.org/2000/svg">
+                              <svg data-wow-delay="0.8s" id="pen__svg" className="inner-svg1 wow penAnimation text-purple-500" width="51" height="51" viewBox="0 0 51 51" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M36.204 1.044C32.02 2.814 5.66 31.155 4.514 35.116c-.632 2.182-1.75 5.516-2.483 7.409-3.024 7.805-1.54 9.29 6.265 6.265 1.893-.733 5.227-1.848 7.41-2.477 3.834-1.105 4.473-1.647 19.175-16.27 0 0 10.63-10.546 15.21-15.125C53 8.997 42.021-1.418 36.203 1.044Zm7.263 5.369c3.56 3.28 4.114 4.749 2.643 6.995l-1.115 1.7-4.586-4.543-4.585-4.544 1.42-1.157C39.311 3.18 40.2 3.4 43.467 6.413ZM37.863 13.3l4.266 4.304-11.547 11.561-11.547 11.561-4.48-4.446-4.481-4.447 11.404-11.418c6.273-6.28 11.566-11.42 11.762-11.42.197 0 2.277 1.938 4.623 4.305ZM12.016 39.03l3.54 3.584-3.562 1.098-5.316 1.641c-1.665.516-1.727.455-1.211-1.21l1.614-5.226c1.289-4.177.685-4.191 4.935.113Z"></path>
                               </svg>
                               <svg id="underline__svg" className="block w-full h-auto relative max-h-[.475em] fill-pink-400 inner-svg2" width="233" height="13" viewBox="0 0 233 13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
@@ -854,7 +1077,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="bg-slate-50 py-8 pb-4 md:pt-16 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="faq">
+        <div className="bg-slate-50 py-8 pb-4 md:pt-12 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="faq">
           <div className="app-container relative">
             <div data-wow-delay="0.3s" className="mb-4 wow slideInUp text-center">
               <h2 className="bg-transparent m-0 mb-6 font-satoshi font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
@@ -862,7 +1085,7 @@ export default function Index() {
               </h2>
               <p className="text-sm font-roboto text-rasin-black">Find answers to frequently asked questions our software.</p>
             </div>
-            <div className="py-6 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-start gap-8 gap-y-4">
+            <div className="py-6 grid grid-cols-1 md:grid-cols-2 justify-between align-middle items-start gap-x-8 gap-y-1 md:gap-y-2 lg:gap-y-4">
               {
                 faqData.map((faq, i) => {
                   return <Accordion key={i} data-wow-delay={`0.${i + 1}s`} className="wow bounceInUp" title={faq.question}>

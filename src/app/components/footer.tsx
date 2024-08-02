@@ -3,7 +3,7 @@
 
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
-import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiGithubLine, RiPhoneFill, RiMailLine } from "react-icons/ri";
+import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine } from "react-icons/ri";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -37,8 +37,8 @@ export default function Footer() {
                                             </a>
                                         </li>
                                         <li className="inline-block mr-2">
-                                            <a href="https://github.com/axiolothub" className="transition-all duration-500 no-underline">
-                                                <RiGithubLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
+                                            <a href="https://facebook.com/axiolothub" className="transition-all duration-500 no-underline">
+                                                <RiFacebookFill className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
                                     </ul>
@@ -74,6 +74,17 @@ export default function Footer() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="mb-6">
+                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">Office Hour</h3>
+                                    <ul className="m-0 p-0 list-none">
+                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
+                                            <RiTimeLine className="absolute top-1 left-0 text-slate-800" />
+                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">
+                                            Monday - Friday: 8AM - 4PM <br/> Saturday: 8AM - 12Noon
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/3 mt-0 px-3">
                                 <div className="mb-6">
@@ -94,7 +105,7 @@ export default function Footer() {
                                     <ul className="m-0 p-0 list-none">
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <FaLocationArrow className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Opp. St.Faith Schools Ebony Paint Road</Link>
+                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Block 4, Opp. St.Faith Schools Ebony Paint Road, Enugu State</Link>
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />

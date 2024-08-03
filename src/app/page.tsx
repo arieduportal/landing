@@ -29,9 +29,9 @@ import { Navigation, Pagination, A11y, EffectFade, EffectCoverflow } from 'swipe
 gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
 const testimonials = [
-  { id: 1, name: "Rev Fr. Hillary Mgbodile", office: "PPSMB Chairman (Formerly CIC Principal)", workPlace: "PPSMB Office", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
-  { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" },
-  { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "We have three projects with this template and that is because we love the design, the large number of possibilities to customize the template and the support received. We recommend it!" }
+  { id: 1, name: "Rev Fr. Hillary Mgbodile", office: "PPSMB Chairman (Formerly CIC Principal)", workPlace: "PPSMB Office", quote: "This software has revolutionized our school's administration. The Academics Portal simplifies result management, enhancing educational outcomes. The Staff Pay Manager ensures accurate, timely salary payments, boosting staff morale. The Analytics Gateway provides invaluable data for strategic decisions. This platform has significantly improved our efficiency and communication." },
+  { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "As a parent, the Axiolot Hub Portal is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient." },
+  { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
 ], team = [
   { id: 1, name: "Arinze Justin Okechukwu", position: "Founder", email: "", wa: "", link: "", bg: "pink" },
   { id: 2, name: "Arinze Justin Okechukwu", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
@@ -236,7 +236,9 @@ export default function Index() {
                     return <div key={i} ref={(el) => (linesRef.current[i] = el!)} style={{ opacity: 0, transform: 'translateY(100px)', position: 'absolute', backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }} className="line bg-transparent clip-text font-inter w-full text-center text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">{item.title}</div>
                   })}
                 </div>
-                <p data-wow-delay="0.3s" className="text-sm wow slideInUp text-slate-700 font-inter pt-3 mt-3"></p>
+                <p data-wow-delay="0.3s" className="text-sm wow slideInUp text-slate-700 font-inter pt-3 mt-3">
+                  A technological ecosystem to efficiently keep your school data secured in one place
+                </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-y-5 mt-1 pt-2 md:mt-4 md:pt-5">
                 <div data-wow-delay="0.2s" className="flex wow bounceInUp relative min-h-[1px]" style={{ order: 'initial', flexBasis: 'initial', flexGrow: 'initial', alignSelf: 'initial', flexShrink: 'initial' }}>
@@ -485,7 +487,7 @@ export default function Index() {
                     </li>
                     <li data-wow-delay="0.8s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
                       <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
-                      <p className="font-satoshi font-medium text-sm text-black">Staff Payment System</p>
+                      <p className="font-satoshi font-medium text-sm text-black">Communication Management</p>
                     </li>
                     <li data-wow-delay="1.0s" className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base">
                       <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
@@ -667,7 +669,7 @@ export default function Index() {
                 </a>
               </div>
             </div>
-            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 scale-105 hover:scale-110">
+            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105 md:scale-105 md:hover:scale-110">
               <h2 className="text-2xl font-semibold mb-4 text-royal-lilac pb-4 font-inter">Proficient Plan</h2>
               <ul className="space-y-4">
                 <li>
@@ -809,7 +811,7 @@ export default function Index() {
                 </div>
               </div>
               <div className="w-full lg:w-2/3">
-                <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start p-4">
+                <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start py-4 px-0 md:px-4">
                   <div className="-left-1 -top-2.5 w-auto mr-0 mb-0 absolute z-50">
                     <div data-wow-delay="0.3s" className="wow bounceInDown">
                       <div className="relative block animate-bounce bounce">
@@ -836,7 +838,7 @@ export default function Index() {
                         delay: 10000,
                         disableOnInteraction: true,
                       }}
-                      className="w-full bg-transparent-white rounded-lg h-auto px-6"
+                      className="w-full bg-transparent-white rounded-lg h-auto md:px-6"
                     >
                       {testimonials.map((item, i) => {
                         return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-3xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">

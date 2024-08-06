@@ -7,6 +7,7 @@ interface FAQ {
 }
 
 import { useState, useEffect, useRef } from "react";
+import Head from 'next/head';
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CountUp from 'react-countup';
@@ -34,10 +35,9 @@ const testimonials = [
   { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
 ], team = [
   { id: 1, name: "Arinze Justin Okechukwu", position: "Founder", email: "", wa: "", link: "", bg: "pink" },
-  { id: 2, name: "Arinze Justin Okechukwu", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Arinze Justin Okechukwu", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
-  { id: 4, name: "Arinze Justin Okechukwu", position: "Marketer", email: "", wa: "", link: "", bg: "orange" },
-  { id: 5, name: "Arinze Justin Okechukwu", position: "Developer", email: "", wa: "", link: "", bg: "#4452F2" }
+  { id: 2, name: "Adesola Rose", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
+  { id: 3, name: "Ani Nneka Miracle", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
+  { id: 4, name: "Mmeri Okechukwu", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },
   { id: 2, title: 'Academic Excellence Management' },
@@ -50,10 +50,6 @@ const testimonials = [
   '/image/partners/cic.png',
   '/image/partners/blossom.png',
 ];
-
-export const metadata = {
-  title: 'Home | Axiolot Hub',
-}
 
 export default function Index() {
   const [hasRun, setHasRun] = useState(false);
@@ -224,6 +220,9 @@ export default function Index() {
 
   return (
     <div className="relative">
+      <Head>
+        <title>Home | Axiolot Hub</title>
+      </Head>
       <div className="">
 
       </div>

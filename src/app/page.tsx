@@ -51,6 +51,10 @@ const testimonials = [
   '/image/partners/blossom.png',
 ];
 
+export const metadata = {
+  title: 'Home | Axiolot Hub',
+}
+
 export default function Index() {
   const [hasRun, setHasRun] = useState(false);
   const tlMaxRef = useRef<TimelineMax | null>(null);

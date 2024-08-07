@@ -7,9 +7,10 @@ import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhone
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
     return (
-        <footer className="border-t border-gray-300 px-2 md:px-0">
-            <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }}>
+        <footer className="border-t border-gray-300">
+            <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${backgroundImage}) !important` }}>
                 <div className="app-container">
                     <div className="pt-16 pb-12 md:pt-20 md:pb-16">
                         <div className="flex flex-wrap mt-0 -mx-3 flex-col justify-between align-middle lg:items-start lg:flex-row pb-10">

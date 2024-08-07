@@ -43,6 +43,7 @@ input[type=number] {
   background-position: top center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  background-image: url(/svg/bg.svg) !important;
 }
 
 .cover-png-3 {

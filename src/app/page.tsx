@@ -635,7 +635,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div id="plan" className="py-6 bg-rasin-black" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }}>
+        <div id="plan" className="py-6 bg-rasin-black app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }}>
           <div className="mb-2 pb-2">
             <p className="mb-1 pb-1 text-white text-center font-merri font-semibold text-xl md:text-2xl lg:text-3xl">Choose Your Perfect Plan</p>
             <p className="text-white font-satoshi text-sm md:text-base font-normal text-center">Join us today by subscribing to one of our awesome plan.</p>

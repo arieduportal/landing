@@ -73,7 +73,7 @@ export default function Footer() {
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Become an afflilate</Link>
+                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Become an affiliate</Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -93,8 +93,8 @@ export default function Footer() {
                             </div>
                             <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/3 mt-0 px-3">
                                 <div className="mb-6">
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newletter</h3>
-                                    <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Dont miss out on a single update! Stay in the know with our newsletter.</p>
+                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newsletter</h3>
+                                    <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Don&apos;t miss out on a single update! Stay in the know with our newsletter.</p>
                                     <div className="mt-6 mb-4">
                                         <input type="text" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">

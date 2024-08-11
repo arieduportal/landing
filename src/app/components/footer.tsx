@@ -16,8 +16,12 @@ export default function Footer() {
                         <div className="flex flex-wrap mt-0 -mx-3 flex-col justify-between align-middle lg:items-start lg:flex-row pb-10">
                             <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
                                 <div className="mb-6">
-                                    {/* <img src="/image/logo.png" alt="" className="max-w-[40%] mb-5" /> */}
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">AXIOLOT HUB LOGO</h3>
+                                    <div className="py-0 flex flex-row justify-start items-center mb-6">
+                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 pr-0 mr-0" />
+                                        <svg height="40" width="200" className="-ml-2">
+                                            <text x="5" y="30" fill="none" stroke="#2f2e41" font-size="35" rotate="10" className="font-satoshi">xiolot</text>
+                                        </svg>
+                                    </div>
                                     <p className="text-black font-normal text-base font-satoshi mb-2.5 mt-0">
                                         AXIOLOT HUB: Your transformative partners, not just consultants. We amplify your institution across educational sectors with technology-driven excellence. Join our proven circle for unrivaled academics elevation.
                                     </p>
@@ -81,7 +85,7 @@ export default function Footer() {
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiTimeLine className="absolute top-1 left-0 text-slate-800" />
                                             <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">
-                                            Monday - Friday: 8AM - 4PM <br/> Saturday: 8AM - 12Noon
+                                                Monday - Friday: 8AM - 4PM <br /> Saturday: 8AM - 12Noon
                                             </Link>
                                         </li>
                                     </ul>

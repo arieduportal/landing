@@ -223,10 +223,66 @@ export default function Index() {
       <Head>
         <title>Home | Axiolot Hub</title>
       </Head>
-      <div className="">
-
+      <div className="min-h-[80vh] bg-rasin-black relative">
+        <div className="inset-0 absolute z-50 app-container">
+          <div>
+            <svg viewBox="0 0 1000 300" className="text-center text-svg uppercase">
+              <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="50%" dy=".10em">Axiolot Hub</text>
+              </symbol>
+              <use className="text" xlinkHref="#s-text"></use>
+              <use className="text" xlinkHref="#s-text"></use>
+              <use className="text" xlinkHref="#s-text"></use>
+              <use className="text" xlinkHref="#s-text"></use>
+              <use className="text" xlinkHref="#s-text"></use>
+            </svg>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-evenly align-middle items-center">
+            <div className="">
+              <div>
+                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Academics</p>
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">E-Pay</p>
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Analytics</p>
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Website</p>
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Staff Pay</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute w-full bottom-0">
+          <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g className="moving-waves">
+              <use xlinkHref="#gentle-wave" x="48" y="-6" fill="rgba(255,255,255,0.40)" />
+              <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+              <use xlinkHref="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.25)" />
+              <use xlinkHref="#gentle-wave" x="48" y="14" fill="rgba(255,255,255,0.20)" />
+              <use xlinkHref="#gentle-wave" x="48" y="22" fill="rgba(255,255,255,0.15)" />
+              <use xlinkHref="#gentle-wave" x="48" y="108" fill="rgba(255,255,255,1)" />
+            </g>
+          </svg>
+        </div>
       </div>
-      <div className="mt-3 pt-3">
+      <div className="mt-0 pt-1">
         <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
           <div className="app-container relative pt-12 lg:pt-20 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
@@ -511,6 +567,13 @@ export default function Index() {
                     <div className="inline-flex flex justify-center relative items-center max-w-full">
                       <figure className="w-full relative">
                         <img src={process.env.NEXT_PUBLIC_CDN + "/image/5737094.png"} decoding="async" loading="lazy" width="400" height="401" className="h-auto max-w-full" alt="" />
+                        <img
+                          src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"}
+                          decoding="async"
+                          loading="lazy"
+                          className="absolute inset-0 m-auto w-10 h-10 ring ring-rasin-black ring-offset-4 ring-offset-white rounded-full transform -translate-x-[45%] -translate-y-[140%]"
+                          alt="Centered Image"
+                        />
                       </figure>
                     </div>
                   </div>
@@ -666,7 +729,7 @@ export default function Index() {
                 </li>
               </ul>
               <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                <a href="https://api.axiolot.com.ng/onboard/plan/basic?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                   Choose Plan
                   <span></span>
                 </a>
@@ -696,7 +759,7 @@ export default function Index() {
                 </li>
               </ul>
               <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                <a href="https://api.axiolot.com.ng/onboard/plan/proficient?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                   Choose Plan
                   <span></span>
                 </a>
@@ -726,7 +789,7 @@ export default function Index() {
                 </li>
               </ul>
               <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                <a href="ttps://api.axiolot.com.ng/onboard/plan/premier?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                   Choose Plan
                   <span></span>
                 </a>

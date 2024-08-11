@@ -211,6 +211,101 @@ input[type=number] {
   mask-image: linear-gradient(120deg, #000 35%, transparent 40%);
 }
 
+.waves {
+  position: relative;
+  width: 100%;
+  height: 20vh;
+  margin-bottom: -30px;
+  min-height: 100px;
+  max-height: 150px
+}
+
+.waves.no-animation .moving-waves>use {
+  animation: none
+}
+
+.wave-rotate {
+  transform: rotate(180deg)
+}
+
+.moving-waves>use {
+  animation: f 40s cubic-bezier(.55, .5, .45, .5) infinite
+}
+
+.moving-waves>use:first-child {
+  animation-delay: -2s;
+  animation-duration: 11s
+}
+
+.moving-waves>use:nth-child(2) {
+  animation-delay: -4s;
+  animation-duration: 13s
+}
+
+.moving-waves>use:nth-child(3) {
+  animation-delay: -3s;
+  animation-duration: 15s
+}
+
+.moving-waves>use:nth-child(4) {
+  animation-delay: -4s;
+  animation-duration: 20s
+}
+
+.moving-waves>use:nth-child(5) {
+  animation-delay: -4s;
+  animation-duration: 25s
+}
+
+.moving-waves>use:nth-child(6) {
+  animation-delay: -3s;
+  animation-duration: 30s
+}
+
+.text-svg {
+  font: 5em/1 Inter, Impact !important;
+}
+
+.text {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-dasharray: 70 330;
+  stroke-dashoffset: 0;
+  -webkit-animation: stroke 6s infinite linear;
+  animation: stroke 6s infinite linear;
+}
+
+.text:nth-child(5n+1) {
+  stroke: #f2385a;
+  -webkit-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+
+.text:nth-child(5n+2) {
+  stroke: #f5a503;
+  -webkit-animation-delay: -2.4s;
+  animation-delay: -2.4s;
+}
+
+.text:nth-child(5n+3) {
+  stroke: #e9f1df;
+  -webkit-animation-delay: -3.6s;
+  animation-delay: -3.6s;
+}
+
+.text:nth-child(5n+4) {
+  stroke: #56d9cd;
+  -webkit-animation-delay: -4.8s;
+  animation-delay: -4.8s;
+}
+
+.text:nth-child(5n+5) {
+  stroke: #3aa1bf;
+  -webkit-animation-delay: -6s;
+  animation-delay: -6s;
+}
+
 @media (min-width: 576px) {
   .app-container {
     @apply max-w-[566px] px-1 !important;

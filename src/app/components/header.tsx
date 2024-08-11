@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 import {
     Menu, MenuButton, MenuList, MenuItem, Button, Icon
 } from '@chakra-ui/react'
@@ -12,20 +14,6 @@ import { SiMicrosoftacademic, SiNginxproxymanager } from "react-icons/si";
 import { FaSitemap } from "react-icons/fa6";
 import MobileNav from './mobileNav'
 import '../../../public/css/header.css'
-
-const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
-    ul: {
-        open: {
-            transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-        },
-        closed: {
-            transition: { staggerChildren: 0.05, staggerDirection: -1 }
-        }
-    }
-}
-
 
 export default function Header() {
     const socials = [
@@ -44,7 +32,8 @@ export default function Header() {
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isNavAnimated, setIsNavAnimated] = useState(false);
-    const [isOpen, setIsOpen] = useState(false) //
+
+    const router = useRouter();
 
     const handleScroll = () => {
         const navigationElement = document.getElementById('header') as HTMLElement;
@@ -68,6 +57,10 @@ export default function Header() {
         }
     };
 
+    const navigate = () => {
+        router.push('/#plan')
+    }
+
     useEffect(() => {
         handleScroll();
 
@@ -79,7 +72,7 @@ export default function Header() {
 
     return (
         <>
-            <header className={`header ${isNavVisible ? 'active' : ''} ${isNavAnimated ? 'animate' : ''}`} id="header">
+            <header className={`header ${isNavVisible ? 'active' : 'relative'} ${isNavAnimated ? 'animate' : ''}`} id="header">
                 <div></div>
                 <div className="from-[rgb(59,58,78)] from-40% to-rasin-black w-full bg-gradient-to-r bg-holder">
                     <div className="app-container top-nav py-2 md:py-4 flex flex-row justify-center md:justify-between align-middle items-center mx-2 md:mx-auto">
@@ -99,7 +92,7 @@ export default function Header() {
                                 <span className="sr-only">privacy policys</span>
                             </span>
                             <span>
-                                <Link href="" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">Try Demo</Link>
+                                <Link href="/#plan" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">Get Started</Link>
                                 <span className="sr-only">get started</span>
                             </span>
                             <span className="mr-2 z-[9999999]">
@@ -128,7 +121,12 @@ export default function Header() {
                     </div>
                     <div data-wow-delay="0.2s" className="app-container wow bounceInUp mx-auto rounded-md bg-white bottom-nav -mb-4 md:-mb-2 transform-none">
                         <div className="flex flex-row -mb-2 justify-between align-middle items-center font-satoshi py-3.5 px-3.5">
-                            <div data-wow-delay="0.5s" className="h-4 py-3 wow slideInLeft"></div>
+                            <div data-wow-delay="0.5s" className="py-0 wow slideInLeft flex flex-row justify-start items-center">
+                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 mx-auto pr-0 mr-0" />
+                                <svg height="40" width="200" className="-ml-2">
+                                    <text x="5" y="30" fill="none" stroke="#2f2e41" font-size="35" rotate="10" className="font-satoshi">xiolot</text>
+                                </svg>
+                            </div>
                             <div data-wow-delay="0.5s" className="md:flex wow slideInRight flex-row justify-between align-middle items-center my-1 hidden">
                                 <Link href='/#mission' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
                                     <span className="font-satoshi">Mission</span>
@@ -142,7 +140,7 @@ export default function Header() {
                                 <Link href='/#team' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
                                     <span>Team</span>
                                 </Link>
-                                <Button className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black">
+                                <Button onClick={navigate} className="mx-0.5 block group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black">
                                     <span className="before:left-0 group-hover/item:after:h-full group-hover/item:before:h-full before:bottom-0 after:right-0 after:top-0 block px-1 py-0.5 after:content-[''] before:content-[''] after:w-0.5 before:w-0.5 after:h-0 before:h-0 after:absolute before:absolute after:ease-linear before:ease-linear before:transition-all after:duration-500 after:transition-all before:duration-500 after:bg-black before:bg-black text-sm font-satoshi">
                                         Join Us
                                         <span className="ml-1">

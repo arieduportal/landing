@@ -91,3 +91,25 @@
         transform: translateX(-50%);
     }
 }
+
+@keyframes f {
+    0% {
+        transform: translate3d(-90px, 0, 0)
+    }
+
+    to {
+        transform: translate3d(85px, 0, 0)
+    }
+}
+
+@-webkit-keyframes stroke {
+    100% {
+        stroke-dashoffset: -400;
+    }
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: -400;
+    }
+}

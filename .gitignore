@@ -41,4 +41,4 @@ global.d.ts
 /public/image
 /public/ajax
 /public/svg/*
-! /public/svg/bg.svg
+!/public/svg/bg.svg

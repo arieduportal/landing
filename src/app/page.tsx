@@ -235,7 +235,7 @@ export default function Index() {
       <Head>
         <title>Home | Axiolot Hub</title>
       </Head>
-      <div className="min-h-[60vh] md:min-h-screen bg-rasin-black relative">
+      <div className="min-h-[80vh] md:min-h-screen bg-rasin-black relative">
         <div className="inset-0 absolute z-50 app-container h-full">
           <div className="mb-1 pb-1 mt-6 pt-6">
             <h1 className="mb-0.5 pb-1 md:font-roboto font-medium md:font-semibold text-center text-white capitalize text-4xl md:text-5xl lg:text-6xl">Unlock the magic of</h1>

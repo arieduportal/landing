@@ -34,10 +34,10 @@ const testimonials = [
   { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "As a parent, the Axiolot Hub Portal is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient." },
   { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
 ], team = [
-  { id: 1, name: "Arinze Justin Okechukwu", position: "Founder", email: "", wa: "", link: "", bg: "pink" },
-  { id: 2, name: "Adesola Rose", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Ani Nneka Miracle", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
-  { id: 4, name: "Mmeri Okechukwu", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
+  { id: 1, name: "Arinze Justin Okechukwu", pic: "/image/person.png", position: "Founder/Software Developer", email: "", wa: "", link: "", bg: "pink" },
+  { id: 2, name: "Adesola Rose", pic: "/image/team/rose.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
+  { id: 3, name: "Ani Nneka Miracle", pic: "/image/team/miracle.jpeg", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
+  { id: 4, name: "Mmeri Okechukwu", pic: "/image/team/mmeri.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },
   { id: 2, title: 'Academic Excellence Management' },
@@ -61,7 +61,9 @@ export default function Index() {
 
   useEffect(() => {
     var words = ['joyful', 'grateful', 'excited', 'satified', 'delighted', 'happy'],
+      words2 = ['result management', 'site management', 'school fee payments', 'data insights'],
       cr = document.getElementById("cr") as HTMLElement,
+      cr2 = document.getElementById("cr2") as HTMLElement,
       boxes = document.querySelectorAll(".box-school") as NodeListOf<Element>,
       stage = document.getElementById("stage-school") as HTMLElement;
 
@@ -80,6 +82,16 @@ export default function Index() {
       for (var i = 0; i < words.length; i++) {
         cr.innerHTML = words[i];
         tlMax.to('#cr', 2, { text: { value: words[i] }, ease: Sine.easeInOut }, '+=3.5')
+      };
+    }
+
+    if (cr2) {
+      const tlMax = new TimelineMax({ repeat: -1 });
+      tlMaxRef.current = tlMax;
+
+      for (var i = 0; i < words2.length; i++) {
+        cr2.innerHTML = words2[i];
+        tlMax.to('#cr2', 2, { text: { value: words2[i] }, ease: Sine.easeInOut }, '+=3.5')
       };
     }
 
@@ -223,10 +235,14 @@ export default function Index() {
       <Head>
         <title>Home | Axiolot Hub</title>
       </Head>
-      <div className="min-h-[80vh] bg-rasin-black relative">
-        <div className="inset-0 absolute z-50 app-container">
-          <div>
-            <svg viewBox="0 0 1000 300" className="text-center text-svg uppercase">
+      <div className="min-h-[60vh] md:min-h-screen bg-rasin-black relative">
+        <div className="inset-0 absolute z-50 app-container h-full">
+          <div className="mb-1 pb-1 mt-6 pt-6">
+            <h1 className="mb-0.5 pb-1 md:font-roboto font-medium md:font-semibold text-center text-white capitalize text-4xl md:text-5xl lg:text-6xl">Unlock the magic of</h1>
+            <h1 id="cr2" className="md:font-roboto font-medium md:font-semibold text-center text-white capitalize text-3xl md:text-4xl lg:text-5xl">result management</h1>
+          </div>
+          <div className="wow bounceIn" data-wow-delay="0.4s">
+            <svg viewBox="0 0 1000 150" className="text-center text-svg uppercase h-1/4">
               <symbol id="s-text">
                 <text text-anchor="middle" x="50%" y="50%" dy=".10em">Axiolot Hub</text>
               </symbol>
@@ -237,30 +253,65 @@ export default function Index() {
               <use className="text" xlinkHref="#s-text"></use>
             </svg>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-evenly align-middle items-center">
-            <div className="">
-              <div>
-                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Academics</p>
+          <div data-wow-delay="0.3s" className="bg-white/90 wow slideInUp backdrop-blur-sm app-bs border mb-6 border-gray-200 relative pb-4 px-3 rounded-xl w-4/5 md:w-2/5 lg:w-1/4 mx-auto">
+            <div className="px-2 py-1 text-center">
+              <p className="mb-1">Let&apos;s Start ---</p>
+              <a href="#plan" className="text-pink-500 font-inter font-medium text-sm md:text-base cursor-pointer text-center">Subscribe Now</a>
+            </div>
+            <div data-wow-delay="0.6s" className="absolute right-0 -top-4 wow bounceIn">
+              <img src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} alt="" />
+            </div>
+          </div>
+          <p className="text-center w-full">
+            <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-center text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+              Try For Free
+              <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                <path fill="currentColor" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z"></path>
+              </svg>
+              <span></span>
+            </a>
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 pt-6 justify-between align-middle items-center">
+            <div className="wow slideInUp" data-wow-delay="0.1s">
+              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-slate-200" width={768} height={768} viewBox="0 0 24 24">
+                  <path fill="currentColor" fillRule="evenodd" d="M11.602 18.636a.75.75 0 0 0 .398.11a.75.75 0 0 0 .398-.11l1.135-.681a8.3 8.3 0 0 1 7.36-.59c.89.356 1.857-.3 1.857-1.257V4.45c0-.578-.352-1.097-.889-1.312a10.7 10.7 0 0 0-9.48.76L12 4.124l-.382-.229a10.7 10.7 0 0 0-9.48-.76A1.41 1.41 0 0 0 1.25 4.45v11.66c0 .957.967 1.612 1.857 1.256a8.3 8.3 0 0 1 7.36.59zM2.75 4.508v11.387a9.8 9.8 0 0 1 8.489.774l.011.006V5.425l-.403-.242a9.2 9.2 0 0 0-8.097-.675m10.011 12.16l-.011.007V5.425l.403-.242a9.2 9.2 0 0 1 8.097-.675v11.387a9.8 9.8 0 0 0-8.489.774" clipRule="evenodd"></path>
+                  <path fill="currentColor" d="M9.275 19.042a6.5 6.5 0 0 0-6.55 0l-.103.06a.75.75 0 1 0 .756 1.296l.103-.06a5 5 0 0 1 5.038 0l1.088.634a4.75 4.75 0 0 0 4.786 0l1.088-.634a5 5 0 0 1 5.038 0l.103.06a.75.75 0 0 0 .756-1.296l-.103-.06a6.5 6.5 0 0 0-6.55 0l-1.087.634a3.25 3.25 0 0 1-3.276 0z"></path>
+                </svg>
+                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Academics</p>
               </div>
             </div>
-            <div className="">
-              <div>
-                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">E-Pay</p>
+            <div className="wow slideInUp" data-wow-delay="0.3s">
+              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
+                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 48 48">
+                  <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m18.924 19.179l4.332 10.45a21.15 21.15 0 0 1 9.041-2.112a19.24 19.24 0 0 1 8.772 2.112v-10.45a10.3 10.3 0 0 0-3.574-1.408l-2.22-5.577a20.4 20.4 0 0 0-8.825 1.733c-6.28 2.761-7.526 5.252-7.526 5.252"></path>
+                  <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m32.898 27.531l2.718 6.229a2.365 2.365 0 0 1-1.221 3.114l-12.438 5.428a2.365 2.365 0 0 1-3.113-1.221L7.129 14.24a2.365 2.365 0 0 1 1.222-3.113l12.437-5.429a2.365 2.365 0 0 1 3.114 1.222l2.98 6.828"></path>
+                </svg>
+                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">E-Pay</p>
               </div>
             </div>
-            <div className="">
-              <div>
-                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Analytics</p>
+            <div className="wow slideInUp" data-wow-delay="0.5s">
+              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
+                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 32 32">
+                  <path fill="currentColor" d="M4 20v2h4.586L2 28.586L3.414 30L10 23.414V28h2v-8zM30 4h-7v2h3.586L19 13.586l-4.293-4.293a1 1 0 0 0-1.414 0L8 14.586L9.414 16L14 11.414l4.293 4.293a1 1 0 0 0 1.414 0L28 7.414V11h2zM16 28h14v2H16zM2 2h2v14H2z"></path>
+                </svg>
+                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Analytics</p>
               </div>
             </div>
-            <div className="">
-              <div>
-                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Website</p>
+            <div className="wow slideInUp" data-wow-delay="0.7s">
+              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
+                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 2048 2048">
+                  <path fill="currentColor" d="M1024 0q141 0 272 36t245 103t207 160t160 208t103 245t37 272q0 141-36 272t-103 245t-160 207t-208 160t-245 103t-272 37q-141 0-272-36t-245-103t-207-160t-160-208t-103-244t-37-273q0-141 36-272t103-245t160-207t208-160T751 37t273-37m0 1920q123 0 237-32t214-90t182-141t140-181t91-214t32-238q0-123-32-237t-90-214t-141-182t-181-140t-214-91t-238-32q-123 0-237 32t-214 90t-182 141t-140 181t-91 214t-32 238q0 123 32 237t90 214t141 182t181 140t214 91t238 32m597-880l48-144h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74zm-464-144h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74l48 144zm-512 0h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74l48 144z"></path>
+                </svg>
+                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Website</p>
               </div>
             </div>
-            <div className="">
-              <div>
-                <p className="text-slate-400 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Staff Pay</p>
+            <div className="wow slideInUp col-span-2 md:col-span-1" data-wow-delay="0.9s">
+              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
+                <svg className="w-8 h-8 text-rasin-black md:text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 3c2.21 0 4 1.79 4 4s-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4m4 10.54c0 1.06-.28 3.53-2.19 6.29L13 15l.94-1.88c-.62-.07-1.27-.12-1.94-.12s-1.32.05-1.94.12L11 15l-.81 4.83C8.28 17.07 8 14.6 8 13.54c-2.39.7-4 1.96-4 3.46v4h16v-4c0-1.5-1.6-2.76-4-3.46"></path>
+                </svg>
+                <p className="text-rasin-black md:text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Staff Pay</p>
               </div>
             </div>
           </div>
@@ -281,10 +332,28 @@ export default function Index() {
             </g>
           </svg>
         </div>
+        <div className="absolute w-full top-10 right-3 md:right-5">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-auto md:h-auto" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} alt="" />
+        </div>
+        <div className="absolute w-full top-10 left-1/5">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} decoding="async" className="w-24 h-24" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} alt="" />
+        </div>
+        <div className="absolute w-full bottom-20 right-8 md:right-10">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-32 md:h-32" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} alt="" />
+        </div>
+        <div className="absolute top-1/2 left-1/2">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} decoding="async" className="w-32 h-32 md:w-56 md:h-56" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} alt="" />
+        </div>
+        <div className="absolute w-full bottom-12 left-10">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} decoding="async" className="w-20 h-20" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} alt="" />
+        </div>
+        <div className="absolute w-full top-12 left-0 md:left-6">
+          <img src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} className="w-60 h-60 md:h-auto md:w-auto" decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} alt="" />
+        </div>
       </div>
       <div className="mt-0 pt-1">
         <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
-          <div className="app-container relative pt-12 lg:pt-20 pb-8 px-0">
+          <div className="app-container relative pt-6 lg:pt-12 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
                 <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
@@ -789,7 +858,7 @@ export default function Index() {
                 </li>
               </ul>
               <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="ttps://api.axiolot.com.ng/onboard/plan/premier?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
+                <a href="https://api.axiolot.com.ng/onboard/plan/premier?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
                   Choose Plan
                   <span></span>
                 </a>
@@ -1022,8 +1091,8 @@ export default function Index() {
                                   return <SwiperSlide key={item.id} data-wow-delay={`0.${index + 3}s`} className="bg-white wow bounceInLeft relative w-[80vw] mx-1 mr-2.5 md:mr-0 team-card md:w-[50vw] lg:w-[25vw] rounded-lg shadow-custom p-4 md:mx-4 lg:mx-8 box-content">
                                     <div className="py-8 px-4 w-full">
                                       <div className="py-4 w-full flex justify-center align-middle items-center">
-                                        <div className="relative bg-slate-100 rounded-full border-slate-100 border p-3 shadow-lg">
-                                          <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" loading="lazy" className="w-32 h-32 mx-auto my-auto" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
+                                        <div className="relative bg-slate-100 rounded-full border-slate-100 border p-1 shadow-lg">
+                                          <img src={process.env.NEXT_PUBLIC_CDN + item.pic} decoding="async" loading="lazy" className="w-32 h-32 m-auto rounded-full" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
                                         </div>
                                       </div>
                                       <div className="py-2 w-full text-center font-roboto">

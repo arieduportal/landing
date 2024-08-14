@@ -217,11 +217,11 @@ input[type=number] {
   height: 20vh;
   margin-bottom: -30px;
   min-height: 100px;
-  max-height: 150px
+  max-height: 150px;
 }
 
 .waves.no-animation .moving-waves>use {
-  animation: none
+  animation: none;
 }
 
 .wave-rotate {
@@ -254,16 +254,16 @@ input[type=number] {
 
 .moving-waves>use:nth-child(5) {
   animation-delay: -4s;
-  animation-duration: 25s
+  animation-duration: 25s;
 }
 
 .moving-waves>use:nth-child(6) {
   animation-delay: -3s;
-  animation-duration: 30s
+  animation-duration: 30s;
 }
 
 .text-svg {
-  font: 5em/1 Inter, Impact !important;
+  font: 4em/1 Inter, Impact !important;
 }
 
 .text {

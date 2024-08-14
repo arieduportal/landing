@@ -1,11 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
+import { useState } from 'react'
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
 import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine } from "react-icons/ri";
 
 export default function Footer() {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const subscribe = async () => {
+        if (email == '') return;
+        try {
+            const response = await fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email }),
+            })
+
+            const result = await response.json();
+            setMessage(result.message)
+        } catch {
+
+        }
+    }
     const currentYear = new Date().getFullYear();
     const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
     return (
@@ -96,9 +116,9 @@ export default function Footer() {
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newsletter</h3>
                                     <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Don&apos;t miss out on a single update! Stay in the know with our newsletter.</p>
                                     <div className="mt-6 mb-4">
-                                        <input type="text" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
+                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
+                                            <button onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
                                                 <p className="z-50 relative transition-[color] duration-700 text-white">Subscribe</p>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>

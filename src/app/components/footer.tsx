@@ -8,24 +8,50 @@ import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhone
 export default function Footer() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [color, setColor] = useState('');
 
     const subscribe = async () => {
-        if (email == '') return;
+        // Validate email input
+        if (email === '') {
+            setMessage('Error: Email is required.');
+            setColor('text-red-500');
+            clear();
+            return;
+        }
+
         try {
-            const response = await fetch('', {
+            const response = await fetch('https://api.axiolot.com.ng/subscribe', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
-            })
+                body: JSON.stringify({ email, type: 'news' }),
+            });
 
             const result = await response.json();
-            setMessage(result.message)
-        } catch {
-
+            if (response.ok) {
+                setMessage(`Success: ${result.message}`);
+                setColor('text-green-500');
+            } else {
+                setMessage(`Error: ${result.message}`);
+                setColor('text-red-500');
+            }
+        } catch (error) {
+            setMessage('Error: Failed to subscribe. Please try again later.');
+            setColor('text-red-500');
         }
+
+        clear();
     }
+
+    const clear = () => {
+        let timeOut = setTimeout(() => {
+            setMessage('')
+            setColor('')
+            clearTimeout(timeOut)
+        }, 3000)
+    }
+
     const currentYear = new Date().getFullYear();
     const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
     return (
@@ -122,6 +148,7 @@ export default function Footer() {
                                                 <p className="z-50 relative transition-[color] duration-700 text-white">Subscribe</p>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>
+                                            <p className={`text-base font-satoshi ${color}`}>{message}</p>
                                         </div>
                                     </div>
                                 </div>

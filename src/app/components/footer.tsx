@@ -9,6 +9,7 @@ export default function Footer() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [color, setColor] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const subscribe = async () => {
         // Validate email input
@@ -18,6 +19,8 @@ export default function Footer() {
             clear();
             return;
         }
+
+        setIsLoading(true);
 
         try {
             const response = await fetch('https://api.axiolot.com.ng/subscribe', {
@@ -39,9 +42,10 @@ export default function Footer() {
         } catch (error) {
             setMessage('Error: Failed to subscribe. Please try again later.');
             setColor('text-red-500');
+        } finally {
+            setIsLoading(false);
+            clear();
         }
-
-        clear();
     }
 
     const clear = () => {
@@ -49,7 +53,7 @@ export default function Footer() {
             setMessage('')
             setColor('')
             clearTimeout(timeOut)
-        }, 3000)
+        }, 4000)
     }
 
     const currentYear = new Date().getFullYear();
@@ -142,14 +146,14 @@ export default function Footer() {
                                     <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newsletter</h3>
                                     <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Don&apos;t miss out on a single update! Stay in the know with our newsletter.</p>
                                     <div className="mt-6 mb-4">
-                                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
+                                        <input value={email} disabled={isLoading} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
                                             <button onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
-                                                <p className="z-50 relative transition-[color] duration-700 text-white">Subscribe</p>
+                                                <p className="z-50 relative transition-[color] duration-700 text-white">{isLoading ? 'Submitting...' : 'Subscribe'}</p>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>
-                                            <p className={`text-base font-satoshi ${color}`}>{message}</p>
                                         </div>
+                                        <p className={`text-base text-center py-4 font-satoshi ${color}`}>{message}</p>
                                     </div>
                                 </div>
                                 <div className="mb-6">

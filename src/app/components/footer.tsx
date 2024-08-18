@@ -23,7 +23,7 @@ export default function Footer() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('https://api.axiolot.com.ng/subscribe', {
+            const response = await fetch('https://api.axiolot.com.ng/email/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

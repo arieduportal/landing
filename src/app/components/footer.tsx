@@ -27,6 +27,7 @@ export default function Footer() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281'
                 },
                 body: JSON.stringify({ email, type: 'news' }),
             });

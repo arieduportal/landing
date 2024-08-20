@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
 import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine } from "react-icons/ri";
@@ -10,9 +10,10 @@ export default function Footer() {
     const [message, setMessage] = useState('');
     const [color, setColor] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [XToken, setXToken] = useState('');
 
     const subscribe = async () => {
-        // Validate email input
+
         if (email === '') {
             setMessage('Error: Email is required.');
             setColor('text-red-500');
@@ -23,17 +24,19 @@ export default function Footer() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('https://api.axiolot.com.ng/email/subscribe', {
+            const response = await fetch('https://axiolot.com.ng/email/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281'
+                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281',
+                    'X-XSRF-TOKEN': XToken
                 },
                 body: JSON.stringify({ email, type: 'news' }),
+                credentials: 'include'
             });
 
             const result = await response.json();
-            if (response.ok) {
+            if (response.ok && response.status) {
                 setMessage(`Success: ${result.message}`);
                 setColor('text-green-500');
             } else {
@@ -59,6 +62,13 @@ export default function Footer() {
 
     const currentYear = new Date().getFullYear();
     const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
+
+    useEffect(() => {
+        fetch('/api/x-token').then((res) => res.json()).then((data) => {
+            setXToken(data.token)
+        })
+    }, [])
+
     return (
         <footer className="border-t border-gray-300">
             <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${backgroundImage}) !important` }}>
@@ -149,7 +159,7 @@ export default function Footer() {
                                     <div className="mt-6 mb-4">
                                         <input value={email} disabled={isLoading} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
+                                            <button disabled={isLoading} onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
                                                 <p className="z-50 relative transition-[color] duration-700 text-white">{isLoading ? 'Submitting...' : 'Subscribe'}</p>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>

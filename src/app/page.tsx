@@ -262,7 +262,7 @@ export default function Index() {
               <img src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} alt="" />
             </div>
           </div>
-          <p className="text-center w-full">
+          <p data-wow-delay="0.3s" className="text-center w-full wow slideInUp">
             <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-center text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
               Try For Free
               <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
@@ -332,22 +332,22 @@ export default function Index() {
             </g>
           </svg>
         </div>
-        <div className="absolute w-full top-10 right-3 md:right-5">
+        <div data-wow-delay="0.3s" className="absolute w-full top-10 right-3 md:right-5 wow slideInRight">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-auto md:h-auto" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} alt="" />
         </div>
-        <div className="absolute w-full top-10 left-1/5">
+        <div data-wow-delay="0.3s" className="absolute w-full top-10 left-1/5 wow slideInLeft">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} decoding="async" className="w-24 h-24" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} alt="" />
         </div>
-        <div className="absolute w-full bottom-20 right-8 md:right-10">
+        <div data-wow-delay="0.3s" className="absolute w-full bottom-20 right-8 md:right-10 wow bounceInLeft">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-32 md:h-32" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} alt="" />
         </div>
-        <div className="absolute top-1/2 left-1/2">
+        <div data-wow-delay="0.3s" className="absolute top-1/2 left-1/2 wow fadeInDown">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} decoding="async" className="w-32 h-32 md:w-56 md:h-56" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} alt="" />
         </div>
-        <div className="absolute w-full bottom-12 left-10">
+        <div data-wow-delay="0.3s" className="absolute w-full bottom-12 left-10 wow fadeInUp">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} decoding="async" className="w-20 h-20" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} alt="" />
         </div>
-        <div className="absolute w-full top-12 left-0 md:left-6">
+        <div data-wow-delay="0.3s" className="absolute w-full top-12 left-0 md:left-6 wow bounceIn">
           <img src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} className="w-60 h-60 md:h-auto md:w-auto" decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} alt="" />
         </div>
       </div>

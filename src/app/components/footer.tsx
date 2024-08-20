@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
 import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine } from "react-icons/ri";
@@ -10,9 +10,10 @@ export default function Footer() {
     const [message, setMessage] = useState('');
     const [color, setColor] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [XToken, setXToken] = useState('');
 
     const subscribe = async () => {
-        // Validate email input
+
         if (email === '') {
             setMessage('Error: Email is required.');
             setColor('text-red-500');
@@ -23,11 +24,12 @@ export default function Footer() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('https://api.axiolot.com.ng/email/subscribe', {
+            const response = await fetch('https://localhos/email/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281'
+                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281',
+                    'X-XSRF-TOKEN': XToken
                 },
                 body: JSON.stringify({ email, type: 'news' }),
             });
@@ -59,6 +61,13 @@ export default function Footer() {
 
     const currentYear = new Date().getFullYear();
     const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
+
+    useEffect(() => {
+        fetch('/api/x-token').then((res) => res.json()).then((data) => {
+            setXToken(data.token)
+        })
+    }, [])
+
     return (
         <footer className="border-t border-gray-300">
             <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${backgroundImage}) !important` }}>

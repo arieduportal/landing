@@ -24,7 +24,7 @@ export default function Footer() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('https://localhos/email/subscribe', {
+            const response = await fetch('https://axiolot.com.ng/email/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,10 +32,11 @@ export default function Footer() {
                     'X-XSRF-TOKEN': XToken
                 },
                 body: JSON.stringify({ email, type: 'news' }),
+                credentials: 'include'
             });
 
             const result = await response.json();
-            if (response.ok) {
+            if (response.ok && response.status) {
                 setMessage(`Success: ${result.message}`);
                 setColor('text-green-500');
             } else {
@@ -158,7 +159,7 @@ export default function Footer() {
                                     <div className="mt-6 mb-4">
                                         <input value={email} disabled={isLoading} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
                                         <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
+                                            <button disabled={isLoading} onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
                                                 <p className="z-50 relative transition-[color] duration-700 text-white">{isLoading ? 'Submitting...' : 'Subscribe'}</p>
                                                 <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
                                             </button>

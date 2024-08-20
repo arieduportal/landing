@@ -28,7 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         path: '/',
         sameSite: 'lax',
         secure: true,
-        domain: config.domainCookie,
+        domain: config.domainCookie || '',
     }));
 
     if (!_cfruid) {

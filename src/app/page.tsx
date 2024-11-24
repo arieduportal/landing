@@ -35,9 +35,9 @@ const testimonials = [
   { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
 ], team = [
   { id: 1, name: "Arinze Justin Okechukwu", pic: "/image/person.png", position: "Founder/Software Developer", email: "", wa: "", link: "", bg: "pink" },
-  { id: 2, name: "Adesola Rose", pic: "/image/team/rose.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Ani Nneka Miracle", pic: "/image/team/miracle.jpeg", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
-  { id: 4, name: "Mmeri Okechukwu", pic: "/image/team/mmeri.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
+  { id: 2, name: "Adesola Rose", pic: "/image/team/person.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
+  { id: 3, name: "Ani Nneka Miracle", pic: "/image/team/person.jpeg", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
+  { id: 4, name: "Mmeri Okechukwu", pic: "/image/team/person.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },
   { id: 2, title: 'Academic Excellence Management' },

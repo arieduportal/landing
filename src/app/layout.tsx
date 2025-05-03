@@ -58,7 +58,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href={`${process.env.NEXT_PUBLIC_CDN}/ajax/css/wow-animate.css`}
+          href={`${process.env.NEXT_PUBLIC_CDN}/css/wow-animate.css`}
         />
 
         <link rel="canonical" href="https://axiolot.com.ng/" />
@@ -85,11 +85,11 @@ export default function RootLayout({
         <div data-wow-delay="0.6s" className="fixed wow flipInX hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
           <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281" className="underline text-black font-medium text-sm font-inter">Try Demo Account</a>
         </div>
-        <Script strategy="lazyOnload" src={`${process.env.NEXT_PUBLIC_CDN}/ajax/js/ripple.js`} id="ripple" >
+        <Script strategy="lazyOnload" src={`${process.env.NEXT_PUBLIC_CDN}/js/ripple.js`} id="ripple" >
         </Script>
-        <Script strategy="afterInteractive" src={process.env.NEXT_PUBLIC_CDN + "/ajax/js/wow.min.js"} id="wow" >
+        <Script strategy="afterInteractive" src={process.env.NEXT_PUBLIC_CDN + "/js/wow.min.js"} id="wow" >
         </Script>
-        <Script strategy="lazyOnload" src={process.env.NEXT_PUBLIC_CDN + "/ajax/js/wow.config.js"} id="wow.config" >
+        <Script strategy="lazyOnload" src={process.env.NEXT_PUBLIC_CDN + "/js/wow.config.js"} id="wow.config" >
         </Script>
       </body>
     </html>

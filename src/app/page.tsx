@@ -14,6 +14,7 @@ import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import gsap from "gsap"
 import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
+import HeaderBanner from './components/headerBanner';
 import Accordion from './components/accordion';
 import faq from './faq.json';
 
@@ -34,21 +35,21 @@ const testimonials = [
   { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "As a parent, the Axiolot Hub Portal is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient." },
   { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
 ], team = [
-  { id: 1, name: "Arinze Justin Okechukwu", pic: "/image/person.png", position: "Founder/Software Developer", email: "", wa: "", link: "", bg: "pink" },
-  { id: 2, name: "Adesola Rose", pic: "/image/team/person.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Ani Nneka Miracle", pic: "/image/team/person.jpeg", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
-  { id: 4, name: "Mmeri Okechukwu", pic: "/image/team/person.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
+  { id: 1, name: "Arinze Justin Okechukwu", pic: "/image/hub/person.png", position: "Founder/Software Developer", email: "", wa: "", link: "", bg: "pink" },
+  { id: 2, name: "Adesola Rose", pic: "/image/hub/team/person.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
+  { id: 3, name: "Ani Nneka Miracle", pic: "/image/hub/team/person.jpeg", position: "Marketer", email: "", wa: "", link: "", bg: "purple" },
+  { id: 4, name: "Mmeri Okechukwu", pic: "/image/hub/team/person.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },
   { id: 2, title: 'Academic Excellence Management' },
   { id: 3, title: 'Secure Online Payments' }
 ], partners = [
-  '/image/partners/mea.png',
-  '/image/partners/cic.png',
-  '/image/partners/blossom.png',
-  '/image/partners/mea.png',
-  '/image/partners/cic.png',
-  '/image/partners/blossom.png',
+  '/image/hub/partners/mea.png',
+  '/image/hub/partners/cic.png',
+  '/image/hub/partners/blossom.png',
+  '/image/hub/partners/mea.png',
+  '/image/hub/partners/cic.png',
+  '/image/hub/partners/blossom.png',
 ];
 
 export default function Index() {
@@ -235,129 +236,14 @@ export default function Index() {
       <Head>
         <title>Home | Axiolot Hub</title>
       </Head>
-      <div className="min-h-[80vh] md:min-h-screen bg-rasin-black relative">
-        <div className="inset-0 absolute z-50 app-container h-full">
-          <div className="mb-1 pb-1 mt-6 pt-6">
-            <h1 className="mb-0.5 pb-1 md:font-roboto font-medium md:font-semibold text-center text-white capitalize text-4xl md:text-5xl lg:text-6xl">Unlock the magic of</h1>
-            <h1 id="cr2" className="md:font-roboto font-medium md:font-semibold text-center text-white capitalize text-3xl md:text-4xl lg:text-5xl">result management</h1>
-          </div>
-          <div className="wow bounceIn" data-wow-delay="0.4s">
-            <svg viewBox="0 0 1000 150" className="text-center text-svg uppercase h-1/4">
-              <symbol id="s-text">
-                <text text-anchor="middle" x="50%" y="50%" dy=".10em">Axiolot Hub</text>
-              </symbol>
-              <use className="text" xlinkHref="#s-text"></use>
-              <use className="text" xlinkHref="#s-text"></use>
-              <use className="text" xlinkHref="#s-text"></use>
-              <use className="text" xlinkHref="#s-text"></use>
-              <use className="text" xlinkHref="#s-text"></use>
-            </svg>
-          </div>
-          <div data-wow-delay="0.3s" className="bg-white/90 wow slideInUp backdrop-blur-sm app-bs border mb-6 border-gray-200 relative pb-4 px-3 rounded-xl w-4/5 md:w-2/5 lg:w-1/4 mx-auto">
-            <div className="px-2 py-1 text-center">
-              <p className="mb-1">Let&apos;s Start ---</p>
-              <a href="#plan" className="text-pink-500 font-inter font-medium text-sm md:text-base cursor-pointer text-center">Subscribe Now</a>
-            </div>
-            <div data-wow-delay="0.6s" className="absolute right-0 -top-4 wow bounceIn">
-              <img src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/svg/icon-51.svg"} alt="" />
-            </div>
-          </div>
-          <p data-wow-delay="0.3s" className="text-center w-full wow slideInUp">
-            <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281" className="rounded-full font-inter text-center text-sm font-medium w-auto px-4 py-1.5 bg-slate-100/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
-              Try For Free
-              <svg className="ml-2 w-5 h-5 relative inline-block" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
-                <path fill="currentColor" d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z"></path>
-              </svg>
-              <span></span>
-            </a>
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 pt-6 justify-between align-middle items-center">
-            <div className="wow slideInUp" data-wow-delay="0.1s">
-              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-slate-200" width={768} height={768} viewBox="0 0 24 24">
-                  <path fill="currentColor" fillRule="evenodd" d="M11.602 18.636a.75.75 0 0 0 .398.11a.75.75 0 0 0 .398-.11l1.135-.681a8.3 8.3 0 0 1 7.36-.59c.89.356 1.857-.3 1.857-1.257V4.45c0-.578-.352-1.097-.889-1.312a10.7 10.7 0 0 0-9.48.76L12 4.124l-.382-.229a10.7 10.7 0 0 0-9.48-.76A1.41 1.41 0 0 0 1.25 4.45v11.66c0 .957.967 1.612 1.857 1.256a8.3 8.3 0 0 1 7.36.59zM2.75 4.508v11.387a9.8 9.8 0 0 1 8.489.774l.011.006V5.425l-.403-.242a9.2 9.2 0 0 0-8.097-.675m10.011 12.16l-.011.007V5.425l.403-.242a9.2 9.2 0 0 1 8.097-.675v11.387a9.8 9.8 0 0 0-8.489.774" clipRule="evenodd"></path>
-                  <path fill="currentColor" d="M9.275 19.042a6.5 6.5 0 0 0-6.55 0l-.103.06a.75.75 0 1 0 .756 1.296l.103-.06a5 5 0 0 1 5.038 0l1.088.634a4.75 4.75 0 0 0 4.786 0l1.088-.634a5 5 0 0 1 5.038 0l.103.06a.75.75 0 0 0 .756-1.296l-.103-.06a6.5 6.5 0 0 0-6.55 0l-1.087.634a3.25 3.25 0 0 1-3.276 0z"></path>
-                </svg>
-                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Academics</p>
-              </div>
-            </div>
-            <div className="wow slideInUp" data-wow-delay="0.3s">
-              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
-                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 48 48">
-                  <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m18.924 19.179l4.332 10.45a21.15 21.15 0 0 1 9.041-2.112a19.24 19.24 0 0 1 8.772 2.112v-10.45a10.3 10.3 0 0 0-3.574-1.408l-2.22-5.577a20.4 20.4 0 0 0-8.825 1.733c-6.28 2.761-7.526 5.252-7.526 5.252"></path>
-                  <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m32.898 27.531l2.718 6.229a2.365 2.365 0 0 1-1.221 3.114l-12.438 5.428a2.365 2.365 0 0 1-3.113-1.221L7.129 14.24a2.365 2.365 0 0 1 1.222-3.113l12.437-5.429a2.365 2.365 0 0 1 3.114 1.222l2.98 6.828"></path>
-                </svg>
-                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">E-Pay</p>
-              </div>
-            </div>
-            <div className="wow slideInUp" data-wow-delay="0.5s">
-              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
-                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 32 32">
-                  <path fill="currentColor" d="M4 20v2h4.586L2 28.586L3.414 30L10 23.414V28h2v-8zM30 4h-7v2h3.586L19 13.586l-4.293-4.293a1 1 0 0 0-1.414 0L8 14.586L9.414 16L14 11.414l4.293 4.293a1 1 0 0 0 1.414 0L28 7.414V11h2zM16 28h14v2H16zM2 2h2v14H2z"></path>
-                </svg>
-                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Analytics</p>
-              </div>
-            </div>
-            <div className="wow slideInUp" data-wow-delay="0.7s">
-              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
-                <svg className="w-8 h-8 text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 2048 2048">
-                  <path fill="currentColor" d="M1024 0q141 0 272 36t245 103t207 160t160 208t103 245t37 272q0 141-36 272t-103 245t-160 207t-208 160t-245 103t-272 37q-141 0-272-36t-245-103t-207-160t-160-208t-103-244t-37-273q0-141 36-272t103-245t160-207t208-160T751 37t273-37m0 1920q123 0 237-32t214-90t182-141t140-181t91-214t32-238q0-123-32-237t-90-214t-141-182t-181-140t-214-91t-238-32q-123 0-237 32t-214 90t-182 141t-140 181t-91 214t-32 238q0 123 32 237t90 214t141 182t181 140t214 91t238 32m597-880l48-144h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74zm-464-144h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74l48 144zm-512 0h75l-85 256h-75l-48-144l-48 144h-75l-85-256h75l48 144l48-144h74l48 144z"></path>
-                </svg>
-                <p className="text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Website</p>
-              </div>
-            </div>
-            <div className="wow slideInUp col-span-2 md:col-span-1" data-wow-delay="0.9s">
-              <div className="flex flex-row justify-center items-center gap-x-4 gap-y-6 cursor-pointer my-3 md:gap-y-0">
-                <svg className="w-8 h-8 text-rasin-black md:text-slate-200" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M12 3c2.21 0 4 1.79 4 4s-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4m4 10.54c0 1.06-.28 3.53-2.19 6.29L13 15l.94-1.88c-.62-.07-1.27-.12-1.94-.12s-1.32.05-1.94.12L11 15l-.81 4.83C8.28 17.07 8 14.6 8 13.54c-2.39.7-4 1.96-4 3.46v4h16v-4c0-1.5-1.6-2.76-4-3.46"></path>
-                </svg>
-                <p className="text-rasin-black md:text-slate-200 font-bold font-roboto text-base md:text-lg lg:text-xl uppercase">Staff Pay</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute w-full bottom-0">
-          <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            </defs>
-            <g className="moving-waves">
-              <use xlinkHref="#gentle-wave" x="48" y="-6" fill="rgba(255,255,255,0.40)" />
-              <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
-              <use xlinkHref="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.25)" />
-              <use xlinkHref="#gentle-wave" x="48" y="14" fill="rgba(255,255,255,0.20)" />
-              <use xlinkHref="#gentle-wave" x="48" y="22" fill="rgba(255,255,255,0.15)" />
-              <use xlinkHref="#gentle-wave" x="48" y="108" fill="rgba(255,255,255,1)" />
-            </g>
-          </svg>
-        </div>
-        <div data-wow-delay="0.3s" className="absolute w-full top-10 right-3 md:right-5 wow slideInRight">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-auto md:h-auto" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud.png"} alt="" />
-        </div>
-        <div data-wow-delay="0.3s" className="absolute w-full top-10 left-1/5 wow slideInLeft">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} decoding="async" className="w-24 h-24" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/book.png"} alt="" />
-        </div>
-        <div data-wow-delay="0.3s" className="absolute w-full bottom-20 right-8 md:right-10 wow bounceInLeft">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} decoding="async" className="transform rotate-90 float-right w-20 h-20 md:w-32 md:h-32" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/thumb-up.png"} alt="" />
-        </div>
-        <div data-wow-delay="0.3s" className="absolute top-1/2 left-1/2 wow fadeInDown">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} decoding="async" className="w-32 h-32 md:w-56 md:h-56" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-star.png"} alt="" />
-        </div>
-        <div data-wow-delay="0.3s" className="absolute w-full bottom-12 left-10 wow fadeInUp">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} decoding="async" className="w-20 h-20" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/cloud-server.png"} alt="" />
-        </div>
-        <div data-wow-delay="0.3s" className="absolute w-full top-12 left-0 md:left-6 wow bounceIn">
-          <img src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} className="w-60 h-60 md:h-auto md:w-auto" decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/student-cloud.png"} alt="" />
-        </div>
-      </div>
+      <HeaderBanner />
       <div className="mt-0 pt-1">
         <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
           <div className="app-container relative pt-6 lg:pt-12 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
-                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
-                  <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">our mission</p>
+                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0 z-[1000]">
+                  <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-roboto">our mission</p>
                 </div>
                 <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-4 pb-4 w-full">
                   {mission.map((item, i) => {
@@ -378,7 +264,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/integration.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/integration.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/integration.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/integration.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -401,7 +287,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/academics.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/academics.png"} className="w-64 mx-auto max-w-full h-64" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/academics.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/academics.png"} className="w-64 mx-auto max-w-full h-64" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -427,7 +313,7 @@ export default function Index() {
                             <div className="relative">
                               <div className="relative">
                                 <div className="inline-flex mb-10">
-                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/4492252.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/4492252.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
+                                  <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/4492252.png"} decoding="async" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/4492252.png"} className="w-64 max-w-full h-64 mx-auto" alt="" />
                                 </div>
                               </div>
                             </div>
@@ -444,7 +330,7 @@ export default function Index() {
               </div>
             </div>
             <div className="absolute left-1/3 top-1/4 round-shape">
-              <img src={process.env.NEXT_PUBLIC_CDN + "/image/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
+              <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
             </div>
             <div className="absolute right-10 bottom-1/3 round-shape border bg-transparent border-purple-600 rounded-full">
               <p className="p-2"></p>
@@ -457,61 +343,61 @@ export default function Index() {
         <div className="app-container flex justify-center items-center mx-auto relative pb-3" id="service">
           <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
             <div className="text-center">
-              <div data-wow-delay="0.4s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
-                <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-satoshi lg:font-roboto">our services</p>
+              <div data-wow-delay="0.4s" className="rounded-full wow slideInUp bg-teal-100 px-4 py-1 translate-x-0">
+                <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">our services</p>
               </div>
             </div>
             <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-6 pb-6 w-full md:w-3/4 lg:w-2/3">
-              <p className="text-rasin-black font-satoshi lg:font-roboto text-2xl md:text-3xl lg:text-4xl capitalize font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
+              <p className="text-rasin-black font-satoshi text-2xl md:text-3xl lg:text-4xl capitalize font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold">We develop solutions for schools</p>
             </div>
           </div>
         </div>
         <div className="pt-4">
           <div className="pt-20 bg-gradient-to-b from-slate-200 from-45% to-slate-50">
             <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle">
-              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              <div data-wow-delay="0.3s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 transform rotate-[-5deg] text-sky-400" width={768} height={768} viewBox="0 0 14 14">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 transform rotate-[-5deg] text-teal-400" width={768} height={768} viewBox="0 0 14 14">
                         <path className='fill-sky-100' stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M7.26 12.535L4.795 5.153a.5.5 0 0 1 .633-.633l7.382 2.463a.5.5 0 0 1-.009.951l-3.245 1.02a.5.5 0 0 0-.328.326L8.21 12.526a.5.5 0 0 1-.952.009Zm2.103-3.46l3.468 3.467M.852 3.625l1.673.449M1.562 7.65l1.225-1.224M3.788.69l.448 1.672M7.813 1.4L6.588 2.624"></path>
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-semibold font-roboto">search engine optimization</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-semibold font-satoshi">search engine optimization</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-noraml text-slate-700 transform transition-transform duration-500">We essential makes sure that your school website ranks well in search engine results and attracts relevant traffic.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-1.5 px-1 md:py-2 md:px-1.5 text-slate-700 text-sm flex m-0.5 md:m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 transform rotate-[-5deg] text-sky-400" width={768} height={768} viewBox="0 0 32 32">
-                        <path className="fill-sky-400" d="M16 4L3 7v2l13-3l13 3V7zm-6 6c-3.227 0-6.375 1.313-6.375 1.313l-.625.28V27h11.281c.348.598.98 1 1.719 1c.738 0 1.371-.402 1.719-1H29V11.594l-.625-.281S25.227 10 22 10c-2.918 0-5.48.98-6 1.188C15.48 10.98 12.918 10 10 10m0 2c1.934 0 4 .625 5 .969v11.125c-1.113-.367-2.941-.875-5-.875c-2.102 0-3.813.484-5 .875V12.969C5.77 12.69 7.8 12 10 12m12 0c2.2 0 4.23.691 5 .969v11.125c-1.188-.39-2.898-.875-5-.875c-2.059 0-3.887.508-5 .875V12.969c1-.344 3.066-.969 5-.969"></path>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 transform rotate-[-5deg] text-teal-400" width={768} height={768} viewBox="0 0 32 32">
+                        <path className="fill-teal-400" d="M16 4L3 7v2l13-3l13 3V7zm-6 6c-3.227 0-6.375 1.313-6.375 1.313l-.625.28V27h11.281c.348.598.98 1 1.719 1c.738 0 1.371-.402 1.719-1H29V11.594l-.625-.281S25.227 10 22 10c-2.918 0-5.48.98-6 1.188C15.48 10.98 12.918 10 10 10m0 2c1.934 0 4 .625 5 .969v11.125c-1.113-.367-2.941-.875-5-.875c-2.102 0-3.813.484-5 .875V12.969C5.77 12.69 7.8 12 10 12m12 0c2.2 0 4.23.691 5 .969v11.125c-1.188-.39-2.898-.875-5-.875c-2.059 0-3.887.508-5 .875V12.969c1-.344 3.066-.969 5-.969"></path>
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">Academics portal</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Streamline result management and student data with our comprehensive academics portal, empowering institutions to efficiently track progress and enhance educational outcome.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">Academics portal</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">Streamline result management and student data with our comprehensive academics portal, empowering institutions to efficiently track progress and enhance educational outcome.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.3s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 transform rotate-[30deg] text-slate-300" width="768" height="768" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m10.986 13.928l.762-2.284l-1.324-3.629a15.694 15.694 0 0 1-.892-.081c-.458-.027-.405-.727.054-.701c0 0 1.403.108 2.239.108c.889 0 2.266-.108 2.266-.108c.458-.027.512.646.054.701c0 0-.461.054-.973.081l2.006 5.966a81.578 81.578 0 0 0-2.599-.061l-.429-1.177l-.403 1.171c-.252.001-.508.01-.761.014m-7.156.393A8.463 8.463 0 0 1 3.5 12c0-1.232.264-2.402.736-3.459l2.036 5.578c.849-.059 1.69-.103 2.526-.137L6.792 8.015c.512-.027.973-.081.973-.081c.458-.054.404-.727-.055-.701c0 0-1.376.108-2.265.108c-.16 0-.347-.004-.547-.01A8.491 8.491 0 0 1 12 3.5c2.213 0 4.228.846 5.74 2.232c-.036-.002-.072-.007-.11-.007c-.835 0-1.427.727-1.427 1.509c0 .701.404 1.293.835 1.994c.323.566.701 1.293.701 2.344c0 .674-.245 1.463-.573 2.51c.301.019.604.043.907.066l.798-2.307c.485-1.213.646-2.182.646-3.044c0-.313-.021-.603-.057-.874A8.469 8.469 0 0 1 20.5 12c0 .807-.128 1.581-.339 2.32c.5.049 1.005.112 1.508.169A9.916 9.916 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 .862.125 1.692.331 2.49c.5-.057 1.002-.12 1.499-.169m14.638 3.167c-1.792 2.184-4.35 3.013-6.468 3.013c-1.876 0-4.551-.698-6.463-3.013c-.585.048-1.174.1-1.769.161C5.571 20.271 8.578 22 12 22c3.422 0 6.429-1.729 8.232-4.351a79.692 79.692 0 0 0-1.764-.161M12 15.01c-3.715 0-7.368.266-10.958.733c.179.41.35.825.506 1.247c3.427-.431 6.91-.679 10.452-.679s7.025.248 10.452.679c.156-.422.327-.836.506-1.246A84.852 84.852 0 0 0 12 15.01" />
                       </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 transform rotate-[10deg] absolute top-3 text-sky-400" width="768" height="768" viewBox="0 0 48 48">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 transform rotate-[10deg] absolute top-3 text-teal-400" width="768" height="768" viewBox="0 0 48 48">
                         <g fill="none" stroke="silver" strokeWidth="4">
-                          <circle cx="22" cy="40" r="4.2" fill="#38BDF8" />
-                          <circle cx="26" cy="8" r="4.2" fill="#38BDF8" />
-                          <circle cx="36" cy="24" r="4.2" fill="#38BDF8" />
-                          <circle cx="12" cy="24" r="4.2" fill="#38BDF8" />
+                          <circle cx="22" cy="40" r="4.2" fill="##2dd4bf" />
+                          <circle cx="26" cy="8" r="4.2" fill="##2dd4bf" />
+                          <circle cx="36" cy="24" r="4.2" fill="##2dd4bf" />
+                          <circle cx="12" cy="24" r="4.2" fill="##2dd4bf" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M32 24L16 24" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M23 11L15 21" />
                           <path d="M32.9998 27L24.9987 37" />
@@ -519,35 +405,35 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">website control</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base font-merri text-black">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">website control</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">Take charge of the school websites effortlessly with our <span className="font-semibold text-base font-merri text-slate-900">WEBSITE CONTROL</span>, providing seamless control and management for enhanced online presence and communication.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-lg py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 text-slate-300" width={672} height={768} viewBox="0 0 448 512">
                         <path fill="currentColor" d="M96 128a128 128 0 1 0 256 0a128 128 0 1 0-256 0m94.5 200.2l18.6 31l-33.3 123.9l-36-146.9c-2-8.1-9.8-13.4-17.9-11.3C51.9 342.4 0 405.8 0 481.3c0 17 13.8 30.7 30.7 30.7h386.6c17 0 30.7-13.8 30.7-30.7c0-75.5-51.9-138.9-121.9-156.4c-8.1-2-15.9 3.3-17.9 11.3l-36 146.9l-33.3-123.9l18.6-31c6.4-10.7-1.3-24.2-13.7-24.2h-39.5c-12.4 0-20.1 13.6-13.7 24.2z"></path>
                       </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="absolute w-10 h-10 -right-6 -top-2 text-sky-400 transform -rotate-90" width={768} height={768} viewBox="0 0 16 16">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="absolute w-10 h-10 -right-6 -top-2 text-teal-400 transform -rotate-90" width={768} height={768} viewBox="0 0 16 16">
                         <path fill="currentColor" d="M3 2.75V3h.5a.5.5 0 0 0 .5-.5V2h-.25a.75.75 0 0 0-.75.75M3.75 1h4.5C9.216 1 10 1.784 10 2.75v.543l2.975 2.975A3.5 3.5 0 0 1 14 8.743V14.5a.5.5 0 0 1-1 0V8.743a2.5 2.5 0 0 0-.732-1.768L10 4.707v2.585l.854.854a.5.5 0 0 1-.707.708l-.983-.984l-.034-.034l-1.224-1.224a.738.738 0 1 0-1.043 1.044l1.491 1.49a.5.5 0 0 1 .147.354v1a1 1 0 0 0 .999 1a.5.5 0 0 1 .5.5v1.25A1.75 1.75 0 0 1 8.25 15h-4.5A1.75 1.75 0 0 1 2 13.25V2.75C2 1.784 2.784 1 3.75 1M8 14h.25a.75.75 0 0 0 .75-.75V13h-.5a.5.5 0 0 0-.5.5zm.21-1.972a2 2 0 0 1-.71-1.527v-.794l-.193-.193A2 2 0 1 1 6.066 6q.12-.14.276-.257a1.74 1.74 0 0 1 2.271.161L9 6.292V4h-.5A1.5 1.5 0 0 1 7 2.5V2H5v.5A1.5 1.5 0 0 1 3.5 4H3v8h.5A1.5 1.5 0 0 1 5 13.5v.5h2v-.5a1.5 1.5 0 0 1 1.21-1.472M8.5 3H9v-.25A.75.75 0 0 0 8.25 2H8v.5a.5.5 0 0 0 .5.5M3 13v.25c0 .414.336.75.75.75H4v-.5a.5.5 0 0 0-.5-.5zm3.596-4.197l-.44-.44a1.73 1.73 0 0 1-.508-1.3a1 1 0 1 0 .948 1.74"></path>
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">staff pay manager</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">staff pay manager</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">Optimize staff salary management with our dedicated payment portal, streamlining the process for efficient and secure transactions, ensuring timely compensation for all employees.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.3s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-7 md:p-8 transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-sky-400" width={768} height={768} viewBox="0 0 24 24">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-teal-400" width={768} height={768} viewBox="0 0 24 24">
                         <path fill="currentColor" d="M5 12a1 1 0 0 0-1 1v8a1 1 0 0 0 2 0v-8a1 1 0 0 0-1-1m5-10a1 1 0 0 0-1 1v18a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1m10 14a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1m-5-8a1 1 0 0 0-1 1v12a1 1 0 0 0 2 0V9a1 1 0 0 0-1-1"></path>
                       </svg>
                       <svg xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 512 512" className="w-14 h-14 absolute top-3 text-slate-200">
@@ -559,26 +445,26 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">analytics gateway</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">analytics gateway</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">Elevate data-driven decision-making with our analytics gateway, seamlessly integrating student and staff data with school sites for insightful performance analysis and strategic planning.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div data-wow-delay="0.6s" className="bg-white wow slideInUp shadow-custom rounded-xl py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
+              <div data-wow-delay="0.6s" className="bg-white/80 backdrop-blur-lg border border-slate-200 wow slideInUp shadow-md hover:shadow-custom rounded-xl transition-shadow duration-300 py-2 px-1.5 text-slate-700 text-sm flex m-1.5 mx-1">
                 <div className="p-[35px] transition-all duration-500">
                   <div className="relative text-start flex flex-col md:flex-row justify-between items-start md:flex-grow-1">
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-14 h-14 transform rotate-[-14deg] text-slate-200" width={768} height={768} viewBox="0 0 24 24">
                         <path fill="currentColor" d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2m-7.5 12a2.5 2.5 0 1 1 0-5a2.47 2.47 0 0 1 1.5.512c-.604.456-1 1.173-1 1.988s.396 1.532 1 1.988a2.47 2.47 0 0 1-1.5.512m4 0a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5"></path>
                       </svg>
-                      <svg className="w-14 h-14 transform rotate-[5deg] absolute top-6 text-sky-400" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 20 20">
+                      <svg className="w-14 h-14 transform rotate-[5deg] absolute top-6 text-teal-400" xmlns="http://www.w3.org/2000/svg" width={768} height={768} viewBox="0 0 20 20">
                         <path fill="currentColor" d="M6.803 18.998c-.194-.127 3.153-7.16 3.038-7.469c-.116-.309-3.665-1.436-3.838-1.979c-.174-.543 7.007-8.707 7.196-8.549c.188.158-3.129 7.238-3.039 7.469c.091.23 3.728 1.404 3.838 1.979c.111.575-7.002 8.676-7.195 8.549"></path>
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-600 font-medium md:font-semibold font-inter">E-Payment system</h3>
-                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-medium text-black transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">E-Payment system</h3>
+                      <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">Simplify school fee payments with our e-payment portal, offering a convenient and secure platform for hassle-free transactions, ensuring smooth financial management for students and parents.</p>
                     </div>
                   </div>
                 </div>
@@ -633,9 +519,9 @@ export default function Index() {
               <div className="justify-center items-end content-end p-4 flex relative w-full flex-wrap">
                 <div className="text-center mb-0 wow bounceInUp" data-wow-delay="0.3s">
                   <div className="animate-bounce bounce block relative">
-                    <div className="inline-flex flex justify-center relative items-center max-w-full">
+                    <div className="flex justify-center relative items-center max-w-full">
                       <figure className="w-full relative">
-                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/5737094.png"} decoding="async" loading="lazy" width="400" height="401" className="h-auto max-w-full" alt="" />
+                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/5737094.png"} decoding="async" loading="lazy" width="400" height="401" className="h-auto max-w-full" alt="" />
                         <img
                           src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"}
                           decoding="async"
@@ -647,7 +533,7 @@ export default function Index() {
                     </div>
                   </div>
                 </div>
-                <div data-wow-delay="0.3s" className="-mt-[24%] md:-mt-[18%] w-full wow bounceInUp bg-white/30 backdrop-blur-sm rounded-lg py-7 text-gray-700  text-sm">
+                <div data-wow-delay="0.3s" className="-mt-[24%] md:-mt-[20%] w-full wow bounceInUp bg-white/30 backdrop-blur-sm app-bs rounded-xl border border-gray-200 py-7 text-gray-700 text-sm">
                   <div className="">
                     <p className="text-black text-center font-satoshi text-base md:text-lg font-semibold">Best Data Management App For Schools</p>
                   </div>
@@ -666,15 +552,15 @@ export default function Index() {
                 <div className="relative">
                   <div className="relative z-10 flex flex-row justify-between items-center align-middle pb-6">
                     <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ opacity: .1, y: -90 }} className="-mb-12 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 lg: h-40 lg:">
-                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/time.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/time.png"} alt="" className="rounded-full bg-white w-40 lg: h-40 lg: opacity-60" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/time.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/time.png"} alt="" className="rounded-full bg-white w-40 lg: h-40 lg: opacity-60" />
                     </motion.div>
                     <motion.div whileInView={{ opacity: .7, y: 0, transition: { delay: 1, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ opacity: .1, y: -90 }} className="-mb-24 relative bg-white shadow-custom rounded-full border border-slate-100 w-40 h-40">
-                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/feedback.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/feedback.png"} alt="" className="rounded-full bg-white w-40 h-40 opacity-60" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/feedback.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/feedback.png"} alt="" className="rounded-full bg-white w-40 h-40 opacity-60" />
                     </motion.div>
                   </div>
                   <div className="pt-6 w-full relative">
                     <motion.div whileInView={{ scale: 1, y: 0, transition: { delay: .7, duration: 0.9, bounce: 0.6, type: "spring", repeatType: "reverse" } }} viewport={{ once: false, amount: .6 }} initial={{ scale: .1, y: 70 }} className="-mt-14 relative z-50 bg-white shadow-custom rounded-full border border-slate-100 w-64 h-64 mx-auto">
-                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/students.png"} alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
+                      <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/students.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/students.png"} alt="" className="rounded-full bg-white w-64 h-64 opacity-100" />
                     </motion.div>
                   </div>
                   <motion.div whileInView={{ opacity: .9, x: 0, transition: { delay: 1, duration: 0.9 } }} viewport={{ once: false, amount: .3 }} initial={{ opacity: .8, x: -400 }} className="absolute z-20 p-4 rounded-full bg-pink-500 opacity-80 right-0 bottom-1/4"></motion.div>
@@ -865,36 +751,7 @@ export default function Index() {
               </div>
             </div>
           </div>
-          {/* <div className="app-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-between align-middle py-10">
-            <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-custom rounded-lg border-slate-200 border py-10 px-5">
-              <div className="mb-4 pb-3">
-                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Basic Tier</p>
-              </div>
-              
-            </div>
-            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-custom transform scale-110 rounded-lg border-slate-200 border py-10 px-5">
-              <div className="mb-4 pb-3">
-                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Proficient Tier</p>
-              </div>
-              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
-                  Choose Plan
-                  <span></span>
-                </a>
-              </div>
-            </div>
-            <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-custom rounded-lg border-slate-200 border py-10 px-5">
-              <div className="mb-4 pb-3">
-                <p className="text-black font-inter font-bold text-lg md:text-xl lg:text-2xl">Premier Tier</p>
-              </div>
-              <div className="mt-4 pt-4 pb-2 mb-2 text-center">
-                <a href="" className="rounded-full font-inter text-sm font-medium w-auto px-4 py-1.5 bg-slate-200/50 transition-all duration-500 cursor-pointer inline-block backdrop-blur-sm shadow-custom ripple-btn hover:text-white text-black hover:bg-black border-2 border-white hover:border-transparent">
-                  Choose Plan
-                  <span></span>
-                </a>
-              </div>
-            </div>
-          </div> */}
+
         </div>
         <div className="pt-4">
           <div className="bg-gradient-to-b from-slate-50 from-35% to-white transition-all duration-300 px-0 py-8 md:py-10 lg:py-12 z-[1]">
@@ -941,7 +798,7 @@ export default function Index() {
                     </div>
                   </div>
                   <div data-wow-delay="0.8s" className="w-full wow bounceInLeft text-left ml-0 pl-0">
-                    <img width="255" height="110" className="opacity-100 w-[127px] align-middle inline-block h-auto max-w-full" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/Trustpilot.png"} decoding="async" src={process.env.NEXT_PUBLIC_CDN + "/image/Trustpilot.png"} alt="" />
+                    <img width="255" height="110" className="opacity-100 w-[127px] align-middle inline-block h-auto max-w-full" loading="lazy" data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/Trustpilot.png"} decoding="async" src={process.env.NEXT_PUBLIC_CDN + "/image/hub/Trustpilot.png"} alt="" />
                   </div>
                 </div>
               </div>
@@ -952,7 +809,7 @@ export default function Index() {
                       <div className="relative block animate-bounce bounce">
                         <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
                           <figure className="inline-block m-0 relative w-full">
-                            <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/testi.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/testi.png"} alt="" loading="lazy" decoding="async" width="186" height="181" />
+                            <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/hub/testi.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/testi.png"} alt="" loading="lazy" decoding="async" width="186" height="181" />
                           </figure>
                         </div>
                       </div>
@@ -1012,7 +869,7 @@ export default function Index() {
                           <div className="justify-between flex flex-col flex-wrap">
                             <div className="flex justify-center items-center">
                               <figure className="rounded-full overflow-hidden w-[68px] border-2 border-slate-100">
-                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} decoding="async" className="max-w-full h-auto" loading="lazy" daa-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} width="68" height="69" alt={item.name} />
+                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/person.png"} decoding="async" className="max-w-full h-auto" loading="lazy" daa-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/person.png"} width="68" height="69" alt={item.name} />
                               </figure>
                               <div className="text-start pl-4">
                                 <h3 className="text-black font-roboto font-semibold text-base">{item.name}</h3>
@@ -1038,7 +895,7 @@ export default function Index() {
                   <div className="relative block animate-bounce bounce">
                     <div className="w-1/2 max-w-full relative justify-center inline-flex items-center">
                       <figure className="inline-block m-0 relative w-full">
-                        <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/online.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/online.png"} alt="" loading="lazy" decoding="async" width="600" height="662" />
+                        <img className="h-auto max-w-full" src={process.env.NEXT_PUBLIC_CDN + "/image/hub/online.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/online.png"} alt="" loading="lazy" decoding="async" width="600" height="662" />
                       </figure>
                     </div>
                   </div>
@@ -1048,8 +905,8 @@ export default function Index() {
                 <div className="app-container relative py-0 px-0">
                   <div>
                     <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
-                      <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-sky-200 text-sky-600 px-4 py-1 translate-x-0">
-                        <p className="uppercase text-sm text-sky-600 px-1 py-0.5 font-roboto">Axiolot Hub Team</p>
+                      <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0">
+                        <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">Axiolot Hub Team</p>
                       </div>
                       <h2 data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 w-full">
                         <h2 className="bg-transparent m-0 font-satoshi font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
@@ -1092,7 +949,7 @@ export default function Index() {
                                     <div className="py-8 px-4 w-full">
                                       <div className="py-4 w-full flex justify-center align-middle items-center">
                                         <div className="relative bg-slate-100 rounded-full border-slate-100 border p-1 shadow-lg">
-                                          <img src={process.env.NEXT_PUBLIC_CDN + item.pic} decoding="async" loading="lazy" className="w-32 h-32 m-auto rounded-full" data-src={process.env.NEXT_PUBLIC_CDN + "/image/person.png"} alt="Person avatar" />
+                                          <img src={process.env.NEXT_PUBLIC_CDN + item.pic} decoding="async" loading="lazy" className="w-32 h-32 m-auto rounded-full" data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/person.png"} alt="Person avatar" />
                                         </div>
                                       </div>
                                       <div className="py-2 w-full text-center font-roboto">
@@ -1176,8 +1033,8 @@ export default function Index() {
               </div>
               <div className="py-5 pb-2 px-0 relative">
                 <div className="text-center w-full">
-                  <div className="px-1.5 py-3.5 md:px-3.5 flex flex-wrap relative w-full content-start">
-                    <div className="ml-0 mb-5 w-full">
+                  <div className="px-1.5 py-3.5 md:px-3.5 pb-2 flex flex-wrap relative w-full content-start">
+                    <div className="ml-0 mb-3 w-full">
                       <div className="relative">
                         <h2 data-wow-delay="0.3s" className="text-lg wow slideInUp md:text-2xl lg:text-3xl m-0 font-satoshi text-blue-600 font-bold relative align-middle inline-block leading-9 mb-3 capitalize">Do you want to digitalize your school ? Try our
                           <mark className="p-1 relative inline-block text-inherit bg-inherit mb-0 mx-1">
@@ -1195,17 +1052,9 @@ export default function Index() {
                       </div>
                     </div>
                     <div data-wow-delay="0.3s" className="text-slate-700 wow zoomInUp text-sm md:text-base font-medium w-full text-center">
-                      <div className="m-0 mb-6 transition-all duration-600">
+                      <div className="m-0 mb-4 transition-all duration-600">
                         <span className="text-slate-700 inline-block">Make your school online footprint popular.</span>
                         <span className="text-slate-500 inline-block ml-2">Move from book keeping to digital</span>
-                      </div>
-                    </div>
-                    <div className="w-full relative text-center">
-                      <div className="w-1/2 md:w-1/4 lg:w-1/5 mx-auto">
-                        <button data-wow-delay="0.3s" className="hover:shadow-md wow bounceInUp ripple-btn overflow-hidden transition-shadow duration-300 bg-gradient-to-tr hover:bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 text-white relative text-center w-full mx-auto rounded-full p-4 opacity-100 inline-block">
-                          <p className="z-50 relative transition-[color] duration-700 text-white capitalize">Book a demo</p>
-                          <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -1234,7 +1083,7 @@ export default function Index() {
           </div>
         </div>
         <div className="text-center pb-8 mt-1 pt-6 relative bg-white">
-          <div data-wow-delay="0.4s" className="inline-block bg-purple-200/50 wow zoomInRight backdrop-blur-md px-3 rounded-full text-purple-600 text-base font-inter uppercase text-medium">Contact</div>
+          <div data-wow-delay="0.4s" className="inline-block bg-teal-100 wow zoomInRight backdrop-blur-md px-3 py-1 rounded-full text-teal-600 text-base font-satoshi uppercase text-medium">Contact</div>
           <div data-wow-delay="0.4s" className="inline-block ml-3 text-base wow zoomInLeft">Looking for a corporate solution? <a className="text-gradient-2 ml-1 font-semibold capitalize underline">contact us</a></div>
         </div>
       </div>

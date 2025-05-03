@@ -61,7 +61,7 @@ export default function Footer() {
     }
 
     const currentYear = new Date().getFullYear();
-    const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg`;
+    const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/hub/bg.svg`;
 
     useEffect(() => {
         fetch('/api/x-token').then((res) => res.json()).then((data) => {
@@ -78,7 +78,7 @@ export default function Footer() {
                             <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
                                 <div className="mb-6">
                                     <div className="py-0 flex flex-row justify-start items-center mb-6">
-                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 pr-0 mr-0" />
+                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 pr-0 mr-0" />
                                         <svg height="40" width="200" className="-ml-2">
                                             <text x="5" y="30" fill="none" stroke="#2f2e41" font-size="35" rotate="10" className="font-satoshi">xiolot</text>
                                         </svg>
@@ -198,16 +198,16 @@ export default function Footer() {
                                 </div>
                             </div>
                             <div className="absolute -top-8 -left-4 animate-bounce bounce">
-                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/consult.png"} alt="" className="w-32 h-32" />
+                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/consult.png"} alt="" className="w-32 h-32" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="absolute top-3 right-6 tri-shape">
-                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/tri-shape.png"} alt="shape triangle" className="max-w-full align-middle" />
+                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/tri-shape.png"} alt="shape triangle" className="max-w-full align-middle" />
                 </div>
                 <div className="absolute left-1/3 top-1/4 round-shape">
-                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
+                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
                 </div>
                 <div className="absolute bottom-4 left-1/3 animate-spin duration-[3s] p-3 backdrop-blur-sm bg-teal-600/60"></div>
             </div>

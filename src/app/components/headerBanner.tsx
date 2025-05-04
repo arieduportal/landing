@@ -102,7 +102,7 @@ const HeaderBanner = () => {
     return (
         <header
             ref={containerRef}
-            className="relative overflow-hidden h-screen max-h-[1000px] bg-[#2f2e41]"
+            className="relative overflow-hidden min-h-screen max-h-[1000px] bg-[#2f2e41]"
         >
             {/* Parallax Background */}
             <motion.div
@@ -204,14 +204,14 @@ const HeaderBanner = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.8, ease: customEase }}
                         >
-                            <button
-                                onClick={() => push('#demo')}
-                                className="bg-[#6c63ff] hover:bg-[#7b73ff] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#6c63ff] focus:ring-opacity-50"
+                            <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281"
+                                target='_blank'
+                                className="bg-[#6c63ff] text-center hover:bg-[#7b73ff] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#6c63ff] focus:ring-opacity-50"
                             >
                                 Request Demo
-                            </button>
+                            </a>
                             <button
-                                onClick={() => push('#features')}
+                                onClick={() => push('#services')}
                                 className="bg-transparent hover:bg-white/10 border-2 border-white/30 hover:border-[#6c63ff] text-white py-3 px-8 rounded-full font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                             >
                                 Explore Features

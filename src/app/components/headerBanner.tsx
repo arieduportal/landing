@@ -255,7 +255,7 @@ const HeaderBanner = () => {
                                     className="relative"
                                 >
                                     <Image
-                                        src={process.env.NEXT_PUBLIC_CDN + slides[currentSlide].img}
+                                        src={slides[currentSlide].img}
                                         alt={slides[currentSlide].title}
                                         width={1200}
                                         height={800}
@@ -309,7 +309,7 @@ const HeaderBanner = () => {
                                     className="flex-shrink-0 grayscale contrast-75 hover:grayscale-0 hover:contrast-100 transition-all duration-300"
                                 >
                                     <Image
-                                        src={process.env.NEXT_PUBLIC_CDN + partner.logo}
+                                        src={partner.logo}
                                         alt={partner.name}
                                         width={120}
                                         height={40}

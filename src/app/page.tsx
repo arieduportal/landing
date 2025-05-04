@@ -6,7 +6,7 @@ interface FAQ {
   answer: string;
 }
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Key } from "react";
 import Head from 'next/head';
 import Image from "next/image"
 import { motion } from "framer-motion";
@@ -951,20 +951,15 @@ export default function Index() {
                       className="flex space-x-6"
                       style={{ width: '200%', animation: 'scroll 20s linear infinite' }}
                     >
-                      {partners.concat(partners).map((src, index) => (
-                        <div data-wow-delay={`0.${index + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow grayscale contrast-75 hover:grayscale-0 hover:contrast-100 slideInRight">
+                      {partners.concat(partners).map((src: string, index: Key | null | undefined) => (
+                        <div data-wow-delay={`0.${Number(index) + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow grayscale contrast-75 hover:grayscale-0 hover:contrast-100 slideInRight">
                           <Image
-                            src={process.env.NEXT_PUBLIC_CDN + src}
-                            alt={`School logo partner-${index + 1}`}
+                            src={process.env.NEXT_PUBLIC_CDN! + src}
+                            alt={`School logo partner-${Number(index) + 1}`}
                             width={70}
                             height={20}
                             className="h-auto w-auto object-contain hover:scale-110 transition-transform duration-300"
                           />
-                          {/* <img
-                            src={process.env.NEXT_PUBLIC_CDN + src}
-                            className="w-20 h-auto object-cover hover:scale-110 transition-transform duration-300"
-                            alt={`School logo ${index + 1}`}
-                          /> */}
                         </div>
                       ))}
                     </div>

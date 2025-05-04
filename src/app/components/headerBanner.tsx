@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import CountUp from "react-countup";
 
 interface ParticleSystemProps {
     isMobile: boolean;
@@ -37,14 +38,14 @@ const HeaderBanner = () => {
             title: "Transform Your School with",
             highlight: "Digital Excellence",
             desc: "Nigeria's most comprehensive school management platform",
-            img: "/image/hub/7741760.webp",
+            img: "/image/hub/6396891.png",
             decor: "blue"
         },
         {
             title: "Streamline Administration with",
             highlight: "Smart Automation",
             desc: "Automate attendance, fees, and report generation",
-            img: "/image/hub/3964042.webp",
+            img: "/image/hub/6382241.png",
             decor: "purple"
         },
         {
@@ -58,10 +59,9 @@ const HeaderBanner = () => {
 
     // Trusted partners (add your actual client logos)
     const partners = [
-        { name: "Greenfield Academy", logo: "/image/hub/partners/greenfield.webp" },
-        { name: "Lagos Prep School", logo: "/image/hub/partners/lagos-prep.webp" },
-        { name: "Abuja International", logo: "/image/hub/partners/abuja-intl.webp" },
-        { name: "Heritage College", logo: "/image/hub/partners/heritage.webp" },
+        { name: "Mea Mater", logo: "/image/hub/partners/mea.png" },
+        { name: "CIC Enugu", logo: "/image/hub/partners/cic.png" },
+        { name: "Blossom International", logo: "/image/hub/partners/blossom" },
     ];
 
     // Enhanced clip-path with brand colors
@@ -102,7 +102,7 @@ const HeaderBanner = () => {
     return (
         <header
             ref={containerRef}
-            className="relative overflow-hidden h-screen md:h-[80vh] max-h-[1000px] bg-[#2f2e41]"
+            className="relative overflow-hidden h-screen max-h-[1000px] bg-[#2f2e41]"
         >
             {/* Parallax Background */}
             <motion.div
@@ -221,7 +221,7 @@ const HeaderBanner = () => {
 
                     {/* Floating Screenshot with Enhanced Animation */}
                     <motion.div
-                        className="relative z-10"
+                        className="relative z-10 hidden md:block"
                         initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: isMobile ? 0.5 : 0.8, duration: 1, ease: customEase }}
@@ -240,14 +240,14 @@ const HeaderBanner = () => {
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={currentSlide} // Ensure key is tied to currentSlide
-                                    initial={{ scale: 0.95, opacity: 0, rotate: -2 }}
+                                    initial={{ scale: 0.85, opacity: 0, rotate: -3 }}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
                                         rotate: 0,
                                         boxShadow: "0 25px 50px -12px rgba(108, 99, 255, 0.3)",
                                     }}
-                                    exit={{ scale: 0.9, opacity: 0, rotate: 2 }}
+                                    exit={{ scale: 0.8, opacity: 0, rotate: 3 }}
                                     transition={{
                                         duration: 1,
                                         ease: customEase,
@@ -255,12 +255,12 @@ const HeaderBanner = () => {
                                     className="relative"
                                 >
                                     <Image
-                                        src={slides[currentSlide].img}
+                                        src={process.env.NEXT_PUBLIC_CDN + slides[currentSlide].img}
                                         alt={slides[currentSlide].title}
-                                        width={1200}
-                                        height={800}
+                                        width={1000}
+                                        height={600}
                                         priority
-                                        className="rounded-xl border-4 border-white/10 backdrop-blur-sm object-cover"
+                                        className="rounded-xl border-4 border-white/30 backdrop-blur-sm object-cover w-[400px] h-[400px] m-auto"
                                     />
                                 </motion.div>
                             </AnimatePresence>
@@ -281,76 +281,59 @@ const HeaderBanner = () => {
                     </motion.div>
                 </div>
 
-                {/* Trusted Partners Marquee */}
+                {/* Counter */}
                 <motion.div
-                    className="mt-8 md:mt-12 w-full overflow-hidden"
+                    className="w-full overflow-hidden mt-8 md:mt-0"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                 >
-                    <div className="relative before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#2f2e41] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#2f2e41] after:to-transparent">
+                    <div className="relative py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#2f2e41] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#2f2e41] after:to-transparent rounded-xl backdrop-blur-md shadow-custom-1">
                         <motion.div
-                            className="items-center gap-12 py-4 inline-flex" // Use inline-flex for smoother scrolling
-                            animate={{
-                                x: ["0%", "-100%"], // Scroll full width of content
-                            }}
-                            transition={{
-                                duration: 1000, // Smoother, slightly faster duration
-                                repeat: Infinity,
-                                ease: "linear",
-                                delay: 0.1
-                            }}
-                            style={{ width: `${partners.length * 200}%` }} // Ensure enough width for seamless looping
+                            className="mt-4 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-center"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2 }}
                         >
-                            {[...partners, ...partners, ...partners].map((partner, i) => (
-                                // Tripled partners array for seamless looping
-                                <div
-                                    key={`${partner.name}-${i}`}
-                                    className="flex-shrink-0 grayscale contrast-75 hover:grayscale-0 hover:contrast-100 transition-all duration-300"
+                            {[
+                                { value: 5, label: "Schools Onboarded" },
+                                { value: 10000, label: "Students Managed" },
+                                { value: 500000, label: "Reports Generated" },
+                            ].map((stat, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="text-white"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 1.4 + index * 0.2, duration: 0.8 }}
                                 >
-                                    <Image
-                                        src={partner.logo}
-                                        alt={partner.name}
-                                        width={120}
-                                        height={40}
-                                        className="h-8 md:h-10 w-auto object-contain"
-                                    />
-                                </div>
+                                    <motion.h3
+                                        className="text-3xl md:text-4xl font-bold text-teal-400"
+                                        style={{
+                                            textShadow: "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
+                                        }}
+                                        animate={{
+                                            textShadow: [
+                                                "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
+                                                "0 0 15px rgba(108,99,255,0.9), 0 0 30px rgba(108,99,255,0.7)",
+                                                "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
+                                            ],
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
+                                        <CountUp end={stat.value} duration={3} suffix="+" className="font-inter" />
+                                    </motion.h3>
+                                    <p className="text-sm md:text-base opacity-80 mt-2 font-satoshi">{stat.label}</p>
+                                </motion.div>
                             ))}
                         </motion.div>
                     </div>
                 </motion.div>
             </div>
-
-            {/* Scroll Down Indicator */}
-            <motion.div
-                className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 }}
-            >
-                <button
-                    onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
-                    aria-label="Scroll down"
-                    className="p-2 focus:outline-none"
-                >
-                    <motion.div
-                        animate={{
-                            y: [0, 10, 0],
-                            opacity: [0.6, 1, 0.6]
-                        }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    >
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 10L12 15L17 10" stroke="#6c63ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </motion.div>
-                </button>
-            </motion.div>
 
             {/* Slide Indicators */}
             <motion.div

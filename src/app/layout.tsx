@@ -65,7 +65,7 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Axiolot Hub" />
         <meta name="keywords" content="Axiolot Hub, Axiolot, Hub, " />
-        <meta http-equiv="XUACompatible" content="ie=edge" />
+        <meta httpEquiv="XUACompatible" content="ie=edge" />
       </head>
       <body className="font-satoshi">
         <Script strategy="afterInteractive" id="track-id">

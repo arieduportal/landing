@@ -8,6 +8,7 @@ interface FAQ {
 
 import { useState, useEffect, useRef } from "react";
 import Head from 'next/head';
+import Image from "next/image"
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CountUp from 'react-countup';
@@ -15,6 +16,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import gsap from "gsap"
 import { TimelineMax, Sine, Bounce, Linear, TextPlugin, ScrollTrigger } from 'gsap/all';
 import HeaderBanner from './components/headerBanner';
+import TestimonialSwiper from './components/TestimonialSwiper';
 import Accordion from './components/accordion';
 import faq from './faq.json';
 
@@ -25,19 +27,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 
-import { Navigation, Pagination, A11y, EffectFade, EffectCoverflow } from 'swiper/modules';
+import { Pagination, A11y, EffectCoverflow } from 'swiper/modules';
 
 
 gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
-const testimonials = [
-  { id: 1, name: "Rev Fr. Hillary Mgbodile", office: "PPSMB Chairman (Formerly CIC Principal)", workPlace: "PPSMB Office", quote: "This software has revolutionized our school's administration. The Academics Portal simplifies result management, enhancing educational outcomes. The Staff Pay Manager ensures accurate, timely salary payments, boosting staff morale. The Analytics Gateway provides invaluable data for strategic decisions. This platform has significantly improved our efficiency and communication." },
-  { id: 2, name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "As a parent, the Axiolot Hub Portal is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient." },
-  { id: 3, name: "Agu Michael", office: "Student CIC Enugu", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
-], team = [
+const team = [
   { id: 1, name: "Arinze Justin Okechukwu", pic: "/image/hub/person.png", position: "Founder/Software Developer", email: "info@axiolot.com.ng", wa: "", link: "", bg: "pink" },
   { id: 2, name: "Adesola Rose", pic: "/image/hub/team/rose.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Ani Blessing", pic: "/image/hub/cyndi.png", position: "UI Developer", email: "chicyndi2@gmail.com", wa: "", link: "", bg: "purple" },
+  { id: 3, name: "Ani Blessing", pic: "/image/hub/team/cyndi.jpeg", position: "UI Developer", email: "chicyndi2@gmail.com", wa: "", link: "", bg: "purple" },
   { id: 4, name: "Mmeri Okechukwu", pic: "/image/hub/team/mmeri.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },
@@ -234,7 +232,7 @@ export default function Index() {
   return (
     <div className="relative">
       <Head>
-        <title>Home | Axiolot Hub</title>
+        <title>Home | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
       </Head>
       <HeaderBanner />
       <div className="mt-0 pt-1">
@@ -242,7 +240,7 @@ export default function Index() {
           <div className="app-container relative pt-6 lg:pt-12 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
-                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0 z-[1000]">
+                <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0 z-10">
                   <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-roboto">our mission</p>
                 </div>
                 <div data-wow-delay="0.3s" className="text-center wow slideInUp mt-2 pt-2 mb-4 pb-4 w-full">
@@ -803,7 +801,7 @@ export default function Index() {
                 </div>
               </div>
               <div className="w-full lg:w-2/3">
-                <div className="m-0 ml-1.5 relative flex-wrap flex w-full content-start py-4 px-0 md:px-4">
+                <div className="m-0 md:ml-1.5 relative flex-wrap flex w-full content-start py-4 px-0 md:px-4">
                   <div className="-left-1 -top-2.5 w-auto mr-0 mb-0 absolute z-50">
                     <div data-wow-delay="0.3s" className="wow bounceInDown">
                       <div className="relative block animate-bounce bounce">
@@ -815,76 +813,11 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                  <div data-wow-delay="0.3s" className="w-full wow bounceInUp md:w-[96%] mx-auto bg-transparent-white rounded-lg my-6 pb-5">
-                    <Swiper
-                      modules={[Navigation, Pagination, A11y, EffectFade]}
-                      spaceBetween={50}
-                      slidesPerView={1}
-                      navigation
-                      pagination={{ clickable: true }}
-                      effect={"fade"}
-                      loop={true}
-                      speed={500}
-                      grabCursor={true}
-                      autoplay={{
-                        delay: 10000,
-                        disableOnInteraction: true,
-                      }}
-                      className="w-full bg-transparent-white rounded-lg h-auto md:px-6"
-                    >
-                      {testimonials.map((item, i) => {
-                        return <SwiperSlide data-wow-delay={`0.${i + 4}s`} key={item.id} className="bg-white wow zoomInUp w-full rounded-b-3xl rounded-t-sm swiper-margin text-rasin-black relative pt-10 pb-6">
-                          <div className="flex mb-6 justify-center">
-                            <ul className="text-yellow-600 rounded-lg border border-slate-100 py-1 px-3.5 text-sm">
-                              {[1, 2, 3, 4, 5].map((i, el) => {
-                                return <li key={i} className="inline-block m-0 text-base text-[#fc0] p-0">
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width={768} height={768} viewBox="0 0 24 24">
-                                    <path fill="currentColor" fillOpacity={0.15} stroke="currentColor" d="M10.144 6.628c.786-1.961 1.18-2.942 1.856-2.942c.676 0 1.07.98 1.856 2.942l.037.09c.444 1.109.666 1.663 1.12 2c.452.336 1.047.39 2.236.496l.214.019c1.946.174 2.92.261 3.127.88c.209.62-.514 1.277-1.96 2.591l-.481.44c-.732.665-1.098.998-1.268 1.434a2.002 2.002 0 0 0-.08.25c-.111.454-.004.937.21 1.902l.067.3c.393 1.775.59 2.662.247 3.045a1 1 0 0 1-.481.296c-.496.136-1.2-.438-2.61-1.586c-.925-.754-1.388-1.131-1.919-1.216a1.997 1.997 0 0 0-.63 0c-.532.085-.994.462-1.92 1.216c-1.408 1.148-2.113 1.722-2.609 1.586a1 1 0 0 1-.48-.296c-.344-.383-.147-1.27.246-3.044l.067-.301c.214-.966.321-1.448.21-1.903a2.002 2.002 0 0 0-.08-.25c-.17-.435-.536-.768-1.268-1.434l-.482-.439c-1.445-1.314-2.168-1.972-1.96-2.59c.209-.62 1.182-.707 3.128-.881l.214-.02c1.19-.106 1.784-.159 2.237-.496c.453-.336.675-.89 1.12-1.998z"></path>
-                                  </svg>
-                                </li>
-                              })}
-                            </ul>
-                          </div>
-                          <div className="mb-6 mt-2 px-4 lg:px-8 text-rasin-black relative">
-                            <div className="absolute right-1 -top-16">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="text-slate-700 w-14 h-14 md:w-20 md:h-20" width={768} height={768} viewBox="0 0 16 16">
-                                <g fill="#334155" fillOpacity={0.25}>
-                                  <g clipPath="url(#gravityUiQuoteOpen0)">
-                                    <path fill="currentColor" fillRule="evenodd" d="M12.411 6.33A2.751 2.751 0 0 1 14.5 9v.25A2.75 2.75 0 0 1 11.75 12h-.25a2.747 2.747 0 0 1-2.748-2.657V9.34H8.75V9c0-.131.01-.26.027-.386c.02-.261.05-.518.09-.77a8.028 8.028 0 0 1 .559-1.918a7.207 7.207 0 0 1 2.162-2.801l.098-.076A.238.238 0 0 1 11.83 3c.186 0 .306.202.22.367a18.552 18.552 0 0 0-.22.433a17.949 17.949 0 0 0-.43.951a14.39 14.39 0 0 0-.557 1.578l.054-.013a2.76 2.76 0 0 1 .603-.066h.25c.228 0 .45.028.661.08m.549-1.405A4.252 4.252 0 0 1 16 9v.25a4.25 4.25 0 0 1-4.25 4.25h-.25A4.245 4.245 0 0 1 8 11.662A4.245 4.245 0 0 1 4.5 13.5h-.25A4.25 4.25 0 0 1 0 9.336V9c0-.183.012-.365.035-.543c.207-2.62 1.358-4.966 3.488-6.599A1.738 1.738 0 0 1 4.58 1.5c1.341 0 2.146 1.425 1.548 2.564c-.111.211-.26.508-.418.86c.788.234 1.481.69 2.005 1.297a8.763 8.763 0 0 1 3.058-4.363A1.738 1.738 0 0 1 11.83 1.5c1.341 0 2.146 1.425 1.548 2.564c-.111.211-.26.508-.418.86ZM5.16 6.33a2.756 2.756 0 0 0-.661-.08h-.25a2.76 2.76 0 0 0-.657.079a14.398 14.398 0 0 1 .68-1.865A17.736 17.736 0 0 1 4.8 3.367A.251.251 0 0 0 4.58 3a.238.238 0 0 0-.144.049a7.737 7.737 0 0 0-.93.844a7.208 7.208 0 0 0-1.39 2.172a8.029 8.029 0 0 0-.498 1.779a8.753 8.753 0 0 0-.091.77A2.773 2.773 0 0 0 1.5 9v.339h.001v.004A2.747 2.747 0 0 0 4.25 12h.251a2.75 2.75 0 0 0 2.75-2.75V9c0-1.29-.89-2.374-2.089-2.67Z" clipRule="evenodd"></path>
-                                  </g>
-                                  <defs>
-                                    <clipPath id="gravityUiQuoteOpen0">
-                                      <path fill="currentColor" d="M0 0h16v16H0z"></path>
-                                    </clipPath>
-                                  </defs>
-                                </g>
-                              </svg>
-                            </div>
-                            <blockquote className="w-full mt-5 pt-2">
-                              <p className="text-rasin-black text-base md:text-lg text-center font-inter">
-                                <span className="font-medium md:font-semibold font-satoshi">{item.quote}</span>
-                              </p>
-                            </blockquote>
-                          </div>
-                          <div className="justify-between flex flex-col flex-wrap">
-                            <div className="flex justify-center items-center">
-                              <figure className="rounded-full overflow-hidden w-[68px] border-2 border-slate-100">
-                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/person.png"} decoding="async" className="max-w-full h-auto" loading="lazy" daa-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/person.png"} width="68" height="69" alt={item.name} />
-                              </figure>
-                              <div className="text-start pl-4">
-                                <h3 className="text-black font-roboto font-semibold text-base">{item.name}</h3>
-                                <h4 className="text-slate-400 font-normal text-sm">{item.office}</h4>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="border-t border-slate-100 mt-3.5 pt-3.5">
-                            <div className="relative">
-                              <p className="text-center font-semibold text-lg md:text-xl font-roboto text-rasin-black">{item.workPlace}</p>
-                            </div>
-                          </div>
-                        </SwiperSlide>;
-                      })}
-                    </Swiper>
+                  <div data-wow-delay="0.3s" className="w-full wow bounceInUp md:w-[96%] mx-auto bg-transparent-white rounded-lg -mt-4">
+                    <TestimonialSwiper
+                      autoPlayInterval={8000}
+                      decorColor="#3b82f6" // Optional: blue, purple (#a855f7), pink (#ec4899)
+                    />
                   </div>
                 </div>
               </div>
@@ -904,7 +837,7 @@ export default function Index() {
               <div className="py-8 my-5">
                 <div className="app-container relative py-0 px-0">
                   <div>
-                    <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+                    <div id="member" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
                       <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0">
                         <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">Axiolot Hub Team</p>
                       </div>
@@ -991,12 +924,12 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              <div className="py-6 px-0 pt-8">
+              <div className="py-6 px-0 pt-4">
                 <div className="flex-wrap flex relative mx-auto">
                   <div className="flex w-full min-h-[1px] relative">
                     <div className="flex w-full relative content-start flex-wrap transition-all duration-500 m-0 mb-3">
                       <div className="relative">
-                        <p data-wow-delay="0.3" className="text-base wow slideInUp text-center md:text-left md:text-lg font-inter font-medium mb-0.5 align-middle relative inline-block">These top schools are already using our software</p>
+                        <p data-wow-delay="0.3" className="text-lg wow slideInUp text-center md:text-left md:text-xl font-satoshi font-medium mb-0.5 align-middle relative inline-block">These top schools are already using our software</p>
                       </div>
                     </div>
                   </div>
@@ -1019,12 +952,19 @@ export default function Index() {
                       style={{ width: '200%', animation: 'scroll 20s linear infinite' }}
                     >
                       {partners.concat(partners).map((src, index) => (
-                        <div data-wow-delay={`0.${index + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow slideInRight">
-                          <img
+                        <div data-wow-delay={`0.${index + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow grayscale contrast-75 hover:grayscale-0 hover:contrast-100 slideInRight">
+                          <Image
+                            src={process.env.NEXT_PUBLIC_CDN + src}
+                            alt={`School logo partner-${index + 1}`}
+                            width={70}
+                            height={20}
+                            className="h-auto w-auto object-contain hover:scale-110 transition-transform duration-300"
+                          />
+                          {/* <img
                             src={process.env.NEXT_PUBLIC_CDN + src}
                             className="w-20 h-auto object-cover hover:scale-110 transition-transform duration-300"
                             alt={`School logo ${index + 1}`}
-                          />
+                          /> */}
                         </div>
                       ))}
                     </div>

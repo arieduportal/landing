@@ -27,5 +27,6 @@ module.exports = {
     }
   },
   plugins: [],
-  important: true
+  important: true,
+  safelist: ['prose', 'line-clamp-2', 'line-clamp-3', 'animate-pulse']
 }

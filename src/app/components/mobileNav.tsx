@@ -81,7 +81,7 @@ export default function MobileNav() {
                         <Link scroll={false} href='/#faq' className="text-black text-lg font-medium relative close" style={aStyle}>Faq</Link>
                     </li>
                     <li className="my-10">
-                        <Link scroll={false} href='/#team' className="text-black text-lg font-medium relative close" style={aStyle}>Team</Link>
+                        <Link scroll={false} href='/#member' className="text-black text-lg font-medium relative close" style={aStyle}>Team</Link>
                     </li>
                     <li className="my-10 mb-12">
                         <Link scroll={false} href="/affiliates" className="text-black text-lg font-medium relative close" style={aStyle}>Affiliates</Link>

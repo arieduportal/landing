@@ -118,19 +118,19 @@ export default function Footer() {
                                             <ul className="list-none p-0 m-0">
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="#about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</a>
+                                                    <Link href="/#about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="#service" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Service</a>
+                                                    <a href="/#service" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Service</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="#blog" className="text[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</a>
+                                                    <Link href="/blog" className="text[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</a>
+                                                    <a href="/#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</a>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
@@ -172,7 +172,7 @@ export default function Footer() {
                                     <ul className="m-0 p-0 list-none">
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <FaLocationArrow className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Block 4, Opp. St.Faith Schools Ebony Paint Road, Enugu State</Link>
+                                            <Link href="#" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Block 4, Opp. St.Faith Schools Ebony Paint Road, Enugu State</Link>
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />

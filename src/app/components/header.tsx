@@ -124,7 +124,7 @@ export default function Header() {
                             <div data-wow-delay="0.5s" className="py-0 wow slideInLeft flex flex-row justify-start items-center">
                                 <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 mx-auto pr-0 mr-0" />
                                 <svg height="40" width="200" className="-ml-2">
-                                    <text x="5" y="30" fill="none" stroke="#2f2e41" font-size="35" rotate="10" className="font-satoshi">xiolot</text>
+                                    <text x="5" y="30" fill="none" stroke="#2f2e41" fontSize="35" rotate="10" className="font-satoshi">xiolot</text>
                                 </svg>
                             </div>
                             <div data-wow-delay="0.5s" className="md:flex wow slideInRight flex-row justify-between align-middle items-center my-1 hidden">
@@ -137,7 +137,7 @@ export default function Header() {
                                 <Link href='/#service' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
                                     <span>Service</span>
                                 </Link>
-                                <Link href='/#team' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
+                                <Link href='/#member' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
                                     <span>Team</span>
                                 </Link>
                                 <Button onClick={navigate} className="mx-0.5 block group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black">

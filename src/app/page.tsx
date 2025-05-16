@@ -44,8 +44,14 @@ const team = [
 ], partners = [
   '/image/hub/partners/mea.png',
   '/image/hub/partners/blossom.png',
+  '/image/hub/partners/louisville.jpg',
+  '/image/hub/partners/kbs.jpg',
+  '/image/hub/partners/grundtvig.png',
   '/image/hub/partners/mea.png',
   '/image/hub/partners/blossom.png',
+  '/image/hub/partners/louisville.jpg',
+  '/image/hub/partners/kbs.jpg',
+  '/image/hub/partners/grundtvig.png',
 ];
 
 export default function Index() {

@@ -335,6 +335,11 @@ input[type=number] {
   animation-delay: -6s;
 }
 
+.animate-shimmer {
+  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+  background-size: 200% 100%;
+}
+
 @media (min-width: 576px) {
   .app-container {
     @apply max-w-[566px] px-1 !important;

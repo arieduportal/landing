@@ -66,13 +66,13 @@ const Blog: React.FC = () => {
                     setPosts((prev) => [...prev, ...result.data]);
                     setHasMore(result.data.length === postsPerPage);
                 } else {
-                    setError(result.message);
+                    // setError(result.message);
                 }
             } catch (err) {
                 setError('No articles available');
-                setHasMore(false);
+                // setHasMore(false);
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         };
         setTimeout(() =>
@@ -100,19 +100,19 @@ const Blog: React.FC = () => {
 
     // Skeleton component
     const SkeletonCard = () => (
-        <div className="bg-white rounded-lg shadow-md p-6 animate-pulse">
-            <div className="h-48 bg-gray-200 rounded mb-4"></div>
-            <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
+        <div className="bg-white rounded-xl shadow-md p-6">
+            <div className="h-48 bg-gray-200 rounded-lg mb-4 animate-shimmer"></div>
+            <div className="h-6 bg-gray-200 rounded-lg w-3/4 mb-4 animate-shimmer"></div>
+            <div className="h-4 bg-gray-200 rounded-lg w-full mb-2 animate-shimmer"></div>
+            <div className="h-4 bg-gray-200 rounded-lg w-5/6 mb-4 animate-shimmer"></div>
             <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
+                <div className="w-12 h-12 bg-gray-200 rounded-full animate-shimmer"></div>
                 <div>
-                    <div className="h-4 bg-gray-200 rounded w-32 mb-2"></div>
-                    <div className="h-3 bg-gray-200 rounded w-24"></div>
+                    <div className="h-4 bg-gray-200 rounded-lg w-32 mb-2 animate-shimmer"></div>
+                    <div className="h-3 bg-gray-200 rounded-lg w-24 animate-shimmer"></div>
                 </div>
             </div>
-            <div className="h-10 bg-gray-200 rounded w-32 mt-4"></div>
+            <div className="h-10 bg-gray-200 rounded-full w-28 mt-4 animate-shimmer"></div>
         </div>
     );
 
@@ -139,7 +139,7 @@ const Blog: React.FC = () => {
             {post.image && (
                 <div className="relative h-48">
                     <Image
-                        src={post.image ?? "https://static.axiolot.com.ng/image/article-placeholder.png"}
+                        src={post.image ?? "https://static.axiolot.com.ng/image/article-placeholder"}
                         alt={post.title}
                         layout="fill"
                         objectFit="cover"
@@ -158,7 +158,7 @@ const Blog: React.FC = () => {
                 <p className="text-gray-600 line-clamp-3 mb-4">{post.description}</p>
                 <div className="flex items-center gap-4 mb-4">
                     <Image
-                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName!)}`}
+                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName!)}&size=48&background=000&color=fff&bold=true&rounded=true`}
                         alt="Author"
                         width={48}
                         height={48}
@@ -232,7 +232,7 @@ const Blog: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-4 mb-4">
                     <Image
-                        src={`https://i.pravatar.cc/150?u=${post.authorName}`}
+                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName!)}&size=48&background=000&color=fff&bold=true&rounded=true`}
                         alt="Author"
                         width={48}
                         height={48}
@@ -252,7 +252,7 @@ const Blog: React.FC = () => {
                 {post.image && (
                     <div className="relative h-64 mb-6">
                         <Image
-                            src={post.image}
+                            src={post.image ?? 'https://static.axiolot.com.ng/image/article-placeholder'}
                             alt={post.title}
                             layout="fill"
                             objectFit="cover"
@@ -325,7 +325,7 @@ const Blog: React.FC = () => {
                 </div>
 
                 {/* Blog Posts */}
-                <InfiniteScroll className="overflow-hidden"
+                <InfiniteScroll className="overflow-hidden pb-10 px-5"
                     dataLength={filteredPosts.length}
                     next={loadMore}
                     hasMore={hasMore}

@@ -80,7 +80,7 @@ export default function Footer() {
                                     <div className="py-0 flex flex-row justify-start items-center mb-6">
                                         <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 pr-0 mr-0" />
                                         <svg height="40" width="200" className="-ml-2">
-                                            <text x="5" y="30" fill="none" stroke="#2f2e41" font-size="35" rotate="10" className="font-satoshi">xiolot</text>
+                                            <text x="5" y="30" fill="none" stroke="#2f2e41" fontSize="35" rotate="10" className="font-satoshi">xiolot</text>
                                         </svg>
                                     </div>
                                     <p className="text-black font-normal text-base font-satoshi mb-2.5 mt-0">

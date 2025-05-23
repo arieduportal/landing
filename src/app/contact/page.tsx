@@ -1,10 +1,7 @@
 'use client'; // Ensure this is a Client Component in Next.js
 
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
-
-export const metadata = {
-    title: 'Contact Us | Axiolot Hub',
-}
 
 export default function Contact() {
     const [formStatus, setFormStatus] = useState({ loading: false, message: '', type: '' });
@@ -61,7 +58,9 @@ export default function Contact() {
         }
     };
 
-
+    <Head>
+        <title>Contact Us | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
+    </Head>
     return (
         <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
             <div className="relative py-3 sm:max-w-2xl md:max-w-4xl lg:max-w-6xl sm:mx-auto">

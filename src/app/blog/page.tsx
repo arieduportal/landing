@@ -269,11 +269,12 @@ const Blog: React.FC = () => {
         return <ErrorUI />;
     }
 
+    <Head>
+        <title>Blog | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
+    </Head>
+
     return (
         <main className="w-full bg-[#f5f5f5] min-h-screen">
-            <Head>
-                <title>Blog | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
-            </Head>
             {/* Hero Section */}
             <section className="bg-[#2f2e41] text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">

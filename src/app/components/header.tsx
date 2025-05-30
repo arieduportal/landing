@@ -27,7 +27,7 @@ export default function Header() {
         { id: 2, name: "e-Payment Portal", icon: RiSecurePaymentFill, tag: "https://e-pay.axiolot.com.ng" },
         { id: 3, name: "Analytics Manager", icon: IoAnalytics, tag: "https://analytics.axiolot.com.ng" },
         { id: 4, name: "Site Management", icon: FaSitemap, tag: "https://sites.axiolot.com.ng/" },
-        { id: 5, name: "StaffPay Manager", icon: SiNginxproxymanager, tag: "https://staff-pay.axiolot.com.ng" }
+        { id: 5, name: "StaffPay Manager", icon: SiNginxproxymanager, tag: "https://wa.me/+2347081317077" }
     ];
 
     const [isNavVisible, setIsNavVisible] = useState(false);

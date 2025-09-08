@@ -255,7 +255,7 @@ const HeaderBanner = () => {
                                     className="relative"
                                 >
                                     <Image
-                                        src={process.env.NEXT_PUBLIC_CDN + slides[currentSlide].img}
+                                        src={slides[currentSlide].img}
                                         alt={slides[currentSlide].title}
                                         width={1000}
                                         height={600}

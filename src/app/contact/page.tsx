@@ -82,7 +82,7 @@ export default function Contact() {
                                     id="name"
                                     name="name"
                                     required
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
                                     placeholder="Your Name"
                                 />
                             </div>
@@ -93,7 +93,7 @@ export default function Contact() {
                                     id="email"
                                     name="email"
                                     required
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
                                     placeholder="your.email@example.com"
                                 />
                             </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                                     id="subject"
                                     name="subject"
                                     required
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
                                     placeholder="Subject of your message"
                                 />
                             </div>
@@ -115,7 +115,7 @@ export default function Contact() {
                                     name="message"
                                     rows={5}
                                     required
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-royal-lilac focus:border-royal-lilac sm:text-sm"
                                     placeholder="Your message or inquiry"
                                 ></textarea>
                             </div>
@@ -123,7 +123,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={formStatus.loading}
-                                    className={`w-1/3 mx-auto flex justify-center py-3.5 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white ${formStatus.loading
+                                    className={`w-2/3 md:w-1/3 mx-auto flex justify-center py-3.5 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white ${formStatus.loading
                                         ? 'bg-gray-400 cursor-not-allowed'
                                         : 'bg-royal-lilac hover:bg-rasin-black focus:ring-royal-lilac'
                                         } focus:outline-none focus:ring-2 focus:ring-offset-2`}

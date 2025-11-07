@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 export const metadata = {
-    title: 'The Axiolot Hub Ecosystem | Axiolot Hub',
+    title: "The Axiolot Hub Ecosystem | Axiolot Hub",
 }
 
 export default function Ecosystem() {
@@ -32,7 +32,7 @@ export default function Ecosystem() {
                             Each part of Axiolot Hub is designed for a specific need within the school system — from grading to payments — yet they all connect effortlessly under one brand and one account.
                         </p>
                         <p className="mt-2 text-gray-600">
-                            Here's a breakdown of the ecosystem:
+                            Here is a breakdown of the ecosystem:
                         </p>
 
                         <h3 className="mt-6 text-base font-semibold text-gray-900">🎓 1. Portal – Student & Result Management</h3>
@@ -161,7 +161,7 @@ export default function Ecosystem() {
                             <strong>Axiolot Hub</strong> is redefining education management across Africa by combining administration, analytics, payments, and communication in one ecosystem.
                         </p>
                         <p className="mt-2 text-gray-600">
-                            Whether you're a school owner, teacher, or IT administrator, Axiolot Hub gives you everything you need to <strong>manage smarter and grow faster</strong>.
+                            Whether you are a school owner, teacher, or IT administrator, Axiolot Hub gives you everything you need to <strong>manage smarter and grow faster</strong>.
                         </p>
 
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">📍 Learn More</h2>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
     title: 'Privacy Policy | Axiolot Hub',
 }
@@ -117,7 +119,7 @@ export default function Privacy() {
                         </p>
                         <ul className="list-disc ml-5 mt-2 text-gray-600">
                             <li><strong>Email:</strong> support@axiolot.com.ng</li>
-                            <li><strong>Website:</strong> <a href="https://www.axiolot.com.ng/contact" className="text-blue-600 hover:underline">www.axiolot.com.ng/contact</a></li>
+                            <li><strong>Website:</strong> <Link href="/contact" className="text-blue-600 hover:underline">Contact Us</Link></li>
                             <li><strong>Phone:</strong> +234 70 7318 4665</li>
                             <li><strong>WhatsApp:</strong> +234 70 8131 7077</li>
                         </ul>

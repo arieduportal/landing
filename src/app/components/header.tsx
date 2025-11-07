@@ -61,6 +61,10 @@ export default function Header() {
         router.push('/#plan')
     }
 
+    const home = () => {
+        router.push('/')
+    }
+
     useEffect(() => {
         handleScroll();
 
@@ -121,7 +125,7 @@ export default function Header() {
                     </div>
                     <div data-wow-delay="0.2s" className="app-container wow bounceInUp mx-auto rounded-md bg-white bottom-nav -mb-4 md:-mb-2 transform-none">
                         <div className="flex flex-row -mb-2 justify-between align-middle items-center font-satoshi py-3.5 px-3.5">
-                            <div data-wow-delay="0.5s" className="py-0 wow slideInLeft flex flex-row justify-start items-center">
+                            <div onClick={home} data-wow-delay="0.5s" className="py-0 wow slideInLeft flex flex-row justify-start items-center cursor-pointer">
                                 <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 mx-auto pr-0 mr-0" />
                                 <svg height="40" width="200" className="-ml-2">
                                     <text x="5" y="30" fill="none" stroke="#2f2e41" fontSize="35" rotate="10" className="font-satoshi">xiolot</text>

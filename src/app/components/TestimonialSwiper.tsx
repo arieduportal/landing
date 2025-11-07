@@ -13,8 +13,8 @@ interface Testimonial {
 
 interface TestimonialCardSwipeProps {
     testimonials?: Testimonial[];
-    autoPlayInterval?: number; // In milliseconds
-    decorColor?: string; // Optional color for styling
+    autoPlayInterval?: number;
+    decorColor?: string;
 }
 
 const TestimonialCardSwipe: React.FC<TestimonialCardSwipeProps> = ({
@@ -24,7 +24,6 @@ const TestimonialCardSwipe: React.FC<TestimonialCardSwipeProps> = ({
 }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Auto-play effect
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % testimonials.length);
@@ -32,10 +31,8 @@ const TestimonialCardSwipe: React.FC<TestimonialCardSwipeProps> = ({
         return () => clearInterval(interval);
     }, [autoPlayInterval, testimonials.length]);
 
-    // Custom easing for animations
     const customEase = [0.6, -0.05, 0.01, 0.99];
 
-    // Handle swipe navigation
     const handleDragEnd = (info: any) => {
         if (info.offset.x > 100) {
             setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -193,15 +190,46 @@ const TestimonialCardSwipe: React.FC<TestimonialCardSwipeProps> = ({
     );
 };
 
-// Default testimonials data
 const defaultTestimonials: Testimonial[] = [
-    { id: 1, image: "/image/hub/person.png", name: "Mr. Ifeanyi Anoike", office: "HOD Computer Science UNN", workPlace: "University Of Nigeria Nsukka", quote: "This software has revolutionized our administration. The Academics Portal simplifies result management, enhancing educational outcomes. The Staff Pay Manager ensures accurate, timely salary payments, boosting staff morale. The Analytics Gateway provides invaluable data for strategic decisions. This platform has significantly improved our efficiency and communication." },
-    { id: 2, image: "/image/hub/person.png", name: "Ngwu Fransica", office: "Parent", workPlace: "Educational Sector", quote: "As a parent, the Axiolot Hub Portal is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient." },
-    { id: 3, image: "/image/hub/person.png", name: "Agu Michael", office: "Student Blossom", workPlace: "College Of The Immaculate Conception Enugu", quote: "The Axiolot Hub Portal has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely." }
-
+    {
+        id: 1,
+        image: "/image/hub/hillary.png",
+        name: "Rev. Fr. Dr. Hillary Mgbodilie",
+        office: "Chairman, PPSMB",
+        workPlace: "Post Primary Schools Management Board, Enugu State, Nigeria",
+        quote:
+            "During my tenure as the Principal of CIC Enugu, adopting Axiolot Hub transformed our school’s administration. The platform streamlined grading and analytics, ensuring accuracy and transparency in result computation. Fee payment became completely digital, eliminating delays and errors. With Axiolot Hub, we achieved a new level of efficiency and accountability in managing academic and financial records."
+    },
+    {
+        id: 2,
+        image: "/image/hub/person.png",
+        name: "Mr. Ifeanyi Anoike",
+        office: "HOD Computer Science",
+        workPlace: "University Of Nigeria Nsukka",
+        quote:
+            "This software has revolutionized our administration. The Academics Portal simplifies result management, enhancing educational outcomes. The Staff Pay Manager ensures accurate, timely salary payments, boosting staff morale. The Analytics Gateway provides invaluable data for strategic decisions. This platform has significantly improved our efficiency and communication."
+    },
+    {
+        id: 3,
+        image: "/image/hub/person.png",
+        name: "Ngwu Fransica",
+        office: "Parent",
+        workPlace: "Educational Sector",
+        quote:
+            "As a parent, the Axiolot Hub is a lifesaver. The e-Payment system makes fee transactions effortless and secure. I can track my child's progress easily and stay informed through seamless communication. This portal has made managing my child's education transparent and convenient."
+    },
+    {
+        id: 4,
+        image: "/image/hub/person.png",
+        name: "Agu Michael",
+        office: "Student",
+        workPlace: "College Of The Immaculate Conception Enugu",
+        quote:
+            "The Axiolot Hub has enhanced my learning experience. The Academics Portal helps me track my progress effortlessly, while the user-friendly interface makes accessing information easy. Improved online communication keeps me connected with teachers and peers. This portal supports my academic journey immensely."
+    }
 ];
 
-// Helper to convert hex to RGB
+
 const getRGB = (hex: string) => {
     const hexValue = hex.replace('#', '');
     const r = parseInt(hexValue.substring(0, 2), 16);

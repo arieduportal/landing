@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <sitemap>
+        <loc>https://axiolot.com.ng/sitemap-main.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://portal.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://sites.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://analytics.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://e-pay.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://static.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://demo.axiolot.com.ng/sitemap.xml</loc>
+        <lastmod>2025-11-06</lastmod>
+    </sitemap>
+
+</sitemapindex>

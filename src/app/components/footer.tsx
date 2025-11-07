@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from "next/link"
 import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
-import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine } from "react-icons/ri";
+import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine, RiLinkedinLine } from "react-icons/ri";
 
 export default function Footer() {
     const [email, setEmail] = useState('');
@@ -88,7 +88,7 @@ export default function Footer() {
                                     </p>
                                     <ul className="p-0 mt-5 list-none">
                                         <li className="inline-block mr-2">
-                                            <a href="https://wa.me/+2347012442199" className="transition-all duration-500 no-underline">
+                                            <a href="https://wa.me/+2347081317077" className="transition-all duration-500 no-underline">
                                                 <RiWhatsappLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
@@ -107,6 +107,11 @@ export default function Footer() {
                                                 <RiFacebookFill className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
                                             </a>
                                         </li>
+                                        <li className="inline-block mr-2">
+                                            <a href="https://linkedin.com/axiolothub" className="transition-all duration-500 no-underline">
+                                                <RiLinkedinLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -118,7 +123,7 @@ export default function Footer() {
                                             <ul className="list-none p-0 m-0">
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/#about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</Link>
+                                                    <Link href="/about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
@@ -126,11 +131,11 @@ export default function Footer() {
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/blog" className="text[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</Link>
+                                                    <Link href="/ecosystem" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Ecosystem</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="/#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</a>
+                                                    <Link href="/#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
@@ -176,7 +181,7 @@ export default function Footer() {
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="tel:+2348060157097" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 806 015 7097</Link>
+                                            <Link href="tel:+2347073184665" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 707 318 4665</Link>
                                         </li>
                                         <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
                                             <RiMailLine className="absolute top-1 left-0 text-slate-800" />
@@ -194,7 +199,7 @@ export default function Footer() {
                                 </div>
                                 <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center border-t md:border-t-0 md:border-l border-slate-200">
                                     <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Number (Whatsapp Only)</h1>
-                                    <Link href="https://wa.me/+2347012442199" target="_blank" className="text-purple-500 font-inter text-sm font-normal">+234 701 244 2199</Link>
+                                    <Link href="https://wa.me/+2347081317077" target="_blank" className="text-purple-500 font-inter text-sm font-normal">+234 708 131 7077</Link>
                                 </div>
                             </div>
                             <div className="absolute -top-8 -left-4 animate-bounce bounce">
@@ -213,7 +218,7 @@ export default function Footer() {
             </div>
             <div className="bg-rasin-black border-t border-dashed p-4 border-white">
                 <div className="app-container text-center text-white text-xs">
-                    <p>© 2021 - {currentYear}. <span className="ml-2">AXIOLOT HUB™ Helping schools to track student proformance, manage grades and others</span> </p>
+                    <p>© 2022 - {currentYear}. <span className="ml-2">AXIOLOT HUB™ Helping schools to track student performance, manage grades and others</span> </p>
                 </div>
             </div>
         </footer>

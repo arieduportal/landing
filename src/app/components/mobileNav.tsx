@@ -22,9 +22,9 @@ export default function MobileNav() {
             } else {
                 tl.to('nav', { right: 0 })
                     .to('nav', { height: '100vh' }, '-=.1')
-                    .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.8')
-                    .to('nav button', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.6')
-                    .to('.close', { opacity: 1, pointerEvents: 'all', stagger: 0.4 }, '-=.4');
+                    .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.6')
+                    .to('nav button', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.4')
+                    .to('.close', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.2');
             }
             open.style.opacity = "0";
             html.style.overflowY = "hidden";

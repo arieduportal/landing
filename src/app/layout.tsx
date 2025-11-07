@@ -28,14 +28,16 @@ export default function RootLayout({
         <meta property="og:site_name" content="Axiolot Hub" />
         <meta property="og:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="og:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="og:image" content="https://static.axiolot.com.ng/image/icons/120" />
+        <meta property="og:image" content="https://static.axiolot.com.ng/image/header.png" />
+        <meta property="og:author" content="Axiolot Hub" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:creator" content="@axiolothub" />
         <meta property="twitter:url" content="https://www.axiolot.com.ng/" />
         <meta property="twitter:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="twitter:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="twitter:image" content="https://static.axiolot.com.ng/image/icons/120" />
+        <meta property="twitter:image" content="https://static.axiolot.com.ng/image/header.png" />
+        <meta property="twitter:author" content="@axiolothub" />
 
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,15 +65,16 @@ export default function RootLayout({
           href={`${process.env.NEXT_PUBLIC_CDN}/css/wow-animate.css`}
         />
         <link rel="canonical" href="https://www.axiolot.com.ng/" />
-        
+
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Axiolot Hub" />
         <meta name="theme-color" content="#2f2e41" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="keywords" content="Axiolot, Axiolot Hub, School information management, School data analytics, Report card generation, Parent portal, Exam results management, Attendence tracking, Grade management, Academic data organization, Result tracking system, Course registration" />
+        <meta name="keywords" content="Axiolot, Axiolot Hub, School information management, School data analytics, Report card generation, Parent portal, Exam results management, Attendence tracking, Grade management, Academic data organization, Result tracking system, Course registration, school management system, education portal, student analytics, result system, fee payment portal" />
         <meta httpEquiv="XUACompatible" content="ie=edge" />
+
       </head>
       <body className="font-satoshi">
         <Script strategy="afterInteractive" id="track-id">

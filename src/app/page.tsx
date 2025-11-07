@@ -33,7 +33,7 @@ import { Pagination, A11y, EffectCoverflow } from 'swiper/modules';
 gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
 const team = [
-  { id: 1, name: "Justin Okechukwu", pic: "/image/hub/person.png", position: "Founder/Software Developer", email: "info@axiolot.com.ng", wa: "", link: "", bg: "pink" },
+  { id: 1, name: "Justin Okechukwu", pic: "/image/hub/team/founder.jpg", position: "Founder/Software Developer", email: "info@axiolot.com.ng", wa: "", link: "", bg: "pink" },
   { id: 2, name: "Adesola Rose", pic: "/image/hub/team/rose.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
   { id: 3, name: "Ani Blessing", pic: "/image/hub/team/cyndi.jpeg", position: "UI Developer", email: "chicyndi2@gmail.com", wa: "", link: "", bg: "purple" },
   { id: 4, name: "Mmeri Okechukwu", pic: "/image/hub/team/mmeri.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
@@ -105,15 +105,15 @@ export default function Index() {
       gsap.fromTo(
         lines,
         { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 0.9, ease: Sine.easeInOut, stagger: 2 }
+        { opacity: 1, y: 0, duration: 0.9, ease: "none", stagger: 2 }
       )
     ).add(
       gsap.to(lines, {
         opacity: 0,
         y: -100,
-        duration: 0.9,
+        duration: 0.5,
         delay: 0.9,
-        ease: 'none',
+        ease: "none",
         stagger: 2,
       }),
       1.3
@@ -190,10 +190,10 @@ export default function Index() {
         },
         {
           x: '-100vw',
-          ease: Sine.easeInOut,
+          ease: Linear.easeInOut,
           scrollTrigger: {
             trigger: letterRef.current,
-            start: "top bottom",
+            start: "top 130%",
             end: "bottom top",
             scrub: true
           }
@@ -234,10 +234,10 @@ export default function Index() {
   const faqData: FAQ[] = faq;
 
   return (
-    <div className="relative">
-      <Head>
+    <div className="relative overflow-x-hidden">
+      <head>
         <title>Home | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
-      </Head>
+      </head>
       <HeaderBanner />
       <div className="mt-0 pt-1">
         <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
@@ -580,10 +580,12 @@ export default function Index() {
                               if (isVisible && !hasRun) {
                                 setHasRun(true);
                               }
-                            }}>
-                              {({ isVisible }: any) => (
+                            }} active={!hasRun}>
+                              {() => (
                                 <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
-                                  {isVisible ? <CountUp suffix="+" delay={1.5} duration={11.75} end={new Date().getFullYear() - 2021} /> : 0}
+                                  {hasRun ? <CountUp suffix="+" delay={1.5} duration={11.75} end={new Date().getFullYear() - 2022} onEnd={() => {
+                                    setHasRun(true)
+                                  }} /> : 0}
                                 </h2>
                               )}
                             </VisibilitySensor>
@@ -593,7 +595,7 @@ export default function Index() {
                           </div>
                           <div className="relative w-full transition-all duration-500">
                             <p className="mb-1 align-middle relative inline-block text-rasin-black text-[15px] leading-6 fon-merri">
-                              We have been proudly operating for over 3 years, consistently delivering quality and excellence in all sections of our software.
+                              We have been proudly operating for over {new Date().getFullYear() - 2022} years, consistently delivering quality and excellence in all sections of our software.
                             </p>
                           </div>
                         </div>
@@ -605,10 +607,10 @@ export default function Index() {
                               if (isVisible && !hasRun) {
                                 setHasRun(true);
                               }
-                            }}>
-                              {({ isVisible }: any) => (
+                            }} active={!hasRun}>
+                              {() => (
                                 <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
-                                  {isVisible ? <CountUp suffix="%" delay={1.5} duration={9.75} decimal="1" end={97} /> : 0}
+                                  {hasRun ? <CountUp suffix="%" delay={1.5} duration={9.75} decimal="1" end={97} onEnd={() => { setHasRun(true) }} /> : 0}
                                 </h2>
                               )}
                             </VisibilitySensor>
@@ -630,10 +632,10 @@ export default function Index() {
                               if (isVisible && !hasRun) {
                                 setHasRun(true);
                               }
-                            }}>
-                              {({ isVisible }: any) => (
+                            }} active={!hasRun}>
+                              {() => (
                                 <h2 className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500" style={{ backgroundImage: 'linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)' }}>
-                                  {isVisible ? <CountUp suffix="+" delay={1.5} duration={6.75} end={4378} /> : 0}
+                                  {hasRun ? <CountUp suffix="+" delay={1.5} duration={6.75} end={4378} onEnd={() => { setHasRun(true) }} /> : 0}
                                 </h2>
                               )}
                             </VisibilitySensor>
@@ -956,13 +958,13 @@ export default function Index() {
                       style={{ width: '200%', animation: 'scroll 20s linear infinite' }}
                     >
                       {partners.concat(partners).map((src: string, index: Key | null | undefined) => (
-                        <div data-wow-delay={`0.${Number(index) + 1}s`} key={index} className="flex-none w-[10%] py-6 mx-auto wow grayscale contrast-75 hover:grayscale-0 hover:contrast-100 slideInRight">
+                        <div data-wow-delay={`0.${Number(index) + 1}s`} key={index} className="flex-none w-[10%] bg-transparent py-6 mx-auto wow grayscale contrast-75 hover:grayscale-0 hover:contrast-100 slideInRight">
                           <Image
                             src={process.env.NEXT_PUBLIC_CDN! + src}
                             alt={`School logo partner-${Number(index) + 1}`}
                             width={70}
                             height={20}
-                            className="h-auto w-auto object-contain hover:scale-110 transition-transform duration-300"
+                            className="h-auto w-auto object-contain hover:scale-110 transition-transform duration-300 bg-transparent"
                           />
                         </div>
                       ))}

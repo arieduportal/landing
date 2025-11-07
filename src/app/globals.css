@@ -72,15 +72,7 @@ input[type=number] {
   background-position: top center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  background-image: url(/svg/bg.svg) !important;
-}
-
-.cover-png-3 {
-  background-image: url(/image/cover-png-3.avif) !important;
-}
-
-.cover-png-2 {
-  background-image: url(/image/cover-png-2.png) !important;
+  background-image: url(/svg/hub/bg.svg) !important;
 }
 
 .text-gradient-1 {

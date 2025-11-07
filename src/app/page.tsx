@@ -240,7 +240,7 @@ export default function Index() {
       </head>
       <HeaderBanner />
       <div className="mt-0 pt-1">
-        <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/bg.svg) !important` }} id="mission">
+        <div className="bg-slate-50 py-8 pb-0 relative app-bg-cover" style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_CDN}/svg/hub/bg.svg) !important` }} id="mission">
           <div className="app-container relative pt-6 lg:pt-12 pb-8 px-0">
             <div className="text-center mb-6 pb-6">
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">

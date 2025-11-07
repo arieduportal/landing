@@ -84,7 +84,7 @@ export default function RootLayout({
               "name": "Axiolot Hub",
               "url": "https://axiolot.com.ng",
               "logo": "https://static.axiolot.com.ng/icons/16.png",
-              "image": "https://static.axiolot.com.ng/image/header",
+              "image": "https://static.axiolot.com.ng/image/header.png",
               "sameAs": [
                 "https://portal.axiolot.com.ng",
                 "https://sites.axiolot.com.ng",
@@ -142,7 +142,7 @@ export default function RootLayout({
                 "price": "0",
                 "priceCurrency": "NGN",
                 "category": "Free trial available",
-                "url": "https://axiolot.com.ng/pricing"
+                "url": "https://axiolot.com.ng/#plan"
               },
               "featureList": [
                 "Academics Portal for student results",
@@ -220,7 +220,7 @@ export default function RootLayout({
                   "@type": "Product",
                   "position": 1,
                   "name": "Basic Plan",
-                  "image": "https://static.axiolot.com.ng/image/header",
+                  "image": "https://static.axiolot.com.ng/image/header.png",
                   "description":
                     "For small schools just getting started. Includes student result management, attendance tracking, and basic analytics.",
                   "brand": {
@@ -245,7 +245,7 @@ export default function RootLayout({
                   "@type": "Product",
                   "position": 2,
                   "name": "Proficient Plan",
-                  "image": "https://static.axiolot.com.ng/image/header",
+                  "image": "https://static.axiolot.com.ng/image/header.png",
                   "description":
                     "For growing schools. Adds staff payroll, e-payments, custom school domains, and parent communication tools.",
                   "brand": {
@@ -270,7 +270,7 @@ export default function RootLayout({
                   "@type": "Product",
                   "position": 3,
                   "name": "Premier Plan",
-                  "image": "https://static.axiolot.com.ng/image/header",
+                  "image": "https://static.axiolot.com.ng/image/header.png",
                   "description":
                     "For advanced institutions needing full automation. Includes analytics dashboard, data backup, branded portal, and dedicated support.",
                   "brand": {
@@ -302,7 +302,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Product",
               "name": "Axiolot Hub",
-              "image": "https://static.axiolot.com.ng/image/header",
+              "image": "https://static.axiolot.com.ng/image/header.png",
               "description":
                 "Axiolot Hub is Nigeria’s leading digital school management software — simplifying academics, finance, and analytics for schools of all sizes.",
               "brand": {

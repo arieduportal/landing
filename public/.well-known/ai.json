@@ -1,0 +1,30 @@
+{
+    "site_name": "Axiolot Hub",
+    "site_url": "https://axiolot.com.ng",
+    "site_description": "Axiolot Hub is a digital platform for schools to manage academics, analytics, websites, and e-payments seamlessly.",
+    "topics": [
+        "education",
+        "school management",
+        "analytics",
+        "payments",
+        "Nigeria",
+        "technology"
+    ],
+    "public_api": true,
+    "api_docs": "https://axiolot.com.ng/docs",
+    "data_policy": "https://axiolot.com.ng/privacy",
+    "contact_email": "support@axiolot.com.ng",
+    "organization": {
+        "name": "Axiolot Hub Technologies",
+        "url": "https://axiolot.com.ng",
+        "location": "Enugu, Nigeria",
+        "founder": "Arinze Justin"
+    },
+    "branding": {
+        "primary_color": "#2f2e41",
+        "secondary_color": "#603cba",
+        "logo": "https://static.axiolot.com.ng/image/icons/16.png",
+        "banner": "https://static.axiolot.com.ng/image/header.png"
+    },
+    "last_updated": "2025-11-06"
+}

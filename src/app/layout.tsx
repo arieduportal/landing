@@ -400,7 +400,7 @@ export default function RootLayout({
         </Script>
         <Script strategy="lazyOnload" src="https://static.axiolot.com.ng/js/chat-widget" id="chat.widget" >
         </Script>
-        <Script data-cf-beacon='{"token": "1ef3f07ada664a4283b2e27084949346"}' strategy="beforeInteractive" src="https://static.cloudflareinsights.com/beacon.min.js" id="cloudflare.analytics" >
+        <Script data-cf-beacon='{"token": "1ef3f07ada664a4283b2e27084949346"}' strategy="afterInteractive" src="https://static.cloudflareinsights.com/beacon.min.js" id="cloudflare.analytics" >
         </Script>
       </body>
     </html>

@@ -1,0 +1,23 @@
+{
+    "schema_version": "v2",
+    "name_for_human": "Axiolot Hub",
+    "name_for_model": "axiolot",
+    "description_for_human": "Smart school management platform built for Nigeria schools — manage academics, payments, and analytics with ease.",
+    "description_for_model": "Axiolot Hub provides school management tools and APIs for handling academic data, analytics, websites, and payment systems across institutions.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://axiolot.com.ng/api/openapi.yaml"
+    },
+    "logo_url": "https://static.axiolot.com.ng/image/icons/16.png",
+    "contact_email": "support@axiolot.com.ng",
+    "legal_info_url": "https://axiolot.com.ng/legal",
+    "terms_of_service_url": "https://axiolot.com.ng/privacy#terms",
+    "privacy_policy_url": "https://axiolot.com.ng/privacy",
+    "developer": {
+        "name": "Axiolot Hub Technologies",
+        "url": "https://axiolot.com.ng"
+    }
+}

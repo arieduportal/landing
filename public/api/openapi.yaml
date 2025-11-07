@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Axiolot Hub API
+  version: "1.0.0"
+  description: >
+    Axiolot Hub is a digital platform that helps schools manage academics, websites, analytics, and payments.
+    This API enables integration with school portals, analytics dashboards, e-payment systems, and more.
+  contact:
+    name: Axiolot Support
+    email: support@axiolot.com.ng
+    url: https://axiolot.com.ng
+  license:
+    name: Axiolot Hub Technologies
+    url: https://axiolot.com.ng/legal
+servers:
+  - url: https://api.axiolot.com.ng
+    description: Main API Server
+
+tags:
+  - name: Academics
+    description: Manage academic records, results, and terms.
+  - name: Payments
+    description: Handle online school fee transactions via Axiolot Pay.
+  - name: Analytics
+    description: Retrieve school data insights and reports.
+  - name: Sites
+    description: Manage websites, content, and school branding.
+  - name: Authentication
+    description: Token-based authentication for secure access.
+
+paths:
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: Login and get an access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@school.com
+                password:
+                  type: string
+                  example: admin123
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+  /academics/results:
+    get:
+      tags: [Academics]
+      summary: Get all student results for a given term
+      parameters:
+        - in: query
+          name: term
+          schema:
+            type: string
+            example: "First Term"
+        - in: query
+          name: session
+          schema:
+            type: string
+            example: "2024/2025"
+      responses:
+        "200":
+          description: A list of results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    student_id:
+                      type: string
+                      example: STU2025003
+                    name:
+                      type: string
+                      example: "Chidi Okafor"
+                    average:
+                      type: number
+                      example: 87.4
+                    grade:
+                      type: string
+                      example: "A"
+
+  /payments/verify:
+    post:
+      tags: [Payments]
+      summary: Verify a payment transaction via Axiolot Pay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference:
+                  type: string
+                  example: AXIOL-REF-90213
+      responses:
+        "200":
+          description: Payment verification result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  amount:
+                    type: number
+                    example: 15000
+                  student_id:
+                    type: string
+                    example: STU2025003
+
+  /analytics/summary:
+    get:
+      tags: [Analytics]
+      summary: Get an overview of key school metrics
+      responses:
+        "200":
+          description: Summary metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_students:
+                    type: integer
+                    example: 1200
+                  total_staff:
+                    type: integer
+                    example: 85
+                  total_collections:
+                    type: number
+                    example: 2450000
+                  active_terms:
+                    type: integer
+                    example: 3
+
+  /sites/pages:
+    get:
+      tags: [Sites]
+      summary: Retrieve published website pages for a school
+      responses:
+        "200":
+          description: List of school website pages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: "About Us"
+                    slug:
+                      type: string
+                      example: "about"
+                    published:
+                      type: boolean
+                      example: true
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

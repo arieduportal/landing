@@ -11,10 +11,10 @@ export default function MobileNav() {
 
     useEffect(() => {
         const open = document.querySelector('.open') as HTMLElement;
-        const close = document.querySelector('.close-nav') as HTMLElement;
+        const closeButtons = document.querySelectorAll('.close-nav');
         const html = document.querySelector('html') as HTMLElement;
 
-        const tl = gsap.timeline({ defaults: { duration: .8, ease: 'expo.inOut' } });
+        const tl = gsap.timeline({ defaults: { duration: 0.8, ease: 'expo.inOut' } });
 
         const openNav = () => {
             if (tl.reversed()) {
@@ -37,13 +37,14 @@ export default function MobileNav() {
         };
 
         open.addEventListener('click', openNav);
-        close.addEventListener('click', closeNav);
+        closeButtons.forEach(btn => btn.addEventListener('click', closeNav));
 
         return () => {
             open.removeEventListener('click', openNav);
-            close.removeEventListener('click', closeNav);
+            closeButtons.forEach(btn => btn.removeEventListener('click', closeNav));
         };
     }, []);
+
 
     const style = {
         right: "-300vw",
@@ -55,8 +56,8 @@ export default function MobileNav() {
         pointerEvents: "none"
     }
 
-    const navigate = () => {
-        router.push('/#plan')
+    const navigate = (url: string) => {
+        router.push(url)
     }
 
     return (
@@ -72,22 +73,22 @@ export default function MobileNav() {
                 </div>
                 <ul className="list-none font-roboto">
                     <li className="my-10 mt-12">
-                        <Link scroll={false} href='/#mission' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Mission</Link>
+                        <Link scroll href='/#mission' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Mission</Link>
                     </li>
                     <li className="my-10">
-                        <Link scroll={false} href='/#plan' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Plan</Link>
+                        <Link scroll href='/#plan' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Plan</Link>
                     </li>
                     <li className="my-10">
-                        <Link scroll={false} href='/#faq' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Faq</Link>
+                        <Link scroll href='/#faq' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Faq</Link>
                     </li>
                     <li className="my-10">
-                        <Link scroll={false} href='/#member' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Team</Link>
+                        <Link scroll href='/#member' className="text-black text-lg font-medium relative close-nav" style={aStyle}>Team</Link>
                     </li>
                     <li className="my-10 mb-12">
-                        <Link scroll={false} href="/affiliates" className="text-black text-lg font-medium relative close-nav" style={aStyle}>Affiliates</Link>
+                        <Link scroll href="/affiliates" className="text-black text-lg font-medium relative close-nav" style={aStyle}>Affiliates</Link>
                     </li>
                 </ul>
-                <Button onClick={navigate} style={aStyle} className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black w-32">
+                <Button onClick={() => navigate('/#plan')} style={aStyle} className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black w-32">
                     <span className="before:left-0 group-hover/item:after:h-full group-hover/item:before:h-full before:bottom-0 after:right-0 after:top-0 block px-1 py-0.5 after:content-[''] before:content-[''] after:w-0.5 before:w-0.5 after:h-0 before:h-0 after:absolute before:absolute after:ease-linear before:ease-linear before:transition-all after:duration-500 after:transition-all before:duration-500 after:bg-black before:bg-black text-sm font-inter">
                         Join Us
                         <span className="ml-1">

@@ -1,21 +1,10 @@
 User-agent: *
-Allow: /
-
-Disallow: /server-status/
 
 Sitemap: https://axiolot.com.ng/sitemap.xml
 Sitemap: https://axiolot.com.ng/sitemap-main.xml
-
 Sitemap: https://portal.axiolot.com.ng/sitemap.xml
 Sitemap: https://sites.axiolot.com.ng/sitemap.xml
 Sitemap: https://analytics.axiolot.com.ng/sitemap.xml
 Sitemap: https://pay.axiolot.com.ng/sitemap.xml
 Sitemap: https://static.axiolot.com.ng/sitemap.xml
 Sitemap: https://demo.axiolot.com.ng/sitemap.xml
-
-User-agent: GPTBot
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /

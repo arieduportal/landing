@@ -5,6 +5,7 @@ import Tracker from "@/app/components/tracker"
 import Footer from './components/footer';
 import CookieBanner from './components/cookieBanner';
 import Header from './components/header';
+import ClientLogRocket from './components/ClientLogRocket';
 
 import './globals.css'
 import './animate.css'
@@ -83,7 +84,7 @@ export default function RootLayout({
               "@id": "https://axiolot.com.ng/#organization",
               "name": "Axiolot Hub",
               "url": "https://axiolot.com.ng",
-              "logo": "https://static.axiolot.com.ng/icons/16.png",
+              "logo": "https://static.axiolot.com.ng/image/icons/16.png",
               "image": "https://static.axiolot.com.ng/image/header.png",
               "sameAs": [
                 "https://portal.axiolot.com.ng",
@@ -133,7 +134,8 @@ export default function RootLayout({
                 "Result Processing Software",
                 "E-Payment Integration",
                 "Analytics for Schools"
-              ], "author": {
+              ], 
+              "author": {
                 "@type": "Organization",
                 "@id": "https://axiolot.com.ng/#organization"
               },
@@ -372,6 +374,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-satoshi">
+        <ClientLogRocket />
         <Script strategy="afterInteractive" id="track-id">
           {`
           window.TRACK_ID = "AE_1B267-619C4-812CC46E-E281";
@@ -396,6 +399,8 @@ export default function RootLayout({
         <Script strategy="lazyOnload" src={process.env.NEXT_PUBLIC_CDN + "/js/wow.config.js"} id="wow.config" >
         </Script>
         <Script strategy="lazyOnload" src="https://static.axiolot.com.ng/js/chat-widget" id="chat.widget" >
+        </Script>
+        <Script data-cf-beacon='{"token": "1ef3f07ada664a4283b2e27084949346"}' strategy="beforeInteractive" src="https://static.cloudflareinsights.com/beacon.min.js" id="cloudflare.analytics" >
         </Script>
       </body>
     </html>

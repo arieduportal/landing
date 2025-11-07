@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Priority for LLMs
+https://axiolot.com.ng/ (Homepage & Features)
+https://axiolot.com.ng/#plan (Pricing)

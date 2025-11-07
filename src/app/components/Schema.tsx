@@ -188,19 +188,19 @@ export default function Schema() {
                             "@type": "Product",
                             position: 1,
                             name: "Basic Plan",
-                            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN" }
+                            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for small schools." }
                         },
                         {
                             "@type": "Product",
                             position: 2,
                             name: "Proficient Plan",
-                            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN" }
+                            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for fast growing schools." }
                         },
                         {
                             "@type": "Product",
                             position: 3,
                             name: "Premier Plan",
-                            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN" }
+                            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for large schools." }
                         }
                     ]
                 }

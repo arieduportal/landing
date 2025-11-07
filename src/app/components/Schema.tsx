@@ -188,19 +188,27 @@ export default function Schema() {
                             "@type": "Product",
                             position: 1,
                             name: "Basic Plan",
-                            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for small schools." }
+                            "description": "For small schools just getting started. Includes student result management, attendance tracking, and basic analytics.", "brand": { "@type": "Organization", "name": "Axiolot Hub" },
+                            image: "https://static.axiolot.com.ng/image/header.png",
+                            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Free Trial", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for small schools." }
                         },
                         {
                             "@type": "Product",
                             position: 2,
                             name: "Proficient Plan",
-                            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for fast growing schools." }
+                            image: "https://static.axiolot.com.ng/image/header.png",
+                            description: "For growing schools. Adds staff payroll, e-payments, custom school domains, and parent communication tools.",
+                            brand: { "@type": "Organization", "name": "Axiolot Hub" },
+                            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for fast growing schools.", "url": "https://axiolot.com.ng/#plan", "priceValidUntil": "2026-12-31", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" } }
                         },
                         {
                             "@type": "Product",
                             position: 3,
                             name: "Premier Plan",
-                            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for large schools." }
+                            image: "https://static.axiolot.com.ng/image/header.png",
+                            description: "For advanced institutions needing full automation. Includes analytics dashboard, data backup, branded portal, and dedicated support.",
+                            brand: { "@type": "Organization", "name": "Axiolot Hub" },
+                            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for large schools." }
                         }
                     ]
                 }

@@ -303,7 +303,7 @@ export default function RootLayout({
         ))}
       </head>
       <body className="font-satoshi">
-        {/* <Schema /> */}
+        <Schema />
         <ClientLogRocket />
         <Script strategy="afterInteractive" id="track-id">
           {`

@@ -83,10 +83,10 @@ export default function Header() {
                         <div data-wow-delay="0.3s" className="md:grid wow slideInLeft grid-cols-3 gap-x-4 justify-between align-middle items-center hidden">
                             {socials.map(item => (
                                 <span className="mb-0 inline-block" key={item.id}>
-                                    <a href={item.tag} target="_blank" className="bg-transparent-white rounded-full m-0 text-xl w-[calc(20px+2*0em)] h-[calc(20px+2*0em)]">
+                                    <Link href={item.tag} target="_blank" className="bg-transparent-white rounded-full m-0 text-xl w-[calc(20px+2*0em)] h-[calc(20px+2*0em)]">
                                         <Icon as={item.icon} className="block relative h-5 w-5 fill-[#B4B6C6] hover:fill-white transition-all duration-300" />
                                         <span className="sr-only">{item.name}</span>
-                                    </a>
+                                    </Link>
                                 </span>
                             ))}
                         </div>

@@ -9,11 +9,13 @@
     },
     "api": {
         "type": "openapi",
-        "url": "https://axiolot.com.ng/api/openapi.yaml"
+        "url": "https://axiolot.com.ng/api/openapi.yaml",
+        "is_user_authenticated": false
     },
     "logo_url": "https://static.axiolot.com.ng/image/icons/16.png",
     "contact_email": "support@axiolot.com.ng",
     "legal_info_url": "https://axiolot.com.ng/legal",
+    "homepage_url": "https://axiolot.com.ng",
     "terms_of_service_url": "https://axiolot.com.ng/privacy#terms",
     "privacy_policy_url": "https://axiolot.com.ng/privacy",
     "developer": {

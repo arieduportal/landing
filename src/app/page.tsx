@@ -35,7 +35,7 @@ gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 const team = [
   { id: 1, name: "Justin Okechukwu", pic: "/image/hub/team/founder.jpg", position: "Founder/Software Developer", email: "info@axiolot.com.ng", wa: "", link: "", bg: "pink" },
   { id: 2, name: "Adesola Rose", pic: "/image/hub/team/rose.jpeg", position: "Software developer", email: "", wa: "", link: "", bg: "rgb(15 118 110)" },
-  { id: 3, name: "Ani Blessing", pic: "/image/hub/team/cyndi.jpeg", position: "UI Developer", email: "chicyndi2@gmail.com", wa: "", link: "", bg: "purple" },
+  { id: 3, name: "Ani Blessing", pic: "/image/hub/team/cyndi.jpg", position: "UI Developer", email: "chicyndi2@gmail.com", wa: "", link: "", bg: "purple" },
   { id: 4, name: "Mmeri Okechukwu", pic: "/image/hub/team/mmeri.jpeg", position: "Product Manager", email: "", wa: "", link: "", bg: "orange" },
 ], mission = [
   { id: 1, title: 'Integrated School Administration' },

@@ -8,14 +8,14 @@ export default function Document() {
         <meta property="og:url" content="https://axiolot.com.ng/" />
         <meta property="og:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="og:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="og:image" content="https://static.axiolot.com.ng/image/image/header.png" />
+        <meta property="og:image" content="https://static.axiolot.com.ng/image/header.png" />
         <meta property="og:author" content="Axiolot Hub" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://axiolot.com.ng/" />
         <meta property="twitter:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="twitter:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="twitter:image" content="https://static.axiolot.com.ng/image/image/header.png" />
+        <meta property="twitter:image" content="https://static.axiolot.com.ng/image/header.png" />
         <meta property="twitter:author" content="@axiolothub" />
         <meta property="twitter:creator" content="@axiolothub" />
 

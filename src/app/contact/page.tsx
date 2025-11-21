@@ -198,7 +198,7 @@ export default function Contact() {
                         {/* Address */}
                         <h2 className="mt-8 text-lg font-semibold text-gray-900">Our Address</h2>
                         <p className="mt-2 text-gray-600">
-                            Visit or send mail to our office in Lagos, Nigeria.
+                            Visit or send mail to our office in Enugu State, Nigeria.
                         </p>
                         <address className="mt-4 text-gray-600 not-italic">
                             Axiolot Hub<br />

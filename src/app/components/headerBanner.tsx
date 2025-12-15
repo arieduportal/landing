@@ -17,7 +17,6 @@ const HeaderBanner = () => {
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef(null);
 
-    // Mobile detection
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
@@ -102,7 +101,7 @@ const HeaderBanner = () => {
     return (
         <header
             ref={containerRef}
-            className="relative overflow-hidden min-h-screen max-h-full bg-[#2f2e41] pt-12 md:pt-0"
+            className="relative overflow-hidden min-h-screen max-h-full bg-[#2f2e41] pt-20 lg:pt-0"
         >
             <motion.div
                 className="absolute inset-0"
@@ -164,7 +163,7 @@ const HeaderBanner = () => {
             </AnimatePresence>
 
             <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                     <motion.div
                         className="text-white space-y-6 z-10"
                         style={{ y: yText }}
@@ -277,14 +276,14 @@ const HeaderBanner = () => {
                     </motion.div>
                 </div>
                 <motion.div
-                    className="w-full overflow-hidden mt-8 md:mt-4 rounded-md"
+                    className="w-full overflow-hidden mt-8 lg:mt-4 rounded-md"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                 >
                     <div className="relative py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#2f2e41] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#2f2e41] after:to-transparent rounded-xl backdrop-blur-sm shadow-custom-1">
                         <motion.div
-                            className="mt-4 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-center"
+                            className="mt-4 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 text-center"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.2 }}
@@ -361,7 +360,6 @@ const HeaderBanner = () => {
                 </>
             )}
 
-            {/* Performance-optimized floating particles */}
             <ParticleSystem isMobile={isMobile} />
         </header>
     );

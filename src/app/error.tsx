@@ -1,4 +1,4 @@
-'use client'; // Client Component for interactivity
+'use client';
 
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -11,10 +11,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  // Extract status code if available, default to 'unknown'
   const status = error.digest || 'unknown';
 
-  // Error information mapping
   const errorInfo = {
     404: {
       title: 'Page Not Found',
@@ -36,7 +34,6 @@ export default function Error({
     },
   }[status === '404' ? 404 : status === '500' ? 500 : 'default'];
 
-  // Update page title
   useEffect(() => {
     document.title = `${status || 'Error'} - ${errorInfo.title} | Axiolot Hub`;
   }, [status, errorInfo.title]);

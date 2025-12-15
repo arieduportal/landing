@@ -15,11 +15,13 @@ export default function Footer() {
     const subscribe = async () => {
 
         if (email === '') {
-            setMessage('Error: Email is required.');
+            setMessage('Email is required.');
             setColor('text-red-500');
             clear();
             return;
         }
+
+        const trackId = typeof window !== 'undefined' ? (window as any).TRACK_ID || '' : '';
 
         setIsLoading(true);
 
@@ -28,7 +30,7 @@ export default function Footer() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Track-Id': `${window.TRACK_ID || ''}`,
+                    'Track-Id': trackId,
                     'X-XSRF-TOKEN': XToken
                 },
                 body: JSON.stringify({ email, type: 'news' }),

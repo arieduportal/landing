@@ -102,9 +102,8 @@ const HeaderBanner = () => {
     return (
         <header
             ref={containerRef}
-            className="relative overflow-hidden min-h-screen max-h-full bg-[#2f2e41]"
+            className="relative overflow-hidden min-h-screen max-h-full bg-[#2f2e41] pt-12 md:pt-0"
         >
-            {/* Parallax Background */}
             <motion.div
                 className="absolute inset-0"
                 style={{
@@ -322,7 +321,7 @@ const HeaderBanner = () => {
                                     >
                                         <CountUp end={stat.value} duration={3} suffix="+" className="font-inter" />
                                     </motion.h3>
-                                    <p className="text-sm md:text-base opacity-80 mt-2 font-merri">{stat.label}</p>
+                                    <p className="text-sm md:text-base opacity-80 mt-2 font-satoshi">{stat.label}</p>
                                 </motion.div>
                             ))}
                         </motion.div>

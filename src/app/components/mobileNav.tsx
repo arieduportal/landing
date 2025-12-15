@@ -14,7 +14,7 @@ export default function MobileNav() {
         const closeButtons = document.querySelectorAll('.close-nav');
         const html = document.querySelector('html') as HTMLElement;
 
-        const tl = gsap.timeline({ defaults: { duration: 0.8, ease: 'expo.inOut' } });
+        const tl = gsap.timeline({ defaults: { duration: 0.6, ease: 'expo.inOut' } });
 
         const openNav = () => {
             if (tl.reversed()) {
@@ -22,9 +22,9 @@ export default function MobileNav() {
             } else {
                 tl.to('nav', { right: 0 })
                     .to('nav', { height: '100vh' }, '-=.1')
-                    .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.6')
-                    .to('nav button', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.4')
-                    .to('.close-nav', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.2');
+                    .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.05 }, '-=.3')
+                    .to('nav button', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.2')
+                    .to('.close-nav', { opacity: 1, pointerEvents: 'all', stagger: 0.15 }, '-=.1');
             }
             open.style.opacity = "0";
             html.style.overflowY = "hidden";
@@ -82,7 +82,7 @@ export default function MobileNav() {
                         <Link scroll href='/#faq' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Faq</Link>
                     </li>
                     <li className="my-10">
-                        <Link scroll href='/#member' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Team</Link>
+                        <Link scroll href='/#team' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Team</Link>
                     </li>
                     <li className="my-10 mb-12">
                         <Link scroll href="/affiliates" className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Affiliates</Link>

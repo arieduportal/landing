@@ -843,7 +843,7 @@ export default function Index() {
               <div className="py-8 my-5">
                 <div className="app-container relative py-0 px-0">
                   <div>
-                    <div id="member" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+                    <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
                       <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0">
                         <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">Axiolot Hub Team</p>
                       </div>

@@ -14,14 +14,15 @@ interface BlogPost {
     userId: number;
     category: string;
     image?: string;
-    authorName?: string; // Optional: Replace userId
-    publishDate?: string; // Optional: Replace mock date
+    authorName?: string;
+    publishDate?: string;
 }
 
 interface ServerResponse {
     status: boolean;
     message: string;
     data: BlogPost[];
+    categories: string[]
 }
 
 const Blog: React.FC = () => {
@@ -33,53 +34,53 @@ const Blog: React.FC = () => {
     const [hasMore, setHasMore] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+    const [categories, setCategories] = useState<string[]>(['All', 'Education', 'Technology', 'Tips', 'Sports']);
     const postsPerPage = 10;
-    const [XToken] = useState('');
 
-    // Mock categories
-    const categories = useMemo(() => ['All', 'Education', 'Technology', 'Tips', 'Sports'], []);
+    const fetchPosts = async () => {
+        try {
+            setLoading(true);
+            setError(null);
 
-    // Fetch blog posts
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                setLoading(true);
-                setError(null);
+            const trackId = typeof window !== 'undefined' ? (window as any).TRACK_ID || '' : '';
 
-                const response = await fetch('https://api.axiolot.com.ng/blog', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Track-Id': 'AE_1B267-619C4-812CC46E-E281',
-                        'X-XSRF-TOKEN': XToken ?? ""
-                    },
-                    body: JSON.stringify({}),
-                    credentials: 'include'
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch posts');
-                }
+            const response = await fetch('https://api.axiolot.com.ng/blog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Track-Id': trackId,
+                },
+                body: JSON.stringify({}),
+                credentials: 'include'
+            });
 
-                const result = await response.json() as ServerResponse;
-
-                if (result.status) {
-                    setPosts((prev) => [...prev, ...result.data]);
-                    setHasMore(result.data.length === postsPerPage);
-                } else {
-                    // setError(result.message);
-                }
-            } catch (err) {
-                setError('No articles available');
-                // setHasMore(false);
-            } finally {
-                // setLoading(false);
+            if (!response.ok) {
+                throw new Error('Failed to fetch posts');
             }
-        };
-        setTimeout(() =>
-            fetchPosts(), 5000);
-    }, [XToken, categories, page]);
 
-    // Filter posts
+            const result = await response.json() as ServerResponse;
+
+            if (result.status) {
+                setPosts((prev) => [...prev, ...result.data]);
+                if (result.categories && result.categories.length > 0) {
+                    setCategories(['All', ...result.categories]);
+                }
+                setHasMore(result.data.length === postsPerPage);
+            } else {
+                setError(result.message);
+            }
+        } catch (err) {
+            setError('No articles available');
+            setHasMore(false);
+        } finally {
+            setTimeout(() => setLoading(false), 2000);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, [page]);
+
     useEffect(() => {
         if (selectedCategory === 'All') {
             setFilteredPosts(posts);
@@ -88,46 +89,46 @@ const Blog: React.FC = () => {
         }
     }, [posts, selectedCategory]);
 
-    // Memoize categories
     const memoizedCategories = useMemo(() => categories, [categories]);
 
-    // Load more posts
     const loadMore = () => {
         if (hasMore && !loading) {
             setPage((prev) => prev + 1);
         }
     };
 
-    // Skeleton component
     const SkeletonCard = () => (
         <div className="bg-white rounded-xl shadow-md p-6">
-            <div className="h-48 bg-gray-200 rounded-lg mb-4 animate-shimmer"></div>
-            <div className="h-6 bg-gray-200 rounded-lg w-3/4 mb-4 animate-shimmer"></div>
-            <div className="h-4 bg-gray-200 rounded-lg w-full mb-2 animate-shimmer"></div>
-            <div className="h-4 bg-gray-200 rounded-lg w-5/6 mb-4 animate-shimmer"></div>
+            <div className="h-48 bg-gray-200 rounded-lg mb-4 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 rounded-lg w-3/4 mb-4 animate-pulse"></div>
+            <div className="h-4 bg-gray-200 rounded-lg w-full mb-2 animate-pulse"></div>
+            <div className="h-4 bg-gray-200 rounded-lg w-5/6 mb-4 animate-pulse"></div>
             <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full animate-shimmer"></div>
+                <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse"></div>
                 <div>
-                    <div className="h-4 bg-gray-200 rounded-lg w-32 mb-2 animate-shimmer"></div>
-                    <div className="h-3 bg-gray-200 rounded-lg w-24 animate-shimmer"></div>
+                    <div className="h-4 bg-gray-200 rounded-lg w-32 mb-2 animate-pulse"></div>
+                    <div className="h-3 bg-gray-200 rounded-lg w-24 animate-pulse"></div>
                 </div>
             </div>
-            <div className="h-10 bg-gray-200 rounded-full w-28 mt-4 animate-shimmer"></div>
+            <div className="h-10 bg-gray-200 rounded-full w-28 mt-4 animate-pulse"></div>
         </div>
     );
 
-    // Error/Fallback UI
     const ErrorUI = () => (
         <main className="flex justify-center items-center flex-col w-full h-[80vh] gap-y-5">
             <div className="text-center">
                 <h1 className="text-3xl font-bold uppercase">Blog</h1>
                 <p className="text-lg text-gray-500">No article yet</p>
-                <button onClick={() => window.location.reload()} className="bg-rasin-black mt-3.5 text-white rounded-full text-sm px-4 py-1.5" >Retry</button>
+                <button
+                    onClick={() => fetchPosts()}
+                    className="bg-[#2f2e41] mt-3.5 text-white rounded-full text-sm px-4 py-1.5 hover:bg-[#3f3e51] transition-colors"
+                >
+                    Retry
+                </button>
             </div>
         </main>
     );
 
-    // Blog Post Card
     const BlogPostCard = ({ post }: { post: BlogPost }) => (
         <motion.div
             className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -158,7 +159,7 @@ const Blog: React.FC = () => {
                 <p className="text-gray-600 line-clamp-3 mb-4">{post.description}</p>
                 <div className="flex items-center gap-4 mb-4">
                     <Image
-                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName!)}&size=48&background=000&color=fff&bold=true&rounded=true`}
+                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName || 'Author')}&size=48&background=000&color=fff&bold=true&rounded=true`}
                         alt="Author"
                         width={48}
                         height={48}
@@ -166,7 +167,7 @@ const Blog: React.FC = () => {
                         loading="lazy"
                     />
                     <div>
-                        <p className="text-sm font-medium text-[#2f2e41]">Author {post.authorName}</p>
+                        <p className="text-sm font-medium text-[#2f2e41]">Author {post.authorName || 'Unknown'}</p>
                         <p className="text-xs text-gray-500">
                             {new Date().toLocaleDateString('en-US', {
                                 month: 'long',
@@ -186,7 +187,38 @@ const Blog: React.FC = () => {
         </motion.div>
     );
 
-    // Modal for Full Article
+    const BlogBanner = () => (
+        <section className="bg-[#2f2e41] text-white py-20">
+            <div className="max-w-7xl mx-auto px-4 text-center">
+                <motion.h1
+                    className="text-4xl md:text-5xl font-bold mb-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                >
+                    Explore Our Blog
+                </motion.h1>
+                <motion.p
+                    className="text-lg md:text-xl text-gray-300 mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                    Discover insights, tips, and updates on education technology.
+                </motion.p>
+                <motion.a
+                    href="#blog-posts"
+                    className="inline-block bg-[#6c63ff] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#7b73ff] transition-colors duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                    Read Articles
+                </motion.a>
+            </div>
+        </section>
+    )
+
     const BlogModal = ({ post, onClose }: { post: BlogPost; onClose: () => void }) => (
         <motion.div
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -232,14 +264,14 @@ const Blog: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-4 mb-4">
                     <Image
-                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName!)}&size=48&background=000&color=fff&bold=true&rounded=true`}
+                        src={`https://static.axiolot.com.ng/image?name=${encodeURIComponent(post.authorName || 'Author')}&size=48&background=000&color=fff&bold=true&rounded=true`}
                         alt="Author"
                         width={48}
                         height={48}
                         className="rounded-full"
                     />
                     <div>
-                        <p className="text-sm font-medium text-[#2f2e41]">Author {post.authorName}</p>
+                        <p className="text-sm font-medium text-[#2f2e41]">Author {post.authorName || 'Unknown'}</p>
                         <p className="text-xs text-gray-500">
                             {new Date().toLocaleDateString('en-US', {
                                 month: 'long',
@@ -266,100 +298,74 @@ const Blog: React.FC = () => {
     );
 
     if (error && posts.length === 0) {
-        return <ErrorUI />;
+        return (
+            <>
+                <Head>
+                    <title>Blog | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
+                </Head>
+                <BlogBanner />
+                <ErrorUI />
+            </>
+        );
     }
 
-    <Head>
-        <title>Blog | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
-    </Head>
-
     return (
-        <main className="w-full bg-[#f5f5f5] min-h-screen">
-            {/* Hero Section */}
-            <section className="bg-[#2f2e41] text-white py-20">
-                <div className="max-w-7xl mx-auto px-4 text-center">
-                    <motion.h1
-                        className="text-4xl md:text-5xl font-bold mb-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        Explore Our Blog
-                    </motion.h1>
-                    <motion.p
-                        className="text-lg md:text-xl text-gray-300 mb-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                        Discover insights, tips, and updates on education technology.
-                    </motion.p>
-                    <motion.a
-                        href="#blog-posts"
-                        className="inline-block bg-[#6c63ff] text-white font-semibold py-3 px-8 rounded-full hover:bg-[#7b73ff] transition-colors duration-300"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        Read Articles
-                    </motion.a>
-                </div>
-            </section>
-
-            {/* Blog Posts Section */}
-            <section id="blog-posts" className="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-                {/* Filters */}
-                <div className="flex flex-wrap gap-4 mb-8 justify-center">
-                    {memoizedCategories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${selectedCategory === category
-                                ? 'bg-[#6c63ff] text-white'
-                                : 'bg-white text-[#2f2e41] hover:bg-[#6c63ff] hover:text-white'
-                                }`}
-                            aria-label={`Filter by ${category}`}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Blog Posts */}
-                <InfiniteScroll className="overflow-hidden pb-10 px-5"
-                    dataLength={filteredPosts.length}
-                    next={loadMore}
-                    hasMore={hasMore}
-                    loader={
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                            {Array(3)
-                                .fill(0)
-                                .map((_, index) => (
-                                    <SkeletonCard key={index} />
-                                ))}
-                        </div>
-                    }
-                    endMessage={
-                        <p className="text-center text-gray-500 mt-8">
-                            No more articles to load.
-                        </p>
-                    }
-                >
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <AnimatePresence>
-                            {filteredPosts.map((post) => (
-                                <BlogPostCard key={post.id} post={post} />
-                            ))}
-                        </AnimatePresence>
+        <>
+            <Head>
+                <title>Blog | Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools</title>
+            </Head>
+            <main className="w-full bg-[#f5f5f5] min-h-screen">
+                <BlogBanner />
+                <section id="blog-posts" className="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
+                    <div className="flex flex-wrap gap-4 mb-8 justify-center">
+                        {memoizedCategories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 ${selectedCategory === category
+                                    ? 'bg-[#6c63ff] text-white'
+                                    : 'bg-white text-[#2f2e41] hover:bg-[#6c63ff] hover:text-white'
+                                    }`}
+                                aria-label={`Filter by ${category}`}
+                            >
+                                {category}
+                            </button>
+                        ))}
                     </div>
-                </InfiniteScroll>
-            </section>
-
-            {/* Modal */}
-            <AnimatePresence>
-                {selectedPost && <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />}
-            </AnimatePresence>
-        </main>
+                    <InfiniteScroll
+                        className="overflow-hidden pb-10 px-5"
+                        dataLength={filteredPosts.length}
+                        next={loadMore}
+                        hasMore={hasMore}
+                        loader={
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                                {Array(3)
+                                    .fill(0)
+                                    .map((_, index) => (
+                                        <SkeletonCard key={index} />
+                                    ))}
+                            </div>
+                        }
+                        endMessage={
+                            <p className="text-center text-gray-500 mt-8">
+                                No more articles to load.
+                            </p>
+                        }
+                    >
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <AnimatePresence>
+                                {filteredPosts.map((post) => (
+                                    <BlogPostCard key={post.id} post={post} />
+                                ))}
+                            </AnimatePresence>
+                        </div>
+                    </InfiniteScroll>
+                </section>
+                <AnimatePresence>
+                    {selectedPost && <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />}
+                </AnimatePresence>
+            </main>
+        </>
     );
 };
 

@@ -663,7 +663,7 @@ export default function Index() {
             <p className="text-white font-satoshi text-sm md:text-base font-normal text-center">Join us today by subscribing to one of our awesome plan.</p>
           </div>
           <div className="app-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-between align-middle py-10">
-            <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105">
+            <div data-wow-delay="0.3s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 plan-card">
               <h2 className="text-2xl font-semibold mb-4 text-blue-600 pb-4 font-inter">Basic Plan</h2>
               <ul className="space-y-4">
                 <li>
@@ -694,7 +694,7 @@ export default function Index() {
                 </a>
               </div>
             </div>
-            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105 md:scale-105 md:hover:scale-110">
+            <div data-wow-delay="0.5s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 plan-card card-mid">
               <h2 className="text-2xl font-semibold mb-4 text-royal-lilac pb-4 font-inter">Proficient Plan</h2>
               <ul className="space-y-4">
                 <li>
@@ -724,7 +724,7 @@ export default function Index() {
                 </a>
               </div>
             </div>
-            <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 transform transition duration-500 hover:scale-105">
+            <div data-wow-delay="0.7s" className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 plan-card">
               <h2 className="text-2xl font-semibold mb-4 text-purple-600 pb-4 font-inter">Premier Plan</h2>
               <ul className="space-y-4">
                 <li>
@@ -843,7 +843,7 @@ export default function Index() {
               <div className="py-8 my-5">
                 <div className="app-container relative py-0 px-0">
                   <div>
-                    <div id="member" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
+                    <div id="team" className="flex relative mb-4 pb-6 flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
                       <div data-wow-delay="0.2s" className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0">
                         <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">Axiolot Hub Team</p>
                       </div>

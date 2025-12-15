@@ -102,9 +102,8 @@ const HeaderBanner = () => {
     return (
         <header
             ref={containerRef}
-            className="relative overflow-hidden min-h-screen max-h-[1000px] bg-[#2f2e41]"
+            className="relative overflow-hidden min-h-screen max-h-full bg-[#2f2e41] pt-12 md:pt-0"
         >
-            {/* Parallax Background */}
             <motion.div
                 className="absolute inset-0"
                 style={{
@@ -166,7 +165,6 @@ const HeaderBanner = () => {
 
             <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
-                    {/* Text Content with Parallax */}
                     <motion.div
                         className="text-white space-y-6 z-10"
                         style={{ y: yText }}
@@ -264,8 +262,6 @@ const HeaderBanner = () => {
                                     />
                                 </motion.div>
                             </AnimatePresence>
-
-                            {/* Glow effect */}
                             <motion.div
                                 className="absolute inset-0 -z-10 rounded-xl bg-[#6c63ff] opacity-0 blur-2xl"
                                 animate={{
@@ -280,15 +276,13 @@ const HeaderBanner = () => {
                         </motion.div>
                     </motion.div>
                 </div>
-
-                {/* Counter */}
                 <motion.div
-                    className="w-full overflow-hidden mt-8 md:mt-0"
+                    className="w-full overflow-hidden mt-8 md:mt-4 rounded-md"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                 >
-                    <div className="relative py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#2f2e41] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#2f2e41] after:to-transparent rounded-xl backdrop-blur-md shadow-custom-1">
+                    <div className="relative py-4 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-[#2f2e41] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-gradient-to-l after:from-[#2f2e41] after:to-transparent rounded-xl backdrop-blur-sm shadow-custom-1">
                         <motion.div
                             className="mt-4 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-center"
                             initial={{ opacity: 0 }}
@@ -296,9 +290,9 @@ const HeaderBanner = () => {
                             transition={{ delay: 1.2 }}
                         >
                             {[
-                                { value: 5, label: "Schools Onboarded" },
-                                { value: 10000, label: "Students Managed" },
-                                { value: 500000, label: "Reports Generated" },
+                                { value: 6, label: "Schools Onboarded" },
+                                { value: 12000, label: "Students Managed" },
+                                { value: 530000, label: "Reports Generated" },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={index}
@@ -310,13 +304,13 @@ const HeaderBanner = () => {
                                     <motion.h3
                                         className="text-3xl md:text-4xl font-bold text-teal-400"
                                         style={{
-                                            textShadow: "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
+                                            textShadow: "0 0 5px rgba(108,99,255,0.7), 0 0 10px rgba(108,99,255,0.5)",
                                         }}
                                         animate={{
                                             textShadow: [
-                                                "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
-                                                "0 0 15px rgba(108,99,255,0.9), 0 0 30px rgba(108,99,255,0.7)",
-                                                "0 0 10px rgba(108,99,255,0.7), 0 0 20px rgba(108,99,255,0.5)",
+                                                "0 0 5px rgba(108,99,255,0.7), 0 0 10px rgba(108,99,255,0.5)",
+                                                "0 0 10px rgba(108,99,255,0.9), 0 0 20px rgba(108,99,255,0.7)",
+                                                "0 0 5px rgba(108,99,255,0.7), 0 0 10px rgba(108,99,255,0.5)",
                                             ],
                                         }}
                                         transition={{
@@ -335,24 +329,6 @@ const HeaderBanner = () => {
                 </motion.div>
             </div>
 
-            {/* Slide Indicators */}
-            <motion.div
-                className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center gap-2 z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-            >
-                {slides.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-all ${currentSlide === index ? 'bg-[#6c63ff] w-6' : 'bg-white/30'}`}
-                        aria-label={`Go to slide ${index + 1}`}
-                    />
-                ))}
-            </motion.div>
-
-            {/* Mobile-optimized floating elements (fewer particles) */}
             {!isMobile && (
                 <>
                     <motion.div

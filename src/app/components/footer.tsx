@@ -28,7 +28,7 @@ export default function Footer() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Track-Id': 'AE_1B267-619C4-812CC46E-E281',
+                    'Track-Id': `${window.TRACK_ID || ''}`,
                     'X-XSRF-TOKEN': XToken
                 },
                 body: JSON.stringify({ email, type: 'news' }),
@@ -37,14 +37,14 @@ export default function Footer() {
 
             const result = await response.json();
             if (response.ok && response.status) {
-                setMessage(`Success: ${result.message}`);
+                setMessage(`${result.message}`);
                 setColor('text-green-500');
             } else {
-                setMessage(`Error: ${result.message}`);
+                setMessage(`${result.message}`);
                 setColor('text-red-500');
             }
         } catch (error) {
-            setMessage('Error: Failed to subscribe. Please try again later.');
+            setMessage('Failed to subscribe. Please try again later.');
             setColor('text-red-500');
         } finally {
             setIsLoading(false);
@@ -114,6 +114,22 @@ export default function Footer() {
                                         </li>
                                     </ul>
                                 </div>
+                                <div className="hidden md:flex">
+                                    <div className="w-2/5 p-2">
+                                        <a
+                                            href="https://status.axiolot.com.ng"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex flex-1 justify-start items-center gap-x-2 bg-teal-100 px-2 py-1 rounded-lg hover:bg-teal-200 transition-colors"
+                                        >
+                                            <div className="animate-ping absolute rounded-full bg-green-500 w-4 h-4 opacity-45"></div>
+                                            <div className="relative rounded-full bg-green-500 w-4 h-4"></div>
+                                            <div className="ml-1">
+                                                <p className="text-green-500 text-base font-medium">Status Page</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/4 mt-0 px-3">
                                 <div className="mb-6">
@@ -136,6 +152,10 @@ export default function Footer() {
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
                                                     <Link href="/#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</Link>
+                                                </li>
+                                                <li className="relative pl-5 mb-2.5 font-normal">
+                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
+                                                    <Link href="/blog" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</Link>
                                                 </li>
                                                 <li className="relative pl-5 mb-2.5 font-normal">
                                                     <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
@@ -206,6 +226,22 @@ export default function Footer() {
                                 <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/consult.png"} alt="" className="w-32 h-32" />
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="flex md:hidden">
+                    <div className="w-2/5 p-2 mx-auto">
+                        <a
+                            href="https://status.axiolot.com.ng"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-1 justify-start items-center gap-x-2 bg-teal-100 px-2 py-1 rounded-lg hover:bg-teal-200 transition-colors"
+                        >
+                            <div className="animate-ping absolute rounded-full bg-green-500 w-3 h-3 opacity-45"></div>
+                            <div className="relative rounded-full bg-green-500 w-4 h-4"></div>
+                            <div className="ml-1">
+                                <p className="text-green-500 text-base font-medium">Status Page</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div className="absolute top-3 right-6 tri-shape">

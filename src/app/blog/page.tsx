@@ -22,6 +22,7 @@ interface ServerResponse {
     status: boolean;
     message: string;
     data: BlogPost[];
+    categories: string[]
 }
 
 const Blog: React.FC = () => {
@@ -36,10 +37,8 @@ const Blog: React.FC = () => {
     const postsPerPage = 10;
     const [XToken] = useState('');
 
-    // Mock categories
-    const categories = useMemo(() => ['All', 'Education', 'Technology', 'Tips', 'Sports'], []);
+    let categories = useMemo(() => ['All', 'Education', 'Technology', 'Tips', 'Sports'], []);
 
-    // Fetch blog posts
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -50,7 +49,7 @@ const Blog: React.FC = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Track-Id': 'AE_1B267-619C4-812CC46E-E281',
+                        'Track-Id': `${window.TRACK_ID || ''}`,
                         'X-XSRF-TOKEN': XToken ?? ""
                     },
                     body: JSON.stringify({}),
@@ -64,9 +63,10 @@ const Blog: React.FC = () => {
 
                 if (result.status) {
                     setPosts((prev) => [...prev, ...result.data]);
+                    categories = useMemo(() => result.categories, [])
                     setHasMore(result.data.length === postsPerPage);
                 } else {
-                    // setError(result.message);
+                    setError(result.message);
                 }
             } catch (err) {
                 setError('No articles available');
@@ -79,7 +79,6 @@ const Blog: React.FC = () => {
             fetchPosts(), 5000);
     }, [XToken, categories, page]);
 
-    // Filter posts
     useEffect(() => {
         if (selectedCategory === 'All') {
             setFilteredPosts(posts);
@@ -88,17 +87,13 @@ const Blog: React.FC = () => {
         }
     }, [posts, selectedCategory]);
 
-    // Memoize categories
     const memoizedCategories = useMemo(() => categories, [categories]);
 
-    // Load more posts
     const loadMore = () => {
         if (hasMore && !loading) {
             setPage((prev) => prev + 1);
         }
     };
-
-    // Skeleton component
     const SkeletonCard = () => (
         <div className="bg-white rounded-xl shadow-md p-6">
             <div className="h-48 bg-gray-200 rounded-lg mb-4 animate-shimmer"></div>
@@ -115,8 +110,6 @@ const Blog: React.FC = () => {
             <div className="h-10 bg-gray-200 rounded-full w-28 mt-4 animate-shimmer"></div>
         </div>
     );
-
-    // Error/Fallback UI
     const ErrorUI = () => (
         <main className="flex justify-center items-center flex-col w-full h-[80vh] gap-y-5">
             <div className="text-center">
@@ -126,8 +119,6 @@ const Blog: React.FC = () => {
             </div>
         </main>
     );
-
-    // Blog Post Card
     const BlogPostCard = ({ post }: { post: BlogPost }) => (
         <motion.div
             className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -185,8 +176,6 @@ const Blog: React.FC = () => {
             </div>
         </motion.div>
     );
-
-    // Modal for Full Article
     const BlogModal = ({ post, onClose }: { post: BlogPost; onClose: () => void }) => (
         <motion.div
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
@@ -275,7 +264,6 @@ const Blog: React.FC = () => {
 
     return (
         <main className="w-full bg-[#f5f5f5] min-h-screen">
-            {/* Hero Section */}
             <section className="bg-[#2f2e41] text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <motion.h1
@@ -306,9 +294,7 @@ const Blog: React.FC = () => {
                 </div>
             </section>
 
-            {/* Blog Posts Section */}
             <section id="blog-posts" className="max-w-7xl mx-auto px-4 py-12 overflow-hidden">
-                {/* Filters */}
                 <div className="flex flex-wrap gap-4 mb-8 justify-center">
                     {memoizedCategories.map((category) => (
                         <button
@@ -324,8 +310,6 @@ const Blog: React.FC = () => {
                         </button>
                     ))}
                 </div>
-
-                {/* Blog Posts */}
                 <InfiniteScroll className="overflow-hidden pb-10 px-5"
                     dataLength={filteredPosts.length}
                     next={loadMore}
@@ -354,8 +338,6 @@ const Blog: React.FC = () => {
                     </div>
                 </InfiniteScroll>
             </section>
-
-            {/* Modal */}
             <AnimatePresence>
                 {selectedPost && <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />}
             </AnimatePresence>

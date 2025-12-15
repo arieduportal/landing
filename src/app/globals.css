@@ -332,6 +332,14 @@ input[type=number] {
   background-size: 200% 100%;
 }
 
+.axiolot__hub.plan-card {
+  @apply transform transition duration-500 hover:scale-105 !important;
+}
+
+.axiolot__hub.card-mid {
+  @apply md:scale-105 md:hover:scale-110 !important;
+}
+
 @media (min-width: 576px) {
   .app-container {
     @apply max-w-[566px] px-1 !important;

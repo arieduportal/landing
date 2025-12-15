@@ -11,36 +11,37 @@ export default function Ecosystem() {
                 <div data-wow-delay="0.2s" className="absolute wow slideInUp inset-0 bg-gradient-to-r from-royal-lilac to-rasin-black shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                 <div data-wow-delay="0.6s" className="relative wow bounceInUp px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                     <div className="max-w-md md:max-w-xl lg:max-w-2xl mx-auto">
-                        <h1 className="text-2xl font-bold text-gray-900">🌐 The Axiolot Hub Ecosystem</h1>
+                        <h1 className="text-2xl font-bold text-gray-900">The Axiolot Hub Ecosystem</h1>
                         <p className="mt-4 text-gray-600">
-                            Welcome to the <strong>Axiolot Hub Ecosystem</strong> — a unified platform designed to simplify and modernize how schools operate, manage results, handle payments, and analyze student performance.
+                            Welcome to the <strong>Axiolot Hub</strong> a unified platform designed to simplify and modernize how schools operate, manage results, handle payments, and analyze student performance.
                         </p>
                         <p className="mt-4 text-gray-600">
-                            From classrooms to administration, Axiolot Hub provides every digital tool your school needs — all connected through a single, intelligent system.
+                            From classrooms to administration, Axiolot Hub provides every digital tool your school needs  all connected through a single, intelligent system.
                         </p>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">🏫 What Is Axiolot Hub?</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900">What Is Axiolot Hub?</h2>
                         <p className="mt-2 text-gray-600">
                             <strong>Axiolot Hub</strong> is an <strong>education management ecosystem</strong> built to help schools automate results, analyze student data, publish updates, and process payments seamlessly. It combines technology, analytics, and administration tools to empower schools of all sizes to go fully digital.
                         </p>
                         <p className="mt-2 text-gray-600">
-                            Our mission is simple — to give schools <strong>clarity, automation, and insight</strong> through a connected ecosystem that covers every core academic and administrative function.
+                            Our mission is simple, to give schools <strong>clarity, automation, and insight</strong> through a connected ecosystem that covers every core academic and administrative function.
                         </p>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">⚙️ How the Ecosystem Works</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900">How the Ecosystem Works</h2>
                         <p className="mt-2 text-gray-600">
-                            Each part of Axiolot Hub is designed for a specific need within the school system — from grading to payments — yet they all connect effortlessly under one brand and one account.
+                            Each part of Axiolot Hub is designed for a specific need within the school system from grading to payments, yet they all connect effortlessly under one brand and one account.
                         </p>
-                        <p className="mt-2 text-gray-600">
+                        <br />
+                        <strong className="mt-3 text-gray-600">
                             Here is a breakdown of the ecosystem:
-                        </p>
+                        </strong>
 
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">🎓 1. Portal – Student & Result Management</h3>
+                        <h3 className="mt-6 text-base font-semibold text-gray-900">1. Portal ~ Student & Result Management</h3>
                         <p className="mt-2 text-gray-600">
                             <strong>Domain:</strong> <a href="https://portal.axiolot.com.ng" className="text-blue-600 hover:underline">portal.axiolot.com.ng</a>
                         </p>
                         <p className="mt-2 text-gray-600">
-                            The <strong>Axiolot Portal</strong> is the heart of the ecosystem — where administrators and teachers manage everything academic.
+                            The <strong>Axiolot Portal</strong> is the heart of the ecosystem where administrators and teachers manage everything academic.
                         </p>
                         <p className="mt-2 text-gray-600">
                             It handles:
@@ -51,11 +52,13 @@ export default function Ecosystem() {
                             <li>Performance tracking and analytics</li>
                             <li>Secure data access for students and parents</li>
                         </ul>
-                        <p className="mt-2 text-gray-600">
-                            ✅ <em>Purpose:</em> Simplify the grading process, reduce human errors, and give schools real-time access to accurate performance reports.
+                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
+                            <em>Purpose:</em>
+                            Simplify the grading process, reduce human errors, and give schools real-time access to accurate performance reports.
                         </p>
 
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">📰 2. Sites – School Content & Event Management</h3>
+                        <h3 className="mt-6 text-base font-semibold text-gray-900">2. Sites ~ School Content & Event Management</h3>
                         <p className="mt-2 text-gray-600">
                             <strong>Domain:</strong> <a href="https://sites.axiolot.com.ng" className="text-blue-600 hover:underline">sites.axiolot.com.ng</a>
                         </p>
@@ -71,11 +74,13 @@ export default function Ecosystem() {
                             <li>Upload images and media</li>
                             <li>Create custom pages for news and updates</li>
                         </ul>
-                        <p className="mt-2 text-gray-600">
-                            ✅ <em>Purpose:</em> Help schools engage with parents, students, and communities through rich, accessible content.
+                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
+                            <em>Purpose:</em>
+                            Help schools engage with parents, students, and communities through rich, accessible content.
                         </p>
 
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">📊 3. Analytics – Performance & Traffic Insights</h3>
+                        <h3 className="mt-6 text-base font-semibold text-gray-900"> 3. Analytics ~ Performance & Traffic Insights</h3>
                         <p className="mt-2 text-gray-600">
                             <strong>Domain:</strong> <a href="https://analytics.axiolot.com.ng" className="text-blue-600 hover:underline">analytics.axiolot.com.ng</a>
                         </p>
@@ -91,13 +96,14 @@ export default function Ecosystem() {
                             <li>Site visit and traffic analytics</li>
                             <li>Visual insights for better school planning</li>
                         </ul>
-                        <p className="mt-2 text-gray-600">
-                            ✅ <em>Purpose:</em> Transform raw school data into actionable intelligence.
+                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
+                            <em>Purpose:</em> Transform raw school data into actionable intelligence.
                         </p>
 
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">💳 4. Pay – School Fees & Payroll System</h3>
+                        <h3 className="mt-6 text-base font-semibold text-gray-900">4. Pay ~ School Fees & Payroll System</h3>
                         <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://e-pay.axiolot.com.ng" className="text-blue-600 hover:underline">pay.axiolot.com.ng</a>
+                            <strong>Domain:</strong> <a href="https://pay.axiolot.com.ng" className="text-blue-600 hover:underline">pay.axiolot.com.ng</a>
                         </p>
                         <p className="mt-2 text-gray-600">
                             <strong>Axiolot Pay</strong> is the secure financial module of the ecosystem. It makes handling money within schools fast, traceable, and stress-free.
@@ -111,13 +117,14 @@ export default function Ecosystem() {
                             <li>Payment records and receipts</li>
                             <li>Custom pricing setup by administrators</li>
                         </ul>
-                        <p className="mt-2 text-gray-600">
-                            ✅ <em>Purpose:</em> Ensure transparency, security, and efficiency in school financial operations.
+                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
+                            <em>Purpose:</em> Ensure transparency, security, and efficiency in school financial operations.
                         </p>
 
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">🗂️ 5. CDN – Secure File & Media Storage</h3>
+                        <h3 className="mt-6 text-base font-semibold text-gray-900">5. CDN ~ Secure File & Media Storage</h3>
                         <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://static.axiolot.com.ng" className="text-blue-600 hover:underline">cdn.axiolot.com.ng</a>
+                            <strong>Domain:</strong> <a href="https://static.axiolot.com.ng" className="text-blue-600 hover:underline">static.axiolot.com.ng</a>
                         </p>
                         <p className="mt-2 text-gray-600">
                             The <strong>Axiolot CDN</strong> powers all file storage and delivery across the ecosystem.
@@ -130,8 +137,9 @@ export default function Ecosystem() {
                             <li>Generated report files</li>
                             <li>PDFs, results, and other school documents</li>
                         </ul>
-                        <p className="mt-2 text-gray-600">
-                            ✅ <em>Purpose:</em> Provide fast, reliable access to school media and records anywhere, anytime.
+                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
+                            <em>Purpose:</em> Provide fast, reliable access to school media and records anywhere, anytime.
                         </p>
 
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">🧠 Why Choose Axiolot Hub</h2>

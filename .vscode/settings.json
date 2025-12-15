@@ -1,5 +1,5 @@
 {
-    "git.enabled": false,
+    "git.enabled": true,
     "css.validate": false,
     "typescript.tsdk": "node_modules\\typescript\\lib"
 }

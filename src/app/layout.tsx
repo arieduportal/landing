@@ -4,7 +4,7 @@ import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
 import Footer from './components/footer';
 import CookieBanner from './components/cookieBanner';
-import Header from './components/header';
+import Header from './components/navbar';
 import ClientLogRocket from './components/ClientLogRocket';
 import Schema from './components/Schema';
 

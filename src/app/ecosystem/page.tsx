@@ -142,16 +142,16 @@ export default function Ecosystem() {
                             <em>Purpose:</em> Provide fast, reliable access to school media and records anywhere, anytime.
                         </p>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">🧠 Why Choose Axiolot Hub</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Why Choose Axiolot Hub</h2>
                         <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>✅ <strong>Unified Experience:</strong> Every subdomain connects into one seamless ecosystem.</li>
-                            <li>🔒 <strong>Secure Data Handling:</strong> Student and payment data are encrypted and protected.</li>
-                            <li>📈 <strong>Analytics-Driven Decisions:</strong> From grades to finances, everything is measurable.</li>
-                            <li>⚡ <strong>Modern Interface:</strong> Built for speed, clarity, and usability.</li>
-                            <li>🌍 <strong>Scalable for Any Institution:</strong> Works for primary, secondary, or tertiary schools.</li>
+                            <li> <strong>Unified Experience:</strong> Every subdomain connects into one seamless ecosystem.</li>
+                            <li> <strong>Secure Data Handling:</strong> Student and payment data are encrypted and protected.</li>
+                            <li> <strong>Analytics-Driven Decisions:</strong> From grades to finances, everything is measurable.</li>
+                            <li> <strong>Modern Interface:</strong> Built for speed, clarity, and usability.</li>
+                            <li> <strong>Scalable for Any Institution:</strong> Works for primary, secondary, or tertiary schools.</li>
                         </ul>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">🔗 Integration Across All Systems</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Integration Across All Systems</h2>
                         <p className="mt-2 text-gray-600">
                             Each module communicates through secure APIs and shared authentication, ensuring:
                         </p>
@@ -164,7 +164,7 @@ export default function Ecosystem() {
                             This makes Axiolot Hub not just a tool, but a <strong>complete ecosystem</strong> built around data intelligence, automation, and school success.
                         </p>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">🏁 Conclusion</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Conclusion</h2>
                         <p className="mt-2 text-gray-600">
                             <strong>Axiolot Hub</strong> is redefining education management across Africa by combining administration, analytics, payments, and communication in one ecosystem.
                         </p>
@@ -172,14 +172,14 @@ export default function Ecosystem() {
                             Whether you are a school owner, teacher, or IT administrator, Axiolot Hub gives you everything you need to <strong>manage smarter and grow faster</strong>.
                         </p>
 
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">📍 Learn More</h2>
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Learn More</h2>
                         <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>🌐 <Link href="/" className="text-blue-600 hover:underline">Visit Axiolot Hub Main Site</Link></li>
-                            <li>📘 <Link href="https://portal.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Explore the Portal</Link></li>
-                            <li>💰 <Link href="https://e-pay.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Use Axiolot Pay</Link></li>
-                            <li>📊 <Link href="https://analytics.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Check Analytics</Link></li>
-                            <li>📰 <Link href="https://sites.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Publish Content</Link></li>
-                            <li>📰 <Link href="https://demo.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Demo Student Portal</Link></li>
+                            <li> <Link href="/" className="text-blue-600 hover:underline">Visit Axiolot Hub Main Site</Link></li>
+                            <li> <Link href="https://portal.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Explore the Portal</Link></li>
+                            <li> <Link href="https://e-pay.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Use Axiolot Pay</Link></li>
+                            <li> <Link href="https://analytics.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Check Analytics</Link></li>
+                            <li> <Link href="https://sites.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Publish Content</Link></li>
+                            <li> <Link href="https://demo.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Demo Student Portal</Link></li>
                         </ul>
                     </div>
                 </div>

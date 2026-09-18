@@ -37,18 +37,18 @@ import { Pagination, A11y, EffectCoverflow } from "swiper/modules";
 gsap.registerPlugin(TextPlugin, ScrollTrigger, Bounce, Sine, Linear);
 
 const team = [
+    // {
+    //   id: 1,
+    //   name: "Justin Okechukwu",
+    //   pic: "/image/hub/team/founder.jpg",
+    //   position: "Founder/Software Developer",
+    //   email: "info@axiolot.com.ng",
+    //   wa: "",
+    //   link: "",
+    //   bg: "pink",
+    // },
     {
       id: 1,
-      name: "Justin Okechukwu",
-      pic: "/image/hub/team/founder.jpg",
-      position: "Founder/Software Developer",
-      email: "info@axiolot.com.ng",
-      wa: "",
-      link: "",
-      bg: "pink",
-    },
-    {
-      id: 2,
       name: "Adesola Rose",
       pic: "/image/hub/team/rose.jpeg",
       position: "Software developer",
@@ -58,7 +58,7 @@ const team = [
       bg: "rgb(15 118 110)",
     },
     {
-      id: 3,
+      id: 2,
       name: "Ani Blessing",
       pic: "/image/hub/team/cyndi.JPG",
       position: "UI Developer",
@@ -67,16 +67,16 @@ const team = [
       link: "",
       bg: "purple",
     },
-    {
-      id: 4,
-      name: "Mmeri Okechukwu",
-      pic: "/image/hub/team/mmeri.jpeg",
-      position: "Product Manager",
-      email: "",
-      wa: "",
-      link: "",
-      bg: "orange",
-    },
+    // {
+    //   id: 3,
+    //   name: "Mmeri Okechukwu",
+    //   pic: "/image/hub/team/mmeri.jpeg",
+    //   position: "Product Manager",
+    //   email: "",
+    //   wa: "",
+    //   link: "",
+    //   bg: "orange",
+    // },
   ],
   mission = [
     { id: 1, title: "Integrated School Administration" },
@@ -328,9 +328,9 @@ export default function Index() {
               <div className="flex relative flex-wrap min-h-[1px] flex-col justify-center items-center align-middle">
                 <div
                   data-wow-delay="0.2s"
-                  className="rounded-full wow slideInUp bg-teal-100  px-4 py-1 translate-x-0 z-10"
+                  className="rounded-full wow slideInUp bg-[#6c63ff]/10  px-4 py-1 translate-x-0 z-10"
                 >
-                  <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-roboto">
+                  <p className="uppercase text-sm text-[#6c63ff] px-1 py-0.5 font-roboto">
                     our mission
                   </p>
                 </div>
@@ -347,10 +347,8 @@ export default function Index() {
                           opacity: 0,
                           transform: "translateY(100px)",
                           position: "absolute",
-                          backgroundImage:
-                            "linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)",
                         }}
-                        className="line bg-transparent clip-text font-inter w-full text-center text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold"
+                        className="line bg-transparent font-inter w-full text-center text-rasin-black text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[1.3] lg:leading-[1.3] md:font-bold"
                       >
                         {item.title}
                       </div>
@@ -409,7 +407,7 @@ export default function Index() {
                               </div>
                             </div>
                             <div className="text-center">
-                              <h2 className="text-xl m-0 mb-2 pb-1 text-teal-600 transition-all duration-300">
+                              <h2 className="text-xl m-0 mb-2 pb-1 text-rasin-black transition-all duration-300">
                                 Integrated School Administration
                               </h2>
                               <p className="mb-1 text-rasin-black text-sm">
@@ -469,7 +467,7 @@ export default function Index() {
                               </div>
                             </div>
                             <div className="text-center">
-                              <h2 className="text-xl m-0 mb-2 pb-1 text-teal-500 transition-all duration-300">
+                              <h2 className="text-xl m-0 mb-2 pb-1 text-rasin-black transition-all duration-300">
                                 Academic Excellence Management
                               </h2>
                               <p className="mb-1 text-rasin-black text-sm">
@@ -535,7 +533,7 @@ export default function Index() {
                               </div>
                             </div>
                             <div className="text-center">
-                              <h2 className="text-xl m-0 mb-2 pb-1 text-teal-500 transition-all duration-300">
+                              <h2 className="text-xl m-0 mb-2 pb-1 text-rasin-black transition-all duration-300">
                                 Secure Online Payments
                               </h2>
                               <p className="mb-1 text-rasin-black text-sm">
@@ -577,9 +575,9 @@ export default function Index() {
             <div className="text-center">
               <div
                 data-wow-delay="0.4s"
-                className="rounded-full wow slideInUp bg-teal-100 px-4 py-1 translate-x-0"
+                className="rounded-full wow slideInUp bg-[#6c63ff]/10 px-4 py-1 translate-x-0"
               >
-                <p className="uppercase text-sm text-teal-600 px-1 py-0.5 font-satoshi">
+                <p className="uppercase text-sm text-[#6c63ff] px-1 py-0.5 font-satoshi">
                   our services
                 </p>
               </div>
@@ -595,7 +593,7 @@ export default function Index() {
           </div>
         </div>
         <div className="pt-4">
-          <div className="pt-20 bg-gradient-to-b from-slate-200 from-45% to-slate-50">
+          <div className="pt-20 bg-soft-gray">
             <div className="-mt-32 app-container gap-2 md:gap-4 grid grid-cols-1 md:grid-cols-2 justify-between align-middle">
               <div
                 data-wow-delay="0.3s"
@@ -606,7 +604,7 @@ export default function Index() {
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-12 h-12 transform rotate-[-5deg] text-teal-400"
+                        className="w-12 h-12 transform rotate-[-5deg] text-[#6c63ff]"
                         width={768}
                         height={768}
                         viewBox="0 0 14 14"
@@ -621,7 +619,7 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-semibold font-satoshi">
                         search engine optimization
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-noraml text-slate-700 transform transition-transform duration-500">
@@ -642,19 +640,19 @@ export default function Index() {
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-12 h-12 transform rotate-[-5deg] text-teal-400"
+                        className="w-12 h-12 transform rotate-[-5deg] text-[#6c63ff]"
                         width={768}
                         height={768}
                         viewBox="0 0 32 32"
                       >
                         <path
-                          className="fill-teal-400"
+                          className="fill-[#6c63ff]"
                           d="M16 4L3 7v2l13-3l13 3V7zm-6 6c-3.227 0-6.375 1.313-6.375 1.313l-.625.28V27h11.281c.348.598.98 1 1.719 1c.738 0 1.371-.402 1.719-1H29V11.594l-.625-.281S25.227 10 22 10c-2.918 0-5.48.98-6 1.188C15.48 10.98 12.918 10 10 10m0 2c1.934 0 4 .625 5 .969v11.125c-1.113-.367-2.941-.875-5-.875c-2.102 0-3.813.484-5 .875V12.969C5.77 12.69 7.8 12 10 12m12 0c2.2 0 4.23.691 5 .969v11.125c-1.188-.39-2.898-.875-5-.875c-2.059 0-3.887.508-5 .875V12.969c1-.344 3.066-.969 5-.969"
                         ></path>
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-medium md:font-semibold font-satoshi">
                         Academics portal
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">
@@ -688,7 +686,7 @@ export default function Index() {
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-14 h-14 transform rotate-[10deg] absolute top-3 text-teal-400"
+                        className="w-16 h-16 transform rotate-[10deg] absolute top-3 text-[#6c63ff]"
                         width="768"
                         height="768"
                         viewBox="0 0 48 48"
@@ -713,7 +711,7 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-medium md:font-semibold font-satoshi">
                         website control
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">
@@ -749,7 +747,7 @@ export default function Index() {
                       </svg>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="absolute w-10 h-10 -right-6 -top-2 text-teal-400 transform -rotate-90"
+                        className="absolute w-10 h-10 -right-6 -top-2 text-[#6c63ff] transform -rotate-90"
                         width={768}
                         height={768}
                         viewBox="0 0 16 16"
@@ -761,7 +759,7 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-medium md:font-semibold font-satoshi">
                         staff pay manager
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">
@@ -783,7 +781,7 @@ export default function Index() {
                     <div className="mb-5 md:mb-0 md:mr-9 relative">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-16 h-16 text-teal-400"
+                        className="w-16 h-16 text-[#6c63ff]"
                         width={768}
                         height={768}
                         viewBox="0 0 24 24"
@@ -851,7 +849,7 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-medium md:font-semibold font-satoshi">
                         analytics gateway
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">
@@ -884,7 +882,7 @@ export default function Index() {
                         ></path>
                       </svg>
                       <svg
-                        className="w-14 h-14 transform rotate-[5deg] absolute top-6 text-teal-400"
+                        className="w-14 h-14 transform rotate-[5deg] absolute top-6 text-[#6c63ff]"
                         xmlns="http://www.w3.org/2000/svg"
                         width={768}
                         height={768}
@@ -897,7 +895,7 @@ export default function Index() {
                       </svg>
                     </div>
                     <div className="">
-                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-teal-500 font-medium md:font-semibold font-satoshi">
+                      <h3 className="text-xl transition-all duration-500 m-0 mb-[.7em] capitalize text-rasin-black font-medium md:font-semibold font-satoshi">
                         E-Payment system
                       </h3>
                       <p className="mb-0 text-[15px] leading-7 font-satoshi font-normal text-slate-700 transform transition-transform duration-500">
@@ -937,7 +935,7 @@ export default function Index() {
                       data-wow-delay="0.2s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         ePay System
                       </p>
@@ -946,7 +944,7 @@ export default function Index() {
                       data-wow-delay="0.4s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         Social Media Integration
                       </p>
@@ -955,7 +953,7 @@ export default function Index() {
                       data-wow-delay="0.6s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         Analytics
                       </p>
@@ -964,7 +962,7 @@ export default function Index() {
                       data-wow-delay="0.8s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         Communication Management
                       </p>
@@ -973,7 +971,7 @@ export default function Index() {
                       data-wow-delay="1.0s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         Admin Portal Management
                       </p>
@@ -982,7 +980,7 @@ export default function Index() {
                       data-wow-delay="1.0s"
                       className="flex justify-start items-center wow slideInUp font-satoshi text-rasin-black font-base"
                     >
-                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"></p>
+                      <p className="p-2 rounded-full mr-2 border-white border shadow-lg bg-[#6c63ff]"></p>
                       <p className="font-satoshi font-medium text-sm text-black">
                         Students Portal
                       </p>
@@ -1185,11 +1183,7 @@ export default function Index() {
                             >
                               {() => (
                                 <h2
-                                  className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500"
-                                  style={{
-                                    backgroundImage:
-                                      "linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)",
-                                  }}
+                                  className="m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all text-rasin-black align-middle duration-500"
                                 >
                                   {hasRun ? (
                                     <CountUp
@@ -1209,7 +1203,7 @@ export default function Index() {
                             </VisibilitySensor>
                           </div>
                           <div className="relative w-full transition-all duration-500">
-                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-[#6c63ff] uppercase font-semibold">
                               years of operation
                             </h6>
                           </div>
@@ -1241,11 +1235,7 @@ export default function Index() {
                             >
                               {() => (
                                 <h2
-                                  className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500"
-                                  style={{
-                                    backgroundImage:
-                                      "linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)",
-                                  }}
+                                  className="m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all text-rasin-black align-middle duration-500"
                                 >
                                   {hasRun ? (
                                     <CountUp
@@ -1266,7 +1256,7 @@ export default function Index() {
                             </VisibilitySensor>
                           </div>
                           <div className="relative w-full transition-all duration-500">
-                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-[#6c63ff] uppercase font-semibold">
                               positive feedback
                             </h6>
                           </div>
@@ -1298,11 +1288,7 @@ export default function Index() {
                             >
                               {() => (
                                 <h2
-                                  className="bg-transparent m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all clip-text align-middle duration-500"
-                                  style={{
-                                    backgroundImage:
-                                      "linear-gradient(180deg, #2f2e41 0%, #F2DFDF 100%)",
-                                  }}
+                                  className="m-0 mb-6 font-inter font-semibold text-lg md:text-2xl lg:text-4xl relative inline-block transition-all text-rasin-black align-middle duration-500"
                                 >
                                   {hasRun ? (
                                     <CountUp
@@ -1322,7 +1308,7 @@ export default function Index() {
                             </VisibilitySensor>
                           </div>
                           <div className="relative w-full transition-all duration-500">
-                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-teal-500 uppercase font-semibold">
+                            <h6 className="m-0 mb-6 text-sm font-roboto align-middle transition-all relative inline-block text-[#6c63ff] uppercase font-semibold">
                               number of students
                             </h6>
                           </div>
@@ -1363,7 +1349,7 @@ export default function Index() {
               data-wow-delay="0.3s"
               className="bg-white wow slideInUp shadow-lg rounded-lg p-6 py-10 plan-card"
             >
-              <h2 className="text-2xl font-semibold mb-4 text-blue-600 pb-4 font-inter">
+              <h2 className="text-2xl font-semibold mb-4 text-royal-lilac pb-4 font-inter">
                 Basic Plan
               </h2>
               <ul className="space-y-4">

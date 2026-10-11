@@ -3,7 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import BrandLogo from "./brandLogo";
 import Link from "next/link";
 import { portalLinks } from "./landingData";
-import { LuArrowRight, LuArrowUpRight, LuLoader2, LuMail, LuPhone } from "react-icons/lu";
+import { apiFetch } from "@/lib/api";
+import {
+  LuArrowRight,
+  LuArrowUpRight,
+  LuLoader2,
+  LuMail,
+  LuPhone,
+} from "react-icons/lu";
 import {
   RiWhatsappLine,
   RiTwitterFill,
@@ -16,7 +23,6 @@ export default function Footer() {
   const [message, setMessage] = useState("");
   const [color, setColor] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [XToken, setXToken] = useState("");
   const messageTimeout = useRef<ReturnType<typeof setTimeout>>();
   const clear = () => {
     clearTimeout(messageTimeout.current);
@@ -32,25 +38,14 @@ export default function Footer() {
       clear();
       return;
     }
-    const trackId =
-      typeof window !== "undefined" ? (window as any).TRACK_ID || "" : "";
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/email/subscribe`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Track-Id": trackId,
-            "X-XSRF-TOKEN": XToken,
-          },
-          body: JSON.stringify({ email, type: "news" }),
-          credentials: "include",
-        },
-      );
+      const response = await apiFetch("/email/subscribe", {
+        method: "POST",
+        body: JSON.stringify({ email, type: "news" }),
+      });
       const result = await response.json();
-      if (response.ok && response.status) {
+      if (response.ok && result.status) {
         setMessage(String(result.message));
         setColor("text-green-700");
       } else {
@@ -66,13 +61,7 @@ export default function Footer() {
     }
   };
   useEffect(() => {
-    const controller = new AbortController();
-    fetch("/api/x-token", { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data) => setXToken(data.token))
-      .catch(() => {});
     return () => {
-      controller.abort();
       clearTimeout(messageTimeout.current);
     };
   }, []);

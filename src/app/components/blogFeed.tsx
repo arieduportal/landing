@@ -14,6 +14,7 @@ import {
   LuX,
 } from "react-icons/lu";
 import { PageContainer } from "./pagePrimitives";
+import { apiFetch } from "@/lib/api";
 
 interface BlogPost {
   id: number;
@@ -242,12 +243,9 @@ export default function BlogFeed() {
     setLoading(true);
     setError(null);
     try {
-      const trackId = (window as Window & { TRACK_ID?: string }).TRACK_ID || "";
-      const response = await fetch(process.env.NEXT_PUBLIC_API + "/blog", {
+      const response = await apiFetch("/blog", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Track-Id": trackId },
         body: JSON.stringify({}),
-        credentials: "include",
         signal: controller.signal,
       });
       if (!response.ok)
@@ -440,7 +438,7 @@ export default function BlogFeed() {
                 <div className="relative min-h-[240px] bg-white/5 md:min-h-[340px]">
                   {featured.image ? (
                     <Image
-                      src={normalizeImageUrl(featured.image) ||featured.image}
+                      src={normalizeImageUrl(featured.image) || featured.image}
                       alt={featured.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"

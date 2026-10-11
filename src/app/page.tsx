@@ -677,7 +677,7 @@ export default function Index() {
                   href={
                     `${process.env.NEXT_PUBLIC_API}/onboard/plan/` +
                     plan.slug +
-                    "?track-id=AE_1B267-619C4-812CC46E-E281"
+                    "?track-id=AE_7C4D91-2FA83-B6E1047D-9A52"
                   }
                 >
                   Choose {plan.name} <LuArrowRight aria-hidden="true" />
@@ -743,6 +743,7 @@ export default function Index() {
                   alt={member.name}
                   width={80}
                   height={80}
+                  quality={100}
                   sizes="80px"
                 />
                 <div>

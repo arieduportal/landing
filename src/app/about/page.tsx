@@ -262,6 +262,7 @@ export default function About() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1200px) 33vw, 400px"
                     className="object-cover object-[center_25%]"
+                    quality={100}
                   />
                 </div>
                 <div className="pt-5">

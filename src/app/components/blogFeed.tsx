@@ -156,6 +156,7 @@ function ArticleReader({
               fill
               sizes="(max-width: 768px) 100vw, 700px"
               className="object-cover"
+              quality={80}
             />
           </div>
         )}
@@ -428,6 +429,7 @@ export default function BlogFeed() {
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
+                      quality={80}
                     />
                   ) : (
                     <div className="flex h-full min-h-[240px] flex-col items-center justify-center border-t border-white/[0.15] p-8 text-center md:min-h-[340px] md:border-l md:border-t-0">
@@ -521,6 +523,7 @@ export default function BlogFeed() {
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover"
+                          quality={80}
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center">

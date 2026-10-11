@@ -17,6 +17,7 @@ export default function BrandLogo({
         width={compact ? 24 : 40}
         height={compact ? 24 : 40}
         priority={priority}
+        quality={100}
         className={
           compact
             ? "h-6 w-6 shrink-0 object-contain"

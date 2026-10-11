@@ -739,7 +739,7 @@ export default function Index() {
             {team.map((member) => (
               <article key={member.name}>
                 <Image
-                  src={"/image/hub/team/" + member.image}
+                  src={`${process.env.NEXT_PUBLIC_CDN}/image/hub/team/${member.image}`}
                   alt={member.name}
                   width={80}
                   height={80}

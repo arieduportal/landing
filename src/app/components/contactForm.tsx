@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { apiFetch } from "@/lib/api";
 import {
   LuArrowRight,
   LuCheckCircle2,
@@ -15,17 +16,10 @@ export default function ContactForm() {
     message: "",
     type: "",
   });
-  const [XToken, setXToken] = useState("");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     setIsReady(true);
-    const controller = new AbortController();
-    fetch("/api/x-token", { signal: controller.signal })
-      .then((response) => response.json())
-      .then((data) => setXToken(data.token))
-      .catch(() => {});
-    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -44,19 +38,10 @@ export default function ContactForm() {
     const data = Object.fromEntries(new FormData(form));
     setFormStatus({ loading: true, message: "", type: "" });
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_API + "/email/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Track-Id": "AE_1B267-619C4-812CC46E-E281",
-            "X-XSRF-TOKEN": XToken,
-          },
-          credentials: "include",
-          body: JSON.stringify(data),
-        },
-      );
+      const response = await apiFetch("/email/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
       const responseData = await response.json();
       if (response.ok && responseData.status) {
         setFormStatus({

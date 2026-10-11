@@ -38,7 +38,7 @@ const team = [
   {
     name: "Ani Blessing",
     role: "UI Developer",
-    image: "cyndi.JPG",
+    image: "cyndi.png",
     email: "team.cyndi@axiolot.com.ng",
   },
 ];

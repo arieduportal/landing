@@ -14,6 +14,7 @@ import {
   LuX,
 } from "react-icons/lu";
 import { PageContainer } from "./pagePrimitives";
+import { apiFetch } from "@/lib/api";
 
 interface BlogPost {
   id: number;
@@ -47,6 +48,19 @@ function PublicationDate({ value }: { value?: string }) {
       }).format(date)}
     </time>
   );
+}
+
+// Helper to normalize and sanitize dynamic CMS image URLs
+function normalizeImageUrl(url?: string): string | undefined {
+  if (!url) return undefined;
+  let cleanUrl = url.trim();
+  // Ensure HTTPS if static CDN URL was returned with HTTP
+  if (cleanUrl.startsWith("http://static.axiolot.com.ng")) {
+    cleanUrl = cleanUrl.replace("http://", "https://");
+  }
+  // Remove accidental duplicate slashes in the path (e.g., https://domain.com//image.png)
+  cleanUrl = cleanUrl.replace(/([^:]\/)\/+/g, "$1");
+  return cleanUrl;
 }
 
 function Author({ post, light = false }: { post: BlogPost; light?: boolean }) {
@@ -151,12 +165,15 @@ function ArticleReader({
         {post.image && (
           <div className="relative mt-7 aspect-video overflow-hidden rounded-2xl bg-hub-surface">
             <Image
-              src={post.image}
+              src={normalizeImageUrl(post.image) || post.image}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, 700px"
               className="object-cover"
               quality={80}
+              onError={(_e) => {
+                console.warn(`Failed to load image: ${post.image}`);
+              }}
             />
           </div>
         )}
@@ -226,12 +243,9 @@ export default function BlogFeed() {
     setLoading(true);
     setError(null);
     try {
-      const trackId = (window as Window & { TRACK_ID?: string }).TRACK_ID || "";
-      const response = await fetch(process.env.NEXT_PUBLIC_API + "/blog", {
+      const response = await apiFetch("/blog", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Track-Id": trackId },
         body: JSON.stringify({}),
-        credentials: "include",
         signal: controller.signal,
       });
       if (!response.ok)
@@ -424,12 +438,15 @@ export default function BlogFeed() {
                 <div className="relative min-h-[240px] bg-white/5 md:min-h-[340px]">
                   {featured.image ? (
                     <Image
-                      src={featured.image}
+                      src={normalizeImageUrl(featured.image) || featured.image}
                       alt={featured.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                       quality={80}
+                      onError={(_e) => {
+                        console.warn(`Failed to load image: ${featured.image}`);
+                      }}
                     />
                   ) : (
                     <div className="flex h-full min-h-[240px] flex-col items-center justify-center border-t border-white/[0.15] p-8 text-center md:min-h-[340px] md:border-l md:border-t-0">

@@ -39,7 +39,7 @@ export default function Error({
   }, [status, errorInfo.title]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-br from-royal-lilac/10 to-rasin-black/10">
+    <div className="min-h-screen font-satoshi flex flex-col items-center justify-center p-8 bg-gradient-to-br from-royal-lilac/10 to-rasin-black/10">
       <motion.main
         className="max-w-md w-full bg-white rounded-2xl shadow-lg p-10"
         initial={{ opacity: 0 }}

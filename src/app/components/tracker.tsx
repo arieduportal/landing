@@ -37,7 +37,7 @@ export default function Tracker() {
             e!.async = true;
             const version = k.split('.');
             //@ts-ignore
-            e.src = `https://static.axiolot.com.ng/js/tracker[${version[0]}.${version[1]}]?s=${d}/?id=${t.TRACK_ID}`;
+            e.src = `${process.env.NEXT_PUBLIC_CDN}/js/tracker[${version[0]}.${version[1]}]?s=${d}/?id=${t.TRACK_ID}`;
             e!.setAttribute(
                 c,
                 //@ts-ignore

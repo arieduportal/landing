@@ -52,7 +52,7 @@
 
 html,
 body {
-  @apply bg-slate-50 text-black font-satoshi duration-500 transition-all scroll-smooth overflow-x-hidden !important;
+  @apply bg-slate-50 text-black font-satoshi duration-500 transition-all scroll-smooth overflow-x-hidden motion-reduce:scroll-auto motion-reduce:transition-none !important;
 }
 
 input[type=number] {

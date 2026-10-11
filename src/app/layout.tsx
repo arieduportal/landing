@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Script from 'next/script';
+import localFont from 'next/font/local';
 import { Providers } from "./providers";
 import Tracker from "@/app/components/tracker"
 import Footer from './components/footer';
@@ -10,6 +11,18 @@ import Schema from './components/Schema';
 
 import './globals.css'
 import './animate.css'
+
+const satoshi = localFont({
+  src: [
+    { path: '../../public/fonts/Satoshi-Regular.woff', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/Satoshi-Medium.woff', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/Satoshi-Bold.woff', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-satoshi',
+  display: 'swap',
+  fallback: ['Arial', 'sans-serif'],
+  adjustFontFallback: 'Arial',
+});
 
 export const metadata = {
   title: 'Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools',
@@ -31,8 +44,8 @@ export default function RootLayout({
         "@id": "https://axiolot.com.ng/#organization",
         "name": "Axiolot Hub",
         "url": "https://axiolot.com.ng",
-        "logo": "https://static.axiolot.com.ng/image/icons/16.png",
-        "image": "https://static.axiolot.com.ng/image/header.png",
+        "logo": `${process.env.NEXT_PUBLIC_CDN}/image/icons/16.png`,
+        "image": `${process.env.NEXT_PUBLIC_CDN}/image/header.png`,
         "sameAs": [
           "https://portal.axiolot.com.ng",
           "https://sites.axiolot.com.ng",
@@ -72,7 +85,7 @@ export default function RootLayout({
           { "@type": "Organization", "name": "Axiolot Analytics", "url": "https://analytics.axiolot.com.ng" },
           { "@type": "Organization", "name": "Axiolot Pay", "url": "https://e-pay.axiolot.com.ng" },
           { "@type": "Organization", "name": "Axiolot Demo", "url": "https://demo.axiolot.com.ng" },
-          { "@type": "Organization", "name": "Axiolot CDN", "url": "https://static.axiolot.com.ng" }
+          { "@type": "Organization", "name": "Axiolot CDN", "url": process.env.NEXT_PUBLIC_CDN }
         ],
         "brand": "Axiolot Hub",
         "knowsAbout": [
@@ -158,7 +171,7 @@ export default function RootLayout({
         "@context": "https://schema.org",
         "@type": "Product",
         name: "Axiolot Hub",
-        image: "https://static.axiolot.com.ng/image/header.png",
+        image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`,
         description:
           "Axiolot Hub is Nigeria’s leading digital school management software — simplifying academics, finance, and analytics for schools of all sizes.",
         brand: {
@@ -207,26 +220,26 @@ export default function RootLayout({
             position: 1,
             name: "Basic Plan",
             "description": "For small schools just getting started. Includes student result management, attendance tracking, and basic analytics.", "brand": { "@type": "Organization", "name": "Axiolot Hub" },
-            image: "https://static.axiolot.com.ng/image/header.png",
-            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Free Trial", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for small schools." }
+            image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`,
+            offers: { "@type": "Offer", price: "100000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Free Trial", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`, description: "This plan is suitable for small schools." }
           },
           {
             "@type": "Product",
             position: 2,
             name: "Proficient Plan",
-            image: "https://static.axiolot.com.ng/image/header.png",
+            image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`,
             description: "For growing schools. Adds staff payroll, e-payments, custom school domains, and parent communication tools.",
             brand: { "@type": "Organization", "name": "Axiolot Hub" },
-            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for fast growing schools.", "url": "https://axiolot.com.ng/#plan", "priceValidUntil": "2026-12-31", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" } }
+            offers: { "@type": "Offer", price: "150000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", availability: "https://schema.org/InStock", image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`, description: "This plan is suitable for fast growing schools.", "url": "https://axiolot.com.ng/#plan", "priceValidUntil": "2026-12-31", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" } }
           },
           {
             "@type": "Product",
             position: 3,
             name: "Premier Plan",
-            image: "https://static.axiolot.com.ng/image/header.png",
+            image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`,
             description: "For advanced institutions needing full automation. Includes analytics dashboard, data backup, branded portal, and dedicated support.",
             brand: { "@type": "Organization", "name": "Axiolot Hub" },
-            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: "https://static.axiolot.com.ng/image/header.png", description: "This plan is suitable for large schools." }
+            offers: { "@type": "Offer", price: "300000", priceCurrency: "NGN", hasMerchantReturnPolicy: "true", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "url": "https://axiolot.com.ng/#plan", "category": "Subscription", "eligibleRegion": { "@type": "Place", "name": "Nigeria" }, image: `${process.env.NEXT_PUBLIC_CDN}/image/header.png`, description: "This plan is suitable for large schools." }
           }
         ]
       }
@@ -234,14 +247,14 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" className={`font-satoshi`}>
+    <html lang="en" className={`font-satoshi ${satoshi.variable}`}>
       <head>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.axiolot.com.ng/" />
         <meta property="og:site_name" content="Axiolot Hub" />
         <meta property="og:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="og:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="og:image" content="https://static.axiolot.com.ng/image/header.png" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_CDN}/image/header.png`} />
         <meta property="og:author" content="Axiolot Hub" />
 
         <meta property="twitter:card" content="summary_large_image" />
@@ -249,29 +262,25 @@ export default function RootLayout({
         <meta property="twitter:url" content="https://www.axiolot.com.ng/" />
         <meta property="twitter:title" content="Axiolot Hub - Your Trusted Partner In Technology Solutions For Schools" />
         <meta property="twitter:description" content="Manage all aspects of your school with ease. Our app includes an Academics Portal for accessing resources, an ePayment Portal for online transactions, an Analytics Portal for data-driven decisions, Site Management tools for website control, and a Staff Payment System for efficient payroll management. Streamline your school operations today!" />
-        <meta property="twitter:image" content="https://static.axiolot.com.ng/image/header.png" />
+        <meta property="twitter:image" content={`${process.env.NEXT_PUBLIC_CDN}/image/header.png`} />
         <meta property="twitter:author" content="@axiolothub" />
 
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://static.axiolot.com.ng" />
+        <link rel="preconnect" href={`${process.env.NEXT_PUBLIC_CDN}`} />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://static.axiolot.com.ng" />
-        <link rel="icon" sizes="16x16" href="https://static.axiolot.com.ng/image/icons/16.png" type="image/png" />
-        <link rel="icon" sizes="32x32" href="https://static.axiolot.com.ng/image/icons/32.png" type="image/png" />
-        <link rel="icon" sizes="96x96" href="https://static.axiolot.com.ng/image/icons/96.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="https://static.axiolot.com.ng/image/icons/167.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="https://static.axiolot.com.ng/image/icons/152.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="https://static.axiolot.com.ng/image/icons/180.png" type="image/png" />
-        <link rel="apple-touch-icon" href="https://static.axiolot.com.ng/image/icons/120.png" type="image/png" />
+        <link rel="dns-prefetch" href={`${process.env.NEXT_PUBLIC_CDN}`} />
+        <link rel="icon" sizes="16x16" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/16.png`} type="image/png" />
+        <link rel="icon" sizes="32x32" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/32.png`} type="image/png" />
+        <link rel="icon" sizes="96x96" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/96.png`} type="image/png" />
+        <link rel="apple-touch-icon" sizes="167x167" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/167.png`} type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/152.png`} type="image/png" />
+        <link rel="apple-touch-icon" sizes="180x180" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/180.png`} type="image/png" />
+        <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_CDN}/image/icons/120.png`} type="image/png" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Merriweather&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.cdnfonts.com/css/satoshi"
         />
         <link
           rel="stylesheet"
@@ -307,7 +316,7 @@ export default function RootLayout({
         <ClientLogRocket />
         <Script strategy="afterInteractive" id="track-id">
           {`
-          window.TRACK_ID = "AE_1B267-619C4-812CC46E-E281";
+          window.TRACK_ID = "AE_7C4D91-2FA83-B6E1047D-9A52";
         `}
         </Script>
         <Header />
@@ -319,16 +328,13 @@ export default function RootLayout({
           <CookieBanner />
         </main>
         <Footer />
-        <div data-wow-delay="0.6s" className="fixed wow flipInX hidden lg:block transition-all duration-500 hover:scale-[1.1] focus:scale-[0.8] rotate-[270deg] left-0 md:left-4 top-1/2 transform -translate-y-1/2 w-auto z-[1000]">
-          <a href="https://api.axiolot.com.ng/onboard/demo?track-id=AE_1B267-619C4-812CC46E-E281" className="underline text-black font-medium text-sm font-inter">Try Demo Account</a>
-        </div>
         <Script strategy="lazyOnload" src={`${process.env.NEXT_PUBLIC_CDN}/js/ripple.js`} id="ripple" >
         </Script>
         <Script strategy="afterInteractive" src={process.env.NEXT_PUBLIC_CDN + "/js/wow.min.js"} id="wow" >
         </Script>
         <Script strategy="lazyOnload" src={process.env.NEXT_PUBLIC_CDN + "/js/wow.config.js"} id="wow.config" >
         </Script>
-        <Script strategy="lazyOnload" src="https://static.axiolot.com.ng/js/chat-widget" id="chat.widget" >
+        <Script strategy="lazyOnload" src={`${process.env.NEXT_PUBLIC_CDN}/js/chat-widget`} id="chat.widget" >
         </Script>
         <Script data-cf-beacon='{"token": "1ef3f07ada664a4283b2e27084949346"}' strategy="afterInteractive" src="https://static.cloudflareinsights.com/beacon.min.js" id="cloudflare.analytics" >
         </Script>

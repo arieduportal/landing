@@ -1,42 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaPlus, FaMinus } from 'react-icons/fa';
-
+"use client";
+import { useId, useState } from "react";
+import { LuPlus, LuMinus } from "react-icons/lu";
 interface AccordionProps {
-    title: string;
-    children: React.ReactNode;
-    className: any;
+  title: string;
+  children: React.ReactNode;
+  className?: string;
 }
-
-const Accordion: React.FC<AccordionProps> = ({ title, children, className }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [height, setHeight] = useState('0px');
-    const contentRef = useRef<HTMLDivElement>(null);
-
-    const toggleAccordion = () => {
-        setIsOpen(!isOpen);
-    };
-
-    useEffect(() => {
-        if (contentRef.current) {
-            setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : '0px');
-        }
-    }, [isOpen]);
-
-    return (
-        <div className={`bg-white shadow-custom py-5 mb-6 rounded-lg px-4 ${className}`}>
-            <div className="flex justify-between items-center gap-4 py-2 cursor-pointer" onClick={toggleAccordion}>
-                <h2 className="text-black font-medium font-satoshi text-base md:text-lg">{title}</h2>
-                <span style={{transition: "transform 0.4s ease"}} className="w-6 h-6 rounded-full bg-teal-500 items-center justify-center flex flex-shrink-0 text-white">
-                    {isOpen ? <FaMinus className="text-white w-3 h-3" /> : <FaPlus className="w-3 h-3 text-white" />}
-                </span>
-            </div>
-            <div ref={contentRef} className="px-4"
-                style={{ height: height, overflow: 'hidden', transition: "height 0.4s ease-in-out" }}
-            >
-                {children}
-            </div>
-        </div>
-    );
-};
-
-export default Accordion;
+export default function Accordion({
+  title,
+  children,
+  className = "",
+}: AccordionProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const id = useId();
+  return (
+    <div
+      className={
+        "axi-accordion border-b border-hub-border first:border-t first:border-hub-border [&_h3]:m-0 [&_h3>button]:flex [&_h3>button]:justify-between [&_h3>button]:items-center [&_h3>button]:w-full [&_h3>button]:text-left [&_h3>button]:[padding:21px_0] [&_h3>button]:gap-5 [&_h3>button]:text-rasin-black [&_h3>button]:text-[14px] [&_h3>button]:font-medium [&_h3>button]:leading-[1.6] [&_h3>button]:cursor-pointer [&_button_svg]:h-[17px] [&_button_svg]:w-[17px] [&_button_svg]:text-hub-accent-strong max-[699px]:[&_h3>button]:text-[13px] max-[699px]:[&_h3>button]:py-5 max-[699px]:[&_h3>button]:gap-[15px] " +
+        className
+      }
+    >
+      <h3>
+        <button
+          type="button"
+          id={id + "-trigger"}
+          aria-expanded={isOpen}
+          aria-controls={id + "-content"}
+          onClick={() => setIsOpen(!isOpen)}
+          className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+        >
+          {title}
+          {isOpen ? (
+            <LuMinus aria-hidden="true" />
+          ) : (
+            <LuPlus aria-hidden="true" />
+          )}
+        </button>
+      </h3>
+      <div
+        id={id + "-content"}
+        aria-labelledby={id + "-trigger"}
+        hidden={!isOpen}
+        className="axi-accordion-content [padding:0_35px_22px_0] [&_p]:text-[13px] [&_p]:text-hub-text [&_p]:leading-[1.85] max-[699px]:pr-[22px]"
+      >
+        {children}
+      </div>
+    </div>
+  );
+}

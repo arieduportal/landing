@@ -1,189 +1,365 @@
-import Link from "next/link"
+import Link from "next/link";
+import {
+  LuArrowRight,
+  LuArrowUpRight,
+  LuBarChart3,
+  LuBookOpen,
+  LuCheck,
+  LuClock3,
+  LuCloud,
+  LuCreditCard,
+  LuGlobe2,
+  LuGraduationCap,
+  LuLayers,
+  LuUsers,
+} from "react-icons/lu";
+import BrandLogo from "../components/brandLogo";
+import {
+  PageContainer,
+  PageCta,
+  PageHeading,
+  PageNavigation,
+} from "../components/pagePrimitives";
+import { demoUrl } from "../components/landingData";
 
 export const metadata = {
-    title: "The Axiolot Hub Ecosystem | Axiolot Hub",
-}
+  title: "The Axiolot Hub Ecosystem | Axiolot Hub",
+  description:
+    "Explore Axiolot's connected tools for academics, school websites, payments, attendance, analytics, and school media.",
+};
+
+const modules = [
+  {
+    id: "academics",
+    name: "Academics",
+    product: "Axiolot Portal",
+    icon: LuBookOpen,
+    description:
+      "A home for student information and academic progress. Give administrators, teachers, students, and parents a clearer view of learning.",
+    features: [
+      "Student registration and records",
+      "Result computation and report cards",
+      "Parent and student access",
+    ],
+    href: "https://portal.axiolot.com.ng",
+    domain: "portal.axiolot.com.ng",
+  },
+  {
+    id: "sites",
+    name: "School websites",
+    product: "Axiolot Sites",
+    icon: LuGlobe2,
+    description:
+      "Keep your school's digital presence up to date. Publish the news, events, and information your community needs to stay connected.",
+    features: [
+      "Announcements and school articles",
+      "Events, calendars, and custom pages",
+      "Images and media management",
+    ],
+    href: "https://sites.axiolot.com.ng",
+    domain: "sites.axiolot.com.ng",
+  },
+  {
+    id: "analytics",
+    name: "Insights & analytics",
+    product: "Axiolot Analytics",
+    icon: LuBarChart3,
+    description:
+      "Bring academic trends and website activity into focus. Turn the records you already maintain into information that supports planning.",
+    features: [
+      "Student and class performance",
+      "Subject trends and progress insights",
+      "Website visits and traffic analysis",
+    ],
+    href: "https://analytics.axiolot.com.ng",
+    domain: "analytics.axiolot.com.ng",
+  },
+  {
+    id: "payments",
+    name: "Fees & staff payments",
+    product: "Axiolot Pay",
+    icon: LuCreditCard,
+    description:
+      "Keep financial administration organised, from school fee collection to salary management, with traceable payment records.",
+    features: [
+      "Fee collection and verification",
+      "Staff salary processing",
+      "Payment records and receipts",
+    ],
+    href: "https://pay.axiolot.com.ng",
+    domain: "pay.axiolot.com.ng",
+  },
+  {
+    id: "attendance",
+    name: "Attendance",
+    product: "Attendance Manager",
+    icon: LuClock3,
+    description:
+      "Record arrivals, departures, and staff attendance. Keep parents informed when their children clock in or out of school.",
+    features: [
+      "Student clock-in and clock-out",
+      "Push and SMS parent notifications",
+      "Staff arrival and classroom logs",
+    ],
+    href: "https://attendance.axiolot.com.ng",
+    domain: "attendance.axiolot.com.ng",
+  },
+  {
+    id: "media",
+    name: "Files & media",
+    product: "Axiolot CDN",
+    icon: LuCloud,
+    description:
+      "The file delivery layer behind the ecosystem. Keep school images, generated reports, and documents available across your tools.",
+    features: [
+      "Student images and school media",
+      "Generated reports and result files",
+      "PDFs and school documents",
+    ],
+    href: process.env.NEXT_PUBLIC_CDN || "https://static.axiolot.com.ng",
+    domain: "static.axiolot.com.ng",
+  },
+];
 
 export default function Ecosystem() {
-    return (
-        <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-            <div className="relative py-3 sm:max-w-2xl md:max-w-4xl lg:max-w-6xl sm:mx-auto">
-                <div data-wow-delay="0.2s" className="absolute wow slideInUp inset-0 bg-gradient-to-r from-royal-lilac to-rasin-black shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-                <div data-wow-delay="0.6s" className="relative wow bounceInUp px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                    <div className="max-w-md md:max-w-xl lg:max-w-2xl mx-auto">
-                        <h1 className="text-2xl font-bold text-gray-900">The Axiolot Hub Ecosystem</h1>
-                        <p className="mt-4 text-gray-600">
-                            Welcome to the <strong>Axiolot Hub</strong> a unified platform designed to simplify and modernize how schools operate, manage results, handle payments, and analyze student performance.
-                        </p>
-                        <p className="mt-4 text-gray-600">
-                            From classrooms to administration, Axiolot Hub provides every digital tool your school needs  all connected through a single, intelligent system.
-                        </p>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">What Is Axiolot Hub?</h2>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Axiolot Hub</strong> is an <strong>education management ecosystem</strong> built to help schools automate results, analyze student data, publish updates, and process payments seamlessly. It combines technology, analytics, and administration tools to empower schools of all sizes to go fully digital.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            Our mission is simple, to give schools <strong>clarity, automation, and insight</strong> through a connected ecosystem that covers every core academic and administrative function.
-                        </p>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">How the Ecosystem Works</h2>
-                        <p className="mt-2 text-gray-600">
-                            Each part of Axiolot Hub is designed for a specific need within the school system from grading to payments, yet they all connect effortlessly under one brand and one account.
-                        </p>
-                        <br />
-                        <strong className="mt-3 text-gray-600">
-                            Here is a breakdown of the ecosystem:
-                        </strong>
-
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">1. Portal ~ Student & Result Management</h3>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://portal.axiolot.com.ng" className="text-blue-600 hover:underline">portal.axiolot.com.ng</a>
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            The <strong>Axiolot Portal</strong> is the heart of the ecosystem where administrators and teachers manage everything academic.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            It handles:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>Student registration and record keeping</li>
-                            <li>Automated result computation</li>
-                            <li>Performance tracking and analytics</li>
-                            <li>Secure data access for students and parents</li>
-                        </ul>
-                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
-                            <em>Purpose:</em>
-                            Simplify the grading process, reduce human errors, and give schools real-time access to accurate performance reports.
-                        </p>
-
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">2. Sites ~ School Content & Event Management</h3>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://sites.axiolot.com.ng" className="text-blue-600 hover:underline">sites.axiolot.com.ng</a>
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            The <strong>Axiolot Sites</strong> platform lets schools build, update, and maintain their digital presence without any technical setup.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            It helps schools:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>Publish announcements and articles</li>
-                            <li>Manage event dates and calendars</li>
-                            <li>Upload images and media</li>
-                            <li>Create custom pages for news and updates</li>
-                        </ul>
-                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
-                            <em>Purpose:</em>
-                            Help schools engage with parents, students, and communities through rich, accessible content.
-                        </p>
-
-                        <h3 className="mt-6 text-base font-semibold text-gray-900"> 3. Analytics ~ Performance & Traffic Insights</h3>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://analytics.axiolot.com.ng" className="text-blue-600 hover:underline">analytics.axiolot.com.ng</a>
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Axiolot Analytics</strong> gives administrators visibility into both <strong>academic trends</strong> and <strong>platform usage</strong>.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            It provides:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>Student performance dashboards</li>
-                            <li>Trend analysis per subject or class</li>
-                            <li>Site visit and traffic analytics</li>
-                            <li>Visual insights for better school planning</li>
-                        </ul>
-                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
-                            <em>Purpose:</em> Transform raw school data into actionable intelligence.
-                        </p>
-
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">4. Pay ~ School Fees & Payroll System</h3>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://pay.axiolot.com.ng" className="text-blue-600 hover:underline">pay.axiolot.com.ng</a>
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Axiolot Pay</strong> is the secure financial module of the ecosystem. It makes handling money within schools fast, traceable, and stress-free.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            It manages:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>Student fee collection and verification</li>
-                            <li>Staff salary processing and tracking</li>
-                            <li>Payment records and receipts</li>
-                            <li>Custom pricing setup by administrators</li>
-                        </ul>
-                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
-                            <em>Purpose:</em> Ensure transparency, security, and efficiency in school financial operations.
-                        </p>
-
-                        <h3 className="mt-6 text-base font-semibold text-gray-900">5. CDN ~ Secure File & Media Storage</h3>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Domain:</strong> <a href="https://static.axiolot.com.ng" className="text-blue-600 hover:underline">static.axiolot.com.ng</a>
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            The <strong>Axiolot CDN</strong> powers all file storage and delivery across the ecosystem.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            It stores:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>Student images</li>
-                            <li>Generated report files</li>
-                            <li>PDFs, results, and other school documents</li>
-                        </ul>
-                        <p className="mt-3 text-gray-600 inline-flex gap-x-3 items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" width="32" height="32" viewBox="0 0 32 32"><path fill="#785dc8" fill-rule="evenodd" d="M28.928 10.3a3.25 3.25 0 0 1-.137 4.595L13.94 28.89a3.25 3.25 0 0 1-4.557-.098l-6.264-6.435a3.25 3.25 0 0 1 4.658-4.534l4.033 4.143l12.525-11.802a3.25 3.25 0 0 1 4.594.136" clip-rule="evenodd" /></svg>
-                            <em>Purpose:</em> Provide fast, reliable access to school media and records anywhere, anytime.
-                        </p>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Why Choose Axiolot Hub</h2>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li> <strong>Unified Experience:</strong> Every subdomain connects into one seamless ecosystem.</li>
-                            <li> <strong>Secure Data Handling:</strong> Student and payment data are encrypted and protected.</li>
-                            <li> <strong>Analytics-Driven Decisions:</strong> From grades to finances, everything is measurable.</li>
-                            <li> <strong>Modern Interface:</strong> Built for speed, clarity, and usability.</li>
-                            <li> <strong>Scalable for Any Institution:</strong> Works for primary, secondary, or tertiary schools.</li>
-                        </ul>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Integration Across All Systems</h2>
-                        <p className="mt-2 text-gray-600">
-                            Each module communicates through secure APIs and shared authentication, ensuring:
-                        </p>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li>One account works across all subdomains</li>
-                            <li>Consistent design and data flow</li>
-                            <li>Cross-module features (e.g., grades → analytics → pay)</li>
-                        </ul>
-                        <p className="mt-2 text-gray-600">
-                            This makes Axiolot Hub not just a tool, but a <strong>complete ecosystem</strong> built around data intelligence, automation, and school success.
-                        </p>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Conclusion</h2>
-                        <p className="mt-2 text-gray-600">
-                            <strong>Axiolot Hub</strong> is redefining education management across Africa by combining administration, analytics, payments, and communication in one ecosystem.
-                        </p>
-                        <p className="mt-2 text-gray-600">
-                            Whether you are a school owner, teacher, or IT administrator, Axiolot Hub gives you everything you need to <strong>manage smarter and grow faster</strong>.
-                        </p>
-
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900"> Learn More</h2>
-                        <ul className="list-disc ml-5 mt-2 text-gray-600">
-                            <li> <Link href="/" className="text-blue-600 hover:underline">Visit Axiolot Hub Main Site</Link></li>
-                            <li> <Link href="https://portal.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Explore the Portal</Link></li>
-                            <li> <Link href="https://e-pay.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Use Axiolot Pay</Link></li>
-                            <li> <Link href="https://analytics.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Check Analytics</Link></li>
-                            <li> <Link href="https://sites.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Publish Content</Link></li>
-                            <li> <Link href="https://demo.axiolot.com.ng" target="_blank" className="text-blue-600 hover:underline">Demo Student Portal</Link></li>
-                        </ul>
-                    </div>
-                </div>
+  return (
+    <div className="bg-white font-satoshi text-rasin-black antialiased">
+      <PageNavigation current="ecosystem" />
+      <section className="border-b border-hub-border bg-[#fafafd] py-14 md:py-20">
+        <PageContainer className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <div>
+            <PageHeading
+              eyebrow="THE AXIOLOT ECOSYSTEM"
+              title={
+                <>
+                  One school.
+                  <br />
+                  <span className="text-royal-lilac">
+                    Everything connected.
+                  </span>
+                </>
+              }
+              description="Academics, people, payments, and your school's digital presence. Purpose-built tools that make more sense together."
+            />
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#modules"
+                className="inline-flex min-h-[48px] items-center gap-5 rounded-2xl bg-hub-accent-strong px-5 py-3 text-sm font-bold text-white hover:bg-hub-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+              >
+                Explore the tools{" "}
+                <LuArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={demoUrl}
+                className="inline-flex min-h-[48px] items-center gap-3 rounded-2xl border border-hub-border bg-white px-5 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+              >
+                Try the demo{" "}
+                <LuArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
-        </div>
-    )
+          </div>
+          <div
+            className="rounded-2xl border border-hub-border bg-white p-5 shadow-hub sm:p-7"
+            aria-label="Axiolot's six connected platform areas"
+          >
+            <div className="flex items-center justify-between border-b border-hub-border pb-5">
+              <span className="text-[10px] font-bold uppercase tracking-[1.4px] text-hub-muted">
+                YOUR SCHOOL WORKSPACE
+              </span>
+              <LuLayers
+                className="h-5 w-5 text-hub-accent-strong"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="flex flex-col items-center border-b border-hub-border py-8">
+              <div className="flex items-center gap-1">
+                <BrandLogo />
+              </div>
+              <p className="mt-3 text-xs text-hub-muted">
+                A connected view of your school.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-x-5 gap-y-6 pt-7 sm:grid-cols-3">
+              {modules.map((module) => (
+                <div
+                  key={module.id}
+                  className="flex flex-col items-center gap-3 text-center"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-hub-tint text-hub-accent-strong">
+                    <module.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-[11px] font-medium">{module.name}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-7 border-t border-hub-border pt-4 text-center text-[10px] text-hub-muted">
+              Built around the real work of school.
+            </p>
+          </div>
+        </PageContainer>
+      </section>
+      <section
+        id="modules"
+        className="scroll-mt-24 py-16 md:py-24"
+        aria-labelledby="modules-heading"
+      >
+        <PageContainer>
+          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="mb-4 text-[10px] font-bold uppercase tracking-[1.8px] text-hub-accent-strong">
+                FIND THE RIGHT TOOL
+              </p>
+              <h2
+                id="modules-heading"
+                className="text-3xl font-bold tracking-[-1px] md:text-4xl"
+              >
+                One ecosystem. Clear responsibilities.
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-7 text-hub-text">
+              Each workspace has a purpose. Choose the one that fits the task in
+              front of you.
+            </p>
+          </div>
+          <div className="border-t border-hub-border">
+            {modules.map((module, index) => (
+              <article
+                key={module.id}
+                id={module.id}
+                className="grid scroll-mt-24 gap-6 border-b border-hub-border py-9 md:grid-cols-[0.85fr_1.2fr_1fr] md:gap-10 md:py-10"
+              >
+                <div>
+                  <div className="mb-4 flex items-center gap-3">
+                    <module.icon
+                      className="h-6 w-6 text-hub-accent-strong"
+                      aria-hidden="true"
+                    />
+                    <span className="text-[10px] text-hub-muted">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold tracking-[-0.4px]">
+                    {module.name}
+                  </h3>
+                  <p className="mt-1 text-xs text-hub-muted">
+                    {module.product}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm leading-7 text-hub-text">
+                    {module.description}
+                  </p>
+                  <a
+                    href={module.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex max-w-full items-center gap-2 break-all text-xs font-bold text-hub-accent-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+                  >
+                    {module.domain}
+                    <LuArrowUpRight
+                      className="h-4 w-4 shrink-0"
+                      aria-hidden="true"
+                    />
+                  </a>
+                  {module.id === "payments" && (
+                    <a
+                      href="https://e-pay.axiolot.com.ng"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 flex items-center gap-2 text-xs text-hub-accent-strong underline underline-offset-4"
+                    >
+                      Open the e-Payment Portal{" "}
+                      <LuArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+                <ul className="space-y-3 md:pt-1">
+                  {module.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2.5 text-xs leading-6 text-hub-text"
+                    >
+                      <LuCheck
+                        className="mt-1 h-4 w-4 shrink-0 text-hub-accent-strong"
+                        aria-hidden="true"
+                      />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </PageContainer>
+      </section>
+      <section
+        className="border-y border-hub-border bg-hub-surface py-16 md:py-20"
+        aria-labelledby="workflow-heading"
+      >
+        <PageContainer>
+          <div className="max-w-2xl">
+            <p className="mb-4 text-[10px] font-bold uppercase tracking-[1.8px] text-hub-accent-strong">
+              CONNECTED THROUGH THE SCHOOL DAY
+            </p>
+            <h2
+              id="workflow-heading"
+              className="text-3xl font-bold leading-tight tracking-[-1px] md:text-4xl"
+            >
+              Less chasing information.
+              <br />
+              More working with it.
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-hub-text">
+              The same school community benefits at every step: administrators
+              keep records organised, teachers manage learning, and parents stay
+              informed.
+            </p>
+          </div>
+          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: LuUsers,
+                title: "Start with the student",
+                text: "Maintain student information, classes, and academic records in the Academics Portal.",
+              },
+              {
+                icon: LuClock3,
+                title: "Stay close to the school day",
+                text: "Record attendance and let parents know when their children arrive and leave.",
+              },
+              {
+                icon: LuGraduationCap,
+                title: "Make progress visible",
+                text: "Share results and reports, and use analytics to understand performance.",
+              },
+            ].map((step, index) => (
+              <li key={step.title} className="border-t border-hub-border pt-6">
+                <div className="mb-5 flex items-center justify-between">
+                  <step.icon
+                    className="h-6 w-6 text-hub-accent-strong"
+                    aria-hidden="true"
+                  />
+                  <span className="text-xs text-hub-muted">0{index + 1}</span>
+                </div>
+                <h3 className="text-lg font-bold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-hub-text">
+                  {step.text}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <Link
+            href="https://demo.axiolot.com.ng"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-9 inline-flex items-center gap-2 text-sm font-bold text-hub-accent-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+          >
+            Explore the demo student portal{" "}
+            <LuArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </PageContainer>
+      </section>
+      <PageCta />
+    </div>
+  );
 }

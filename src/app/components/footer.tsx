@@ -1,264 +1,323 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState, useEffect } from 'react'
-import Link from "next/link"
-import { FaAngleRight, FaLocationArrow } from "react-icons/fa";
-import { RiWhatsappLine, RiTwitterFill, RiInstagramLine, RiFacebookFill, RiPhoneFill, RiMailLine, RiTimeLine, RiLinkedinLine } from "react-icons/ri";
-
+import { useState, useEffect, useRef } from "react";
+import BrandLogo from "./brandLogo";
+import Link from "next/link";
+import { portalLinks } from "./landingData";
+import { LuArrowRight, LuArrowUpRight, LuLoader2, LuMail, LuPhone } from "react-icons/lu";
+import {
+  RiWhatsappLine,
+  RiTwitterFill,
+  RiInstagramLine,
+  RiFacebookFill,
+  RiLinkedinLine,
+} from "react-icons/ri";
 export default function Footer() {
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    const [color, setColor] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [XToken, setXToken] = useState('');
-
-    const subscribe = async () => {
-
-        if (email === '') {
-            setMessage('Email is required.');
-            setColor('text-red-500');
-            clear();
-            return;
-        }
-
-        const trackId = typeof window !== 'undefined' ? (window as any).TRACK_ID || '' : '';
-
-        setIsLoading(true);
-
-        try {
-            const response = await fetch('https://api.axiolot.com.ng/email/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Track-Id': trackId,
-                    'X-XSRF-TOKEN': XToken
-                },
-                body: JSON.stringify({ email, type: 'news' }),
-                credentials: 'include'
-            });
-
-            const result = await response.json();
-            if (response.ok && response.status) {
-                setMessage(`${result.message}`);
-                setColor('text-green-500');
-            } else {
-                setMessage(`${result.message}`);
-                setColor('text-red-500');
-            }
-        } catch (error) {
-            setMessage('Failed to subscribe. Please try again later.');
-            setColor('text-red-500');
-        } finally {
-            setIsLoading(false);
-            clear();
-        }
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [color, setColor] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [XToken, setXToken] = useState("");
+  const messageTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const clear = () => {
+    clearTimeout(messageTimeout.current);
+    messageTimeout.current = setTimeout(() => {
+      setMessage("");
+      setColor("");
+    }, 4000);
+  };
+  const subscribe = async () => {
+    if (email === "") {
+      setMessage("Email is required.");
+      setColor("text-red-500");
+      clear();
+      return;
     }
-
-    const clear = () => {
-        let timeOut = setTimeout(() => {
-            setMessage('')
-            setColor('')
-            clearTimeout(timeOut)
-        }, 4000)
+    const trackId =
+      typeof window !== "undefined" ? (window as any).TRACK_ID || "" : "";
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/email/subscribe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Track-Id": trackId,
+            "X-XSRF-TOKEN": XToken,
+          },
+          body: JSON.stringify({ email, type: "news" }),
+          credentials: "include",
+        },
+      );
+      const result = await response.json();
+      if (response.ok && response.status) {
+        setMessage(String(result.message));
+        setColor("text-green-700");
+      } else {
+        setMessage(String(result.message));
+        setColor("text-red-700");
+      }
+    } catch {
+      setMessage("Failed to subscribe. Please try again later.");
+      setColor("text-red-700");
+    } finally {
+      setIsLoading(false);
+      clear();
     }
-
-    const currentYear = new Date().getFullYear();
-    const backgroundImage = `${process.env.NEXT_PUBLIC_CDN}/svg/hub/bg.svg`;
-
-    useEffect(() => {
-        fetch('/api/x-token').then((res) => res.json()).then((data) => {
-            setXToken(data.token)
-        })
-    }, [])
-
-    return (
-        <footer className="border-t border-gray-300">
-            <div className="bg-slate-100 py-8 relative footer-top" style={{ backgroundImage: `url(${backgroundImage}) !important` }}>
-                <div className="app-container">
-                    <div className="pt-16 pb-12 md:pt-20 md:pb-16">
-                        <div className="flex flex-wrap mt-0 -mx-3 flex-col justify-between align-middle lg:items-start lg:flex-row pb-10">
-                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-2/5 mt-0 px-3">
-                                <div className="mb-6">
-                                    <div className="py-0 flex flex-row justify-start items-center mb-6">
-                                        <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/hub/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 pr-0 mr-0" />
-                                        <svg height="40" width="200" className="-ml-2">
-                                            <text x="5" y="30" fill="none" stroke="#2f2e41" fontSize="35" rotate="10" className="font-satoshi">xiolot</text>
-                                        </svg>
-                                    </div>
-                                    <p className="text-black font-normal text-base font-satoshi mb-2.5 mt-0">
-                                        AXIOLOT HUB: Your transformative partners, not just consultants. We amplify your institution across educational sectors with technology-driven excellence. Join our proven circle for unrivaled academics elevation.
-                                    </p>
-                                    <ul className="p-0 mt-5 list-none">
-                                        <li className="inline-block mr-2">
-                                            <a href="https://wa.me/+2347081317077" className="transition-all duration-500 no-underline">
-                                                <RiWhatsappLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
-                                            </a>
-                                        </li>
-                                        <li className="inline-block mr-2">
-                                            <a href="https://instagram.com/axiolothub" className="transition-all duration-500 no-underline">
-                                                <RiInstagramLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
-                                            </a>
-                                        </li>
-                                        <li className="inline-block mr-2">
-                                            <a href="https://twitter.com/@axiolothub" className="transition-all duration-500 no-underline">
-                                                <RiTwitterFill className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
-                                            </a>
-                                        </li>
-                                        <li className="inline-block mr-2">
-                                            <a href="https://facebook.com/axiolothub" className="transition-all duration-500 no-underline">
-                                                <RiFacebookFill className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
-                                            </a>
-                                        </li>
-                                        <li className="inline-block mr-2">
-                                            <a href="https://linkedin.com/axiolothub" className="transition-all duration-500 no-underline">
-                                                <RiLinkedinLine className="bg-slate-600 text-white p-1.5 w-8 h-8 text-center rounded-full transition-all duration-300 leading-8 shadow-custom hover:bg-white hover:text-rasin-black hover:scale-[1.09] transform" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="hidden md:flex">
-                                    <div className="w-2/5 p-2">
-                                        <a
-                                            href="https://status.axiolot.com.ng"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex flex-1 justify-start items-center gap-x-2 bg-teal-100 px-2 py-1 rounded-lg hover:bg-teal-200 transition-colors"
-                                        >
-                                            <div className="animate-ping absolute rounded-full bg-green-500 w-4 h-4 opacity-45"></div>
-                                            <div className="relative rounded-full bg-green-500 w-4 h-4"></div>
-                                            <div className="ml-1">
-                                                <p className="text-green-500 text-base font-medium">Status Page</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/4 mt-0 px-3">
-                                <div className="mb-6">
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">Quick link</h3>
-                                    <div className="flex flex-wrap -mx-4 mt-0">
-                                        <div className="md:flex-[0_0_auto] max-w-full w-full flex-shrink-0 px-4 mt-0">
-                                            <ul className="list-none p-0 m-0">
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/about" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">About Us</Link>
-                                                </li>
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <a href="/#service" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Service</a>
-                                                </li>
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/ecosystem" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Our Ecosystem</Link>
-                                                </li>
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/#plan" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Pricing</Link>
-                                                </li>
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="/blog" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Blog</Link>
-                                                </li>
-                                                <li className="relative pl-5 mb-2.5 font-normal">
-                                                    <FaAngleRight className="absolute left-0 top-1 text-slate-800" />
-                                                    <Link href="#" className="text-[15px] leading-6 font-inter text-black transition-all duration-300 hover:pl-2 hover:text-rasin-black">Become an affiliate</Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mb-6">
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">Office Hour</h3>
-                                    <ul className="m-0 p-0 list-none">
-                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
-                                            <RiTimeLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">
-                                                Monday - Friday: 8AM - 4PM <br /> Saturday: 8AM - 12Noon
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div data-wow-delay="0.4s" className="w-full wow slideInUp max-w-full lg:flex-[0_0_auto] lg:w-1/3 mt-0 px-3">
-                                <div className="mb-6">
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">subscribe to our newsletter</h3>
-                                    <p className="text-black font-normal text-base font-inter mb-2.5 mt-0">Don&apos;t miss out on a single update! Stay in the know with our newsletter.</p>
-                                    <div className="mt-6 mb-4">
-                                        <input value={email} disabled={isLoading} onChange={(e) => setEmail(e.target.value)} type="email" name="" id="" className="rounded-full transition-all duration-300 px-4 pl-6 outline-none py-3.5 text-sm font-roboto text-rasin-black border-slate-200 border hover:border-teal-400 ring-2 ring-transparent hover:ring-slate-300 focus:border-rose-400 w-full shadow-custom mb-4" placeholder="Your Email Address" />
-                                        <div className="w-full md:w-1/2 mx-auto mb-2">
-                                            <button disabled={isLoading} onClick={subscribe} className="hover:shadow-md ripple-btn overflow-hidden transition-shadow duration-300 bg-rasin-black text-white relative text-center w-full mx-auto rounded-full py-3 px-7 opacity-100 inline-block">
-                                                <p className="z-50 relative transition-[color] duration-700 text-white">{isLoading ? 'Submitting...' : 'Subscribe'}</p>
-                                                <span className="absolute w-0 h-0 z-0 opacity-100 rounded-full block"></span>
-                                            </button>
-                                        </div>
-                                        <p className={`text-base text-center py-4 font-satoshi ${color}`}>{message}</p>
-                                    </div>
-                                </div>
-                                <div className="mb-6">
-                                    <h3 className="text-black mt-2.5 mb-7 text-lg font-semibold font-merri uppercase">contact info</h3>
-                                    <ul className="m-0 p-0 list-none">
-                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
-                                            <FaLocationArrow className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="#" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">Block 4, Opp. St.Faith Schools Ebony Paint Road, Enugu State</Link>
-                                        </li>
-                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
-                                            <RiPhoneFill className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="tel:+2347073184665" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">+(234) 707 318 4665</Link>
-                                        </li>
-                                        <li className="text-black pl-5 relative mb-3.5 text-sm font-inter font-normal">
-                                            <RiMailLine className="absolute top-1 left-0 text-slate-800" />
-                                            <Link href="mailto:support@axiolot.com.ng" target="_blank" className="text-sm transition-all duration-300 pl-2 hover:pl-4 hover:text-rasin-black">support@axiolot.com.ng</Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-wow-delay="0.3s" className="w-auto wow fadeInUp md:w-3/4 mx-auto mt-8 mb-2 rounded-lg shadow-app z-50 bg-white/70 backdrop-blur-md border-2 border-white drop-shadow-md relative">
-                            <div className="flex justify-evenly flex-col md:flex-row items-center align-middle">
-                                <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center">
-                                    <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Email</h1>
-                                    <Link href="mailto:info@axiolot.com.ng" target="_blank" className="text-purple-500 font-inter text-sm font-normal">info@axiolot.com.ng</Link>
-                                </div>
-                                <div className="w-full md:w-auto py-4 md:py-14 md:px-16 text-center border-t md:border-t-0 md:border-l border-slate-200">
-                                    <h1 className="font-merri text-gradient-1 mb-2 md:mb-4 text-base font-semibold">Consultation Number (Whatsapp Only)</h1>
-                                    <Link href="https://wa.me/+2347081317077" target="_blank" className="text-purple-500 font-inter text-sm font-normal">+234 708 131 7077</Link>
-                                </div>
-                            </div>
-                            <div className="absolute -top-8 -left-4 animate-bounce bounce">
-                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/consult.png"} alt="" className="w-32 h-32" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex md:hidden">
-                    <div className="w-2/5 p-2 mx-auto">
-                        <a
-                            href="https://status.axiolot.com.ng"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex flex-1 justify-start items-center gap-x-2 bg-teal-100 px-2 py-1 rounded-lg hover:bg-teal-200 transition-colors"
-                        >
-                            <div className="animate-ping absolute rounded-full bg-green-500 w-3 h-3 opacity-45"></div>
-                            <div className="relative rounded-full bg-green-500 w-4 h-4"></div>
-                            <div className="ml-1">
-                                <p className="text-green-500 text-base font-medium">Status Page</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div className="absolute top-3 right-6 tri-shape">
-                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/tri-shape.png"} alt="shape triangle" className="max-w-full align-middle" />
-                </div>
-                <div className="absolute left-1/3 top-1/4 round-shape">
-                    <img src={process.env.NEXT_PUBLIC_CDN + "/image/hub/round-shape.png"} alt="shape circle" className="max-w-full align-middle" />
-                </div>
-                <div className="absolute bottom-4 left-1/3 animate-spin duration-[3s] p-3 backdrop-blur-sm bg-teal-600/60"></div>
+  };
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/x-token", { signal: controller.signal })
+      .then((res) => res.json())
+      .then((data) => setXToken(data.token))
+      .catch(() => {});
+    return () => {
+      controller.abort();
+      clearTimeout(messageTimeout.current);
+    };
+  }, []);
+  const socials = [
+    {
+      label: "WhatsApp",
+      href: "https://wa.me/+2347081317077",
+      icon: RiWhatsappLine,
+    },
+    {
+      label: "Instagram",
+      href: "https://instagram.com/axiolothub",
+      icon: RiInstagramLine,
+    },
+    {
+      label: "Twitter",
+      href: "https://twitter.com/@axiolothub",
+      icon: RiTwitterFill,
+    },
+    {
+      label: "Facebook",
+      href: "https://facebook.com/axiolothub",
+      icon: RiFacebookFill,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/axiolothub",
+      icon: RiLinkedinLine,
+    },
+  ];
+  return (
+    <footer className="axi-footer text-rasin-black font-satoshi antialiased [&_svg]:shrink-0 [&_a]:no-underline border-t border-hub-border bg-white pt-[60px] [&_h2]:text-[13px] [&_h2]:font-bold [&_h2]:mb-5 max-[699px]:pt-[42px] max-[699px]:[&_h2]:mb-4">
+      <div className="axi-container w-[calc(100%_-_64px)] max-w-[1240px] mx-auto max-[1199px]:w-[calc(100%_-_48px)] max-[699px]:w-[calc(100%_-_40px)] max-[379px]:w-[calc(100%_-_32px)]">
+        <div className="axi-footer-grid grid grid-cols-[1.1fr_0.65fr_0.8fr_1.1fr] gap-[45px] pb-[50px] max-[1199px]:gap-[30px] max-[959px]:grid-cols-[1.1fr_1fr] max-[959px]:gap-[40px_55px] max-[699px]:grid-cols-[1fr_1fr] max-[699px]:gap-[35px_25px] max-[699px]:pb-[35px]">
+          <div className="axi-footer-brand [&>p]:max-w-[245px] [&>p]:text-hub-text [&>p]:text-[13px] [&>p]:leading-[1.8] [&>p]:mt-5 max-[699px]:[grid-column:1_/_-1] max-[699px]:[&>p]:max-w-[380px]">
+            <Link
+              href="/"
+              className="axi-brand inline-flex items-center gap-1.5 shrink-0 text-rasin-black focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              aria-label="Axiolot Hub home"
+            >
+              <BrandLogo />
+            </Link>
+            <p>
+              A connected school community.
+              <br />A clearer way to manage every day.
+            </p>
+            <div className="axi-footer-socials flex gap-[9px] mt-[22px] [&_a]:inline-flex [&_a]:items-center [&_a]:justify-center [&_a]:w-[30px] [&_a]:h-[30px] [&_a]:border [&_a]:border-hub-border [&_a]:rounded-2xl [&_a]:text-hub-text [&_a:hover]:text-hub-accent-strong [&_a:hover]:border-royal-lilac [&_svg]:w-3.5 [&_svg]:h-3.5">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+                >
+                  <social.icon aria-hidden="true" />
+                </a>
+              ))}
             </div>
-            <div className="bg-rasin-black border-t border-dashed p-4 border-white">
-                <div className="app-container text-center text-white text-xs">
-                    <p>© 2022 - {currentYear}. <span className="ml-2">AXIOLOT HUB™ Helping schools to track student performance, manage grades and others</span> </p>
-                </div>
+            <div className="axi-footer-contact mt-[25px] [&_a]:flex [&_a]:items-center [&_a]:gap-[7px] [&_a]:mt-2.5 [&_a]:text-[11px] [&_a]:text-hub-text [&_svg]:w-[13px] [&_svg]:h-[13px] [&_svg]:text-hub-muted max-[699px]:[&_a]:text-[10px] max-[379px]:[&_a]:text-[9px]">
+              <a
+                href="mailto:support@axiolot.com.ng"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                <LuMail aria-hidden="true" /> support@axiolot.com.ng
+              </a>
+              <a
+                href="tel:+2347073184665"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                <LuPhone aria-hidden="true" /> +234 707 318 4665
+              </a>
             </div>
-        </footer>
-    )
+          </div>
+          <div>
+            <h2>Explore</h2>
+            <nav
+              className="axi-footer-links flex flex-col gap-[13px] [&_a]:text-[12px] [&_a]:text-hub-text [&_a:hover]:text-hub-accent-strong"
+              aria-label="Footer navigation"
+            >
+              <Link
+                href="/#service"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                The platform
+              </Link>
+              <Link
+                href="/ecosystem"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Our ecosystem
+              </Link>
+              <Link
+                href="/#plan"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Plans
+              </Link>
+              <Link
+                href="/about"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                About Axiolot
+              </Link>
+              <Link
+                href="/blog"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/contact"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Contact us
+              </Link>
+              <a
+                href="https://wa.me/+2347081317077"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Become an affiliate
+              </a>
+            </nav>
+          </div>
+          <div>
+            <h2>Your workspace</h2>
+            <nav
+              className="axi-footer-links flex flex-col gap-[13px] [&_a]:text-[12px] [&_a]:text-hub-text [&_a:hover]:text-hub-accent-strong"
+              aria-label="Product portals"
+            >
+              {portalLinks.map((portal) => (
+                <a
+                  key={portal.label}
+                  href={portal.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+                >
+                  {portal.label}
+                </a>
+              ))}
+              <Link
+                href="/#faq"
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                Help & FAQs
+              </Link>
+            </nav>
+          </div>
+          <div className="axi-footer-newsletter [&>p]:text-[12px] [&>p]:text-hub-text [&>p]:leading-[1.8] max-[699px]:[grid-column:1_/_-1] max-[699px]:max-w-[450px]">
+            <h2>Stay in the loop</h2>
+            <p>
+              Product updates and useful news for your school, straight to your
+              inbox.
+            </p>
+            <form
+              className="axi-newsletter-form mt-[15px] [&_label]:block [&_label]:text-[10px] [&_label]:text-hub-text [&_label]:mb-[7px]"
+              onSubmit={(event) => {
+                event.preventDefault();
+                if (!isLoading) void subscribe();
+              }}
+              aria-busy={isLoading}
+            >
+              <label htmlFor="newsletter-email">Email address</label>
+              <div className="axi-newsletter-input flex items-stretch border border-hub-border rounded-2xl bg-white focus-within:border-royal-lilac [&_input]:w-full [&_input]:min-w-[0px] [&_input]:border-0 [&_input]:[padding:11px_12px] [&_input]:text-[12px] [&_input]:[background:transparent] [&_input]:text-rasin-black [&_input]:outline-offset-[1px] [&_input::placeholder]:text-hub-muted [&_button]:self-center [&_button]:h-8 [&_button]:w-8 [&_button]:mr-[5px] [&_button]:shrink-0 [&_button]:flex [&_button]:items-center [&_button]:justify-center [&_button]:rounded-2xl [&_button]:bg-hub-accent-strong [&_button]:text-white [&_button]:cursor-pointer [&_button:hover]:bg-hub-accent-hover [&_button:disabled]:opacity-[0.6] [&_button:disabled]:cursor-wait [&_button_svg]:w-4 [&_button_svg]:h-4">
+                <input
+                  id="newsletter-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  disabled={isLoading}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="you@school.edu"
+                  aria-describedby="newsletter-message"
+                  className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-transparent focus-visible:outline-offset-4 h-11"
+                />
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  aria-label={
+                    isLoading
+                      ? "Submitting subscription"
+                      : "Subscribe to our newsletter"
+                  }
+                  className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+                >
+                  {isLoading ? (
+                    <LuLoader2
+                      className="h-4 w-4 animate-spin motion-reduce:animate-none"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <LuArrowRight className="h-4 w-4" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
+              <p
+                id="newsletter-message"
+                className={
+                  "axi-newsletter-message text-center min-h-[35px] pt-2 text-xs leading-[1.5] " +
+                  color
+                }
+                role="status"
+                aria-live="polite"
+              >
+                {isLoading ? "Submitting…" : message}
+              </p>
+            </form>
+            <p className="axi-office-hours text-hub-muted text-[10px] leading-[1.7] mt-2.5">
+              Mon–Fri: 8am–4pm · Sat: 8am–12 noon
+              <br />
+              Block 4, Opp. St. Faith Schools,
+              <br />
+              Ebony Paint Road, Enugu State.
+            </p>
+          </div>
+        </div>
+        <div className="axi-footer-bottom flex justify-between items-center gap-6 py-[22px] border-t border-hub-border text-hub-muted text-xs [&>div]:flex [&>div]:items-center [&>div]:gap-[22px] max-[699px]:flex-col max-[699px]:gap-[15px] max-[699px]:items-start max-[699px]:py-5 max-[699px]:text-[9px]">
+          <p>
+            © 2022–{new Date().getFullYear()} Axiolot Hub. All rights reserved.
+          </p>
+          <div>
+            <Link
+              href="/privacy"
+              className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            >
+              Privacy policy
+            </Link>
+            <a
+              href="https://status.axiolot.com.ng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="axi-footer-status inline-flex items-center gap-1.5 [&_.axi-status-dot]:bg-hub-success focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            >
+              <span className="axi-status-dot w-1.5 h-1.5 inline-block bg-royal-lilac rounded-full shrink-0" />{" "}
+              System status <LuArrowUpRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -1,102 +1,135 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'
-import gsap from 'gsap';
-import Link from 'next/link';
-import { Button } from '@chakra-ui/react';
-import { CgMenuRight, CgClose } from "react-icons/cg";
-import '../../../public/css/mobileNav.css';
-
+"use client";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { LuArrowRight, LuArrowUpRight, LuMenu, LuX } from "react-icons/lu";
+import { navigationLinks, portalLinks } from "./landingData";
 export default function MobileNav() {
-    const router = useRouter();
-
-    useEffect(() => {
-        const open = document.querySelector('.open') as HTMLElement;
-        const closeButtons = document.querySelectorAll('.close-nav');
-        const html = document.querySelector('html') as HTMLElement;
-
-        const tl = gsap.timeline({ defaults: { duration: 0.6, ease: 'expo.inOut' } });
-
-        const openNav = () => {
-            if (tl.reversed()) {
-                tl.play();
-            } else {
-                tl.to('nav', { right: 0 })
-                    .to('nav', { height: '100vh' }, '-=.1')
-                    .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.05 }, '-=.3')
-                    .to('nav button', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.2')
-                    .to('.close-nav', { opacity: 1, pointerEvents: 'all', stagger: 0.15 }, '-=.1');
-            }
-            open.style.opacity = "0";
-            html.style.overflowY = "hidden";
-        };
-
-        const closeNav = () => {
-            tl.reverse();
-            open.style.opacity = "1";
-            html.style.overflowY = "auto";
-        };
-
-        open.addEventListener('click', openNav);
-        closeButtons.forEach(btn => btn.addEventListener('click', closeNav));
-
-        return () => {
-            open.removeEventListener('click', openNav);
-            closeButtons.forEach(btn => btn.removeEventListener('click', closeNav));
-        };
-    }, []);
-
-
-    const navStyle = {
-        right: "-300vw",
-        height: "60px"
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const previousOverflow = useRef("");
+  const pathname = usePathname();
+  const close = () => {
+    dialogRef.current?.close();
+    document.body.style.overflow = previousOverflow.current;
+  };
+  useEffect(() => {
+    if (dialogRef.current?.open) {
+      dialogRef.current.close();
+      document.body.style.overflow = previousOverflow.current;
     }
-
-    const hrefStyle: React.CSSProperties = {
-        opacity: 0,
-        pointerEvents: "none"
-    }
-
-    const navigate = (url: string) => {
-        router.push(url)
-    }
-
-    return (
-        <div className="relative">
-            <div className="open h-5 cursor-pointer transition-opacity duration-500">
-                <CgMenuRight className="h-8 w-8 text-black fill-black" />
-            </div>
-            <nav className="fixed z-50 w-full bg-white flex flex-col justify-center items-center rounded-lg shadow-custom" style={navStyle}>
-                <div className="close-nav text-black w-8 h-8 absolute top-[6%] right-[5%] cursor-pointer" style={hrefStyle}>
-                    <div>
-                        <CgClose className="text-black w-8 h-8" />
-                    </div>
-                </div>
-                <ul className="list-none font-roboto">
-                    <li className="my-10 mt-12">
-                        <Link scroll href='/#mission' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Mission</Link>
-                    </li>
-                    <li className="my-10">
-                        <Link scroll href='/#plan' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Plan</Link>
-                    </li>
-                    <li className="my-10">
-                        <Link scroll href='/#faq' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Faq</Link>
-                    </li>
-                    <li className="my-10">
-                        <Link scroll href='/#team' className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Team</Link>
-                    </li>
-                    <li className="my-10 mb-12">
-                        <Link scroll href="/affiliates" className="text-black text-lg font-medium relative close-nav" style={hrefStyle}>Affiliates</Link>
-                    </li>
-                </ul>
-                <Button onClick={() => navigate('/#plan')} style={hrefStyle} className="mx-0.5 group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black w-32">
-                    <span className="before:left-0 group-hover/item:after:h-full group-hover/item:before:h-full before:bottom-0 after:right-0 after:top-0 block px-1 py-0.5 after:content-[''] before:content-[''] after:w-0.5 before:w-0.5 after:h-0 before:h-0 after:absolute before:absolute after:ease-linear before:ease-linear before:transition-all after:duration-500 after:transition-all before:duration-500 after:bg-black before:bg-black text-sm font-inter">
-                        Join Us
-                        <span className="ml-1">
-                            <span className="text-base">+</span>
-                        </span>
-                    </span>
-                </Button>
-            </nav>
+  }, [pathname]);
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const query = window.matchMedia("(min-width: 1080px)");
+    const onResize = () => {
+      if (query.matches && dialog?.open) {
+        dialog.close();
+        document.body.style.overflow = previousOverflow.current;
+      }
+    };
+    query.addEventListener("change", onResize);
+    return () => {
+      query.removeEventListener("change", onResize);
+      if (dialog?.open) document.body.style.overflow = previousOverflow.current;
+    };
+  }, []);
+  return (
+    <div className="axi-mobile-nav hidden max-[1079px]:block">
+      <button
+        type="button"
+        className="axi-icon-button inline-flex justify-center items-center w-11 h-11 rounded-2xl text-rasin-black cursor-pointer hover:bg-hub-surface [&_svg]:w-[23px] [&_svg]:h-[23px] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+        ref={triggerRef}
+        aria-label="Open navigation"
+        aria-haspopup="dialog"
+        aria-controls="mobile-navigation"
+        onClick={() => {
+          previousOverflow.current = document.body.style.overflow;
+          dialogRef.current?.showModal();
+          document.body.style.overflow = "hidden";
+        }}
+      >
+        <LuMenu aria-hidden="true" />
+      </button>
+      <dialog
+        ref={dialogRef}
+        id="mobile-navigation"
+        className="axi-mobile-dialog [margin:0_0_0_auto] p-0 w-[min(420px,_100%)] max-w-full h-[100dvh] max-h-[100dvh] bg-white border-0 text-rasin-black backdrop:bg-[rgb(47_46_65_/_45%)]"
+        aria-labelledby="mobile-nav-title"
+        onClose={() => {
+          document.body.style.overflow = previousOverflow.current;
+          triggerRef.current?.focus();
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) close();
+        }}
+      >
+        <div className="axi-mobile-panel [padding:20px_24px_32px] [&_nav]:py-4 [&_nav_a]:flex [&_nav_a]:justify-between [&_nav_a]:items-center [&_nav_a]:[padding:14px_0] [&_nav_a]:text-[20px] [&_nav_a]:font-medium [&_nav_a_svg]:w-[18px] [&_nav_a_svg]:text-hub-muted [&>.axi-button]:w-full">
+          <div className="axi-mobile-title flex justify-between items-center gap-3 pb-[22px] border-b border-hub-border text-[16px] font-bold">
+            <span id="mobile-nav-title">Explore Axiolot Hub</span>
+            <button
+              type="button"
+              className="axi-icon-button inline-flex justify-center items-center w-11 h-11 rounded-2xl text-rasin-black cursor-pointer hover:bg-hub-surface [&_svg]:w-[23px] [&_svg]:h-[23px] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4"
+              aria-label="Close navigation"
+              onClick={close}
+            >
+              <LuX aria-hidden="true" />
+            </button>
+          </div>
+          <nav aria-label="Mobile navigation">
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={close}
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                {link.label}
+                <LuArrowRight aria-hidden="true" />
+              </Link>
+            ))}
+          </nav>
+          <div className="axi-mobile-portals [padding:18px_0_24px] border-t border-hub-border [&_p]:text-hub-muted [&_p]:text-[10px] [&_p]:font-bold [&_p]:tracking-[1.2px] [&_p]:mb-3 [&_a]:flex [&_a]:justify-between [&_a]:items-center [&_a]:min-h-[44px] [&_a]:text-[13px] [&_a]:text-hub-text [&_a_svg]:w-[15px] [&_a_svg]:h-[15px]">
+            <p>LOG IN TO YOUR WORKSPACE</p>
+            {portalLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={close}
+                className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+              >
+                {link.label}
+                <LuArrowUpRight aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <Link
+            href="/#plan"
+            className="axi-button inline-flex items-center justify-center gap-[18px] min-h-[48px] [padding:12px_20px] border border-transparent rounded-2xl text-[14px] font-bold leading-[1.5] cursor-pointer [transition:background-color_160ms,_border-color_160ms,_box-shadow_160ms] [&_svg]:w-[17px] [&_svg]:h-[17px] axi-button-primary bg-hub-accent-strong text-white shadow-[0_3px_7px_rgb(108_99_255_/_12%)] hover:bg-hub-accent-hover focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            onClick={close}
+          >
+            Get started <LuArrowRight aria-hidden="true" />
+          </Link>
+          <div className="axi-mobile-secondary flex gap-6 mt-6 text-hub-muted text-[12px]">
+            <Link
+              href="/contact"
+              onClick={close}
+              className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            >
+              Contact us
+            </Link>
+            <Link
+              href="/privacy"
+              onClick={close}
+              className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            >
+              Privacy policy
+            </Link>
+          </div>
         </div>
-    );
-};
+      </dialog>
+    </div>
+  );
+}

@@ -1,168 +1,97 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'
-import {
-    Menu, MenuButton, MenuList, MenuItem, Button, Icon
-} from '@chakra-ui/react'
-import Link from 'next/link'
-import { IoLogoTwitter, IoLogoInstagram, IoLogoWhatsapp, IoAnalytics } from "react-icons/io5";
-import { IoMdLogIn } from "react-icons/io";
-import { RiSecurePaymentFill } from "react-icons/ri";
-import { SiMicrosoftacademic, SiNginxproxymanager } from "react-icons/si";
-import { FaSitemap } from "react-icons/fa6";
-import MobileNav from './mobileNav'
-import '../../../public/css/header.css'
-
+import { useEffect, useRef } from "react";
+import BrandLogo from "./brandLogo";
+import Link from "next/link";
+import { LuArrowRight, LuArrowUpRight, LuChevronDown } from "react-icons/lu";
+import MobileNav from "./mobileNav";
+import { navigationLinks, portalLinks } from "./landingData";
 export default function Header() {
-    const socials = [
-        { id: 1, name: "Instagram", icon: IoLogoInstagram, tag: "https://instagram.com/axiolothub" },
-        { id: 2, name: "Twitter", icon: IoLogoTwitter, tag: "https://twitter.com/@axiolothub" },
-        { id: 3, name: "Whatsapp", icon: IoLogoWhatsapp, tag: "https://wa.me/+2347081317077" }
-    ];
-
-    const logins = [
-        { id: 1, name: "Academics Portal", icon: SiMicrosoftacademic, tag: "https://portal.axiolot.com.ng/" },
-        { id: 2, name: "e-Payment Portal", icon: RiSecurePaymentFill, tag: "https://e-pay.axiolot.com.ng" },
-        { id: 3, name: "Analytics Manager", icon: IoAnalytics, tag: "https://analytics.axiolot.com.ng" },
-        { id: 4, name: "Site Management", icon: FaSitemap, tag: "https://sites.axiolot.com.ng/" },
-        { id: 5, name: "StaffPay Manager", icon: SiNginxproxymanager, tag: "https://wa.me/+2347081317077" }
-    ];
-
-    const [isNavVisible, setIsNavVisible] = useState(false);
-    const [isNavAnimated, setIsNavAnimated] = useState(false);
-
-    const router = useRouter();
-
-    const handleScroll = () => {
-        const navigationElement = document.getElementById('header') as HTMLElement;
-
-        const { offsetTop } = navigationElement;
-        const windowScrollTop = window.pageYOffset;
-
-        if (windowScrollTop > offsetTop + 120) {
-            if (!navigationElement.classList.contains('stick')) {
-                navigationElement.classList.add('stick');
-            }
-
-            setIsNavAnimated(true);
-            setIsNavVisible(true);
-        } else {
-            navigationElement.classList.remove('stick');
-            if (windowScrollTop <= offsetTop + 1) {
-                setIsNavVisible(false);
-                setIsNavAnimated(false);
-            }
-        }
+  const loginRef = useRef<HTMLDetailsElement>(null);
+  useEffect(() => {
+    const close = (event: PointerEvent) => {
+      if (!loginRef.current?.contains(event.target as Node))
+        loginRef.current?.removeAttribute("open");
     };
-
-    const navigate = () => {
-        router.push('/#plan')
-    }
-
-    const home = () => {
-        router.push('/')
-    }
-
-    useEffect(() => {
-        handleScroll();
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    return (
-        <>
-            <header className={`header ${isNavVisible ? 'active' : 'relative'} ${isNavAnimated ? 'animate' : ''}`} id="header">
-                <div></div>
-                <div className="from-[rgb(59,58,78)] from-40% to-rasin-black w-full bg-gradient-to-r bg-holder">
-                    <div className="app-container top-nav py-2 md:py-4 flex flex-row justify-center md:justify-between align-middle items-center mx-2 md:mx-auto">
-                        <div data-wow-delay="0.3s" className="md:grid wow slideInLeft grid-cols-3 gap-x-4 justify-between align-middle items-center hidden">
-                            {socials.map(item => (
-                                <span className="mb-0 inline-block" key={item.id}>
-                                    <Link href={item.tag} target="_blank" className="bg-transparent-white rounded-full m-0 text-xl w-[calc(20px+2*0em)] h-[calc(20px+2*0em)]">
-                                        <Icon as={item.icon} className="block relative h-5 w-5 fill-[#B4B6C6] hover:fill-white transition-all duration-300" />
-                                        <span className="sr-only">{item.name}</span>
-                                    </Link>
-                                </span>
-                            ))}
-                        </div>
-                        <div data-wow-delay="0.3s" className="flex wow slideInRight flex-row gap-x-6 justify-center align-middle items-center">
-                            <span>
-                                <Link href="/privacy" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">Privacy Policy</Link>
-                                <span className="sr-only">privacy policys</span>
-                            </span>
-                            <span>
-                                <Link href="/#plan" className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">Get Started</Link>
-                                <span className="sr-only">get started</span>
-                            </span>
-                            <span className="mr-2 z-[9999999]">
-                                <a className="text-gray-400 hover:text-white text-sm font-satoshi transition-all duration-300">
-                                    <Menu>
-                                        <MenuButton>
-                                            Log In
-                                            <Icon as={IoMdLogIn} className="inline-block mx-1.5 relative h-4 w-4 fill-current transition-all duration-300" />
-                                        </MenuButton>
-                                        <MenuList className="bg-white z-[999999] text-black shadow-lg rounded-md border py-3 border-gray-200">
-                                            {logins.map(item => (
-                                                <MenuItem minH='42px' key={item.id} className="hover:bg-gray-100 rounded-xl transition-all duration-500">
-                                                    <a href={item.tag} target="_blank" className="bg-transparent-white">
-                                                        <Icon as={item.icon} className="inline-block relative h-5 w-5 fill-slate-500 mr-3 ml-3.5" />
-                                                        <span className='font-medium text-sm font-satoshi capitalize mr-4'>
-                                                            {item.name}
-                                                        </span>
-                                                    </a>
-                                                </MenuItem>
-                                            ))}
-                                        </MenuList>
-                                    </Menu>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                    <div data-wow-delay="0.2s" className="app-container wow bounceInUp mx-auto rounded-md bg-white bottom-nav -mb-4 md:-mb-2 transform-none">
-                        <div className="flex flex-row -mb-2 justify-between align-middle items-center font-satoshi py-3.5 px-3.5">
-                            <div onClick={home} data-wow-delay="0.5s" className="py-0 wow slideInLeft flex flex-row justify-start items-center cursor-pointer">
-                                <img src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} data-src={process.env.NEXT_PUBLIC_CDN + "/image/Wzcdkj2.png"} alt="" loading="lazy" decoding="async" className="w-10 h-10 md:h-12 md:w-12 m-0 p-0 mx-auto pr-0 mr-0" />
-                                <svg height="40" width="200" className="-ml-2">
-                                    <text x="5" y="30" fill="none" stroke="#2f2e41" fontSize="35" rotate="10" className="font-satoshi">xiolot</text>
-                                </svg>
-                            </div>
-                            <div data-wow-delay="0.5s" className="md:flex wow slideInRight flex-row justify-between align-middle items-center my-1 hidden">
-                                <Link href='/#mission' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
-                                    <span className="font-satoshi">Mission</span>
-                                </Link>
-                                <Link href='/#plan' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
-                                    <span className="font-satoshi ">Plan</span>
-                                </Link>
-                                <Link href='/#service' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
-                                    <span>Service</span>
-                                </Link>
-                                <Link href='/#team-section' className="text-base mx-3.5 font-medium inline-block text-rasin-black  relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
-                                    <span>Team</span>
-                                </Link>
-                                <Button onClick={navigate} className="mx-0.5 block group/item bg-black transition-colors duration-500 text-white hover:bg-transparent hover:text-black capitalize hover:before:w-full hover:after:w-full text-base rounded-full after:content-[''] after:w-0 after:h-0.5 after:absolute after:transition-all before:content-[''] before:w-0 before:h-0.5 before:absolute before:transition-all after:duration-500 after:ease-linear before:ease-linear before:right-0 before:top-0 before:duration-500 after:left-0 after:bottom-0 p-1 px-2.5 cursor-pointer border-none after:bg-black before:bg-black">
-                                    <span className="before:left-0 group-hover/item:after:h-full group-hover/item:before:h-full before:bottom-0 after:right-0 after:top-0 block px-1 py-0.5 after:content-[''] before:content-[''] after:w-0.5 before:w-0.5 after:h-0 before:h-0 after:absolute before:absolute after:ease-linear before:ease-linear before:transition-all after:duration-500 after:transition-all before:duration-500 after:bg-black before:bg-black text-sm font-satoshi">
-                                        Join Us
-                                        <span className="ml-1">
-                                            <span className="text-base">+</span>
-                                        </span>
-                                    </span>
-                                </Button>
-                                <Link href='/#faq' className="text-base mx-3.5 font-medium inline-block text-rasin-black relative no-underline after:content-[''] after:rounded-sm after:h-[0.05em] after:absolute after:w-full after:transform after:bottom-0 after:left-0 after:bg-rasin-black after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left duration-500 ease-out">
-                                    <span>Faq</span>
-                                </Link>
-                            </div>
-                            <div data-wow-delay="0.5s" className="block md:hidden wow pb-2 slideInRight relative z-[9999] transform-none">
-                                <MobileNav />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </>
-    )
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && loginRef.current?.open) {
+        loginRef.current.removeAttribute("open");
+        loginRef.current.querySelector("summary")?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", close);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", close);
+      document.removeEventListener("keydown", escape);
+    };
+  }, []);
+  return (
+    <header
+      className="axi-header text-rasin-black font-satoshi antialiased [&_svg]:shrink-0 [&_a]:no-underline sticky top-0 z-[100] bg-white border-b border-hub-border"
+      id="header"
+    >
+      <a
+        href="#_next"
+        className="axi-skip-link fixed top-2 left-4 [transform:translateY(-150%)] [padding:12px_20px] text-white bg-rasin-black rounded-2xl z-[200] focus:[transform:translateY(0)] focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+      >
+        Skip to content
+      </a>
+      <div className="axi-container w-[calc(100%_-_64px)] max-w-[1240px] mx-auto max-[1199px]:w-[calc(100%_-_48px)] max-[699px]:w-[calc(100%_-_40px)] max-[379px]:w-[calc(100%_-_32px)] axi-header-inner h-[76px] flex justify-between items-center gap-8 max-[1199px]:gap-5 max-[1079px]:h-[68px] max-[699px]:h-16 max-[699px]:gap-[15px]">
+        <Link
+          href="/"
+          className="axi-brand inline-flex items-center gap-1.5 shrink-0 text-rasin-black focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+          aria-label="Axiolot Hub home"
+        >
+          <BrandLogo priority />
+        </Link>
+        <nav
+          className="axi-desktop-nav flex items-center gap-7 [&>a]:text-[13px] [&>a]:font-medium [&>a]:text-hub-text [&>a]:py-2.5 [&>a]:[transition:color_160ms] [&>a:hover]:text-hub-accent-strong max-[1199px]:gap-5 max-[1079px]:hidden"
+          aria-label="Main navigation"
+        >
+          {navigationLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="axi-header-actions flex items-center gap-6 max-[1199px]:gap-[18px] max-[1079px]:gap-[18px] max-[699px]:gap-[9px]">
+          <details
+            className="axi-login relative [&>summary]:flex [&>summary]:items-center [&>summary]:gap-[7px] [&>summary]:py-2.5 [&>summary]:text-[13px] [&>summary]:font-medium [&>summary]:cursor-pointer [&>summary]:list-none [&>summary::-webkit-details-marker]:hidden [&>summary_svg]:w-[13px] [&>summary_svg]:h-[13px] [&>summary_svg]:[transition:transform_160ms] [&[open]>summary_svg]:[transform:rotate(180deg)] max-[699px]:[&>summary]:text-[12px]"
+            ref={loginRef}
+          >
+            <summary className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4">
+              Log in <LuChevronDown aria-hidden="true" />
+            </summary>
+            <div className="axi-login-menu absolute right-0 top-[calc(100%_+_13px)] w-[270px] bg-white p-3 border border-hub-border rounded-2xl shadow-hub [&_p]:text-[9px] [&_p]:tracking-[1.4px] [&_p]:text-hub-muted [&_p]:[padding:8px_10px_12px] [&_a]:flex [&_a]:justify-between [&_a]:items-center [&_a]:gap-2 [&_a]:[padding:12px_10px] [&_a]:rounded-2xl [&_a]:text-[13px] [&_a]:text-rasin-black [&_a:hover]:bg-hub-surface [&_a_svg]:w-[15px] [&_a_svg]:h-[15px] [&_a_svg]:text-hub-muted max-[699px]:right-[-45px]">
+              <p>YOUR AXIOLOT WORKSPACE</p>
+              {portalLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => loginRef.current?.removeAttribute("open")}
+                  className="focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+                >
+                  {link.label}
+                  <LuArrowUpRight aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </details>
+          <Link
+            href="/#plan"
+            className="axi-button inline-flex items-center justify-center border border-transparent rounded-2xl font-bold leading-[1.5] cursor-pointer [transition:background-color_160ms,_border-color_160ms,_box-shadow_160ms] [&_svg]:w-[17px] [&_svg]:h-[17px] axi-button-primary bg-hub-accent-strong text-white shadow-[0_3px_7px_rgb(108_99_255_/_12%)] hover:bg-hub-accent-hover axi-header-cta min-h-[40px] [padding:9px_15px] gap-3.5 text-[12px] max-[699px]:hidden focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-royal-lilac focus-visible:outline-offset-4 no-underline"
+          >
+            Get started <LuArrowRight aria-hidden="true" />
+          </Link>
+          <MobileNav />
+        </div>
+      </div>
+    </header>
+  );
 }
